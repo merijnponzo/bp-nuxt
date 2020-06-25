@@ -1,0 +1,38 @@
+@font-face {
+    font-family: "icons";
+    src: url("#{$asset-base-path}/fonts-icon/icons.eot?6f3755ff1c44dd998c7b3c4d363bf2e2?#iefix") format("embedded-opentype"),
+url("#{$asset-base-path}/fonts-icon/icons.woff2?6f3755ff1c44dd998c7b3c4d363bf2e2") format("woff2"),
+url("#{$asset-base-path}/fonts-icon/icons.woff?6f3755ff1c44dd998c7b3c4d363bf2e2") format("woff"),
+url("#{$asset-base-path}/fonts-icon/icons.ttf?6f3755ff1c44dd998c7b3c4d363bf2e2") format("truetype"),
+url("#{$asset-base-path}/fonts-icon/icons.svg?6f3755ff1c44dd998c7b3c4d363bf2e2#icons") format("svg");
+}
+
+i[class^="ico-"]:before, i[class*=" ico-"]:before {
+    font-family: icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.ico-i_facebook:before {
+    content: "\f101";
+}
+.ico-i_instagram:before {
+    content: "\f102";
+}
+.ico-i_left:before {
+    content: "\f103";
+}
+.ico-i_right:before {
+    content: "\f104";
+}
+.ico-i_twitter:before {
+    content: "\f105";
+}
+.ico-i_youtube:before {
+    content: "\f106";
+}

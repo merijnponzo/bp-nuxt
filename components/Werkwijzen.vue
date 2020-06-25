@@ -1,0 +1,214 @@
+<style lang="scss" scoped>
+  .comp__werkwijze{
+    padding-bottom:rfs(2rem);
+    overflow-x:hidden;
+  }
+  .fs__h{
+    padding-top:rfs(4rem);
+    padding-bottom:rfs(4rem);
+    border-top:2px solid white;
+  }
+  .siema{
+    overflow:visible!important;
+  }
+  .slide.active{
+    .slide--story{
+      left:0px;
+      opacity: 1;
+      transform:scale(1,1);
+    }
+    .slide--visual{
+      left:20%;
+
+      transform:scale(1,1);
+      .visual{
+        opacity:1;
+      }
+    }
+  }
+  .slide{
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    position: relative;
+  }
+  .slide--story{
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    transition:0.5s ease all;
+    transform:scale(0.8,0.8);
+    .bp--nxt{
+      align-self: flex-end;
+    }
+  }
+  .slide--visual{
+    z-index:1;
+    width:100%;
+    transition:0.5s ease all;
+    transform:scale(0.8,0.8);
+    background:var(--color-two);
+    .visual{
+      transition:0.5s ease opacity;
+      opacity:0.6;
+      max-width:500px;
+    }
+ }
+.slide--nav{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top:rfs(0.5rem);
+}
+.slide--index{
+   width:20px;
+   height:3.5px;
+   background:white;
+   opacity:0.5;
+   margin-right:5px;
+}
+.slide--index.active{
+  opacity:1;
+}
+.bp--paginate{
+  cursor: pointer;
+}
+.bp--paginate:hover{
+  opacity: 0.5;
+}
+ @include min-medium(){
+   .siema-wrap{
+    width:90%;
+   }
+   .slide{
+     flex-direction: row;
+   }
+   .slide--story{
+     width:60%;
+     opacity:0;
+     justify-content: space-between;
+   }
+
+   .slide--visual{
+     width:40%;
+     left:0px;
+     padding-top:rfs(1rem);
+     padding-left:rfs(5em);
+     //transform: translateX(-150%)scale(0.8,0.8);
+   }
+   .slide.active{
+      .slide--story{
+        opacity: 1;
+        transform: translateX(-60%)scale(1,1);
+        padding-right:rfs(4rem);
+        .fs__q{
+          padding-top:rfs(2rem);
+        }
+      }
+      .slide--visual{
+        transform: translateX(160%)scale(1,1);
+      }
+   }
+   .slide--nav{
+     padding-top:rfs(0.5rem);
+     width:90%;
+   }
+ }
+  @include min-large(){
+    .slide.active{
+      .slide--story{
+        transform: translateX(-60%)scale(1,1);
+        padding-right:rfs(10rem);
+      }
+      .slide--visual{
+        transform: translateX(140%)scale(1,1);
+      }
+
+    }
+  }
+</style>
+<template>
+   <section class="comp__werkwijze" data-theme="two">
+    <div class="wrap">
+      <div class="row">
+        <div class="col col-12">
+          <h3 class="fs__h">{{$t('hoewerkttraject')}}</h3>
+        </div>
+        <div class="col col-12">
+          <div class="siema-wrap">
+            <no-ssr>
+            <siema
+                  ref="siema"
+                  :loop="true"
+                  @change="change"
+                  :autoplay="autoplay"
+                  :autoplay-duration="duration"
+              >
+            <div class="slide clear" :class="{'active':index == i}" v-for="(werkwijze, i) in werkwijzen" :key="'testimonial'+i">
+               <div class="slide--visual">
+                <Visual :visual="werkwijze.visual" ratio="ratio--4x3 ratio--m-3x4"/>
+              </div>
+              <div class="slide--story">
+                <div class="box bp--indent">
+                  <p class="fs__p">{{$t('stap')}} {{index + 1}}</p>
+                  <h6 class="fs__s" v-html="metaTextfield(werkwijze.meta)"></h6>
+                  <p class="fs__q xl" v-html="metaTextarea(werkwijze.meta)"></p>
+                </div>
+              </div>
+            </div>
+          </siema>
+          </no-ssr>
+        </div>
+      </div>
+      <div class="col col-12">
+        <div class="slide--nav">
+            <div class="slide--index" :class="{'active':index == i}" v-for="(werkwijze, i) in werkwijzen" :key="'werkwijze_index'+i"/>
+            <div class="bp--paginate prv" @click="siemaPaginate('prev')"></div>
+            <div class="bp--paginate nxt" @click="siemaPaginate('next')"></div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+import Visual from '@/components/Visual.vue'
+// contenthelpers
+import contenthelpers from '@/mixins/contenthelper.js'
+
+export default {
+  name: 'Werkwijzen',
+  components: { Visual },
+  mixins: [contenthelpers],
+  props: {
+    werkwijzen: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    }
+  },
+  data: function () {
+    return {
+      duration: 4000,
+      autoplay: false,
+      index: 0
+
+    }
+  },
+  methods: {
+    change (e) {
+      this.index = this.$refs.siema.currentSlide
+    },
+    siemaPaginate (direction) {
+      if (direction === 'next') {
+        this.$refs.siema.next()
+      } else {
+        this.$refs.siema.prev()
+      }
+    }
+  }
+}
+</script>

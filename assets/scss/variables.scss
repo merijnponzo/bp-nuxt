@@ -1,0 +1,82 @@
+// ASSET BASE PATH
+$asset-base-path: '../' !default;
+
+
+
+// FONT TYPES
+$font-types:(
+  ('fs-hero', 80px, 25%, 'fs__h', 'productive-1',normal, 1.1),
+  ('fs-title',  50px, 37.5%, 'fs__t','productive-1',500, 1.1),
+  ('fs-subtitle', 28px, 25%, 'fs__s','productive-1',normal, 1.1),
+  ('fs-read',  22px, 22%, 'fs__r','expressive-1',normal, 1.25),
+  ('fs-quote',  24px, 14%, 'fs__q','productive-1',300, 1.1),
+  ('fs-label',  18px, 25%, 'fs__l','productive-1',normal,1.1),
+  ('fs-input',  18px, 25%, 'fs__i','productive-1',normal,1.1),
+  ('fs-btn',  18px, 30%, 'fs__b','productive-1',normal,1.1),
+  ('fs-meta',  14px, 25%, 'fs__m','expressive-2',normal,1.1),
+);
+
+// COLORS
+:root{
+    --color-one:hsl(238,100%, 50%);
+    --color-one-text:#ffffff;
+    --color-one-light:hsl(238,50%, 90%);
+    --color-one-light-text:#000000;
+    --color-one-dark:rgb(63, 63, 63);
+    --color-one-dark-text:#ffffff;
+    --color-two:hsl(0,0%, 0%);
+    --color-two-text:#FFFFFF;
+    --color-two-light:hsl(167,50%, 90%);
+    --color-two-light-text:#000000;
+    --color-two-dark:hsl(167,100%, 22%);
+    --color-two-dark-text:#ffffff;
+    --color-bg:hsl(0,0%, 94%);
+    --color-bg-text:#000000;
+    --color-bg-light:hsl(0,0%, 100%);
+    --color-bg-light-text:#000000;
+    --color-bg-dark:rgb(176, 176, 176);
+    --color-bg-dark-text:#000000;
+    --color-success:hsl(170,100%, 50%);
+    --color-success-text:#000000;
+    --color-warning:hsl(22,100%, 50%);
+    --color-warning-text:#000000;
+    --color-info:hsl(184,62%, 84%);
+    --color-info-text:#000000;
+    //GRIDS & SPACING
+    --row-pad:2rem;
+    --box-pad:0.5rem;
+    --box-pad:0.5rem;
+    --grid-gutter:calc(1.5rem * var(--space-factor));
+    --page-margin:rfs(5rem);
+    // FONT PRODUCTIVE & EXPRESSIVE
+    --productive-1:"Everett";
+    --expressive-1:"Maison Neue";
+}
+
+
+
+//VIEWPORTS
+$small-width:680px!default;
+$medium-width: 1024px!default;
+$large-width: 1260px!default;
+$wide-width: 1440px!default;
+$ultra-width:1680px!default;
+//LAYOUT
+$header-height:75px;
+
+//OVERRIDES
+$button-paddingside:6rem;
+//RESIZERS
+$factor-xl:1.2;
+$factor-xs:0.8;
+
+//COMPONENTS
+$chip-border:1px solid var(--color-one-light);
+$chip-color:var(--color-one);
+
+//PANELS
+$max-panel-width: 600px;
+//FORM
+$form-row-padding:var(--form-pad);
+// BTN
+$btn-height:3rem;

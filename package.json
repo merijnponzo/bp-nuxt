@@ -1,0 +1,37 @@
+{
+  "name": "bp-nuxt",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "export": "nuxt export",
+    "serve": "nuxt serve"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "lazysizes": "^5.2.2",
+    "nuxt": "^2.13.0",
+    "nuxt-i18n": "^6.12.2",
+    "nuxt-sass-resources-loader": "^2.0.5",
+    "qs": "^6.9.4",
+    "qs-stringify": "^1.2.1",
+    "rfs": "^9.0.3",
+    "scroll-out": "^2.2.11",
+    "typy": "^3.3.0",
+    "v-siema": "0.0.6",
+    "vue": "^2.6.11",
+    "vue-analytics": "^5.22.1",
+    "vue-animejs": "^2.1.1",
+    "vue-check-view": "^0.3.0",
+    "vue-cookies": "^1.7.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2"
+  }
+}
