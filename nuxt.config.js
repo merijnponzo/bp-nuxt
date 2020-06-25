@@ -45,8 +45,8 @@ export default {
    scss: [
      './assets/scss/variables.scss',
      './assets/scss/global.scss',
-     'ponzu/src/mixins/mediaqueries.scss',
-     'ponzu/src/mixins/helpers.scss'
+     'ponzubuild/src/mixins/mediaqueries.scss',
+     'ponzubuild/src/mixins/helpers.scss'
    ]
  },
   /*
