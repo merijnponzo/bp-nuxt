@@ -39,8 +39,7 @@ export default {
   ** Global CSS
   */
  css: [
-   '@/assets/scss/main.scss',  
-    this.dev ? "@/ponzubuild/src/ponzu.scss" : "@/ponzu/src/ponzu.scss"
+   '@/assets/scss/main.scss',  '@/ponzubuild/src/ponzu.scss'
  ],
  styleResources: {
    scss: [
