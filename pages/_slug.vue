@@ -173,7 +173,8 @@ export default {
   },
   name: 'DienstenSingle',
    asyncData({ app, params, store, $axios }) {
-    const url = 'http://127.0.0.1/wordpress/buroponzov3/wp/wp-json/wp/v2/dienst/?slug=branding-strategy'
+    const slug = params.slug.toLowerCase()
+    const url = `${process.env.wpApi}/dienst?slug=${slug}`
     return $axios.get(url).then(response => {
       return {
        content:response.data[0]

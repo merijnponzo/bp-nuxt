@@ -40,11 +40,12 @@
           <div class="bp--stagwrap">
             <slot />
           </div>
+          <Visual :visual="branches.browse_visual" ratio="ratio--3x4" />
         </div>
         <div class="col col-7">
           <h3 class="fs__h space--2" v-html="metaTextfield(branches,'browse_title')"></h3>
           <div class="box bp--indent">
-            <p class="fs__l xl" v-html="metaTexthtml(branches,'browse_text')"></p>
+            <div class="fs__l xl" v-html="metaTexthtml(branches,'browse_text')"></div>
             <div class="split--m-12 split--l-6 split--u-4">
               <div v-for="(branche,i) in branches.branches" :key="'branches'+i">
               <a class="fs__s xs bp--nxt" v-html="branche.name"></a>

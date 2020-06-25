@@ -29,8 +29,15 @@ const Contenthelpers = Vue.mixin({
         this[hook]()
       }
     },
-    getStoreLink (obj) {
+    getStoreLinkProp (obj) {
       return `${obj['path_' + this.lang]}`
+    },
+    getLinkObj(obj){
+      let lang = ''
+      if (this.lang !== 'nl') {
+        lang = this.lang + '/'
+      }
+      return `${lang}${obj['path_' + this.lang]}`
     },
     // en/work/projectname or werk/projectname
     getLink (slug) {
@@ -43,7 +50,7 @@ const Contenthelpers = Vue.mixin({
     // archive
     getWorkArchive () {
       const work = this.$store.getters.getWorknav
-      return this.getStoreLink(work)
+      return this.getStoreLinkProp(work)
     },
     // page slug
     getPageSlug (obj) {

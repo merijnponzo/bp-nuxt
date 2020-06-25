@@ -192,10 +192,13 @@ export default {
       paged: 1
     }
   },
-  beforeRouteEnter (to, from, next) {
-    const params = qs.parse(to.query.q)
-    Vue.axios.get(`${process.env.VUE_APP_API}/work`, params).then((response) => {
-      next(vm => vm.setData(response.data.works, 'setFilters'))
+  asyncData({ app, params, store, $axios }) {
+    const url = `${process.env.bpApi}/work`
+    
+    return $axios.get(url).then(response => {
+      return {
+       content:response.data.works
+      }
     })
   },
   mounted () {
@@ -205,10 +208,11 @@ export default {
       this.filtersGet = params.filters
       this.paged = params.pages
     }
+    this.setFilters();
   },
   methods: {
     setFilters () {
-      Vue.axios.get(`${process.env.VUE_APP_API}/filters`).then((response) => {
+      this.$axios.get(`${process.env.bpApi}/filters`).then((response) => {
         this.filters = response.data
       })
     },
@@ -220,7 +224,7 @@ export default {
     },
     filterRequest () {
       if (!this.loading) {
-        this.axios.get(`${process.env.VUE_APP_API}/work`, {
+        this.$axios.get(`${process.env.bpApi}/work`, {
           params: {
             filter: this.filtersGet,
             paged: this.paged

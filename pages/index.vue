@@ -37,7 +37,6 @@ h1.fs__h{
         <Staggergrid/>
       </Branches>
       <Testimonials :testimonials="content.meta.testimonials"/>
-      <Info cta="contactop" :info="content.meta.meerweten"/>
       <Morerows :row="content.meta.meer_posts" />
     </div>
   </div>

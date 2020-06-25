@@ -229,14 +229,14 @@
           <nav class="nav__menu">
             <p class="fs__b">BURO PONZO</p>
             <template v-for="(infoItem,i) in $store.getters.getInfoNav">
-              <router-link @click.native="navOut()" :to="getLink(infoItem)" :key="'info-nav'+i">
+              <router-link @click.native="navOut()" :to="getLinkObj(infoItem)" :key="'info-nav'+i">
                 {{$t(infoItem.name)}}
               </router-link>
             </template>
             <hr/>
             <p class="fs__b">{{$t('diensten')}}</p>
             <template v-for="(dienstItem,s) in $store.getters.getDienstenNav">
-            <router-link @click.native="navOut()" :to="getLink(dienstItem)" :key="'dienst-nav'+s">
+            <router-link @click.native="navOut()" :to="getLinkObj(dienstItem)" :key="'dienst-nav'+s">
                 {{$t(dienstItem.name)}}
               </router-link>
             </template>
