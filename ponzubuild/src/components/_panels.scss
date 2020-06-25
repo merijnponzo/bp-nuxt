@@ -1,0 +1,20 @@
+/*
+.panel{
+    left:0px;
+    margin:0px;
+    min-height: 300px;
+    //top: $form-row-height;
+    width:100%;
+    z-index: 100;
+    overflow-x: hidden;
+}
+.panel.active{
+    @include shadow();
+}
+.panel.spinner{
+    height:100px;
+}
+.panel.full{
+    width:100%;
+}
+*/

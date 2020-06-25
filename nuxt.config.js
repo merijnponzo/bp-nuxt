@@ -15,6 +15,7 @@ export default {
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
   */
+  dev: (process.env.NODE_ENV !== 'production'),
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -37,7 +38,10 @@ export default {
   /*
   ** Global CSS
   */
- css: ['@/assets/scss/main.scss',"@/ponzu/src/ponzu.scss"],
+ css: [
+   '@/assets/scss/main.scss',  
+    this.dev ? "@/ponzubuild/src/ponzu.scss" : "@/ponzu/src/ponzu.scss"
+ ],
  styleResources: {
    scss: [
      './assets/scss/variables.scss',

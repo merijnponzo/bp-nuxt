@@ -1,0 +1,19 @@
+$chip-margin:rfs(3px)!default;
+$chip-border:1px solid var(--color-bg)!default;
+$chip-padding:5px!default;
+$chip-radius:10px!default;
+$chip-color:var(--color-bg-dark)!default;
+
+.chips{
+    li,.chip{
+        display: inline-block;
+        list-style: none;
+        margin:var(#{$chip-margin});
+        border:$chip-border;
+        padding:rfs($chip-padding);
+        padding-top:rfs($chip-padding / 2);
+        padding-bottom:rfs($chip-padding / 2);
+        border-radius: $chip-radius;
+        color:$chip-color;
+    }
+}

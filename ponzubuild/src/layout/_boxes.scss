@@ -1,0 +1,69 @@
+$box-list-style:disc!default;
+// GUTTER STEPS
+// DEFAULT
+.box{
+    display:flex;
+    justify-content: flex-start;
+    width:100%;
+    min-height: auto;
+    padding:var( --box-pad);
+    align-self: flex-start;  
+    flex-direction: column;
+    --box-pad:1rem;
+    --split-gutter:calc(1rem * var(--space-factor));
+}
+@include boxPadding('');
+
+//A column chained as a box receives the --row-pad variable
+.col.box{
+    padding:var(--row-pad);
+}
+
+
+.box{
+    a:link:not(.btn){
+        text-decoration: underline;
+    }
+    a:link:not(.btn):hover{
+       
+    }
+}
+
+
+// RICHTEXT 
+.box ul, .box ol{
+    li{
+        list-style: $box-list-style;
+    }
+}
+.box{
+     h1,h2,h3,h4,h5,p{
+        display: block;
+        width:100%;
+     }
+}
+.box{
+    display:flex;
+    flex-direction:column;
+    flex-wrap: wrap;
+}
+//spacing
+.box{
+    h1,h2,h3,h4,h5,h6{
+        margin-bottom:rfs(0.5rem);
+    }
+    p, pre{
+        margin-bottom:rfs(1rem);
+    }
+    ul{
+        margin-bottom:rfs(1rem);
+    }
+    .btn{
+        margin-bottom:rfs(1rem);
+    }
+}
+
+
+@include min-ultra(){
+    @include boxPadding('u-');
+}

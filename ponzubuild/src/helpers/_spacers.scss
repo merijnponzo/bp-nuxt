@@ -1,0 +1,50 @@
+//SPACE FACTORS
+:root{
+    --space-factor:0.7;
+}
+@include small-only(){
+  :root{
+      --space-factor:0.75
+  }
+}
+@include min-medium(){
+  :root{
+      --space-factor:0.85;
+  }
+}
+@include min-large(){
+  :root{
+      --space-factor:1;
+  }
+}
+@include min-wide(){
+  :root{
+      --space-factor:1.15;
+  }
+}
+[class*="space--"]::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+@for $i from 0 through 10 {
+  //overrulle chapter
+  main{
+    .space--#{$i}{
+      margin-top:calc(var(--row-pad) * #{$i} * var(--space-factor) / 2);
+      margin-bottom:calc(var(--row-pad) * #{$i} * var(--space-factor) / 2);
+    }
+  }
+}
+
+@include min-large(){
+  @for $i from 0 through 10 {
+    //overrulle chapter
+    main{
+      .space--#{$i}{
+        margin-top:calc(var(--row-pad) * #{$i} * var(--space-factor));
+        margin-bottom:calc(var(--row-pad) * #{$i} * var(--space-factor));
+      }
+    }
+  }  
+}

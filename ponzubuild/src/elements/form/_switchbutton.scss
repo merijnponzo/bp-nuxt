@@ -1,0 +1,49 @@
+$switch-height:30px !default;
+$switch-border-width:2px !default;
+$switch-border:solid !default;
+$switch-width:100px !default;
+$switch-background:var(--color-bg) !default;
+$switch-ball-color:var(--color-bg-text) !default;
+$switch-ball-scale:0.9 !default;
+.switch{
+	position: relative;
+	width:$switch-width + $switch-border-width;
+	height:$switch-height + ($switch-border-width * 2);
+	background:$switch-background;
+	border-radius: 100px;
+	border:$switch-border;
+	border-width: $switch-border-width;
+	input{
+		position:absolute;
+		top:0px;
+		left:0px;
+		width:100%;
+		height:100%;
+		-webkit-appearance: none;
+		-moz-appearance:    none;
+		appearance:         none;
+		z-index: 1;
+		cursor: pointer;
+	}
+	.switch-ball{
+		height:$switch-height;
+		transition: 0.5s ease all;
+		width:$switch-height;
+		background:$switch-ball-color;
+		position: absolute;
+		left:0px;
+		border-radius: 100px;
+		transform: scale($switch-ball-scale,$switch-ball-scale);
+	}
+	&.active{
+		background:$switch-ball-color;
+		border-color:$switch-ball-color;
+		.switch-ball{
+			background:$switch-background;
+			left:$switch-width - $switch-height - $switch-border-width;
+		}
+	}
+}
+.switch.darkmode{
+	border-color:var(--color-bg);
+}

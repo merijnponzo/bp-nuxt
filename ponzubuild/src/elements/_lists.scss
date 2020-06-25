@@ -1,0 +1,17 @@
+// GUTTER STEPS
+// DEFAULT
+
+//adds the split gutter to every split
+[class*="list--"]{
+  --inline-gutter:calc(0.5rem * var(--space-factor));
+  flex-direction: column;
+  flex-wrap: wrap;
+  display:flex;
+  justify-content: flex-start;
+}
+
+// ALL VIEWPORTS
+.list{
+    flex-direction: row;
+}
+

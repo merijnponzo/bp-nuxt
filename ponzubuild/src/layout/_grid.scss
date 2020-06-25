@@ -1,0 +1,126 @@
+// GUTTER & PADDING CSS VARIABLES
+.row > .chapter{
+    //--grid-gutter:calc(0.75rem * var(--space-factor));
+}
+//grid gutter variables
+@include gridGutter('');
+  
+
+/*
+.row.pad--no > .col{
+    --row-pad:0px;
+}
+.row.pad > .col,  .row.pad > .chapter{
+        --row-pad:calc(0.75rem * var(--space-factor));
+}
+.row.pad--l > .col, .row.pad--l > .chapter{
+        --row-pad:calc(1.5rem * var(--space-factor));
+}
+.row.pad--xl > .col, .row.pad--xl > .chapter{
+        --row-pad:calc(1.5rem * var(--space-factor));
+}
+.col.pad--no{
+    --row-pad:0px!important;
+}
+.col.pad--m{
+    --row-pad:calc(1rem * var(--space-factor))!important;
+}
+.col.pad--l{
+    --row-pad:calc(2rem * var(--space-factor))!important;
+}
+.col.pad--xl{
+    --row-pad:calc(3rem * var(--space-factor))!important;
+}
+*/
+
+//WRAP
+.wrap{
+    margin:0 auto;
+    position: relative;
+    width:calc(100% - var(--page-margin));
+}
+//ROW
+.row{
+    align-items: stretch;
+    box-sizing: border-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    margin:0 auto;
+    position: relative;
+    width:100%;
+}
+//COLS
+.col{
+    position: relative;
+    width:100%;
+    //padding-left:calc(var(--row-pad) * var(--space-factor));
+    //padding-right:calc(var(--row-pad) * var(--space-factor));
+}
+
+//GRIDS 
+.row.grid::after {
+    content: "";
+    flex: auto;
+}
+//NESTED WRAPS ARE ALWAYS FLUID
+.wrap{ 
+    .wrap{
+        width:100%!important;
+    }
+}
+//FLUID WRAP
+.wrap.wid--fl{
+    width:calc(100% - var(--page-margin));
+
+}
+
+
+// SMALL ONLY
+@include small-only(){
+    .col{
+        @include createColumns("col--s");
+    }
+}
+// SMALL & MEDIUM ONLY
+@include small-medium(){
+    .col{
+        @include createColumns("col--sm");
+    }
+}
+@include min-medium(){
+    @include singleColumn('.col');
+    .wrap{
+        padding-left:var(--grid-gutter);
+        padding-right:var(--grid-gutter);
+    }
+    .row{
+        margin-left:calc(var(--grid-gutter) * -2);
+        margin-right:calc(var(--grid-gutter) * -2);
+        width:calc(100% + (var(--grid-gutter) * 4));
+    }
+}
+// MEDIUM ONLY
+@include medium-only(){
+    .col{
+        @include createColumns("col--m");
+    }
+}
+// REGULAR COLUMNS
+@include min-large(){
+    .col{
+        @include createColumns("col");
+    }
+}
+@include min-ultra(){
+    .wrap{
+        width:calc(#{$ultra-width} - var(--page-margin));
+    }
+    .col{
+        @include createColumns("col--u");
+    }
+    @include gridGutter('u-');    
+}
+

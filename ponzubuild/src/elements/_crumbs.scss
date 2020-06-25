@@ -1,0 +1,21 @@
+$list-style : none!default;
+
+[class*="crumbs--"]{
+  display:flex;
+  flex-direction: column;
+  li{
+    list-style: $list-style!important;
+  }
+}
+@include min-medium(){
+  [class*="crumbs--"]{
+    flex-direction: row;
+  }
+  .crumbs--xs > * {
+    margin-right:rfs(1rem);
+  }
+  .crumbs--xl > * {
+    margin-right:rfs(3rem);
+  }
+}
+

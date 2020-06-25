@@ -1,0 +1,31 @@
+$nav-aside-padding:1rem!default;
+$header-height:200px!default;
+$footer-height:400px!default;
+
+:root{
+    --header-height:calc(#{$header-height} * var(--space-factor));
+    --footer-height:calc(#{$footer-height} * var(--space-factor));
+}
+
+header{
+    width:100%;
+    height:var(--header-height);
+}
+footer{
+    width:100%;
+    height:var(--footer-height);
+}
+aside{
+
+}
+
+@include min-large(){
+    //aside nav
+     aside{
+         position:fixed;
+         top:calc(calc(100px * var(--space-factor)));
+         left:0px;
+         width:$nav-aside-width;
+         padding:$nav-aside-padding;
+     }     
+ }

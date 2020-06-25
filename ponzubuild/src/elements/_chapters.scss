@@ -1,0 +1,8 @@
+.chapter{
+    width:100%;
+}
+.row > {
+    @include singleColumn('.chapter');
+}
+@include typoElements('margin-bottom',1rem,'.chapter','margin-top',1rem);
+

@@ -1,0 +1,148 @@
+$form-border: 2px !default;
+$form-padding-left:10px !default;
+$form-padding-top:5px !default;
+$input-height:3rem!default;
+$form-margin:0.5rem !default;
+$form-row-height:3rem !default;
+$form-fontsize:16px !default;
+$form-label-font:var(--fs-label) !default;
+$form-label-weight:normal !default;
+$form-label-transform:inherit !default;
+$form-animation:0.3s ease all;
+$form-input-color:var(--color-bg-text) !default;
+$form-border-warningcolor:var(--color-warning) !default;
+$form-border-activecolor:var(--color-bg-dark) !default;
+$form-border-successcolor:var(--color-success) !default;
+$form-border-defaultcolor:var(--color-bg)!default;
+$form-down-icon:"\f103" !default;
+$form-up-icon:"\f10d" !default;
+$form-check-icon:"\f102" !default;
+$formr-bg:var(--color-bg-light)!default;
+$formr-ico-width:60px !default;
+$formr-ico-fontsize:1.5rem !default;
+$form-border-radius:10px!default;
+
+//form row
+.f__r{
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	width:100%;
+	box-sizing: border-box;
+	//default input label
+	input + label{
+		font-size:$form-fontsize;
+	}
+}
+// default form row input
+.f__r input, .f__r textarea{
+	padding-left:$form-padding-left;
+	order:2;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background:inherit;
+	background: $formr-bg;
+	border-bottom:$form-border;
+	border-color:$form-border-defaultcolor;
+	border-left:0px;
+	border-radius: $form-border-radius;
+	border-right:0px;
+	border-style: solid;
+	border-top:0px;
+	color:$form-input-color;
+	font-family:fontVar('fs-input');
+	font-size: $form-fontsize;
+	min-height:$element-min-height;
+	height:calc(#{$input-height}* var(--space-factor));
+	line-height: 1;
+	outline: none;
+	pointer-events: auto;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	text-align: left;
+	-webkit-touch-callout: none;
+	transition: 0.3s ease all;
+	flex-basis:1;
+	box-sizing: border-box;
+	//status
+	&:focus{
+		border-color:$form-border-activecolor;
+	}
+	&:invalid {
+		border-color:$form-border-warningcolor;
+		outline: 0;
+		box-shadow: 0 0 2px 2px rgba($form-border-warningcolor, 0.3);
+	}
+	&:valid:not(:placeholder-shown) {
+		border-color:$form-border-successcolor;
+		outline: 0;
+		box-shadow: 0 0 2px 2px rgba($form-border-warningcolor, 0.3);
+	}
+}
+
+
+//compact form
+.form--compact{
+	input{
+		height:$form-row-height * 1.25;
+		padding-top:$form-row-height/3;
+	}
+	textarea{
+		height:$form-row-height * 2.5;
+		padding-top:$form-row-height/2;
+	}
+	// CENTERED LABEL
+	input + label, textarea + label{
+		position: absolute;
+		transition: $form-animation;
+		@include noselect();
+		padding-left:$form-padding-left;
+		margin-bottom:0px;
+		pointer-events: none;
+		top: calc(50% - (#{$form-fontsize}/2));
+		font-size:$form-fontsize;
+	}
+	// SMALL LABEL
+	input:focus + label,
+	input:active + label {
+		top:$form-padding-top;
+		font-size:$form-fontsize*0.75;
+		
+	}
+	// SMALL LABEL WHEN HAS TEXT INPUT
+	input:not(:placeholder-shown) + label  {
+		top:$form-padding-top;
+		font-size:$form-fontsize*0.75;
+	}
+	// HIDE PLACEHOLDER WHEN HAS TEXTINPUT
+	input:placeholder-shown::placeholder  {
+		opacity:0;
+	}
+	// SHOW PLACEHOLDER WHEN IS ACTIVE, AND HASNT TEXTINPUT
+	input:focus:placeholder-shown::placeholder  {
+		opacity:0.6;
+	}
+}
+
+//inline form only for > medium
+@include min-medium(){
+	.form--inline{
+		.f__r{
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			input, textarea{
+				flex-basis:75%;
+			}
+			input + label, textarea + label{
+				flex-basis:25%;
+				margin-bottom:0px;
+			}
+			//make buttons form row height
+			.btn{
+				order:2;
+				height:$form-row-height;
+			}
+		}
+	}
+}

@@ -1,0 +1,99 @@
+$form-checkwidth:30px;
+
+
+[class*="f__r--"]{
+    position: relative;
+   input[type='checkbox'],input[type='radio']{
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        position: relative;
+         z-index:1;
+    }
+    input[type='checkbox']:after,input[type='radio']:after{
+        background:var(--color-bg);
+        content:"";
+        width:$form-checkwidth;
+        height:$form-checkwidth;
+        display: inline-block;
+    }
+    input[type='checkbox']:checked:after, input[type='radio']:checked:after{
+        background-color:var(--color-bg-text);
+    }
+    input[type='checkbox'] + label, input[type='radio'] + label{
+        margin-left: $form-padding-left;
+        display:inline-block;
+        position: relative;
+        @include noselect();
+        
+    }
+    input[type="radio"]:after{
+        border-radius:100px;
+    }
+}
+.f__r--row{
+    display:flex;
+    align-items: center;
+    label{
+        margin-right: $form-padding-left;
+    }
+}
+.f__r--list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    input{
+       
+    }
+    label{
+        width:calc(100% - (#{$form-checkwidth} + #{$form-padding-left}));
+    }
+}
+.f__r--list > * {
+    margin-bottom:$form-margin;
+}
+[class*="f__r--split"]{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    label{
+        flex-basis:calc(100% - (#{$form-checkwidth} + #{$form-padding-left}));
+    }
+}
+[class*="f__r--split"] > * {
+    margin-bottom:$form-margin;
+}
+.f__r--split-s{
+    label{
+        flex-basis:calc(50% - (#{$form-checkwidth} + #{$form-padding-left}));
+    }
+}
+//normalize compact
+.form--compact{
+    input[type='checkbox'], input[type='radio']{
+        padding-top:0px;
+    }
+    input[type='checkbox'] + label,input[type='radio'] + label{
+        position: relative;
+        font-size:$form-fontsize;
+        padding-left:0px;
+        top:0px;
+    }
+}
+@include min-medium(){
+    [class*="f__r--split"]{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+         label{
+            flex-basis:calc(50% - (#{$form-checkwidth} + #{$form-padding-left}));
+        }
+    }
+}
+@include min-large(){
+    [class*="f__r--split"]{
+        label{
+            flex-basis:calc(33% - (#{$form-checkwidth} + #{$form-padding-left}));
+        }
+    }
+}

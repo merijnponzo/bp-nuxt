@@ -1,0 +1,42 @@
+$header-fixed-z : 1000!default;
+
+header[data-state="fixed"]{
+    position: fixed;
+    top:0px;
+    left:0px;
+    z-index:$header-fixed-z;
+}
+header[data-state="fixed"] + main{
+    padding-top:var(--header-height);
+}
+
+//collapse wraps
+@include min-large(){
+     //collapse wraps
+     main[data-state="collapsed"]{
+        .wrap{
+            width:calc(100% - (#{$nav-aside-width} / 2));
+        }
+        .wrap.wid--fl{
+            width:calc((100% + (var(--grid-gutter) * 2) - #{$nav-aside-width} ));
+        }
+        .row > .chapter{
+            width:calc(100% - #{$nav-aside-width});
+        }
+    }
+}
+@include min-wide(){
+    main[data-state="collapsed"]{
+        .wrap{
+            width:calc(#{$wide-width} - #{$nav-aside-width});
+        }
+    }
+}
+
+@include min-ultra(){
+    main[data-state="collapsed"]{
+        .wrap{
+            width:calc(#{$ultra-width} - #{$nav-aside-width});
+        }
+    }
+}

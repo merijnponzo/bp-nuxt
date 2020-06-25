@@ -1,0 +1,24 @@
+$switch-height:30px !default;
+$switch-border-width:2px !default;
+$switch-border:solid !default;
+$switch-width:100px !default;
+$switch-background:$color-default !default;
+$switch-ball-color:$color-bread !default;
+$switch-ball-scale:0.9 !default;
+
+//panel interactions within form
+.formr{
+	//hide panels within select
+	.panel{
+		display:none;
+		position: absolute;
+	}
+	.panel.open{
+		display: block;
+		max-height:300px;	
+		overflow-y: scroll;
+		top:$form-row-height;
+		@include shadow();
+	}
+}
+

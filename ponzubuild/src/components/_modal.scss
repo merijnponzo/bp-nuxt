@@ -1,0 +1,89 @@
+$modal-bg : var(--color-bg)!default;
+$modal-box-shadow: 1!default;
+
+.modal{
+    align-items:flex-start;
+    background:$modal-bg;
+    bottom:0px;
+    display: none;
+    justify-content: center;
+    left:0px;
+    left: 0;
+    overflow:hidden;
+	overflow-y: scroll;
+    position: absolute;
+    position: fixed;
+    right:0px;
+    right: 0;
+    top:0px;
+    top: 0;
+    z-index: 1001;
+}
+
+//its first box
+.modal > .box{
+    padding-bottom:0px;
+    padding-left:0px;
+    padding-right:0px;
+    padding-top:0px;
+    position: relative;
+    z-index: 2;
+    @if($modal-box-shadow == 1){
+        @include shadow();
+    }
+    //100% height fit row within this box 
+    .row{
+        height:100%;
+    }
+     &:before{
+         bottom:0px;
+        content:"";
+        height:1px;
+        position: absolute;
+        width:100%;
+        z-index: 1;
+    }
+  
+}
+
+.modal.active{
+    display:flex;
+}
+.modal-close{
+     border-radius: 100px;
+    display:flex;
+    padding:0px;
+    position: absolute;
+    right:1rem;
+    top:1rem;
+    z-index:10;
+}
+@include small-medium{
+    .modal{
+        width: 100%;
+        .box.center, .box{
+            justify-content: flex-start;
+            width: 100%;
+        }
+    }
+
+    .modal{
+        &.unmob{
+            position: relative;
+        }
+    }
+}
+@include min-large(){
+    .modal{
+        align-items:center;
+        .row{
+            background:var(--color-bg);
+        }
+        &.--smalll{
+            height:600px;
+        }
+        &.center{
+            justify-content: flex-start;
+        }
+     }
+}

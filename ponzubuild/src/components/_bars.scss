@@ -1,0 +1,25 @@
+$li-padding:var(--li-pad)!default;
+
+.bar__head{
+    position: relative;
+    z-index:1;
+    width:100%;
+    ul{
+        display:flex;
+        li{
+            padding:$li-padding;
+        }
+    }
+}
+.bar__foot{
+    position:absolute;
+    bottom:0px;
+    width:100%;
+}
+@include min-large(){
+    .bar__head{
+        ul{
+            flex-direction: row;
+        }
+    }
+}

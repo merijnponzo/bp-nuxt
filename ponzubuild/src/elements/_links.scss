@@ -1,0 +1,61 @@
+$link-fontsize-ico:16px !default;
+$link-fontsize-ico-topcorrection:0px!default;
+$link-padding:16px!default;
+//default links
+a,
+a:link,
+a:visited {
+	color: inherit;
+	cursor: pointer;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	text-decoration: none;
+	-webkit-touch-callout: none;
+}
+//a full tiled 
+.lnk{
+	align-items: center;
+	color:inherit;
+	display: inline-flex!important;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-touch-callout: none;
+	//@include fontsize('p');
+	@include noselect();
+	span{
+		@include noselect();
+	}
+	i{
+		color:inherit;
+		font-size:$link-fontsize-ico;
+		transform: translateY($link-fontsize-ico-topcorrection);
+	}
+	//create some space
+	*:nth-child(2){
+		margin-left: $link-padding;
+	}
+	&:hover{
+		
+	}
+}
+.lnk.tile{
+	height:1px;
+}
+.lnk.more{
+	width:100%;
+	span{
+		text-align: right;
+		width:100%;;
+	}
+}
+//creates a invisible tile
+.tile::before, .more::before{
+	bottom:0px;
+	content:"";
+	cursor: pointer;
+	display: block;
+	left:0px;
+	position: absolute;
+	right:0px;
+	top:0px;
+	width:100%;
+	z-index: 1;
+}
