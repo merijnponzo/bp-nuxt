@@ -19,7 +19,6 @@ h1.fs__h{
 </style>
 <template>
   <div id="home" v-if="content">
-    <VideoheaderHome :video="content.meta.showreel"/>
     <div class="home__content">
       <section class="wrap intro__nav">
         <div class="row">
@@ -39,6 +38,8 @@ h1.fs__h{
       <Testimonials :testimonials="content.meta.testimonials"/>
       <Morerows :row="content.meta.meer_posts" />
     </div>
+    <VideoheaderHome :video="content.meta.showreel"/>
+    
   </div>
 </template>
 
