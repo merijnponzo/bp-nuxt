@@ -1,9 +1,9 @@
 <style lang="scss" scoped>
-  .comp__branches{
+  .comp__diensten{
     padding-top:rfs(8rem);
     padding-bottom:rfs(8rem);
   }
-  .comp__branches--visual{
+  .comp__diensten--visual{
     position:relative;
   }
   .fs__h{
@@ -26,35 +26,33 @@
     z-index:1;
   }
   @include min-medium(){
-    .comp__branches--visual{
+    .comp__diensten--visual{
       padding-right:0px;
     }
   }
 </style>
 <template>
-   <section class="comp__branches" data-theme="two">
-    <div class="wrap">
+    <div class="wrap comp__diensten">
       <div class="row">
-        <div class="col col-5 comp__branches--visual">
-        <Visual :visual="branches.browse_visual" ratio="ratio--3x4" />
-          <div class="bp--stagwrap">
-            <slot />
-          </div>
-        </div>
         <div class="col col-7">
-          <h3 class="fs__h space--2" v-html="metaTextfield(branches,'browse_title')"></h3>
+          <h3 class="fs__h space--2" v-html="metaTextfield(diensten,'browse_title')"></h3>
           <div class="box bp--indent">
-            <div class="fs__l xl" v-html="metaTexthtml(branches,'browse_text')"></div>
+            <div class="fs__l xl" v-html="metaTexthtml(diensten,'browse_text')"></div>
             <div class="split--m-12 split--l-6 split--u-4">
-              <div v-for="(branche,i) in branches.branches" :key="'branches'+i">
-              <a class="fs__s xs bp--nxt" v-html="branche.name"></a>
+              <div v-for="(dienst,i) in diensten.diensten" :key="'diensten'+i">
+              <a class="fs__s xs bp--nxt" v-html="dienst.name"></a>
               </div>
             </div>
           </div>
         </div>
+        <div class="col col-5 comp__diensten--visual">
+          <Visual :visual="diensten.browse_visual" ratio="ratio--3x4" />
+          <div class="bp--stagwrap">
+              <slot />
+            </div>
+        </div>
       </div>
     </div>
-  </section>
 </template>
 
 <script>
@@ -63,11 +61,11 @@ import Visual from '@/components/Visual.vue'
 import contenthelpers from '@/mixins/contenthelper.js'
 
 export default {
-  name: 'BranchesComp',
+  name: 'DienstenComp',
   components: { Visual },
   mixins: [contenthelpers],
   props: {
-    branches: {
+    diensten: {
       type: Object,
       default: function () {
         return {}

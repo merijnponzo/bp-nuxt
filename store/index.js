@@ -35,8 +35,8 @@ export const state = () => ({
       },
       {
         name: 'aboutus',
-        path_nl: '/over-ons',
-        path_en: '/about-us'
+        path_nl: '/about',
+        path_en: '/en/about'
       },
       {
         name: 'contact',

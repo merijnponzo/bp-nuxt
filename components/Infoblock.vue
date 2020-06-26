@@ -1,9 +1,4 @@
 <style lang="scss" scoped>
-  .comp__info{
-    padding-top:rfs(8rem);
-    padding-bottom:rfs(8rem);
-
-  }
   .box{
     max-width:500px;
   }

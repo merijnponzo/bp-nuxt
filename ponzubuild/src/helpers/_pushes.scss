@@ -1,0 +1,39 @@
+// list of paddings
+@include paddings('',);
+
+main{
+  .unpush--x{
+    padding-left:0px;
+    padding-right:0px;
+  }
+  .unpush--y{
+    padding-top:0px;
+    padding-top:0px;
+  }
+}
+
+@for $i from 0 through 10 {
+  main{
+    .push--#{$i}{
+      padding-top:calc(var(--row-pad) * #{$i} * var(--space-factor) / 2);
+      padding-bottom:calc(var(--row-pad) * #{$i} * var(--space-factor) / 2);
+    }
+  }
+}
+
+@include min-large(){
+  @for $i from 0 through 10 {
+    //overrulle chapter
+    main{
+      .push--#{$i}{
+        padding-top:calc(var(--row-pad) * #{$i} * var(--space-factor));
+        padding-bottom:calc(var(--row-pad) * #{$i} * var(--space-factor));
+      }
+    }
+  }  
+}
+
+@include min-ultra(){
+  //padding classes
+  @include paddings('u-'); 
+}

@@ -1,4 +1,9 @@
 <style lang="scss">
+   footer{
+     z-index:2;
+     position: relative;
+     width: 100%;
+   }
    .footer__logo{
      width:rfs(100px);
       path{

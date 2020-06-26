@@ -69,8 +69,7 @@
     }
   }
 }
-
-@mixin boxPadding($classname){
+@mixin paddings($classname){
   @for $i from 0 through 10 {
     //overrulle chapter
     main{
@@ -80,6 +79,8 @@
     }
   }
 }
+
+
 
 @mixin typoElements($property1,$value1,$classname,$property2:0,$value2:0){
   $typo-collection: ('h1','h2','h3','h4','h5','h6','p');

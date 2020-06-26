@@ -6,7 +6,7 @@
     z-index:2;
 }
 h1.fs__h{
-  margin-top:rfs(-2.5rem);
+  margin-top:rfs(-5rem);
 }
 .crumbs--xl{
   transform:translateY(-1rem);
@@ -19,6 +19,7 @@ h1.fs__h{
 </style>
 <template>
   <div id="home" v-if="content">
+    <VideoheaderHome :video="content.meta.showreel"/>
     <div class="home__content">
       <section class="wrap intro__nav">
         <div class="row">
@@ -36,10 +37,9 @@ h1.fs__h{
         <Staggergrid/>
       </Branches>
       <Testimonials :testimonials="content.meta.testimonials"/>
-      <Morerows :row="content.meta.meer_posts" />
+       <Info gutter="gut--u-5" cta="contactop" :info="content.meta.meerweten"/>
+      <Morerows :rows="content.meta.meer_posts" />
     </div>
-    <VideoheaderHome :video="content.meta.showreel"/>
-    
   </div>
 </template>
 
@@ -54,7 +54,6 @@ import Morerows from '@/components/Morerows.vue'
 import Staggergrid from '@/components/Staggergrid.vue'
 // contenthelpers
 import contenthelpers from '@/mixins/contenthelper.js'
-import Vue from 'vue'
 
 export default {
   name: 'Page',
@@ -66,7 +65,6 @@ export default {
   },
   asyncData({ app, params, store, $axios }) {
     const url = `${process.env.wpApi}/pages?slug=home`
-    console.log(url)
     return $axios.get(url).then(response => {
       return {
        content:response.data[0]

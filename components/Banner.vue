@@ -37,10 +37,10 @@
           </div>
         </div>
           <div class="visual show--max-m">
-          <div class="img-wrap ratio--4x3">
-            <img class="img" :src="banner.mobiel.sizes.medium"/>
+            <div class="img-wrap ratio--4x3">
+              <img class="img" :src="banner.mobiel.sizes.medium"/>
+            </div>
           </div>
-        </div>
       </template>
     </section>
    </div>

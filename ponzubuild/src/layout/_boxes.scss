@@ -12,8 +12,6 @@ $box-list-style:disc!default;
     --box-pad:1rem;
     --split-gutter:calc(1rem * var(--space-factor));
 }
-@include boxPadding('');
-
 //A column chained as a box receives the --row-pad variable
 .col.box{
     padding:var(--row-pad);
@@ -64,6 +62,3 @@ $box-list-style:disc!default;
 }
 
 
-@include min-ultra(){
-    @include boxPadding('u-');
-}
