@@ -2,8 +2,15 @@ import Vue from 'vue'
 
 
 export const state = () => ({
+  webp:'',
+  //*info */
   slogan: "Let's meet! Say hi ;-)",
-  address: 'Teilingerstraat 120\n3032AW Rotterdam\n\nteam@ponzo.nl\n+316 83 177 826',
+  adres: 'Voorhaven 27B\n3025 HC Rotterdam',
+  telefoon:'+316 83 177 826',
+  mail:'team@ponzo.nl',
+  googlemaps:'https://www.google.com/maps/dir//buroponzo/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x47c434a9bfa0978f:0x75ced8472d84e8e5?sa=X&ved=2ahUKEwihxZD6o6nqAhXL5KQKHd6ADWYQ9RcwDHoECBAQEA',
+  instagram:'https://instagram.com/buroponzo',
+  facebook:'https://facebook.nl/buroponzo',
   nav: {
     home: {
       name: 'home',
@@ -56,12 +63,18 @@ export const state = () => ({
 export const mutations = {
   togglePreloader (state, payload) {
     Vue.set(state, 'preloader', payload)
+  },
+  toggleWebP (state, payload) {
+    Vue.set(state, 'webp', payload)
   }
 }
 
 export const actions = {
   setPreloader ({ commit }, payload) {
     commit('togglePreloader', payload)
+  },
+  setWebp ({ commit }, payload) {
+    commit('toggleWebP', payload)
   }
 }
 export const getters = {
@@ -74,9 +87,6 @@ export const getters = {
   getDienstenNav: state => {
     return state.nav.diensten
   },
-  getAddress: state => {
-    return state.address
-  },
   getTerms: state => {
     return state.terms
   },
@@ -85,6 +95,16 @@ export const getters = {
   },
   getPreloader: state => {
     return state.preloader
-  }  
+  },
+  getContact: state => {
+    return {
+      mail:state.mail,
+      telefoon:state.telefoon,
+      googlemaps:state.googlemaps,
+      instagram:state.instagram,
+      facebook:state.facebook,
+      adres:state.adres
+    }
+  }    
 }
 

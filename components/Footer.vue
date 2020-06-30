@@ -87,7 +87,7 @@
           </nav>
         </div>
         <div class="col col-6">
-            <p class="fs__p xl address">{{$store.getters.getAddress}}</p>
+            <p class="fs__p xl address">{{$store.getters.getContact.adres}}</p>
         </div>
       </div>
     </div>

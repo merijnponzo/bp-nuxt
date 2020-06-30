@@ -58,7 +58,7 @@ export default {
   { src: '~/plugins/vue-lazysizes', ssr: false },
   // google analytics
   { src: '~/plugins/ga.js', mode: 'client' },
-  { src: '~/plugins/vue-siema.js', ssr: false },
+  { src: '~/plugins/vue-siema.js', ssr: false }
 ],
   /*
   ** Auto import components
@@ -109,7 +109,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
-    analyze:false,
+    analyze:true,
     extend(config, ctx) {
       if (ctx.isDev) {
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'

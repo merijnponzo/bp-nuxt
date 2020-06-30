@@ -63,7 +63,7 @@ export default {
     return {
     }
   },
-  asyncData({ app, params, store, $axios }) {
+  asyncData({ app, params, store, $axios, context }) {
     const url = `${process.env.wpApi}/pages?slug=home`
     return $axios.get(url).then(response => {
       return {

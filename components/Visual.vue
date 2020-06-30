@@ -33,7 +33,6 @@
     <slot name="description"></slot>
   </div>
 </template>
-
 <script>
 export default {
   name: 'Visual',

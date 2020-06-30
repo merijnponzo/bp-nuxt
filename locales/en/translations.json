@@ -28,5 +28,11 @@
   "stap": "Stap",
   "happycustomer": "Een tevreden klant over deze dienst",
   "overbp":"Over Buro Ponzo",
-  "diensten":"Diensten"
+  "diensten":"Diensten",
+  "telefoon":"Telefoonnummer",
+  "email":"Email",
+  "adres":"Adres",
+  "social":"Social",
+  "googlemaps":"Google maps",
+  "gesitueerd":"Gesitueerd in voormalig Henkespand"
 }

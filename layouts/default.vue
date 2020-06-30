@@ -11,6 +11,7 @@
 <script>
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
+import supportsWebP from 'supports-webp';
 export default {
   name: 'Page',
   components: { Footer, Header },
