@@ -75,7 +75,8 @@ export default {
  modules: [
   '@nuxtjs/axios',
   'nuxt-i18n',
-  '@nuxtjs/style-resources'
+  '@nuxtjs/style-resources',
+   'nuxt-leaflet',
   ],
   i18n: {
     defaultLocale: 'nl',
