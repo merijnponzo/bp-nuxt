@@ -12,6 +12,10 @@
     .visual{
       margin-top:rfs(6rem);
     }
+    .contact__posts{
+      margin-top:rfs(2rem);
+      margin-bottom:rfs(2rem);
+    }
     .map-overlay{
       background: rgba(255,255,255,0.66);
       width:100%;
@@ -88,6 +92,7 @@
         </div>
       </div>
     </section>
+    <Morerows class="contact__posts" :rows="content.meta.meer_posts"/>
     <section class="map-wrap">
       <div class="map-overlay" v-if="mapOverlay" @click="mapOverlay = false">
         <button class="btn line">{{$t('click')}}</button>
@@ -106,9 +111,10 @@
 
 <script>
 import Visual from '@/components/Visual.vue'
+import Morerows from '@/components/Morerows.vue'
 export default {
   name: 'Page',
-  components: { Visual },
+  components: { Visual, Morerows },
   data: function () {
     return {
       content: false,
