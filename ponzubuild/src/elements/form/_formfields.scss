@@ -1,9 +1,13 @@
-$form-border: 2px !default;
+$form-border-width:1px !default;
+$form-border-bottom-width: 2px !default;
+$form-border-color: var(--color-bg)!default;
 $form-padding-left:10px !default;
 $form-padding-top:5px !default;
 $input-height:3rem!default;
 $form-margin:0.5rem !default;
+$form-border-style:solid!default;
 $form-row-height:3rem !default;
+$form-row-compact:1.1 !default;
 $form-fontsize:16px !default;
 $form-label-font:var(--fs-label) !default;
 $form-label-weight:normal !default;
@@ -20,7 +24,7 @@ $form-check-icon:"\f102" !default;
 $formr-bg:var(--color-bg-light)!default;
 $formr-ico-width:60px !default;
 $formr-ico-fontsize:1.5rem !default;
-$form-border-radius:10px!default;
+$form-border-radius:3px!default;
 
 //form row
 .f__r{
@@ -30,9 +34,15 @@ $form-border-radius:10px!default;
 	width:100%;
 	box-sizing: border-box;
 	//default input label
-	input + label{
+	label{
+		margin-bottom:rfs(0.5rem);
 		font-size:$form-fontsize;
+		display:block;
 	}
+}
+// for possible wraps
+.f__r--wrap{
+	position: relative;
 }
 // default form row input
 .f__r input, .f__r textarea{
@@ -43,13 +53,13 @@ $form-border-radius:10px!default;
 	appearance: none;
 	background:inherit;
 	background: $formr-bg;
-	border-bottom:$form-border;
-	border-color:$form-border-defaultcolor;
-	border-left:0px;
+	border-bottom:$form-border-bottom-width;
+	border-color:$form-border-color;
+	border-left-width:$form-border-width;
 	border-radius: $form-border-radius;
-	border-right:0px;
-	border-style: solid;
-	border-top:0px;
+	border-right-width:$form-border-width;
+	border-style: $form-border-style;
+	border-top-width:$form-border-width;
 	color:$form-input-color;
 	font-family:fontVar('fs-input');
 	font-size: $form-fontsize;
@@ -66,17 +76,15 @@ $form-border-radius:10px!default;
 	box-sizing: border-box;
 	//status
 	&:focus{
-		border-color:$form-border-activecolor;
+		border-bottom-color:$form-border-activecolor;
 	}
 	&:invalid {
-		border-color:$form-border-warningcolor;
+		border-bottom-color:$form-border-warningcolor;
 		outline: 0;
-		box-shadow: 0 0 2px 2px rgba($form-border-warningcolor, 0.3);
 	}
-	&:valid:not(:placeholder-shown) {
-		border-color:$form-border-successcolor;
+	&:valid {
+		border-bottom-color:$form-border-successcolor;
 		outline: 0;
-		box-shadow: 0 0 2px 2px rgba($form-border-warningcolor, 0.3);
 	}
 }
 
@@ -84,7 +92,7 @@ $form-border-radius:10px!default;
 //compact form
 .form--compact{
 	input{
-		height:$form-row-height * 1.25;
+		height:$form-row-height * $form-row-compact;
 		padding-top:$form-row-height/3;
 	}
 	textarea{
@@ -92,7 +100,7 @@ $form-border-radius:10px!default;
 		padding-top:$form-row-height/2;
 	}
 	// CENTERED LABEL
-	input + label, textarea + label{
+	label{
 		position: absolute;
 		transition: $form-animation;
 		@include noselect();
@@ -102,25 +110,11 @@ $form-border-radius:10px!default;
 		top: calc(50% - (#{$form-fontsize}/2));
 		font-size:$form-fontsize;
 	}
-	// SMALL LABEL
-	input:focus + label,
-	input:active + label {
-		top:$form-padding-top;
-		font-size:$form-fontsize*0.75;
-		
-	}
-	// SMALL LABEL WHEN HAS TEXT INPUT
-	input:not(:placeholder-shown) + label  {
-		top:$form-padding-top;
-		font-size:$form-fontsize*0.75;
-	}
-	// HIDE PLACEHOLDER WHEN HAS TEXTINPUT
-	input:placeholder-shown::placeholder  {
-		opacity:0;
-	}
-	// SHOW PLACEHOLDER WHEN IS ACTIVE, AND HASNT TEXTINPUT
-	input:focus:placeholder-shown::placeholder  {
-		opacity:0.6;
+	.f__r[data-has-value="true"],.f__r.has-focus{
+		.f__r--label{
+			top:$form-padding-top;
+			font-size:$form-fontsize*0.75;
+		}
 	}
 }
 

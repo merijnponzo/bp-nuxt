@@ -1,5 +1,8 @@
-$modal-bg : var(--color-bg)!default;
+$modal-bg: var(--color-bg-alpha)!default;
+$modal-panel-bg : var(--color-default)!default;
 $modal-box-shadow: 1!default;
+$modal-padding:rfs(0rem)!default;
+$modal-radius:1rem!default;
 
 .modal{
     align-items:flex-start;
@@ -18,72 +21,45 @@ $modal-box-shadow: 1!default;
     top:0px;
     top: 0;
     z-index: 1001;
-}
-
-//its first box
-.modal > .box{
-    padding-bottom:0px;
-    padding-left:0px;
-    padding-right:0px;
-    padding-top:0px;
-    position: relative;
-    z-index: 2;
-    @if($modal-box-shadow == 1){
-        @include shadow();
-    }
-    //100% height fit row within this box 
-    .row{
-        height:100%;
-    }
-     &:before{
-         bottom:0px;
-        content:"";
-        height:1px;
-        position: absolute;
+    .wrap{
         width:100%;
-        z-index: 1;
+        
     }
-  
 }
-
 .modal.active{
-    display:flex;
+    display:block;
+    align-items: center;
+    justify-content: center;
 }
-.modal-close{
-     border-radius: 100px;
+.modal--panel{
     display:flex;
-    padding:0px;
-    position: absolute;
-    right:1rem;
-    top:1rem;
-    z-index:10;
+    align-items: center;
+    position: relative;
+    border-radius:$modal-radius;
+    padding:$modal-padding;
+    margin:0 auto;
+    width:90%;
+    max-height:90%;
+    background-color: $modal-panel-bg;
+    max-height:100vh;
+    min-height:90vh;
+    .row{
+        max-height:100vh;
+        min-height:90vh;
+    }
 }
-@include small-medium{
-    .modal{
-        width: 100%;
-        .box.center, .box{
-            justify-content: flex-start;
-            width: 100%;
-        }
-    }
-
-    .modal{
-        &.unmob{
-            position: relative;
-        }
-    }
+.modal--close{
+    position:absolute;
+    top:0rem;
+    right:0rem;
+    z-index:1;
 }
 @include min-large(){
-    .modal{
-        align-items:center;
-        .row{
-            background:var(--color-bg);
-        }
-        &.--smalll{
-            height:600px;
-        }
-        &.center{
-            justify-content: flex-start;
-        }
-     }
+    .modal--panel{
+        border-radius:$modal-radius;
+        padding:$modal-padding;
+        margin:0 auto;
+        width:$medium-width;
+        background-color: $modal-panel-bg;
+    }
 }

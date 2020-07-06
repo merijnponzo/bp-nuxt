@@ -16,18 +16,21 @@ $box-list-style:disc!default;
 .col.box{
     padding:var(--row-pad);
 }
-
-
 .box{
-    a:link:not(.btn){
+    a:link:not(.btn):not(.lnk){
         text-decoration: underline;
     }
-    a:link:not(.btn):hover{
+    a:link:not(.btn):not(.lnk):hover{
        
     }
+    .lnk{
+        margin-top:rfs(0.5rem);
+    }
 }
-
-
+.box.stretch{
+    height:100%;
+    justify-content: center;
+}
 // RICHTEXT 
 .box ul, .box ol{
     li{

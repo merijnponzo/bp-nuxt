@@ -17,15 +17,17 @@ $btn-span-translateY:auto !default;
 $btn-pi-translateY:-1px !default;
 $btn-radius:50px !default;
 //button styles
-.btn {
+.btn, .btn button{
 	align-items: center;
 	//remove styling
+	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	color:var(--bread-text);
 	border: $btn-border solid transparent;
 	border-radius: $btn-radius;
 	cursor: pointer;
+	background-color:var(--color-bg);
 	display: inline-flex;
 	font-family:fontVar('fs-input');
 	font-size: var(--fs-btn);
@@ -69,32 +71,32 @@ $btn-radius:50px !default;
 .btn.bread{
 	background:transparent;
 }
-.btn.one{
+.btn.one, .btn button{
 	background-color:var(--color-one);
 	color:var(--color-one-text);
 	border-color: var(--color-one);
 }
-.btn.two{
+.btn.two, .btn.two button{
 	background-color:var(--color-two);
 	color:var(--color-two-text);
 	border-color: var(--color-two);
 }
-.btn.bg{
+.btn.bg, .btn.bg button{
 	background-color:var(--color-bg);
 	color:var(--color-bg-text);
 	border-color: var(--color-bg);
 }
-.btn.success{
+.btn.success, .btn.btn.success button{
 	background-color:var(--color-success);
 	color:var(--color-success-text);
 	border-color: var(--color-success);
 }
-.btn.warning{
+.btn.warning, .btn.warning button{
 	background-color:var(--color-warning);
 	color:var(--color-warning-text);
 	border-color: var(--color-warning);
 }
-.btn.info{
+.btn.info, .btn.info button{
 	background-color:var(--color-info);
 	color:var(--color-info-text);
 	border-color: var(--color-info);
@@ -127,6 +129,7 @@ $btn-radius:50px !default;
 		
 	}
 }
+
 .btn-clean{
 	-webkit-appearance: none;
 	-moz-appearance: none;

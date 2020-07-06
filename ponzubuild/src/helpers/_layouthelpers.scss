@@ -69,6 +69,11 @@
     min-height:calc(30rem * var(--space-factor))!important;
 }
 
+//NO SCROLL
+.no-scroll{
+    overflow: hidden;
+    height:0px;
+}
 //CLEARER
 [class*="clear"]::after {
     content: "";
@@ -172,7 +177,7 @@
     .ratio--m-3x4::after{
         padding-bottom: 133.33%;
     }
-    .ratio--m-4x3::after{
+    .ratio--m4x3::after{
         padding-bottom: 66.66%;
     }  
     .ratio--m-16x9::after{
