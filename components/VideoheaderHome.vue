@@ -6,8 +6,11 @@
   }
   .showreel__observe{
     height:$video-top;
-    position: relative;
+    position: absolute;
     background:var(--color-bg);
+    overflow: hidden;
+    top:0px;
+    width:100%;
   }
   .bg__video{
     height:$video-top;
@@ -34,6 +37,7 @@
 </style>
 <template>
   <div class="showreel__observe" v-view="viewHandler">
+    <slot/>
     <section class="wrap wid--fl showreel" v-if="visible">
       <div class="row bg__video pad--no">
         <div class="col col-12">

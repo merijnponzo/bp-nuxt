@@ -1,24 +1,24 @@
 <style lang="scss" scoped>
 .left {
-        -moz-transform: scaleX(-1);
-        -o-transform: scaleX(-1);
-        -webkit-transform: scaleX(-1);
-        transform: scaleX(-1);
-        filter: FlipH;
-        -ms-filter: "FlipH";
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
 }
 .right {
-        -moz-transform: scaleX(1);
-        -o-transform: scaleX(1);
-        -webkit-transform: scaleX(1);
-        transform: scaleX(1);
-        filter: FlipH;
-        -ms-filter: "FlipH";
+    -moz-transform: scaleX(1);
+    -o-transform: scaleX(1);
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
 }
 #bee {
   position:absolute;
   transition: transform .1s;
-  z-index:1000;
+  z-index:2;
 }
 
 .home__content{
@@ -26,7 +26,7 @@
     display: block;
     background:white;
     z-index:2;
-    margin-top:calc(var(--header-height) * -1);
+    margin-top:calc(#{$video-top} + var(--header-height) * -1);
 }
 .square{
   width:50px;
@@ -35,6 +35,9 @@
 }
 h1.fs__h{
   margin-top:rfs(-2rem);
+  //mix-blend-mode: exclusion;
+  //color:white;
+  z-index:3;
 }
 .home__posts{
   margin-top:rfs(2rem);
@@ -51,17 +54,19 @@ h1.fs__h{
 </style>
 <template>
   <div v-if="content">
-    <div id="bee" :style="beestyle" :class="dir"> 
-    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/160783/astroboy.png"   />
-  </div>
-    <VideoheaderHome :video="content.meta.showreel"/>
+   
+    <VideoheaderHome :video="content.meta.showreel">
+       <div id="bee" :style="beestyle" :class="dir"> 
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/160783/astroboy.png"   />
+      </div>
+    </VideoheaderHome>
     <div class="home__content">
       <section class="wrap intro__nav">
         <div class="row">
           <h1 class="chapter fs__h space--0" v-html="metaTextarea(content.meta,'introtext')"></h1>
           <div class="col col-12 crumbs--xl space--4">
             <a class="fs__s bp--nxt" v-for="(dienst,i) in $store.getters.getDienstenNav" :key="'dienst'+i">
-              {{dienst.name}}
+              {{$t(dienst.name)}}
             </a>
           </div>
         </div>
