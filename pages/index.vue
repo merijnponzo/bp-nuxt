@@ -108,12 +108,14 @@ export default {
     }
   },
   asyncData({ app, params, store, $axios, context }) {
+    /*
     const url = `${process.env.wpApi}/pages?slug=home`
     return $axios.get(url).then(response => {
       return {
        content:response.data[0]
       }
     })
+    */
   },
   mounted(){
       document.addEventListener("mousemove", this.getMouse); 

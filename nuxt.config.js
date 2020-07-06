@@ -31,9 +31,9 @@ export default {
   ** Env variables
   */
   env: {
-    wpApi: process.env.WP_API || 'http://127.0.0.1/wordpress/buroponzov3/wp/wp-json/wp/v2',
-    bpApi: process.env.BP_API || 'http://127.0.0.1/wordpress/buroponzov3/wp/wp-json/bp/v1',
-    sitePath: process.env.SITEPATH || 'http://127.0.0.1/wordpress/buroponzov3'
+    wpApi: process.env.WP_API || 'http://buroponzo.test/wp-json/wp/v2',
+    bpApi: process.env.BP_API || 'http://buroponzo.test/wp-json/bp/v1',
+    sitePath: process.env.SITEPATH || 'http://buroponzo.test'
   },
   /*
   ** Global CSS
