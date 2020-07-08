@@ -129,6 +129,9 @@ export const getters = {
       adres:state.adres
     }
   },
+  getContactNav: state => {
+    return `${state.adres}<br/><br/><a href="mailto:${state.mail}">Team@ponzo.nl</a>\n${state.telefoon}`
+  },
   getImagetransition: state => {
     return state.imagetransition
   }, 

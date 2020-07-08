@@ -1,4 +1,11 @@
+$ruler-bg:var(--color-bg)!default;
+$ruler-stroke:1px!default;
+$ruler-style:solid!default;
+
 hr{
-    background:transparent;
+    background:$ruler-bg;
     width:100%;
+    border-color:$ruler-bg;
+    border-width:$ruler-stroke;
+    border-style:$ruler-style;
 }

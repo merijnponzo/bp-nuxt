@@ -84,15 +84,6 @@
       position: absolute;
       top:0px;
     }
-    .sq__1{
-      right:0%;
-    }
-    .sq__2{
-      right:50%;
-    }
-    .sq__3{
-      right:100%;
-    }
   }
 
   button.nav__burger:focus,
@@ -104,13 +95,12 @@
 
   //inner
   .sq__2--buttonwrap{
-    width:rfs(50px);
-    height:rfs(50px);
+    width:2rem;
+    height:2rem;
     position: absolute;
-    right:1rem;
+    right:calc(50% - (2rem)/2);
     top:1rem;
     opacity:0;
-
   }
   .sq__4, .sq__5{
     width:100%;
@@ -159,10 +149,16 @@
       font-family:var(--productive-1);
       font-size:rfs(55px);
       padding:rfs(0.5rem);
+      padding-left:0px;
+      padding-right:0px;
+      position:relative;
     }
     p,hr{
-      padding-left:rfs(0.5rem);
+      //padding-left:rfs(0.5rem);
     }
+  }
+  hr{
+    border-color:var(--color-text);
   }
   .nav__address{
     display:flex;
@@ -176,7 +172,7 @@
     text-align:left;
     transition-delay: 0.2s;
     transform:translateY(100px);
-    .fs__p{
+    .fs__r{
       white-space: pre-line;
     }
   }
@@ -192,12 +188,17 @@
   .nav__address--mobile{
     transform:rotate(90deg);
     white-space:nowrap;
-    align-self:center;
     z-index:1;
+    align-self:center;
     cursor: pointer;
     position:relative;
-    padding-right:3rem;
+    font-family:var(--productive-1);
+    padding-right:4rem;
   }
+  .nav__address--mobile-left{
+    align-self:flex-start!important;
+  }
+
   @include min-large(){
       .nav__address--mobile{
         display:none;
@@ -214,8 +215,36 @@
       .nav__menu{
         a{
           white-space:nowrap;
+          padding:rfs(0.25rem);
         }
+        a:before{
+          transition:0.3s ease-out all;
+          font-family: icons !important;
+          font-style: normal;
+          font-weight: normal !important;
+          font-variant: normal;
+          text-transform: none;
+          line-height: 1;
+          width:0px;
+          opacity:0;
+          transform:scale(0.4,0.4);
+          overflow:hidden;
+          display:inline-block;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          content: "\f104";
+        }
+        a:hover:before{
+          width:rfs(50px);
+          opacity:1;
+          transform:scale(0.8,0.8)translateY(20%);
+        }
+        
       }
+  }
+  .fs__b{
+    margin-top:rfs(0.5rem);
+    margin-bottom:rfs(0.5rem);
   }
 </style>
 <template>
@@ -252,13 +281,13 @@
               </button>
           </div>
           <div class="nav__address">
-            <div class="nav__address--mobile" @click="navSubToggle()">
+            <div class="nav__address--mobile" :class="{'nav__address--mobile-left':mobileLeft}" @click="navSubToggle()">
               <template v-if="!navSub">Say Hi!</template>
-              <template v-else>&larr; Say Bye!</template>
+              <template v-else>&larr; {{$t('tonav')}}</template>
             </div>
             <div class="nav__address--wrap">
               <p class="fs__b">{{$t('contact')}} </p>
-              <p class="fs__p xl">{{$store.getters.getAddress}}</p>
+              <p class="fs__r" v-html="$store.getters.getContactNav"></p>
             </div>
             <p class="fs__t nav__slogan">{{$store.getters.getSlogan}}</p>
           </div>
@@ -289,12 +318,27 @@ export default {
       direction: 'in',
       tl: null,
       navSub: false,
-      blendmode: true
+      blendmode: true,
+      mobileLeft:false
     }
   },
   mounted () {
     this.$anime.set('.nav__burger', {
-      rotate: function () { return 90 }
+      rotate:90,
+      width:'2rem',
+      height:'3rem'
+    })
+    this.$anime.set('.sq__1', {
+      right:'0%',
+      height:'100%'
+    })
+     this.$anime.set('.sq__2', {
+      right:'50%',
+      height:'100%'
+    })
+     this.$anime.set('.sq__3', {
+      right:'100%',
+      height:'100%'
     })
     window.addEventListener('resize', this.onResize)
   },
@@ -347,8 +391,13 @@ export default {
         let blackWidth = 30
         if (window.innerWidth < window.innerHeight) {
           navWidth = '100vw'
-          blackWidth = 15
-          whiteWidth = 85
+          blackWidth = 10
+          whiteWidth = 90
+        }
+         if (window.innerWidth < 640) {
+          navWidth = '100vw'
+          blackWidth = 20
+          whiteWidth = 80
         }
         this.tl.update = function (anim) {
           if (anim.progress > 70) {
@@ -361,7 +410,9 @@ export default {
             targets: '.nav__burger',
             rotate: '360deg',
             top: 0,
-            right: 0
+            right: 0,
+            width:'2rem',
+            height:'3rem'
           })
           .add({
             targets: '.sq__1, .sq__2, .sq__3',
@@ -417,12 +468,12 @@ export default {
           height: function () { return 0 }
         })
       }
-
       if (this.navSub) {
         this.tlSub = this.$anime.timeline({
           easing: 'easeOutSine',
-          duration: 400
+          duration: 600
         })
+        this.mobileLeft = true
         this.tlSub
           .add({
             targets: '.sq__2',
@@ -431,30 +482,27 @@ export default {
           .add({
             targets: '.nav__address--mobile',
             rotate: '0deg',
-            paddingRight: '0px'
-          })
+            paddingRight: '0px',
+          }, '-=600')
           .add({
             targets: '.nav__address--wrap',
+            height: '60vh',
             opacity: 1,
             padding: '1rem'
-          })
-          .add({
-            targets: '.nav__address--mobile',
-            translateX: '-100px'
-          }, '-=250')
-          .add({
-            targets: '.nav__address--wrap',
-            height: '50vh'
-          }, '-=250')
+          }, '-=600')
           .add({
             targets: '.nav__slogan',
             padding: '1rem',
-            height: '25vh',
+            height: '12vh',
             opacity: 1
-          }, '-=250')
+          }, '-=600')
       } else {
         this.tlSub.reverse()
         this.tlSub.play()
+        //reset flexbox align left to center
+        setTimeout(() => {
+           this.mobileLeft = false
+        },600)
       }
     }
   }
