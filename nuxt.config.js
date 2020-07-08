@@ -58,7 +58,8 @@ export default {
   { src: '~/plugins/vue-lazysizes', ssr: false },
   // google analytics
   { src: '~/plugins/ga.js', mode: 'client' },
-  { src: '~/plugins/vue-siema.js', ssr: false }
+  { src: '~/plugins/vue-siema.js', ssr: false },
+  { src: '~/plugins/typy.js'}
 ],
   /*
   ** Auto import components

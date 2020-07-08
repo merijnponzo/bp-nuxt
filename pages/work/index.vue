@@ -1,4 +1,11 @@
 <style lang="scss" scoped>
+  .card.active{
+    opacity:1;
+  }
+  .card{
+    transition:1s ease all;
+    opacity:0;
+  }
   .work__work{
     margin-top:rfs(5rem);
   }
@@ -156,7 +163,7 @@
           </nav>
         </div>
         <template v-for="(cardItem, i) in content">
-          <Card class="col col-4 card xs" :card="cardItem" :key="'work'+i" />
+          <Card class="col col-4 card xs" v-on:toggleProjects="showProjects = false" :class="{'active':showProjects}" :card="cardItem" :key="'work'+i" />
         </template>
       </div>
       <div class="col col-12">
@@ -189,7 +196,8 @@ export default {
       filtersGet: [],
       mobile: false,
       loading: false,
-      paged: 1
+      paged: 1,
+      showProjects:true
     }
   },
   asyncData({ app, params, store, $axios }) {

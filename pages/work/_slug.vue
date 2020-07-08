@@ -26,9 +26,17 @@
     <div class="wrap">
       <div class="row">
         <h2 class="chapter fs__h space--2">{{content.meta.samenvatting}}</h2>
-        <div class="col col-12" v-if="content.meta.banner">
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="row">
+          <div class="col col-12" v-if="content.meta.banner">
           <Banner :banner="content.meta.banner"/>
         </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="row">
         <div class="col col-12 space--1">
           <ul class="terms split--l-3 gut">
             <ol>
@@ -131,19 +139,20 @@ export default {
     visualsingleFlex,
     Visual
   },
+  middleware: 'delay',
   data () {
     return {
       content: null
     }
   },
   name: 'WorkSingle',
-  
   asyncData({ app, params, store, $axios }) {
     const slug = params.slug.toLowerCase()
     const url = `${process.env.wpApi}/work?slug=${slug}`
-    return $axios.get(url).then(response => {
+      return $axios.get(url).then(response => {
+      store.dispatch('doImageTransition', { classname: 'after'}) 
       return {
-       content:response.data[0]
+        content:response.data[0]
       }
     })
   }

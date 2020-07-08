@@ -1,7 +1,13 @@
 import Vue from 'vue'
-
+import typy from 'typy'
 
 export const state = () => ({
+  imagetransition: { 
+    url: false, 
+    classname: false, 
+    coordinates: {top:0,left:0},
+    bgColor:null
+  },
   webp:'',
   //*info */
   slogan: "Let's meet! Say hi ;-)",
@@ -66,7 +72,21 @@ export const mutations = {
   },
   toggleWebP (state, payload) {
     Vue.set(state, 'webp', payload)
-  }
+  },
+  toggleImageTransition (state, payload) {
+    if (typy(payload, 'classname').isDefined) {
+      Vue.set(state.imagetransition, 'classname', payload.classname)
+    }
+    if (typy(payload, 'url').isDefined) {
+      Vue.set(state.imagetransition, 'url', payload.url)
+    }
+    if (typy(payload, 'bgColor').isDefined) {
+      Vue.set(state.imagetransition, 'bgColor', payload.bgColor)
+    }
+    if (typy(payload, 'coordinates').isDefined) {
+      Vue.set(state.imagetransition, 'coordinates', payload.coordinates)
+    }
+  },
 }
 
 export const actions = {
@@ -75,7 +95,10 @@ export const actions = {
   },
   setWebp ({ commit }, payload) {
     commit('toggleWebP', payload)
-  }
+  },
+  doImageTransition ({ commit }, payload) {
+    commit('toggleImageTransition', payload)
+  },
 }
 export const getters = {
   getInfoNav: state => {
@@ -105,6 +128,9 @@ export const getters = {
       facebook:state.facebook,
       adres:state.adres
     }
-  }    
+  },
+  getImagetransition: state => {
+    return state.imagetransition
+  }, 
 }
 

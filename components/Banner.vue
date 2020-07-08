@@ -9,44 +9,50 @@
 <template>
   <div class="" v-view="viewHandler">
     <hr/>
-    <section class="">
+    <section ref="banner">
       <template v-if="banner.video">
         <div class="row bg__video">
           <div class="ratio--35x10">
-            <video
-                :poster="banner.mobiel.sizes.large"
-                autoplay
-                loop
-                v-if="visible"
-                ref="video"
-                muted=""
-                >
-                <source
-                :src="banner.video"
-                type="video/mp4"
-                media="(min-device-pixel-ratio:2), (-webkit-min-device-pixel-ratio:2), (min--moz-device-pixel-ratio:2), (-o-min-device-pixel-ratio:2)">
-                <source :src="banner.video" type="video/mp4" media="(max-device-pixel-ratio:1), (-webkit-max-device-pixel-ratio:1), (max--moz-device-pixel-ratio:1), (-o-max-device-pixel-ratio:1)">
+            <template v-if="$typy(banner,'mobiel.sizes.large').isDefined">
+              <video
+                  :poster="banner.mobiel.sizes.large"
+                  autoplay
+                  loop
+                  v-if="visible"
+                  ref="video"
+                  muted=""
+                  >
+                  <source
+                  :src="banner.video"
+                  type="video/mp4"
+                  media="(min-device-pixel-ratio:2), (-webkit-min-device-pixel-ratio:2), (min--moz-device-pixel-ratio:2), (-o-min-device-pixel-ratio:2)">
+                  <source :src="banner.video" type="video/mp4" media="(max-device-pixel-ratio:1), (-webkit-max-device-pixel-ratio:1), (max--moz-device-pixel-ratio:1), (-o-max-device-pixel-ratio:1)">
               </video>
+            </template>
             </div>
         </div>
       </template>
       <template v-else>
-        <div class="visual show--min-l">
-          <div class="img-wrap ratio--35x10">
-            <img class="img" :src="banner.desktop.sizes.large"/>
+        <template v-if="$typy(banner,'desktop.sizes.large').isDefined">
+          <div class="visual show--min-l">
+            <div class="img-wrap ratio--35x10">
+              <img class="img" :src="banner.desktop.sizes.large"/>
+            </div>
           </div>
-        </div>
+        </template>
+        <template v-if="$typy(banner,'desktop.sizes.medium').isDefined">
           <div class="visual show--max-m">
             <div class="img-wrap ratio--4x3">
               <img class="img" :src="banner.mobiel.sizes.medium"/>
             </div>
           </div>
+         </template>
       </template>
     </section>
    </div>
 </template>
-
 <script>
+import Vue from 'vue'
 export default {
   name: 'Banner',
   props: {

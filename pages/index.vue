@@ -118,7 +118,6 @@ export default {
   mounted(){
       document.addEventListener("mousemove", this.getMouse); 
       this.interval = setInterval(this.followMouse, 50);
-      console.log('mounted from cms')
   },
   beforeDestroy(){
     document.removeEventListener('mousemove',this.getMouse);
