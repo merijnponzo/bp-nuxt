@@ -14,7 +14,6 @@
           >
           <source :src="video.video" type="video/mp4" media="screen and (min-width:1001px)">
           <source :src="video.videomobiel" type="video/mp4" media="screen and (max-width:1000px)">
-
         </video>
     </div>
    </div>
