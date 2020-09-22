@@ -25,7 +25,19 @@
   @return percentage(($count/12)+0.0000009);
 }
 
-
+@mixin border-bottoms($margin-top : 3px, $border-width : 2px){
+  &:after{
+    content:"";
+    display:block;
+    border-bottom:$border-width solid black;
+    width:0px;
+    transition:0.3s ease all;
+    margin-top:$margin-top;
+  }
+  &:hover:after{
+    width:100%;
+  }
+}
 
 
 //create the columns

@@ -1,11 +1,7 @@
-<style lang="scss" scoped>
-
-</style>
 <template>
   <div class="video">
     <div class="ratio--4x3">
       <video
-          
           autoplay
           loop
           class="wid--fl"
