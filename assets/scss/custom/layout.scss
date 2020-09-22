@@ -1,0 +1,20 @@
+:root{
+    --page-margin:4rem;
+}
+@include min-small(){
+    :root{
+        --page-margin:12rem;
+    }
+}
+
+@include min-medium(){
+    :root{
+        --page-margin:10rem;
+    }
+}
+
+@include min-ultra(){
+    :root{
+        --page-margin:14rem;
+    }
+}

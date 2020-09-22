@@ -27,17 +27,12 @@
           <Visual :ratio="getRatio(flexcontent)" :visual="flexcontent.visualsingle.visual" />
         </template>
         <template v-else>
-         <video
-         :poster="$typy(flexcontent,'visualsingle.visual.sizes.large').safeObject"
-          autoplay
-          loop
-          class="wid--fl"
-          ref="video"
-          muted=""
+         <VideoPlayer
+          :poster="$typy(flexcontent,'visualsingle.poster').safeObject"
+          :mobile="$typy(flexcontent,'visualsingle.video_small.url').safeObject"
+          :desktop="$typy(flexcontent,'visualsingle.video_desktop.url').safeObject"
           >
-          <source :src="$typy(flexcontent,'visualsingle.video_desktop.url').safeObject" type="video/mp4" media="screen and (min-width:1001px)">
-          <source :src="$typy(flexcontent,'visualsingle.video_small.url').safeObject" type="video/mp4" media="screen and (max-width:1000px)">
-        </video>
+        </VideoPlayer>
         </template>
       </div>
     </div>
@@ -46,9 +41,11 @@
 </template>
 <script>
 import Visual from '@/components/Visual.vue'
+import VideoPlayer from '@/components/VideoPlayer.vue'
+
 export default {
   name: 'VisualsingleFlex',
-  components: { Visual },
+  components: { Visual, VideoPlayer },
   props: {
     flexcontent: {
       type: Object,

@@ -31,22 +31,22 @@ export default {
   ** Env variables
   */
   env: {
-    wpApi: process.env.WP_API || 'http://buroponzo.test/wp-json/wp/v2',
-    bpApi: process.env.BP_API || 'http://buroponzo.test/wp-json/bp/v1',
-    sitePath: process.env.SITEPATH || 'http://buroponzo.test'
+    wpApi: process.env.WP_API || 'http://cms.buroponzo.test/wp-json/wp/v2',
+    bpApi: process.env.BP_API || 'http://cms.buroponzo.test/wp-json/bp/v1',
+    sitePath: process.env.SITEPATH || 'http://cms.buroponzo.test'
   },
   /*
   ** Global CSS
   */
  css: [
-   '@/assets/scss/main.scss',  '@/ponzubuild/src/ponzu.scss'
+   '@/assets/scss/main.scss'
  ],
  styleResources: {
    scss: [
      './assets/scss/variables.scss',
      './assets/scss/global.scss',
-     'ponzubuild/src/mixins/mediaqueries.scss',
-     'ponzubuild/src/mixins/helpers.scss'
+     './assets/scss/ponzu/mixins/mediaqueries.scss',
+     './assets/scss/ponzu/mixins/helpers.scss'
    ]
  },
   /*

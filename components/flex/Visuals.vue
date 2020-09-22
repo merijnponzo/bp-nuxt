@@ -12,13 +12,19 @@
   <section class="wrap gut--m">
     <div class="row">
       <div class="col col-6" v-for="(visual, v) in flexcontent.visuals" :key="'colV'+v" >
-          <Visual :visual="visual.visual" :key="'visual'+visual.id"/>
+         <template v-if="visual.video">
+            <VideoPlayer :mobile="$typy(visual,'video.url').safeObject" />
+          </template>
+          <template v-else>
+            <Visual :visual="visual.visual" :key="'visual'+visual.id"/>
+          </template>
       </div>
     </div>
   </section>
 </template>
 <script>
 import Visual from '@/components/Visual.vue'
+import VideoPlayer from '@/components/VideoPlayer.vue'
 export default {
   name: 'VisualsFlex',
   components: { Visual },

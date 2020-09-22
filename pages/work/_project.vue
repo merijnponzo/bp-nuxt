@@ -31,7 +31,7 @@
     <div class="wrap">
       <div class="row">
           <div class="col col-12" v-if="content.meta.banner">
-          <Banner :banner="content.meta.banner"/>
+          <BannerWork :banner="content.meta.banner"/>
         </div>
       </div>
     </div>
@@ -117,7 +117,7 @@
 <script>
 // contenthelpers
 import contenthelpers from '@/mixins/contenthelper.js'
-import Banner from '@/components/Banner.vue'
+import BannerWork from '@/components/BannerWork.vue'
 import checkView from 'vue-check-view'
 import visualsFlex from '@/components/flex/Visuals.vue'
 import visualsingleFlex from '@/components/flex/Visualsingle.vue'
@@ -131,7 +131,7 @@ Vue.use(checkView)
 export default {
   mixins: [contenthelpers],
   components: {
-    Banner,
+    BannerWork,
     movieFlex,
     sliderFlex,
     omschrijvingFlex,
@@ -147,7 +147,7 @@ export default {
   },
   name: 'WorkSingle',
   asyncData({ app, params, store, $axios }) {
-    const slug = params.slug.toLowerCase()
+    const slug = params.project.toLowerCase()
     const url = `${process.env.wpApi}/work?slug=${slug}`
       return $axios.get(url).then(response => {
       store.dispatch('doImageTransition', { classname: 'after'}) 

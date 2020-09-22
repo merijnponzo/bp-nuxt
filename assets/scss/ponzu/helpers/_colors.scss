@@ -60,3 +60,40 @@
   --color-bg-text : var(--color-bg-info-text);
 }
 
+//FORE COLOR
+.fc--one{
+  color:var(--color-one);
+}
+.fc--one-light{
+  color:var(--color-one-light);
+}
+.fc--one-dark{
+  color:var(--color-one-dark);
+}
+.fc--two{
+  color:var(--color-two);
+}
+.fc--two-light{
+  color:var(--color-two-light);
+}
+.fc--two-dark{
+  color:var(--color-two-dark);
+}
+.fc--bg{
+  color:var(--color-bg);
+}
+.fc--bg-light{
+  color:var(--color-bg-light);
+}
+.fc--bg-dark{
+  color:var(--color-bg-dark);
+}
+.fc--success{
+  color:var(--color-success);
+}
+.fc--warning{
+  color:var(--color-warning);
+}
+.fc--info{
+  color:var(--color-info);
+}

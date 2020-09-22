@@ -7,7 +7,7 @@
     opacity:0;
   }
   .work__work{
-    margin-top:rfs(5rem);
+    padding-top:rfs(5rem);
   }
   .nav__filters--panel.active{
     overflow: hidden;

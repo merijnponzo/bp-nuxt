@@ -39,7 +39,6 @@ export default {
   },
   methods: {
     changeIn () {
-      console.log('in!')
       this.$anime.set('#imagetransition', 
         {
           width: '0px',

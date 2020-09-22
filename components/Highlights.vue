@@ -17,7 +17,7 @@
       <div class="row">
         <h2 class="chapter fs__h space--3">{{ $t("highlights") }}</h2>
         <template v-for="(cardItem, i) in highlights">
-          <Card class="col col-6 col--m-6" :card="cardItem" :key="'highlight'+i" />
+          <Card class="col col-6 col--s-6" :card="cardItem" :key="'highlight'+i" />
         </template>
       </div>
       <div class="col col-12">

@@ -50,7 +50,6 @@ $font-types:(
     --box-pad:0.5rem;
     --box-pad:0.5rem;
     --grid-gutter:calc(1.5rem * var(--space-factor));
-    --page-margin:rfs(5rem);
     // FONT PRODUCTIVE & EXPRESSIVE
     --productive-1:"fsEverett";
     --expressive-1:"fsMaisonNeue";
@@ -82,3 +81,5 @@ $max-panel-width: 600px;
 $form-row-padding:var(--form-pad);
 // BTN
 $btn-height:3rem;
+
+

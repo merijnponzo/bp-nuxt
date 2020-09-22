@@ -15,16 +15,21 @@
  <section class="wrap gut--m">
   <div class="row">
     <div class="col col-12">
-      <Video class="flex__video" :video="flexcontent.movie"/>
+       <VideoPlayer
+          :poster="$typy(flexcontent,'movie.poster').safeObject"
+          :mobile="$typy(flexcontent,'movie.videomobiel').safeObject"
+          :desktop="$typy(flexcontent,'movie.video').safeObject"
+          >
+      </VideoPlayer>
     </div>
   </div>
  </section>
 </template>
 <script>
-import Video from '@/components/Video.vue'
+import VideoPlayer from '@/components/VideoPlayer.vue'
 export default {
   name: 'MovieFlex',
-  components: { Video },
+  components: { VideoPlayer },
   props: {
     flexcontent: {
       type: Object,

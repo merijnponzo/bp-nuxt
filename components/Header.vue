@@ -246,11 +246,40 @@
     margin-top:rfs(0.5rem);
     margin-bottom:rfs(0.5rem);
   }
+  .logo--bp{
+    transform:translateX(-25%);
+    transition:1s ease all;
+    &.active{
+      transform:translateX(0px);
+      .logo--arrow{
+        transform:scale(1,1);
+      }
+      .logo--square{
+        transform:scale(1,1);
+      }
+    }
+  }
+  .logo--arrow{
+    transform:scale(0,0);
+    transform-origin: center left;
+    transition:1s ease all;
+  }
+  .logo--square{
+    transform:scale(0,0);
+    transform-origin: center left;
+    transition:1s ease all;
+  }
 </style>
 <template>
   <header :class="{'active':active, 'nav--content':activeContentAnim, 'blendmode':blendmode}" data-state="fixed">
     <button class="nav__logo">
-    <router-link to="/"><Logo /></router-link>
+      <template v-if="$route.params.project">
+        <router-link to="/work"><Logo class="active"/></router-link>
+      </template>
+      <template v-else>
+        <router-link to="/"><Logo /></router-link>
+      </template>
+     
     </button>
     <button class="nav__burger" @click="navIn()">
       <span class="sq__1">
@@ -341,6 +370,7 @@ export default {
       height:'100%'
     })
     window.addEventListener('resize', this.onResize)
+
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.onResize)
