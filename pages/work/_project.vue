@@ -25,7 +25,7 @@
   <div class="work__work" v-if="content">
     <div class="wrap">
       <div class="row">
-        <h2 class="chapter fs__h space--2">{{content.meta.samenvatting}}</h2>
+        <h1 class="chapter fs__h space--2" v-html="metaTextfield(content.meta.projectsamenvatting)"></h1>
       </div>
     </div>
     <div class="wrap">

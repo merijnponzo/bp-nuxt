@@ -96,9 +96,7 @@
       </Visual>
       <div class="box">
         <h2 class="fs__l">{{card.meta.client}}</h2>
-        <h4 class="fs__q">{{card.post_title}}</h4>
-        <h5 class="fs__s" v-if="card.meta.samenvatting">{{card.meta.samenvatting}}</h5>
-        
+        <h3 class="fs__s" v-html="metaTextfield(card.meta.projectsamenvatting)"></h3>
         <ul class="terms crumbs--xs">
           <li v-for="(term, t) in getChildTerms(card.terms,5)" :key="'term'+t" class="fs__b" v-html="term.name"></li>
         </ul>
