@@ -104,9 +104,6 @@
     <div class="wrap">
       <div class="row">
         <div class="col col-12">
-          <h3 class="fs__h">{{$t('ourclientstestimonials')}}</h3>
-        </div>
-        <div class="col col-12">
           <div class="siema-wrap">
             <no-ssr>
             <siema

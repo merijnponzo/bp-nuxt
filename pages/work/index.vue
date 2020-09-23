@@ -1,4 +1,5 @@
 <style lang="scss" scoped>
+  $filter-width:200px;
   .card.active{
     opacity:1;
   }
@@ -15,6 +16,13 @@
       margin-right:rfs(0.5rem);
     }
   }
+  sup{
+    font-family:var(--font-expressive-1);
+    font-weight:bold;
+  }
+  .filters--count{
+
+  }
   .nav__filters--panel{
     background:var(--color-two);
     color:white;
@@ -30,7 +38,6 @@
     bottom:0px;
     transition:1s ease all;
     padding:rfs(1rem);
-    overflow:hidden;
     li{
       margin-right:rfs(5rem);
     }
@@ -84,6 +91,7 @@
      cursor: pointer;
      padding-bottom:rfs(0.25rem);
      padding-top:rfs(0.25rem);
+     font-size:18px;
      &:hover{
        color:#7D7D7D;
      }
@@ -96,6 +104,9 @@
         height:25rem;
         background:var(--color-two);
         color:white;
+      }
+      .nav__filters--panel{
+        overflow:hidden;
       }
   }
   @include min-large(){
@@ -134,14 +145,14 @@
     }
     .nav__filters--childpanel{
       top:5px;
-      left:150px;
-      width:calc(100% - 150px);
+      left:$filter-width;
+      width:calc(100% - #{$filter-width});
     }
     .nav__filters--mobile{
       display: none;
     }
     .nav__filters--all{
-      width:150px;
+      width:$filter-width;
     }
     .nav__filters--childnav{
       flex-direction: row;
@@ -149,7 +160,7 @@
       justify-content:flex-start;
       margin-left:5rem;
       li{
-        width:150px;
+        width:$filter-width;
       }
     }
     .nav__filters--label{
@@ -206,14 +217,18 @@
                     </li>
                     <template v-if="filterActive === x">
                         <li class="nav__filters--childpanel">
-                          <ol><li class="nav__filters--label fs__b xs">{{$t('per')}}{{filterlist.name}}</li></ol>
+                          <ol><li class="nav__filters--label fs__b xs">{{$t('per')}} {{filterlist.name}}</li></ol>
                           <ol class="nav__filters--childnav">
                             <li v-for="(child, c) in filterlist.children" :key="'child'+c">
                               <a
                               @click="toggleFilters(child.slug)"
                               class="filter-link"
                               :class="{'active': filtersGet.includes(child.slug)}"
-                              v-html="child.name">
+                              >
+                              <span v-html="child.name"></span>
+                              <sup class="filters--count" v-if="child.parent != 6">
+                              {{child.count}}
+                              </sup>
                                 </a>
                             </li>
                           </ol>

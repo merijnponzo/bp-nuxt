@@ -21,7 +21,7 @@
   :style="{backgroundColor:flexcontent.visualsingle.backgroundcolor}"
   :class="{'wallpaper':flexcontent.visualsingle.wallpaper}">
     <div class="wrap">
-    <div class="row" v-if="flexcontent.visualsingle.visual">
+    <div class="row">
       <div class="col col-12">
        <template v-if="!flexcontent.visualsingle.video">
           <Visual :ratio="getRatio(flexcontent)" :visual="flexcontent.visualsingle.visual" />

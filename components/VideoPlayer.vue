@@ -2,6 +2,7 @@
   <div class="video">
     <div class="ratio--4x3">
       <video
+          v-if="windowWidth"
           autoplay
           loop
           class="wid--fl"
