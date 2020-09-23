@@ -1,0 +1,118 @@
+$grid-gap: var(--grid-gutter)!default;
+
+.grid{
+    margin:0 auto;
+    position: relative;
+    width:calc(100% - var(--page-margin));
+    // fallback
+    display: flex;
+    flex-wrap: wrap;
+    display: grid;
+    grid-gap:$grid-gap;
+    
+}
+.grid.y--end{
+    align-items: end;
+}
+.grid.y--center{
+    align-items: center;
+}
+// reset nested grids in rows
+.row{
+    .grid{
+        width:100%;
+    }
+}
+// SMALL ONLY
+@include small-only(){
+    // .g6--s
+    .g2--s{
+        grid-template-columns: 1fr 1fr;
+    }
+    .g3--s{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .g4--s{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+// MAX SMALL
+@include max-small(){
+    // .g2--max-s
+    .g2--max-s{
+        grid-template-columns: 1fr 1fr;
+    }
+    .g3--max-s{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .g4--max-s{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }  
+}
+// SMALL & MEDIUM ONLY
+@include small-medium(){
+    // .g2--sm
+    .g2--sm{
+        grid-template-columns: 1fr 1fr;
+    }
+    .g3--sm{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .g4--sm{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+// DEFAULT
+@include min-medium(){
+    // .g2
+    .g2{
+        grid-template-columns: 1fr 1fr;
+        // fallback
+        & > * {
+            flex-basis:calc(50% - 2rem);
+        }
+    }
+    .g3{
+        grid-template-columns: 1fr 1fr 1fr;
+        & > * {
+            flex-basis:calc(33.33% - 2rem);
+            grid-row: auto;
+        }
+    }
+    .g4{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        & > * {
+            flex-basis:calc(25% - 2rem);
+            grid-row: auto;
+        }
+    }
+}
+@include medium-only(){
+    // .g6--m
+    .g2--m{
+        grid-template-columns: 1fr 1fr;
+    }
+    .g3--m{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .g4--m{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+@include min-large(){
+    // .g2--min-l
+    .g2--min-l{
+        grid-template-columns: 1fr 1fr;
+    }
+    .g3--min-l{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .g4--min-l{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+@include min-ultra(){
+    .grid{
+        width:calc(#{$ultra-width} - var(--page-margin));
+    }    
+}

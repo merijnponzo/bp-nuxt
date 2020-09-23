@@ -6,9 +6,21 @@
   position: relative;
   .box{
     padding-left:0px;
+    padding-top:rfs(10px);
   }
   .visual{
     overflow: hidden;
+  }
+  .fs__l{
+    margin-bottom:5px;
+    font-weight:300;
+  }
+  .fs__q{
+    margin-bottom:0px;
+    font-weight:normal;
+  }
+  .terms{
+    color:#7D7D7D;
   }
 }
 .card.view-in{
@@ -83,8 +95,10 @@
         </span>
       </Visual>
       <div class="box">
+        <h2 class="fs__l">{{card.meta.client}}</h2>
         <h4 class="fs__q">{{card.post_title}}</h4>
-        <h5 class="fs__s">{{card.meta.samenvatting}}</h5>
+        <h5 class="fs__s" v-if="card.meta.samenvatting">{{card.meta.samenvatting}}</h5>
+        
         <ul class="terms crumbs--xs">
           <li v-for="(term, t) in getChildTerms(card.terms,5)" :key="'term'+t" class="fs__b" v-html="term.name"></li>
         </ul>

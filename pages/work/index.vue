@@ -9,7 +9,12 @@
   .work__work{
     padding-top:rfs(5rem);
   }
-
+  .nav__filters--home{
+    display:flex;
+    span:nth-child(1){
+      margin-right:rfs(0.5rem);
+    }
+  }
   .nav__filters--panel{
     background:var(--color-two);
     color:white;
@@ -170,7 +175,6 @@
 </style>
 <template>
   <div class="work__work" v-if="content">
-    <Preloader/>
     <div class="wrap gut--xs">
       <div class="row">
         <h2 class="chapter fs__h space--2">{{ $t("workslogan") }}</h2>
@@ -190,7 +194,7 @@
                     <span>{{$t('all')}}</span>
                   </template>
                   <template v-else>
-                    <span>Filters</span>
+                    <span class="nav__filters--home"><span>Filters</span> <Preloader v-if="filters.length === 0 || loading === true" /></span>
                   </template>
                 </a>
               </li>
@@ -221,9 +225,11 @@
              </ul>
           </nav>
         </div>
+        <div class="col col-12 grid g3">
         <template v-for="(cardItem, i) in content">
-          <Card class="col col-4 card xs" v-on:toggleProjects="showProjects = false" :class="{'active':showProjects}" :card="cardItem" :key="'work'+i" />
+          <Card class="card xs" v-on:toggleProjects="showProjects = false" :class="{'active':showProjects}" :card="cardItem" :key="'work'+i" />
         </template>
+        </div>
       </div>
       <div class="col col-12">
         <div class="box ali--mc cta">
@@ -262,20 +268,34 @@ export default {
       showProjects:true
     }
   },
-  asyncData({ app, params, store, $axios }) {
+  asyncData({ app, params, query, store, $axios }) {
     const url = `${process.env.bpApi}/work`
-    
-    return $axios.get(url).then(response => {
-      return {
-       content:response.data.works
-      }
-    })
+   
+    const queryParsed = qs.parse(query.q)
+    let filtersGet = []
+    let paged = 1
+   
+    if (typy(queryParsed, 'filter').isDefined) {
+      filtersGet = queryParsed.filter
+      paged = queryParsed.pages
+    }
+   
+    return $axios.get(url, {
+          params: {
+            filter: filtersGet,
+            paged: paged
+          }
+        }).then((response) => {
+          return {
+            content:response.data.works
+          }
+        })
   },
   mounted () {
     // get query string
     const params = qs.parse(this.$route.query.q)
-    if (typy(params, 'filters').isDefined) {
-      this.filtersGet = params.filters
+    if (typy(params, 'filter').isDefined) {
+      this.filtersGet = params.filter
       this.paged = params.pages
     }
     this.setFilters();

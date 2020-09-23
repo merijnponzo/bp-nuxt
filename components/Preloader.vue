@@ -1,8 +1,8 @@
 <style lang="scss" scoped>
   .preloader{
     background:white;
-    max-width:50vw;
-    max-height:50vh;
+    max-width:2vw;
+    max-height:2vh;
   }
   svg{
     background:black;
@@ -10,13 +10,13 @@
   }
   .oval--a{
     transform-origin:center center;
-    animation: rotateA 2s ease-in-out infinite;
+    animation: rotateA 1s ease-in-out infinite;
     mix-blend-mode:exclusion;
   }
   .oval--b{
     transform:rotate(0deg);
     transform-origin:center center;
-    animation: rotateB 2s ease-in-out infinite;
+    animation: rotateB 1s ease-in-out infinite;
     z-index:2;
     mix-blend-mode:exclusion;
   }
