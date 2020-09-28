@@ -101,7 +101,7 @@
 </style>
 <template>
    <section class="comp__slides" data-theme="two">
-    <div class="wrap">
+    <div class="wrap push--2">
       <div class="row">
         <div class="col col-12">
           <div class="siema-wrap">

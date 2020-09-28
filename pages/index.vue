@@ -1,4 +1,46 @@
 <style lang="scss" scoped>
+
+  .showreel__controls{
+    height:$video-top;
+    background:var(--color-bg);
+    overflow: hidden;
+  }
+  .showreel__hotspot{
+    position:absolute;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height:100%;
+    background: red;
+    z-index: 2;
+  }
+  .showreel__play{
+    fill:none;
+    stroke:#ffff;
+    width:rfs(100px);
+    height:rfs(100px);
+    transform:translateY(-50px);
+    mix-blend-mode: difference;
+  }
+  .showreel__playwrap{
+     height:$video-top;
+     display:flex;
+     align-items: flex-end;
+  }
+  
+  .bg__video{
+    position: fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+    overflow: hidden;
+    height: $video-top; 
+    .video{
+        width:auto;
+        height:150%;
+        margin-left:-15%;
+      }
+  }
 .left {
     -moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);
@@ -15,18 +57,23 @@
     filter: FlipH;
     -ms-filter: "FlipH";
 }
+.showreel_typo{
+  font-family: 'Parabole';
+  font-size:26px;
+  color:white;
+  mix-blend-mode: difference;
+}
 #bee {
+  pointer-events:none;
   position:absolute;
-  transition: transform .1s;
   z-index:2;
 }
-
 .home__content{
     position: relative;
     display: block;
     background:white;
     z-index:2;
-    margin-top:calc(#{$video-top} + var(--header-height) * -1);
+    // margin-top:calc(#{$video-top} + var(--header-height) * -1);
 }
 .square{
   width:50px;
@@ -50,16 +97,42 @@ h1.fs__h{
   .fs__h{
     max-width:1200px;
   }
+   .bg__video{  
+      video{
+        margin-left:0px;
+        width:100vw;
+        height:auto;
+      }
+    }
 }
 </style>
 <template>
   <div v-if="content">
-   
-    <VideoheaderHome :video="content.meta.showreel">
-       <div id="bee" :style="beestyle" :class="dir"> 
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/160783/astroboy.png"   />
+    <div class="showreel" @click="fullscreenChange">
+      <div id="bee" :style="beestyle" :class="dir">
+        <span class="showreel_typo">PLAY SHOWREEL</span>
       </div>
-    </VideoheaderHome>
+      <div class="bg__video">
+        <video
+            autoplay
+            loop
+            controls
+            ref="bpplayer"
+            class="wid--fl"
+            muted=""
+            v-view="viewHandler"
+            >
+            <source :src="content.meta.showreel.bgvideo" type="video/mp4">
+          </video>
+      </div>
+      <section class="wrap">
+        <div class="row">
+          <div class="col col-12 showreel__playwrap">
+              <Playbutton class="showreel__play"/>
+          </div>
+        </div>
+      </section>
+    </div>
     <div class="home__content">
       <section class="wrap intro__nav">
         <div class="row">
@@ -84,7 +157,6 @@ h1.fs__h{
 </template>
 
 <script>
-import VideoheaderHome from '@/components/VideoheaderHome.vue'
 import Highlights from '@/components/Highlights.vue'
 import Logowall from '@/components/Logowall.vue'
 import Branches from '@/components/Branches.vue'
@@ -92,19 +164,24 @@ import Testimonials from '@/components/Testimonials.vue'
 import Info from '@/components/Infoblock.vue'
 import Morerows from '@/components/Morerows.vue'
 import Staggergrid from '@/components/Staggergrid.vue'
+import VideoPlayer from '@/components/VideoPlayer.vue'
+import Playbutton from '@/components/Playbutton.vue'
 // contenthelpers
 import contenthelpers from '@/mixins/contenthelper.js'
-
+import Vue from 'vue'
+import checkView from 'vue-check-view'
+Vue.use(checkView)
 export default {
   name: 'Page',
   mixins: [contenthelpers],
-  components: { VideoheaderHome, Highlights, Logowall, Branches, Testimonials, Morerows, Info, Staggergrid },
+  components: { VideoPlayer, Playbutton, Highlights, Logowall, Branches, Testimonials, Morerows, Info, Staggergrid },
   data: function () {
     return {
       dir:'right',
       mouse:{x:0,y:0},
       beepos:{x:0,y:0},
-      beestyle:{left:0,top:0}
+      beestyle:{left:0,top:0},
+      show:true
     }
   },
   asyncData({ app, params, store, $axios, context }) {
@@ -143,9 +220,24 @@ export default {
 			this.beepos.x += distX/5;
 			this.beepos.y += distY/2;
       this.beestyle= {left: this.beepos.x+"px", top:this.beepos.y+"px"}	
-		}
-
-
-  }
+    },
+     viewHandler (e) {
+      if (e.type === 'enter') {
+        this.show = true
+      } else if (e.type === 'exit') this.show = false
+    },
+    fullscreenChange () {
+        const elem = this.$refs['bpplayer']
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+          elem.msRequestFullscreen();
+        }
+      }
+    }
 }
 </script>

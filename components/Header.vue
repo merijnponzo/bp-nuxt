@@ -43,12 +43,12 @@
     border: none;
     padding: 0;
     padding-right:0px;
-    position:absolute;
+    position:fixed;
     top:rfs(1rem);
-    left:calc(var(--page-margin) / 2);
+    left:rfs(1rem);
     pointer-events: auto;
     svg{
-      width:rfs(100px);
+      width:rfs(150px);
       display:block;
       path{
        fill:white;
@@ -56,16 +56,20 @@
     }
   }
   .nav__close{
-    width:rfs(75px);
-    height:rfs(75px);
+    width:rfs(3rem);
+    height:rfs(3rem);
+    top:rfs(2rem);
+    right:rfs(2rem);
+    position:fixed;
     background: transparent;
     cursor: pointer;
     border: none;
     padding: 0;
+    position:fixed;
   }
   .nav__burger{
-    width:2rem;
-    height:3rem;
+    width:1.5rem;
+    height:2rem;
     pointer-events: auto;
     background: transparent;
     cursor: pointer;
@@ -73,11 +77,11 @@
     position:absolute;
     padding: 0;
     transform-origin: center center;
-    top:rfs(1rem);
-    right:calc(var(--row-pad) * var(--space-factor));
+    top:2rem;
+    right:2rem;
     z-index:2;
     span{
-      width:rfs(5px);
+      width:3px;
       height:100%;
       display:block;
       background:white;
@@ -211,6 +215,22 @@
       .nav__address--wrap{
         opacity: 1;
         height:40vh;
+      }
+      .nav__logo{
+        top:0.5rem;
+        left:1rem;
+        svg{
+          width:10rem;
+        }
+      }
+      .nav__burger{
+        top:2rem;
+        right:3rem;
+        width:2rem;
+        height:3rem;
+        span{
+          width:5px;
+        }
       }
       .nav__menu{
         a{
@@ -352,10 +372,9 @@ export default {
     }
   },
   mounted () {
+    
     this.$anime.set('.nav__burger', {
-      rotate:90,
-      width:'2rem',
-      height:'3rem'
+      rotate:90
     })
     this.$anime.set('.sq__1', {
       right:'0%',
@@ -419,15 +438,23 @@ export default {
         let navWidth = '80vw'
         let whiteWidth = 70
         let blackWidth = 30
+        let burgerWidth = '2rem'
+        let burgerHeight = '2rem'
+
         if (window.innerWidth < window.innerHeight) {
           navWidth = '100vw'
           blackWidth = 10
           whiteWidth = 90
+          burgerWidth = '1.5rem'
+          burgerHeight = '2rem'
+         
         }
          if (window.innerWidth < 640) {
           navWidth = '100vw'
           blackWidth = 20
           whiteWidth = 80
+          burgerWidth = '2rem'
+          burgerHeight = '3rem'
         }
         this.tl.update = function (anim) {
           if (anim.progress > 70) {
@@ -441,8 +468,8 @@ export default {
             rotate: '360deg',
             top: 0,
             right: 0,
-            width:'2rem',
-            height:'3rem'
+            width:burgerWidth,
+            height:burgerHeight
           })
           .add({
             targets: '.sq__1, .sq__2, .sq__3',
