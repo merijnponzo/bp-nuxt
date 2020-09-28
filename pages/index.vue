@@ -120,10 +120,10 @@ h1.fs__h{
             ref="bpplayer"
             class="wid--fl"
             muted=""
+            :src="switchVideo"
+            type="video/mp4"
             v-view="viewHandler"
-            >
-            <source :src="content.meta.showreel.bgvideo" type="video/mp4">
-          </video>
+            />
       </div>
       <section class="wrap">
         <div class="row">
@@ -181,7 +181,9 @@ export default {
       mouse:{x:0,y:0},
       beepos:{x:0,y:0},
       beestyle:{left:0,top:0},
-      show:true
+      show:true,
+      switchVideo:null,
+      videoToggle:false
     }
   },
   asyncData({ app, params, store, $axios, context }) {
@@ -195,6 +197,7 @@ export default {
   mounted(){
       document.addEventListener("mousemove", this.getMouse); 
       this.interval = setInterval(this.followMouse, 50);
+      this.switchVideo = this.content.meta.showreel.bgvideo
   },
   beforeDestroy(){
     document.removeEventListener('mousemove',this.getMouse);
@@ -228,6 +231,11 @@ export default {
     },
     fullscreenChange () {
         const elem = this.$refs['bpplayer']
+        
+        if(!this.videoToggle){
+          this.switchVideo = this.content.meta.showreel.video
+          this.videoToggle = true
+        }
         if (elem.requestFullscreen) {
           elem.requestFullscreen();
         } else if (elem.mozRequestFullScreen) { /* Firefox */
@@ -237,6 +245,26 @@ export default {
         } else if (elem.msRequestFullscreen) { /* IE/Edge */
           elem.msRequestFullscreen();
         }
+      
+        if (elem.exitFullscreen) {
+          elem.exitFullscreen();
+          this.videoToggle = false
+        } else if (elem.mozCancelFullScreen) { /* Firefox */
+          elem.mozCancelFullScreen();
+          this.videoToggle = false
+        } else if (elem.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+          elem.webkitExitFullscreen();
+        } else if (elem.msExitFullscreen) { /* IE/Edge */
+          elem.msExitFullscreen();
+          this.videoToggle = false
+        }
+
+        if(!this.videoToggle){
+          this.switchVideo = this.content.meta.showreel.bgvideo
+          console.log('called!')
+        }
+        elem.load();
+       
       }
     }
 }
