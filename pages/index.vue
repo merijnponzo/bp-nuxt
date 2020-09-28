@@ -35,7 +35,8 @@
     width:100%;
     overflow: hidden;
     height: $video-top; 
-    .video{
+    background:red;
+    video{
         width:auto;
         height:150%;
         margin-left:-15%;
@@ -113,17 +114,18 @@ h1.fs__h{
         <span class="showreel_typo">PLAY SHOWREEL</span>
       </div>
       <div class="bg__video">
-        <video
-            autoplay
-            loop
-            controls
-            ref="bpplayer"
-            class="wid--fl"
-            muted=""
-            :src="switchVideo"
-            type="video/mp4"
-            v-view="viewHandler"
-            />
+        <template v-if="switchVideo">
+          <video
+              autoplay
+              loop
+              controls
+              ref="bpplayer"
+              class="wid--fl"
+              muted=""
+              :src="switchVideo"
+              type="video/mp4"
+              />
+          </template>
       </div>
       <section class="wrap">
         <div class="row">
@@ -198,6 +200,7 @@ export default {
       document.addEventListener("mousemove", this.getMouse); 
       this.interval = setInterval(this.followMouse, 50);
       this.switchVideo = this.content.meta.showreel.bgvideo
+      
   },
   beforeDestroy(){
     document.removeEventListener('mousemove',this.getMouse);
@@ -231,10 +234,12 @@ export default {
     },
     fullscreenChange () {
         const elem = this.$refs['bpplayer']
-        
         if(!this.videoToggle){
           this.switchVideo = this.content.meta.showreel.video
           this.videoToggle = true
+        }else{
+          this.videoToggle = false
+          this.switchVideo = this.content.meta.showreel.bgvideo
         }
         if (elem.requestFullscreen) {
           elem.requestFullscreen();
@@ -259,10 +264,7 @@ export default {
           this.videoToggle = false
         }
 
-        if(!this.videoToggle){
-          this.switchVideo = this.content.meta.showreel.bgvideo
-          console.log('called!')
-        }
+  
         elem.load();
        
       }
