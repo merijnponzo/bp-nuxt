@@ -21,22 +21,22 @@
   :style="{backgroundColor:flexcontent.visualsingle.backgroundcolor}"
   :class="{'wallpaper':flexcontent.visualsingle.wallpaper}">
     <div class="wrap">
-    <div class="row">
-      <div class="col col-12">
-       <template v-if="!flexcontent.visualsingle.video">
-          <Visual :ratio="getRatio(flexcontent)" :visual="flexcontent.visualsingle.visual" />
-        </template>
-        <template v-else>
-         <VideoPlayer
-          :poster="$typy(flexcontent,'visualsingle.poster').safeObject"
-          :mobile="$typy(flexcontent,'visualsingle.video_small.url').safeObject"
-          :desktop="$typy(flexcontent,'visualsingle.video_desktop.url').safeObject"
-          >
-        </VideoPlayer>
-        </template>
+      <div class="row">
+        <div class="col col-12">
+          <template v-if="!flexcontent.visualsingle.video">
+            <Visual :ratio="getRatio(flexcontent)" :visual="flexcontent.visualsingle.visual" />
+          </template>
+          <template v-else>
+            <VideoPlayer
+              :poster="$typy(flexcontent,'visualsingle.poster').safeObject"
+              :mobile="$typy(flexcontent,'visualsingle.video_small.url').safeObject"
+              :desktop="$typy(flexcontent,'visualsingle.video_desktop.url').safeObject"
+            >
+            </VideoPlayer>
+          </template>
+        </div>
       </div>
     </div>
-  </div>
   </section>
 </template>
 <script>

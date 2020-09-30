@@ -1,0 +1,27 @@
+.showreel__playwrap{
+    height:$video-top;
+    display:flex;
+    align-items: flex-end;
+ }
+.bg__video{
+    position: fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+    overflow: hidden;
+    height: $video-top; 
+    video{
+        width:auto;
+        height:150%;
+        margin-left:-15%;
+      }
+  }
+@include min-large(){
+    .bg__video{  
+        video{
+          margin-left:0px;
+          width:100vw;
+          height:auto;
+        }
+      }
+}

@@ -6,8 +6,8 @@
 </style>
 <template>
   <div>
-    <div class="video"> 
-      <div :class="ratio">
+    <div class="video" :class="outer"> 
+      <div :class="[ratio,inner]">
         <video
             v-if="windowWidth"
             autoplay
@@ -46,6 +46,14 @@ export default {
       default: function () {
         return {}
       }
+    },
+    outer:{
+      type:String,
+      default:''
+    },
+    inner:{
+      type:String,
+      default:''
     },
     mobile:{
       type: [String, Boolean],

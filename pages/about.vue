@@ -1,17 +1,8 @@
 <style lang="scss" scoped>
-.about__header{
-  height:$video-top;
-  width:100%;
-  position:fixed;
-  left:0px;
-  top:0px;
-  z-index:1;
-}
 .about__content{
   z-index:2;
   width:100%;
   position:relative;
-  margin-top:calc(#{$video-top} - var(--header-height)) ;
   padding-top:rfs(4rem);
 }
 .about__cta{
@@ -31,7 +22,7 @@
       padding-left:rfs(1rem);
       border-left:1px solid var(--color-bg);
     }
-  }
+}
 @include min-large(){
    .dienst__expertises--expertises{
       margin-top:rfs(6rem);
@@ -42,8 +33,11 @@
 </style>
 <template>
   <div class="about" v-if="content">
-    <Visual class="about__header" ratio="ratio--35x10" :visual="content.meta.headervisual"/>
-    <section class="about__content" data-theme="two">
+    <div class="wrap">
+      <div class="showreel__playwrap"></div>
+      <VideoPlayer outer="showreel" inner="bg__video" ratio="_":desktop="content.meta.headervideodesktop" :mobile="content.meta.headervideomobile" />
+    </div>
+     <section class="about__content" data-theme="two">
       <div class="wrap">
         <h1 class="chapter about__title">{{$t('overbp')}}</h1>
         <div class="row">
@@ -125,6 +119,7 @@
 </template>
 
 <script>
+import VideoPlayer from '@/components/VideoPlayer.vue'
 import Visual from '@/components/Visual.vue'
 import Diensten from '@/components/Diensten.vue'
 import Info from '@/components/Infoblock.vue'

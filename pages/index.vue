@@ -1,47 +1,26 @@
 <style lang="scss" scoped>
-
-  .showreel__controls{
-    height:$video-top;
-    background:var(--color-bg);
-    overflow: hidden;
-  }
-  .showreel__hotspot{
-    position:absolute;
-    top:0px;
-    left:0px;
-    width: 100%;
-    height:100%;
-    background: red;
-    z-index: 2;
-  }
-  .showreel__play{
-    fill:none;
-    stroke:#ffff;
-    width:rfs(100px);
-    height:rfs(100px);
-    transform:translateY(-50px);
-    mix-blend-mode: difference;
-  }
-  .showreel__playwrap{
-     height:$video-top;
-     display:flex;
-     align-items: flex-end;
-  }
-  
-  .bg__video{
-    position: fixed;
-    top:0px;
-    left:0px;
-    width:100%;
-    overflow: hidden;
-    height: $video-top; 
-    background:red;
-    video{
-        width:auto;
-        height:150%;
-        margin-left:-15%;
-      }
-  }
+.showreel__controls{
+  height:$video-top;
+  background:var(--color-bg);
+  overflow: hidden;
+}
+.showreel__hotspot{
+  position:absolute;
+  top:0px;
+  left:0px;
+  width: 100%;
+  height:100%;
+  background: red;
+  z-index: 2;
+}
+.showreel__play{
+  fill:none;
+  stroke:#ffff;
+  width:rfs(100px);
+  height:rfs(100px);
+  transform:translateY(-50px);
+  mix-blend-mode: difference;
+}
 .left {
     -moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);
@@ -98,13 +77,6 @@ h1.fs__h{
   .fs__h{
     max-width:1200px;
   }
-   .bg__video{  
-      video{
-        margin-left:0px;
-        width:100vw;
-        height:auto;
-      }
-    }
 }
 </style>
 <template>
