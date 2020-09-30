@@ -1,4 +1,4 @@
-<style lang="scss" scoped>
+<style lang="scss">
 .about__content{
   z-index:2;
   width:100%;
@@ -23,6 +23,11 @@
       border-left:1px solid var(--color-bg);
     }
 }
+.bg__video{
+  video{
+    margin-top:-10%;
+  }
+}
 @include min-large(){
    .dienst__expertises--expertises{
       margin-top:rfs(6rem);
@@ -39,8 +44,10 @@
     </div>
      <section class="about__content" data-theme="two">
       <div class="wrap">
-        <h1 class="chapter about__title">{{$t('overbp')}}</h1>
         <div class="row">
+          <div class="col col-12">
+            <h1 class="chapter about__title">{{$t('overbp')}}</h1>
+          </div>
           <div class="col col-4 col--u-6">
             <p class="fs__s" v-html="metaTextfield(content.meta,'who')"></p>
           </div>
