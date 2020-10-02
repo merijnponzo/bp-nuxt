@@ -6,14 +6,13 @@
 </style>
 <template>
   <client-only>
-    <div class="video" :class="outer"> 
+    <div class="video" :class="outer" v-view="autoPlay"> 
       <div :class="[ratio,inner]">
         <video
             v-if="windowWidth"
-            autoplay
             loop
-            controls
-            id="bpplayer"
+            :controls="showcontrols"
+            ref="bpplayersingle"
             class="wid--fl"
             muted=""
             >
@@ -47,6 +46,10 @@ export default {
         return {}
       }
     },
+    showcontrols:{
+      type: [String, Boolean],
+      default: false
+    },
     outer:{
       type:String,
       default:''
@@ -66,6 +69,24 @@ export default {
     ratio:{
       type: String,
       default:'ratio--4x3'
+    }
+  },
+  data : function(){
+    return {
+      play : false
+    }
+  },
+  methods:{
+    autoPlay(e){
+      if(e.percentInView == 1 && !this.play){
+        this.play = true
+        const player = this.$refs['bpplayersingle']
+        if(player){
+          player.play()
+        }
+      } else if (e.type === 'exit' ){
+        this.play = false
+      }
     }
   }
 }
