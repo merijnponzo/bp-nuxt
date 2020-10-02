@@ -1,26 +1,20 @@
 .showreel{
-  height:$video-top;
+  height:calc(#{$video-top} - 150px);
 }
-.showreel__playwrap{
-    height:$video-top;
-    display:flex;
-    align-items: flex-end;
- }
 .bg__video{
     position: fixed;
     top:0px;
     left:0px;
     width:100%;
     overflow: hidden;
-    height: $video-top;
+    height:calc(#{$video-top} - 150px);
     display:flex;
     align-items: center;
     justify-content: center;
     background:white;
     video{
-        width:100%;
+        width:auto;
         margin:0 auto;
-        max-width:$ultra-width;
-        height:auto;
+        height:100%;
       }
   }

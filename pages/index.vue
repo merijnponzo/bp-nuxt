@@ -2,13 +2,21 @@
 .bg__video{
   transition:0.5s ease all;
 }
+.bg__video.in-active{
+  opacity:0;
+  transform:scale(0.75,0.75);
+}
 .showreel__controls{
   background:var(--color-bg);
   overflow: hidden;
 }
+.work__highlights{
+  z-index:3;
+  position:relative;
+}
 .intro__nav{
   .row{
-    height:100vh;
+    height:$video-top;
     align-items: flex-end;
   }
   .fs__h{
@@ -16,12 +24,9 @@
     mix-blend-mode: difference;
     z-index:3;
   }
-  .intro__push{
-    
-  }
   .crumbs--xl{
     z-index:4;
-    margin-bottom:rfs(1rem);
+    height : 150px;
   }
 }
 .intro__icon{
@@ -55,6 +60,8 @@
   font-size:26px;
   color:white;
   mix-blend-mode: difference;
+  z-index:2;
+  position: relative;
 }
 #bee {
   pointer-events:none;
@@ -73,12 +80,17 @@ h1.fs__h{
   margin-top:rfs(2rem);
   margin-bottom:rfs(2rem);
 }
-.crumbs--xl{
-  transform:translateY(-1rem);
-}
+
 @include min-large(){
   .fs__h{
     max-width:1200px;
+  }
+  .intro__nav{
+    .crumbs--xl{
+        .bp--nxt{
+          align-self:center;
+        }
+    }
   }
 }
 </style>
@@ -86,7 +98,6 @@ h1.fs__h{
   <div v-if="content">
       <section class="wrap intro__nav">
         <div class="row">
-       
           <span class="intro__push" />
           <div class="col col-12 intro__icon">
              <Playbutton/>
@@ -108,7 +119,7 @@ h1.fs__h{
        <Info gutter="gut--u-5" cta="contactop" :info="content.meta.meerweten"/>
       <Morerows class="home__posts" :rows="content.meta.meer_posts" />
      <!-- video -->
-    <div class="bg__video" @click="fullscreenChange" :style="videoScaleStyle">
+    <div class="bg__video" @click="fullscreenChange" :class="{'in-active':hideVideo}">
       <div id="bee" :style="beestyle" :class="dir">
         <span class="showreel_typo">PLAY SHOWREEL</span>
       </div>
@@ -156,9 +167,10 @@ export default {
       show:true,
       switchVideo:null,
       videoToggle:false,
-      videoScale : 1
+      hideVideo:0
     }
   },
+  /*
   computed: {
      videoScaleStyle () {
        if(this.videoScale > 0.99){
@@ -171,6 +183,7 @@ export default {
        }
      }
   },
+  */
   asyncData({ app, params, store, $axios, context }) {
     const url = `${process.env.wpApi}/pages?slug=home`
     return $axios.get(url).then(response => {
@@ -211,7 +224,12 @@ export default {
       this.beestyle= {left: this.beepos.x+"px", top:this.beepos.y+"px"}	
     },
      viewHandler (e) {
-       this.videoScale = e.percentTop
+       console.log(e)
+       if(e.percentTop < 0.9){
+         this.hideVideo  = true
+       }else{
+         this.hideVideo  = false
+       }
     },
     fullscreenChange () {
         const elem = this.$refs['bpplayer']
