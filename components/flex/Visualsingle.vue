@@ -18,7 +18,7 @@
 </style>
 <template>
   <section class="visual__single"
-  :style="[flexcontent.visualsingle.wallpaper ? {backgroundColor: flexcontent.visualsingle.backgroundcolor} : {backgroundColor : transparant } ]"
+  :style="[flexcontent.visualsingle.wallpaper ? {backgroundColor: flexcontent.visualsingle.backgroundcolor} : {backgroundColor : 'transparant' } ]"
   :class="{'wallpaper':flexcontent.visualsingle.wallpaper}">
     <div class="wrap">
       <div class="row">

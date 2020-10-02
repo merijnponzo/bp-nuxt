@@ -69,6 +69,7 @@
     </div>
     <!-- dynamic flex content -->
     <template v-for="(flexcontent,s) in content.meta.projectcontent">
+      <template v-if="flexcontent.acf_fc_layout">
         <component
         class="space--4"
         :class="`flex--${s}`"
@@ -78,21 +79,21 @@
         :key="'comp'+s"
         >
         </component>
+      </template>
     </template>
-     <!-- / dynamic flex content -->
-      <!-- meer weten -->
-      <div class="wrap">
-        <div class="row">
-          <h2 class="chapter fs__h">{{$t('meerweten')}}</h2>
-          <div class="col col-12 space--1">
-            <div class="split--fl">
-              <span>
-                <router-link class="bp--nxt" to="/contact">{{$t('contactop')}}</router-link>
-              </span>
-              <span>
-                <router-link class="bp--nxt" :to="getWorkArchive()">{{$t('alleprojecten')}}</router-link>
-              </span>
-            </div>
+    <!-- meer weten -->
+    <div class="wrap">
+      <div class="row">
+        <h2 class="chapter fs__h">{{$t('meerweten')}}</h2>
+        <div class="col col-12 space--1">
+          <div class="split--fl">
+            <span>
+              <router-link class="bp--nxt" to="/contact">{{$t('contactop')}}</router-link>
+            </span>
+            <span>
+              <router-link class="bp--nxt" :to="getWorkArchive()">{{$t('alleprojecten')}}</router-link>
+            </span>
+          </div>
           </div>
         </div>
       </div>

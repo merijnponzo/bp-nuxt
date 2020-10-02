@@ -5,7 +5,7 @@
   }
 </style>
 <template>
-  <div>
+  <client-only>
     <div class="video" :class="outer"> 
       <div :class="[ratio,inner]">
         <video
@@ -29,7 +29,7 @@
           </video>
       </div>
     </div>
-  </div>
+    </client-only>
 </template>
 
 <script>
