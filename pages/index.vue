@@ -58,10 +58,8 @@
 .showreel_typo{
   font-family: 'Parabole';
   font-size:26px;
-  color:white;
-  mix-blend-mode: difference;
+  color:black;
   z-index:2;
-  position: relative;
 }
 #bee {
   pointer-events:none;
@@ -119,7 +117,7 @@ h1.fs__h{
        <Info gutter="gut--u-5" cta="contactop" :info="content.meta.meerweten"/>
       <Morerows class="home__posts" :rows="content.meta.meer_posts" />
      <!-- video -->
-    <div class="bg__video" @click="fullscreenChange" :class="{'in-active':hideVideo}">
+    <div class="bg__video" @click="hideVideo ? stopPropagation() : fullscreenChange()" :class="{'in-active':hideVideo}">
       <div id="bee" :style="beestyle" :class="dir">
         <span class="showreel_typo">PLAY SHOWREEL</span>
       </div>
@@ -224,7 +222,6 @@ export default {
       this.beestyle= {left: this.beepos.x+"px", top:this.beepos.y+"px"}	
     },
      viewHandler (e) {
-       console.log(e)
        if(e.percentTop < 0.9){
          this.hideVideo  = true
        }else{
