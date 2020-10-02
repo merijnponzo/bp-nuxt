@@ -21,7 +21,7 @@
   }
   .crumbs--xl{
     z-index:4;
-    margin-bottom:rfs(3rem);
+    margin-bottom:rfs(1rem);
   }
 }
 .intro__icon{
