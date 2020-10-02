@@ -8,6 +8,14 @@
       margin-bottom:rfs(1.5rem);
     }
   }
+  .fs__b{
+    color:#7D7D7D;
+    font-family: var(--productive-1);
+  }
+  .term{
+    font-size:24px;
+    font-family: var(--productive-1);
+  }
   .slide{
     width:100%;
   }
@@ -41,19 +49,19 @@
           <ul class="terms split--l-3 gut">
             <ol>
               <li class="fs__b">{{$t('dienst')}}</li>
-              <li v-for="(term, t) in getChildTerms(content.meta.terms,5)" :key="'term'+t" class="" v-html="term.name"></li>
+              <li v-for="(term, t) in getChildTerms(content.meta.terms,5)" :key="'term'+t" class="term" v-html="term.name"></li>
             </ol>
             <ol>
               <li class="fs__b">{{$t('expertise')}}</li>
-              <li v-for="(term, t) in getChildTerms(content.meta.terms,6)" :key="'term'+t" class="" v-html="term.name"></li>
+              <li v-for="(term, t) in getChildTerms(content.meta.terms,6)" :key="'term'+t" class="term" v-html="term.name"></li>
             </ol>
              <ol>
               <li class="fs__b">{{$t('client')}}</li>
-              <li>{{content.meta.client}}</li>
+              <li class="term">{{content.meta.client}}</li>
             </ol>
             <ol>
               <li class="fs__b">{{$t('branche')}}</li>
-              <li v-for="(term, t) in getChildTerms(content.meta.terms,9)" :key="'term'+t" class="" v-html="term.name"></li>
+              <li v-for="(term, t) in getChildTerms(content.meta.terms,9)" :key="'term'+t" class="term" v-html="term.name"></li>
             </ol>
           </ul>
         </div>

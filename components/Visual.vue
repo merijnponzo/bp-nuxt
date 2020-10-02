@@ -12,19 +12,19 @@
             <picture class="picture"  >
               <template v-if="visual.sizes.thumbnail">
                 <source
-                class="img"
+                class="img lazyload"
                 :data-srcset="visual.sizes.thumbnail"
                 media="(max-width: 640px)" />
               </template>
               <template v-if="visual.sizes.medium">
                 <source
-                class="img"
+                class="img lazyload"
                 :data-srcset="visual.sizes.medium"
                 media="(max-width: 1200px)" />
               </template>
               <img
                 :data-src="visual.sizes.large"
-                class="img lazy lazyload"
+                class="img  lazyload"
                 data-sizes="auto"/>
             </picture>
         </template>

@@ -4,6 +4,14 @@
 :root{
     --page-margin:4rem;
 }
+.visual{
+    .img{
+        opacity:0;
+    }
+    .img.lazyloaded{
+        opacity:1;
+    }
+}
 @include min-small(){
     :root{
         --page-margin:12rem;

@@ -54,6 +54,7 @@
     position: absolute;
     top:50px;
     width:100%;
+    font-family: var(--productive-1);
   }
   .nav__filters--childnav{
        display:flex;
@@ -74,6 +75,7 @@
     align-items: center;
     margin-right:0px!important;
     color:#7D7D7D;
+    font-family: var(--productive-1);
   }
   .link-parent:not(.nav__filters--all){
       font-size:18px;
@@ -85,6 +87,7 @@
   .nav__filters--label{
     color:#7D7D7D;
     position: relative;
+    font-family: var(--productive-1);
   }
   .filter-link{
      display:block;
@@ -92,6 +95,7 @@
      padding-bottom:rfs(0.25rem);
      padding-top:rfs(0.25rem);
      font-size:18px;
+     font-family: var(--productive-1);
      &:hover{
        color:#7D7D7D;
      }

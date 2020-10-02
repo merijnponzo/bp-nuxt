@@ -19,36 +19,20 @@
   <div class="" v-view="viewHandler">
     <hr/>
     <section ref="banner">
-      <template v-if="banner.video_desktop">
-        <div class="row bg__video">
-          <div class="ratio--35x10">
-            <template v-if="$typy(banner,'mobiel.sizes.large').isDefined">
-              <VideoPlayer 
-              :poster_mobile="banner.mobiel"
-              :poster_desktop="banner.desktop"
-              :mobile="banner.video_mobiel" 
-              :desktop="banner.video_desktop" 
-              />
-            </template>
-            </div>
-        </div>
-      </template>
-      <template v-else>
         <template v-if="$typy(banner,'desktop.sizes.large').isDefined">
           <div class="visual show--min-l">
             <div class="img-wrap ratio--35x10">
-              <img class="img" :src="banner.desktop.sizes.large"/>
+              <img class="lazyload img" :src="banner.desktop.sizes.large"/>
             </div>
           </div>
         </template>
         <template v-if="$typy(banner,'desktop.sizes.medium').isDefined">
           <div class="visual show--max-m">
             <div class="img-wrap ratio--4x3">
-              <img class="img" :src="banner.mobiel.sizes.medium"/>
+              <img class="lazyload img" :src="banner.mobiel.sizes.medium"/>
             </div>
           </div>
          </template>
-      </template>
     </section>
    </div>
 </template>
