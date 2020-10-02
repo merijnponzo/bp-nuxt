@@ -1,25 +1,38 @@
 <style lang="scss" scoped>
+.bg__video{
+  transition:0.5s ease all;
+}
 .showreel__controls{
-  height:$video-top;
   background:var(--color-bg);
   overflow: hidden;
 }
-.showreel__hotspot{
-  position:absolute;
-  top:0px;
-  left:0px;
-  width: 100%;
-  height:100%;
-  background: red;
-  z-index: 2;
+.intro__nav{
+  .row{
+    height:100vh;
+    align-items: flex-end;
+  }
+  .fs__h{
+    color:white;
+    mix-blend-mode: difference;
+    z-index:3;
+  }
+  .intro__push{
+    
+  }
+  .crumbs--xl{
+    z-index:4;
+    margin-bottom:rfs(3rem);
+  }
 }
-.showreel__play{
-  fill:none;
-  stroke:#ffff;
-  width:rfs(100px);
-  height:rfs(100px);
-  transform:translateY(-50px);
-  mix-blend-mode: difference;
+.intro__icon{
+  svg{
+    fill:none;
+    stroke:black;
+    width:rfs(100px);
+    height:rfs(100px);
+    transform:translateY(-50px);
+  }
+  z-index:2;
 }
 .left {
     -moz-transform: scaleX(-1);
@@ -46,14 +59,6 @@
 #bee {
   pointer-events:none;
   position:absolute;
-  z-index:2;
-}
-.home__content{
-    position: relative;
-    display: block;
-    background:white;
-    z-index:2;
-    // margin-top:calc(#{$video-top} + var(--header-height) * -1);
 }
 .square{
   width:50px;
@@ -61,10 +66,8 @@
   background:red;
 }
 h1.fs__h{
-  margin-top:rfs(-2rem);
-  //mix-blend-mode: exclusion;
-  //color:white;
-  z-index:3;
+  mix-blend-mode: exclusion;
+  color:white;
 }
 .home__posts{
   margin-top:rfs(2rem);
@@ -81,44 +84,22 @@ h1.fs__h{
 </style>
 <template>
   <div v-if="content">
-    <div class="showreel" @click="fullscreenChange">
-      <div id="bee" :style="beestyle" :class="dir">
-        <span class="showreel_typo">PLAY SHOWREEL</span>
-      </div>
-      <div class="bg__video">
-        <template v-if="switchVideo">
-          <video
-              autoplay
-              loop
-              controls
-              ref="bpplayer"
-              class="wid--fl"
-              muted=""
-              :src="switchVideo"
-              type="video/mp4"
-              />
-          </template>
-      </div>
-      <section class="wrap">
-        <div class="row">
-          <div class="col col-12 showreel__playwrap">
-              <Playbutton class="showreel__play"/>
-          </div>
-        </div>
-      </section>
-    </div>
-    <div class="home__content">
       <section class="wrap intro__nav">
         <div class="row">
+       
+          <span class="intro__push" />
+          <div class="col col-12 intro__icon">
+             <Playbutton/>
+          </div>
           <h1 class="chapter fs__h space--0" v-html="metaTextarea(content.meta,'introtext')"></h1>
-          <div class="col col-12 crumbs--xl space--4">
+          <div class="col col-12 crumbs--xl">
             <a class="fs__s bp--nxt" v-for="(dienst,i) in $store.getters.getDienstenNav" :key="'dienst'+i">
               {{$t(dienst.name)}}
             </a>
           </div>
         </div>
       </section>
-      <Highlights gutter="gut--u-5" :highlights="content.meta.highlights"/>
+      <Highlights gutter="gut--u-5" :highlights="content.meta.highlights" v-view="viewHandler"/>
       <Logowall :clients="content.meta.clients"/>
       <Branches :branches="content.meta.branches">
         <Staggergrid/>
@@ -126,7 +107,24 @@ h1.fs__h{
       <Testimonials :testimonials="content.meta.testimonials"/>
        <Info gutter="gut--u-5" cta="contactop" :info="content.meta.meerweten"/>
       <Morerows class="home__posts" :rows="content.meta.meer_posts" />
+     <!-- video -->
+    <div class="bg__video" @click="fullscreenChange" :style="videoScaleStyle">
+      <div id="bee" :style="beestyle" :class="dir">
+        <span class="showreel_typo">PLAY SHOWREEL</span>
+      </div>
+      <template v-if="switchVideo">
+        <video
+            autoplay
+            loop
+            ref="bpplayer"
+            class="wid--fl"
+            muted=""
+            :src="switchVideo"
+            type="video/mp4"
+            />
+        </template>
     </div>
+    <!-- / video -->
   </div>
 </template>
 
@@ -157,8 +155,21 @@ export default {
       beestyle:{left:0,top:0},
       show:true,
       switchVideo:null,
-      videoToggle:false
+      videoToggle:false,
+      videoScale : 1
     }
+  },
+  computed: {
+     videoScaleStyle () {
+       if(this.videoScale > 0.99){
+          return { transform: 'scale(1)' }
+       } else if(this.videoScale > 0.85 ){
+          const scrollFactor = window.scrollY
+          return { transform: 'scale('+this.videoScale / (scrollFactor * 0.02) +')' }
+       }else {
+         return { transform: 'scale(0)', opacity : 0 }
+       }
+     }
   },
   asyncData({ app, params, store, $axios, context }) {
     const url = `${process.env.wpApi}/pages?slug=home`
@@ -200,9 +211,7 @@ export default {
       this.beestyle= {left: this.beepos.x+"px", top:this.beepos.y+"px"}	
     },
      viewHandler (e) {
-      if (e.type === 'enter') {
-        this.show = true
-      } else if (e.type === 'exit') this.show = false
+       this.videoScale = e.percentTop
     },
     fullscreenChange () {
         const elem = this.$refs['bpplayer']

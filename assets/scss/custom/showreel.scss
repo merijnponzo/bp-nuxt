@@ -1,3 +1,6 @@
+.showreel{
+  height:$video-top;
+}
 .showreel__playwrap{
     height:$video-top;
     display:flex;
@@ -9,19 +12,15 @@
     left:0px;
     width:100%;
     overflow: hidden;
-    height: $video-top; 
+    height: $video-top;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background:white;
     video{
-        width:auto;
-        height:150%;
-        margin-left:-15%;
+        width:100%;
+        margin:0 auto;
+        max-width:$wide-width;
+        height:auto;
       }
   }
-@include min-large(){
-    .bg__video{  
-        video{
-          margin-left:0px;
-          width:100vw;
-          height:auto;
-        }
-      }
-}
