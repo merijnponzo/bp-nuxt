@@ -2,6 +2,9 @@
   .cta{
     padding-bottom:rfs(5rem);
   }
+  .mwid--400{
+    align-self: center;
+  }
   @include min-medium(){
     .card:nth-child(odd){
       margin-top:rfs(5rem);
@@ -22,7 +25,7 @@
       </div>
       <div class="col col-12">
         <div class="box ali--mc cta">
-          <router-link :to="getWorkArchive()" class="btn xl line">{{$t('bekijkprojecten')}}</router-link>
+          <router-link :to="getWorkArchive()" class="btn xl line mwid--400">{{$t('bekijkprojecten')}}</router-link>
         </div>
       </div>
     </div>

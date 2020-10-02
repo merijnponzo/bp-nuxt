@@ -83,6 +83,13 @@
 .mwid--1000{
     max-width:rem(1000px);
 }
+.vcenter{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
 // HELPERS - HEIGHT
 .hei--no{
     min-height:auto!important;

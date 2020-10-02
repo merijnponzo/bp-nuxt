@@ -5,6 +5,7 @@
 .bg__video.in-active{
   opacity:0;
   transform:scale(0.75,0.75);
+  pointer-events: none;
 }
 .showreel__controls{
   background:var(--color-bg);
@@ -117,23 +118,26 @@ h1.fs__h{
        <Info gutter="gut--u-5" cta="contactop" :info="content.meta.meerweten"/>
       <Morerows class="home__posts" :rows="content.meta.meer_posts" />
      <!-- video -->
-    <div class="bg__video" @click="hideVideo ? stopPropagation() : fullscreenChange()" :class="{'in-active':hideVideo}">
-      <div id="bee" :style="beestyle" :class="dir">
-        <span class="showreel_typo">PLAY SHOWREEL</span>
-      </div>
-      <template v-if="switchVideo">
-        <video
-            autoplay
-            loop
-            ref="bpplayer"
-            class="wid--fl"
-            muted=""
-            :src="switchVideo"
-            type="video/mp4"
-            />
-        </template>
-    </div>
-    <!-- / video -->
+       <template v-if="inScrollVideo">
+        <div class="bg__video" @click="hideVideo ? null : openFullScreen()" :class="{'in-active':hideVideo}">
+            <div id="bee" :style="beestyle" :class="dir">
+              <span class="showreel_typo">PLAY SHOWREEL</span>
+            </div>
+            <template v-if="switchVideo">
+              <video
+                  autoplay
+                  loop
+                  :controls="fullScreenMode"
+                  ref="bpplayer"
+                  class="wid--fl"
+                  muted=""
+                  :src="switchVideo"
+                  type="video/mp4"
+                  />
+              </template>
+          </div>
+          <!-- / video -->
+      </template>
   </div>
 </template>
 
@@ -164,8 +168,9 @@ export default {
       beestyle:{left:0,top:0},
       show:true,
       switchVideo:null,
-      videoToggle:false,
-      hideVideo:0
+      fullScreenMode:false,
+      hideVideo:0,
+      inScrollVideo: false
     }
   },
   /*
@@ -194,10 +199,22 @@ export default {
       document.addEventListener("mousemove", this.getMouse); 
       this.interval = setInterval(this.followMouse, 50);
       this.switchVideo = this.content.meta.showreel.bgvideo
-      
+      if( window.scrollY > 1500 ){
+        this.inScrollVideo = false
+      } else {
+        this.inScrollVideo = true
+      }
+   
+      setTimeout(() => {
+        this.toggleVideoFullscreen()
+      },1000)
+     
+
   },
   beforeDestroy(){
     document.removeEventListener('mousemove',this.getMouse);
+    const elem = this.$refs['bpplayer']
+    document.removeEventListener('fullscreenchange',elem)
     clearInterval(this.interval)
   },
   methods: {
@@ -210,7 +227,8 @@ export default {
         } else {
           this.dir = "left";
         }
-		},
+    },
+    
      followMouse(){
       //1. find distance X , distance Y
 			var distX = this.mouse.x - this.beepos.x;
@@ -223,46 +241,39 @@ export default {
     },
      viewHandler (e) {
        if(e.percentTop < 0.9){
+         this.inScrollVideo = true
          this.hideVideo  = true
        }else{
          this.hideVideo  = false
        }
     },
-    fullscreenChange () {
+    toggleVideoFullscreen(){
+      const elem = this.$refs['bpplayer']
+      elem.addEventListener('fullscreenchange', (event) => {
+         const elem = this.$refs['bpplayer']
+          if(!this.fullScreenMode){
+            this.switchVideo = this.content.meta.showreel.video
+            this.fullScreenMode = true
+          }else{
+            this.switchVideo = this.content.meta.showreel.bgvideo
+            this.fullScreenMode = false
+          }
+          elem.load();
+      });
+    },  
+    openFullScreen () {
         const elem = this.$refs['bpplayer']
-        if(!this.videoToggle){
-          this.switchVideo = this.content.meta.showreel.video
-          this.videoToggle = true
-        }else{
-          this.videoToggle = false
-          this.switchVideo = this.content.meta.showreel.bgvideo
+        if(!this.fullScreenMode){
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.mozRequestFullScreen) { /* Firefox */
+            elem.mozRequestFullScreen();
+          } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE/Edge */
+            elem.msRequestFullscreen();
+          }
         }
-        if (elem.requestFullscreen) {
-          elem.requestFullscreen();
-        } else if (elem.mozRequestFullScreen) { /* Firefox */
-          elem.mozRequestFullScreen();
-        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-          elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) { /* IE/Edge */
-          elem.msRequestFullscreen();
-        }
-      
-        if (elem.exitFullscreen) {
-          elem.exitFullscreen();
-          this.videoToggle = false
-        } else if (elem.mozCancelFullScreen) { /* Firefox */
-          elem.mozCancelFullScreen();
-          this.videoToggle = false
-        } else if (elem.webkitExitFullscreen) { /* Chrome, Safari and Opera */
-          elem.webkitExitFullscreen();
-        } else if (elem.msExitFullscreen) { /* IE/Edge */
-          elem.msExitFullscreen();
-          this.videoToggle = false
-        }
-
-  
-        elem.load();
-       
       }
     }
 }

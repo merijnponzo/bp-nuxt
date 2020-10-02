@@ -11,7 +11,7 @@ export const state = () => ({
   webp:'',
   //*info */
   slogan: "Let's meet! Say hi ;-)",
-  adres: 'Voorhaven 27B\n3025 HC Rotterdam',
+  adres: 'Voorhaven 27B<br/>3025 HC Rotterdam',
   telefoon:'+316 83 177 826',
   mail:'team@ponzo.nl',
   googlemaps:'https://www.google.com/maps/dir//buroponzo/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x47c434a9bfa0978f:0x75ced8472d84e8e5?sa=X&ved=2ahUKEwihxZD6o6nqAhXL5KQKHd6ADWYQ9RcwDHoECBAQEA',

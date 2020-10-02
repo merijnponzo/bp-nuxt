@@ -81,6 +81,12 @@
     }
   }
 }
+@function rem($size) {
+  $remSize: $size / 16px;
+//Default font size on html element is 100%, equivalent to 16px;
+  @return #{$remSize}rem;
+}
+
 @mixin paddings($classname){
   @for $i from 0 through 10 {
     //overrulle chapter
