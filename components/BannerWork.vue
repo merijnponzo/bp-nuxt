@@ -16,7 +16,7 @@
   }
 </style>
 <template>
-  <div class="" v-view="viewHandler">
+  <div>
     <hr/>
     <section ref="banner">
         <template v-if="$typy(banner,'desktop.sizes.large').isDefined">
@@ -47,20 +47,6 @@ export default {
       type: Object,
       default: function () {
         return []
-      }
-    }
-  },
-  data: function () {
-    return {
-      visible: false
-    }
-  },
-  methods: {
-    viewHandler (e) {
-      if (e.percentInView > 0.25) {
-        this.visible = true
-      } else {
-        this.visible = false
       }
     }
   }

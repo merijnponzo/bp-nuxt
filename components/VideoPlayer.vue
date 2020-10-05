@@ -78,7 +78,7 @@ export default {
   },
   methods:{
     autoPlay(e){
-      if(e.percentInView == 1 && !this.play){
+      if(e.percentInView > 0.85 && !this.play){
         this.play = true
         const player = this.$refs['bpplayersingle']
         if(player){

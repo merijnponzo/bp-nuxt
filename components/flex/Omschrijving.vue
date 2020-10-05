@@ -1,6 +1,7 @@
 <style css scoped>
   .fs__t.xs{
     text-transform:Capitalize;
+    font-weight:400;
   }
 </style>
  <template>

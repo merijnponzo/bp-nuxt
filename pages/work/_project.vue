@@ -8,6 +8,11 @@
       margin-bottom:rfs(1.5rem);
     }
   }
+  .work__content{
+    background:white;
+    position:relative;
+    z-index:2;
+  }
   .fs__b{
     color:#7D7D7D;
     font-family: var(--productive-1);
@@ -25,30 +30,77 @@
   .chapter.fs__h{
     margin-top:rfs(150px);
   }
-  @include min-large(){
+  @include max-medium(){
+    .work__paginate{
+      margin-top:rfs(3rem);
+      margin-bottom:rfs(3rem);
+      .col-6{
+        display:flex;
+        flex-direction:row;
+        margin-bottom:5px;
+        align-items:center;
+        a{
+          width:calc(70% - 5px);
+          margin-left:5px;
+          order:2;
+        }
+      }
+      .visual{
+        width:30%;
+        order:1;
+      }
+    }
+  }
+  @include min-medium(){
     .chapter.fs__h{
        margin-top:rfs(100px);
     }
     .work__paginate{
       padding-left:$work-single-indent;
+     
+      .bp--next{
+        position:absolute;
+        opacity:1;
+        z-index:1;
+        text-align:center;
+        width:100%;
+        height:100%;
+        left:0px;
+        display:flex;
+        color:white;
+        justify-content:center;
+        align-items:center;
+        background:rgba(0,0,0,0.5);
+        transition:1s ease all;
+        font-size:16px;
+        &:hover{
+          background:rgba(0,0,0,0);
+          font-size:22px;
+        }
+      }
+      
     }
   }
 </style>
 <template>
-<div>
-  <div class="work__work" v-if="content">
-    <div class="wrap">
-      <div class="row">
-        <h1 class="chapter fs__h space--2" v-html="metaTextfield(content.meta.projectsamenvatting)"></h1>
-      </div>
-    </div>
-    <div class="wrap">
-      <div class="row">
-          <div class="col col-12" v-if="content.meta.banner">
-          <BannerWork :banner="content.meta.banner"/>
+<div v-if="content">
+  <div class="work__work">
+    <section v-rellax="rellax">
+      <div class="wrap">
+        <div class="row">
+          <h1 class="chapter fs__h space--2">{{content.title.rendered}}</h1>
         </div>
       </div>
-    </div>
+      <div class="wrap">
+        <div class="row">
+            <div class="col col-12" v-if="content.meta.banner">
+            <BannerWork :banner="content.meta.banner"/>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="work__content">
     <div class="wrap">
       <div class="row">
         <div class="col col-12 space--1">
@@ -88,7 +140,7 @@
       </template>
     </template>
     <!-- meer weten -->
-    <div class="wrap">
+    <div class="wrap work__knowmore">
       <div class="row">
         <h2 class="chapter fs__h">{{$t('meerweten')}}</h2>
         <div class="col col-12 space--1">
@@ -105,20 +157,20 @@
       </div>
       <!-- meer weten-->
       <!-- next prev -->
-        <div class="wrap work__paginate">
+        <div class="wrap gut--0 work__paginate">
           <div class="row">
             <div class="col col-6">
               <template v-if="content.meta.previous">
-                <router-link class="bp--next" :to="getLink(content.meta.previous.slug)">
-                    {{content.meta.previous.post_title}}
+                <router-link class="bp--next  fs__s xs" :to="getLink(content.meta.previous.slug)">
+                   <- {{content.meta.previous.post_title}}
                   </router-link>
                 <Visual :visual="content.meta.previous.visual" key="visualprev" />
               </template>
             </div>
             <div class="col col-6">
               <template v-if="content.meta.next">
-                  <router-link class="bp--next" :to="getLink(content.meta.next.slug)">
-                    {{content.meta.next.post_title}}
+                  <router-link class="bp--next fs__s xs" :to="getLink(content.meta.next.slug)">
+                    -> {{content.meta.next.post_title}}
                   </router-link>
                   <Visual :visual="content.meta.next.visual" key="visualnext" />
               </template>
@@ -127,6 +179,7 @@
         </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -157,7 +210,10 @@ export default {
   middleware: 'delay',
   data () {
     return {
-      content: null
+      content: null,
+      rellax: {
+        speed: -5
+      }
     }
   },
   name: 'WorkSingle',

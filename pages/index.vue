@@ -63,6 +63,7 @@
   font-size:26px;
   color:black;
   z-index:2;
+  transform:translateY(15px) translateX(15px);
 }
 #bee {
   pointer-events:none;
@@ -105,9 +106,13 @@ h1.fs__h{
           </div>
           <h1 class="chapter fs__h space--0" v-html="metaTextarea(content.meta,'introtext')"></h1>
           <div class="col col-12 crumbs--xl">
-            <a class="fs__s bp--nxt" v-for="(dienst,i) in $store.getters.getDienstenNav" :key="'dienst'+i">
-              {{$t(dienst.name)}}
-            </a>
+            <nuxt-link 
+              v-for="(dienst,i) in $store.getters.getDienstenNav"
+              :to="getLinkObj(dienst)"
+              :key="'dienst'+i"
+              >
+               <p class="fs__s bp--nxt">{{$t(dienst.name)}}</p>
+            </nuxt-link>
           </div>
         </div>
       </section>

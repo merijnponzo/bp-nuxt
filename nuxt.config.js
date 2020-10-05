@@ -59,7 +59,8 @@ export default {
   // google analytics
   { src: '~/plugins/ga.js', mode: 'client' },
   { src: '~/plugins/vue-siema.js', ssr: false },
-  { src: '~/plugins/typy.js'}
+  { src: '~/plugins/typy.js'},
+  { src: '~/plugins/rellax.js', ssr: false }
 ],
   /*
   ** Auto import components

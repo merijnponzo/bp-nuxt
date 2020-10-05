@@ -46,9 +46,12 @@
           <div class="box bp--indent">
             <div class="fs__l xl" v-html="metaTexthtml(branches,'browse_text')"></div>
             <div class="split--m-12 split--l-6 split--u-4">
-              <div v-for="(branche,i) in branches.branches" :key="'branches'+i">
-              <a class="fs__s xs bp--nxt" v-html="branche.name"></a>
-              </div>
+                <nuxt-link 
+                v-for="(branche,i) in branches.branches" :key="'branches'+i"
+                :to="branche.slug" 
+                class="fs__s xs bp--nxt">
+                  <span v-html="branche.name"/>
+                </nuxt-link>
             </div>
           </div>
         </div>

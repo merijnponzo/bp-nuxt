@@ -84,7 +84,7 @@
   
 </style>
 <template>
-  <article v-view :class="[cardclass]" class="card">
+  <article v-view.once :class="[cardclass]" class="card">
    <nuxt-link :to="getLink(card.slug)" @click.native="setImageTransition(card)"  class="card--link">
       <Visual :style="{backgroundColor:card.meta.tilecolor}" :visual="card.visual"  :key="'visual'+card.id">
         <span>
