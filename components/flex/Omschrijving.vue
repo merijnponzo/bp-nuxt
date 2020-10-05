@@ -1,8 +1,13 @@
+<style css scoped>
+  .fs__t.xs{
+    text-transform:Capitalize;
+  }
+</style>
  <template>
- <section class="wrap">
+ <section class="wrap project--description">
   <div class="row">
     <div class="col col-3 col--u-6">
-      <p class="fs__s">{{$t(flexcontent.omschrijving.label)}}</p>
+      <p class="fs__t xs">{{$t(flexcontent.omschrijving.label)}}</p>
     </div>
     <div class="col col-9 col--u-6">
       <p class="fs__r mwid--750"

@@ -40,6 +40,7 @@
   }
   z-index:2;
 }
+/*
 .left {
     -moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);
@@ -56,6 +57,7 @@
     filter: FlipH;
     -ms-filter: "FlipH";
 }
+*/
 .showreel_typo{
   font-family: 'Parabole';
   font-size:26px;
@@ -197,7 +199,6 @@ export default {
   },
   mounted(){
       document.addEventListener("mousemove", this.getMouse); 
-      this.interval = setInterval(this.followMouse, 50);
       this.switchVideo = this.content.meta.showreel.bgvideo
       if( window.scrollY > 1500 ){
         this.inScrollVideo = false
@@ -215,7 +216,7 @@ export default {
     document.removeEventListener('mousemove',this.getMouse);
     const elem = this.$refs['bpplayer']
     document.removeEventListener('fullscreenchange',elem)
-    clearInterval(this.interval)
+   
   },
   methods: {
      getMouse(e){
@@ -227,6 +228,7 @@ export default {
         } else {
           this.dir = "left";
         }
+        this.followMouse()
     },
     
      followMouse(){
@@ -234,9 +236,9 @@ export default {
 			var distX = this.mouse.x - this.beepos.x;
 			var distY = this.mouse.y - this.beepos.y;
 			//Easing motion
-       //Progressive reduction of distance 
-			this.beepos.x += distX/5;
-			this.beepos.y += distY/2;
+      //Progressive reduction of distance 
+			this.beepos.x = this.mouse.x;
+			this.beepos.y = this.mouse.y;
       this.beestyle= {left: this.beepos.x+"px", top:this.beepos.y+"px"}	
     },
      viewHandler (e) {

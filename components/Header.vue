@@ -433,7 +433,7 @@ export default {
         const func2 = this.blendOut
         this.tl = this.$anime.timeline({
           easing: 'easeInOutCirc',
-          duration: 425
+          duration: 350
         })
         let navWidth = '80vw'
         let whiteWidth = 70

@@ -22,7 +22,13 @@
   .flex--0{
     margin-top:0px!important;
   }
+  .chapter.fs__h{
+    margin-top:rfs(150px);
+  }
   @include min-large(){
+    .chapter.fs__h{
+       margin-top:rfs(100px);
+    }
     .work__paginate{
       padding-left:$work-single-indent;
     }
