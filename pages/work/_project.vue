@@ -43,6 +43,15 @@
     .terms__wrap{
       display:none;
     }
+    .terms__wrap.active{
+      display: block;
+    }
+    .nav__terms{
+      margin-top:5px;
+      width:100%;
+      display: block;
+      text-align: right;
+    }
     .work__paginate{
       margin-top:rfs(3rem);
       margin-bottom:rfs(3rem);
@@ -68,6 +77,9 @@
     }
   }
   @include min-medium(){
+    .nav__terms{
+      display:none;
+    }
     .chapter.fs__h{
        margin-top:rfs(100px);
     }
@@ -117,10 +129,13 @@
     </section>
   </div>
   <div class="work__content">
-    <div class="wrap terms__wrap">
+    <div class="wrap">
       <div class="row">
+        <div class="col col-12">
+            <a v-if="!mobile" @click="mobile ? mobile = true : mobile = false" class="nav__terms">&#8594; {{$t('meertal')}}</a>
+        </div>
         <div class="col col-12 space--1">
-          <ul class="terms split--l-3 gut">
+          <ul class="terms split--l-3 gut terms__wrap" v-if="mobile" :class="{'active':mobile}">
             <ol>
               <li class="fs__b">{{$t('dienst')}}</li>
               <li v-for="(term, t) in getChildTerms(content.meta.terms,5)" :key="'term'+t" class="term" v-html="term.name"></li>
@@ -227,6 +242,7 @@ export default {
   data () {
     return {
       content: null,
+      mobile: false,
       rellax: {
         speed: -8
       }

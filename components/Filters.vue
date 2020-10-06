@@ -2,6 +2,8 @@
   $filter-width:200px;
   .nav__filters--home{
     display:flex;
+    align-items: center;
+    margin-bottom:2rem;
     span:nth-child(1){
       margin-right:rfs(0.5rem);
     }
@@ -106,11 +108,14 @@
   }
   @include max-small(){
       .nav__filters--panel.active{
-        height:25rem;
+        height:80vh;
         background:var(--color-two);
         color:white;
         padding-top:2rem;
         padding-left:2rem;
+        li{
+          margin-bottom:0.5rem;
+        }
       }
       .nav__filters--label{
         margin-top:1rem;
@@ -118,9 +123,7 @@
       .nav__filters--all{
         margin-bottom:1rem;
       }
-      .link-parent{
-        margin-bottom:0.5rem;
-      }
+     
       .nav__filters--panel{
         overflow:hidden;
       }
@@ -207,7 +210,8 @@
               </template>
               <template v-else>
                 <span class="nav__filters--home"><span>
-                  <span><span v-if="!mobile">&#8594;</span>Filters</span>
+                   <span v-if="!mobile">&#8594;</span>
+                   <span>Filters</span>
                   </span> <Preloader v-if="filters.length === 0 || loading === true" /></span>
               </template>
             </router-link>

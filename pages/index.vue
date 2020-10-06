@@ -1,6 +1,7 @@
 <style lang="scss" scoped>
 .bg__video{
-  transition:0.5s ease all;
+  transition:0.3s ease all;
+  z-index: 0;
 }
 .bg__video.in-active{
   opacity:0;
@@ -16,6 +17,11 @@
   position:relative;
 }
 .intro__nav{
+  
+  .col-12{
+    position: relative;
+    overflow:hidden;
+  }
   .row{
     height:$video-top;
     align-items: flex-end;
@@ -24,40 +30,30 @@
     color:white;
     mix-blend-mode: difference;
     z-index:3;
+    position:relative;
+    margin-bottom:rfs(3rem);
   }
   .crumbs--xl{
-    z-index:4;
-    height : 150px;
+    height:150px;
+  }
+  .intro__icon{
+    svg{
+      fill:none;
+      stroke:white;
+      mix-blend-mode: difference;
+      width:rfs(100px);
+      height:rfs(100px);
+      position:relative;
+      z-index:4;
+    }
+    cursor:pointer;
+    margin-bottom:rfs(2rem);
+    background:transparent;
+    &:hover{
+      stroke-width:2px;
+    }
   }
 }
-.intro__icon{
-  svg{
-    fill:none;
-    stroke:black;
-    width:rfs(100px);
-    height:rfs(100px);
-    transform:translateY(-50px);
-  }
-  z-index:2;
-}
-/*
-.left {
-    -moz-transform: scaleX(-1);
-    -o-transform: scaleX(-1);
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-    filter: FlipH;
-    -ms-filter: "FlipH";
-}
-.right {
-    -moz-transform: scaleX(1);
-    -o-transform: scaleX(1);
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-    filter: FlipH;
-    -ms-filter: "FlipH";
-}
-*/
 .showreel_typo{
   font-family: 'Parabole';
   font-size:26px;
@@ -65,10 +61,7 @@
   z-index:2;
   transform:translateY(15px) translateX(15px);
 }
-#bee {
-  pointer-events:none;
-  position:absolute;
-}
+
 .square{
   width:50px;
   height:50px;
@@ -82,13 +75,37 @@ h1.fs__h{
   margin-top:rfs(2rem);
   margin-bottom:rfs(2rem);
 }
-
+#fly{
+   z-index:10;
+   pointer-events:none;
+   position: relative;
+}
+@include max-medium(){
+  .intro__slogan{
+    margin-left:0px;
+  }
+  .intro__icon{
+    svg{
+      stroke-width: 2px;
+      width:150px;
+      height:150px;
+    }
+  }
+  #fly{
+    display: none;
+  }
+}
 @include min-large(){
+  #fly {
+    position: absolute;
+  }
   .fs__h{
     max-width:1200px;
   }
   .intro__nav{
     .crumbs--xl{
+        height : 125px;
+        margin-top:25px;
         .bp--nxt{
           align-self:center;
         }
@@ -100,19 +117,20 @@ h1.fs__h{
   <div v-if="content">
       <section class="wrap intro__nav">
         <div class="row">
-          <span class="intro__push" />
-          <div class="col col-12 intro__icon">
-             <Playbutton/>
-          </div>
-          <h1 class="chapter fs__h space--0" v-html="metaTextarea(content.meta,'introtext')"></h1>
-          <div class="col col-12 crumbs--xl">
-            <nuxt-link 
-              v-for="(dienst,i) in $store.getters.getDienstenNav"
-              :to="getLinkObj(dienst)"
-              :key="'dienst'+i"
-              >
-               <p class="fs__s bp--nxt">{{$t(dienst.name)}}</p>
-            </nuxt-link>
+          <div class="col col-12">
+            <div @click="hideVideo ? null : openFullScreen()" class="intro__icon">
+              <Playbutton />
+            </div>
+            <h1 class="chapter fs__h intro__slogan space--0" v-html="metaTextarea(content.meta,'introtext')"></h1>
+            <div class="crumbs--xl">
+              <nuxt-link 
+                v-for="(dienst,i) in $store.getters.getDienstenNav"
+                :to="getLinkObj(dienst)"
+                :key="'dienst'+i"
+                >
+                <p class="fs__s bp--nxt">{{$t(dienst.name)}}</p>
+              </nuxt-link>
+            </div>
           </div>
         </div>
       </section>
@@ -126,13 +144,13 @@ h1.fs__h{
       <Morerows class="home__posts" :rows="content.meta.meer_posts" />
      <!-- video -->
        <template v-if="inScrollVideo">
-        <div class="bg__video" @click="hideVideo ? null : openFullScreen()" :class="{'in-active':hideVideo}">
-            <div id="bee" :style="beestyle" :class="dir">
+        <div class="bg__video" :class="{'in-active':hideVideo}" @click="hideVideo ? null : openFullScreen()">
+           <div id="fly" :style="flystyle">
               <span class="showreel_typo">PLAY SHOWREEL</span>
             </div>
             <template v-if="switchVideo">
               <video
-                  autoplay
+                  pauze
                   loop
                   :controls="fullScreenMode"
                   ref="bpplayer"
@@ -171,8 +189,8 @@ export default {
     return {
       dir:'right',
       mouse:{x:0,y:0},
-      beepos:{x:0,y:0},
-      beestyle:{left:0,top:0},
+      flypos:{x:0,y:0},
+      flystyle:{left:0,top:0},
       show:true,
       switchVideo:null,
       fullScreenMode:false,
@@ -204,6 +222,7 @@ export default {
   },
   mounted(){
       document.addEventListener("mousemove", this.getMouse); 
+
       this.switchVideo = this.content.meta.showreel.bgvideo
       if( window.scrollY > 1500 ){
         this.inScrollVideo = false
@@ -228,7 +247,7 @@ export default {
       this.mouse.x = e.pageX;
 			this.mouse.y = e.pageY;
         //Checking directional change
-        if(this.mouse.x > this.beepos.x){
+        if(this.mouse.x > this.flypos.x){
           this.dir = "right";
         } else {
           this.dir = "left";
@@ -238,16 +257,16 @@ export default {
     
      followMouse(){
       //1. find distance X , distance Y
-			var distX = this.mouse.x - this.beepos.x;
-			var distY = this.mouse.y - this.beepos.y;
+			var distX = this.mouse.x - this.flypos.x;
+			var distY = this.mouse.y - this.flypos.y;
 			//Easing motion
       //Progressive reduction of distance 
-			this.beepos.x = this.mouse.x;
-			this.beepos.y = this.mouse.y;
-      this.beestyle= {left: this.beepos.x+"px", top:this.beepos.y+"px"}	
+			this.flypos.x = this.mouse.x;
+			this.flypos.y = this.mouse.y;
+      this.flystyle= {left: this.flypos.x+"px", top:this.flypos.y+"px"}	
     },
      viewHandler (e) {
-       if(e.percentTop < 0.9){
+       if(e.percentTop < 0.95){
          this.inScrollVideo = true
          this.hideVideo  = true
        }else{
