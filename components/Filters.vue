@@ -209,10 +209,11 @@
                 <span>{{$t('all')}}</span>
               </template>
               <template v-else>
-                <span class="nav__filters--home"><span>
+                <span class="nav__filters--home">
                    <span v-if="!mobile">&#8594;</span>
                    <span>Filters</span>
-                  </span> <Preloader v-if="filters.length === 0 || loading === true" /></span>
+                   <Preloader v-if="filters.length === 0 || loading === true" />
+                </span>
               </template>
             </router-link>
           </li>

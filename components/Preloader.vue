@@ -3,7 +3,7 @@
     background:black;
     width:1rem;
     height:1rem;
-    transform:translateY(2px) translateX(-5px);
+    transform:translateY(2px) translateX(5px);
   }
  
   .oval--a{
@@ -34,7 +34,7 @@
       background:white;
       width:2.5rem;
       height:2.5rem;
-      transform:translateY(-5px) translateX(-5px);
+      transform:translateY(-5px) translateX(5px);
     }
   }
 

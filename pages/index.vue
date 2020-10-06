@@ -17,13 +17,13 @@
   position:relative;
 }
 .intro__nav{
-  
+  min-height:$video-top;
   .col-12{
     position: relative;
     overflow:hidden;
   }
   .row{
-    height:$video-top;
+    // height:$video-top;
     align-items: flex-end;
   }
   .fs__h{
@@ -35,6 +35,8 @@
   }
   .crumbs--xl{
     height:150px;
+    z-index:5;
+    position:relative;
   }
   .intro__icon{
     svg{
@@ -116,7 +118,7 @@ h1.fs__h{
 <template>
   <div v-if="content">
       <section class="wrap intro__nav">
-        <div class="row">
+        <div class="row" :style="{height:windowHeight+'px'}">
           <div class="col col-12">
             <div @click="hideVideo ? null : openFullScreen()" class="intro__icon">
               <Playbutton />
@@ -177,10 +179,13 @@ import Staggergrid from '@/components/Staggergrid.vue'
 import VideoPlayer from '@/components/VideoPlayer.vue'
 import Playbutton from '@/components/Playbutton.vue'
 // contenthelpers
+import VueWindowSize from 'vue-window-size'
 import contenthelpers from '@/mixins/contenthelper.js'
 import Vue from 'vue'
 import checkView from 'vue-check-view'
 Vue.use(checkView)
+Vue.use(VueWindowSize);
+
 export default {
   name: 'Page',
   mixins: [contenthelpers],
