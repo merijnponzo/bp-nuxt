@@ -20,7 +20,8 @@ export default {
   data() {
     return {
       loading: true,
-      content: []
+      content: [],
+      showProjects:true
     }
   },
   asyncData({ app, params, query }) {

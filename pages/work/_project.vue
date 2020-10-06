@@ -84,7 +84,7 @@
 </style>
 <template>
 <div v-if="content">
-  <div class="work__work">
+  <div class="work__head">
     <section v-rellax="rellax">
       <div class="wrap">
         <div class="row">

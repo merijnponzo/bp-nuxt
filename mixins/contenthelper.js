@@ -47,6 +47,14 @@ const Contenthelpers = Vue.mixin({
       }
       return `${lang}${slug}`
     },
+    // en/work/projectname or werk/projectname
+    getFilterLink (slug, filter) {
+      let lang = ''
+      if (this.lang !== 'nl') {
+        lang = this.lang + '/'
+      }
+      return `${lang}/work/filter/${filter}/${slug}`
+    },
     // archive
     getWorkArchive () {
       const work = this.$store.getters.getWorknav
