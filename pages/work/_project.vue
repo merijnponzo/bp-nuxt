@@ -30,7 +30,19 @@
   .chapter.fs__h{
     margin-top:rfs(150px);
   }
+  .project__comp{
+    transition:0.75s ease all;
+    opacity:0;
+    transform:translateY(5vw);
+  }
+  .project__comp.view-in{
+    opacity:1;
+    transform:translateY(0px);
+  }
   @include max-medium(){
+    .terms__wrap{
+      display:none;
+    }
     .work__paginate{
       margin-top:rfs(3rem);
       margin-bottom:rfs(3rem);
@@ -49,6 +61,10 @@
         width:30%;
         order:1;
       }
+    }
+    .project__title{
+       margin-left:0px;
+       font-size:34px;
     }
   }
   @include min-medium(){
@@ -83,12 +99,12 @@
   }
 </style>
 <template>
-<div v-if="content">
+<section v-if="content">
   <div class="work__head">
     <section v-rellax="rellax">
       <div class="wrap">
         <div class="row">
-          <h1 class="chapter fs__h space--2">{{content.title.rendered}}</h1>
+          <h1 class="chapter project__title fs__h space--2">{{content.title.rendered}}</h1>
         </div>
       </div>
       <div class="wrap">
@@ -101,7 +117,7 @@
     </section>
   </div>
   <div class="work__content">
-    <div class="wrap">
+    <div class="wrap terms__wrap">
       <div class="row">
         <div class="col col-12 space--1">
           <ul class="terms split--l-3 gut">
@@ -129,12 +145,13 @@
     <template v-for="(flexcontent,s) in content.meta.projectcontent">
       <template v-if="flexcontent.acf_fc_layout">
         <component
-        class="space--4"
+        class="project__comp space--4"
         :class="`flex--${s}`"
         v-bind:is="`${flexcontent.acf_fc_layout}Flex`"
         :flexcontent="flexcontent"
         :index="s"
         :key="'comp'+s"
+        v-view.once
         >
         </component>
       </template>
@@ -162,7 +179,7 @@
             <div class="col col-6">
               <template v-if="content.meta.previous">
                 <router-link class="bp--next  fs__s xs" :to="getLink(content.meta.previous.slug)">
-                   <- {{content.meta.previous.post_title}}
+                  &#8592; {{content.meta.previous.post_title}}
                   </router-link>
                 <Visual :visual="content.meta.previous.visual" key="visualprev" />
               </template>
@@ -170,7 +187,7 @@
             <div class="col col-6">
               <template v-if="content.meta.next">
                   <router-link class="bp--next fs__s xs" :to="getLink(content.meta.next.slug)">
-                    -> {{content.meta.next.post_title}}
+                    &#8594; {{content.meta.next.post_title}}
                   </router-link>
                   <Visual :visual="content.meta.next.visual" key="visualnext" />
               </template>
@@ -178,8 +195,7 @@
           </div>
         </div>
     </div>
-  </div>
-</div>
+</section>
 </template>
 
 <script>
@@ -212,7 +228,7 @@ export default {
     return {
       content: null,
       rellax: {
-        speed: -5
+        speed: -8
       }
     }
   },

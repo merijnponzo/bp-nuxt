@@ -24,10 +24,10 @@
     z-index:100;
     width:100%;
     left:0px;
-    height:0px;
+    height:40px;
     bottom:0px;
     transition:1s ease all;
-    padding:rfs(1rem);
+    padding:10px;
     li{
       margin-right:rfs(5rem);
     }
@@ -37,8 +37,8 @@
   }
   .nav__filters--close{
     position: absolute;
-    right:1rem;
-    top:1rem;
+    right:2rem;
+    top:2rem;
   }
   .nav__filters--childpanel{
     position: absolute;
@@ -55,10 +55,15 @@
        flex-wrap:wrap;
        justify-content: space-between;
        li{
-         width:40%;
-         margin-right:rfs(1.5rem);
+         width:100%;
        }
+        // expertise filter
+        li.filter--6{
+            width:calc(50% - 10px);
+            margin-right:10px;
+        }
     }
+ 
   .nav__filters--all{
     width:100%;
     display:flex;
@@ -93,11 +98,28 @@
   .filter-link.active{
      border-bottom:1px solid black;
   }
+  .nav__filters--mobile{
+      padding-bottom:10px;
+      margin-bottom:10px;
+      display: block;
+      font-family: var(--productive-1);
+  }
   @include max-small(){
       .nav__filters--panel.active{
         height:25rem;
         background:var(--color-two);
         color:white;
+        padding-top:2rem;
+        padding-left:2rem;
+      }
+      .nav__filters--label{
+        margin-top:1rem;
+      }
+      .nav__filters--all{
+        margin-bottom:1rem;
+      }
+      .link-parent{
+        margin-bottom:0.5rem;
       }
       .nav__filters--panel{
         overflow:hidden;
@@ -170,9 +192,9 @@
 <template>
     <div class="col col-12">
       <nav class="nav__filters">
-        <a v-if="!mobile" @click="mobile = true" class="nav__filters--mobile">{{$t('filter')}}</a>
+        <a v-if="!mobile" @click="mobile = true" class="nav__filters--mobile">&#8594; {{$t('filter')}}</a>
         <ul class="nav__filters--panel" :class="{'active':mobile, 'filter-active':filterActive}">
-          <li v-if="mobile" class="nav__filters-mobile"><a @click="mobile = false">{{$t('sluiten')}}</a></li>
+          <li v-if="mobile" class="nav__filters-mobile"><a class="nav__filters--close" @click="mobile = false"><i class="ico-i_close"></i></a></li>
           <li class="nav__filters--all link-parent" :class="{'active': filterActive}">
             <router-link
               to="/work"
@@ -184,7 +206,9 @@
                 <span>{{$t('all')}}</span>
               </template>
               <template v-else>
-                <span class="nav__filters--home"><span>Filters</span> <Preloader v-if="filters.length === 0 || loading === true" /></span>
+                <span class="nav__filters--home"><span>
+                  <span><span v-if="!mobile">&#8594;</span>Filters</span>
+                  </span> <Preloader v-if="filters.length === 0 || loading === true" /></span>
               </template>
             </router-link>
           </li>
@@ -198,10 +222,10 @@
                     <li class="nav__filters--childpanel">
                       <ol><li class="nav__filters--label fs__b xs">{{$t('per')}} {{filterlist.name}}</li></ol>
                       <ol class="nav__filters--childnav">
-                        <li v-for="(child, c) in filterlist.children" :key="'child'+c">
+                        <li v-for="(child, c) in filterlist.children" :key="'child'+c" :class="`filter--${filterActive}`">
                           <router-link
                             :to="`/work/filter/${child.parentslug}/${child.slug}`"
-                            @click="toggleFilters(child.slug)"
+                            @click.native="toggleFilters(child.slug)"
                             class="filter-link"
                             :class="{'active': filtersGet.includes(child.slug)}"
                             >

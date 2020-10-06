@@ -1,13 +1,15 @@
 <template>
-<div class="col col-12 grid g3">
-  <Card
-    v-for="(cardItem, i) in content"
-    class="card xs" 
-    v-on:toggleProjects="showProjects = false" 
-    :class="{'active':showProjects}" 
-    :card="cardItem" 
-    :key="'work'+i" 
-  />
+<div class="wrap">
+  <div class="row">
+    <div class="col col-12 grid g3">
+      <Card
+        v-for="(cardItem, i) in content"
+        class="card xs" 
+        :card="cardItem" 
+        :key="'work'+i" 
+      />
+    </div>
+  </div>
 </div>
 </template>
 <script>
@@ -19,7 +21,6 @@ export default {
   mixins: { contenthelpers },
   data() {
     return {
-      loading: true,
       content: []
     }
   },

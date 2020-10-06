@@ -20,8 +20,6 @@
     "nuxt-i18n": "^6.12.2",
     "nuxt-leaflet": "0.0.21",
     "nuxt-sass-resources-loader": "^2.0.5",
-    "qs": "^6.9.4",
-    "qs-stringify": "^1.2.1",
     "rfs": "^9.0.3",
     "typy": "^3.3.0",
     "v-siema": "0.0.6",

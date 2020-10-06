@@ -80,8 +80,6 @@
       }
     }
   }
-  
-  
 </style>
 <template>
   <article v-view.once :class="[cardclass]" class="card">

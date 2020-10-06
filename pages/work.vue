@@ -7,7 +7,7 @@
     // opacity:0;
   }
   .work__work{
-    padding-top:rfs(5rem);
+    padding-top:rfs(7rem);
   }
   .slide-fade-enter-active {
     transition: all .2s ease;
@@ -20,18 +20,29 @@
     transform: translateX(10px);
     opacity: 0;
   }
+  @include max-small(){
+    .chapter{
+      margin-left:0px;
+      font-size:34px;
+    }
+  }
+  @include min-medium(){
+    .work__work{
+      padding-top:4rem;
+    }
+  }
 </style>
 <template>
-  <section class="work__work">
-    <div class="wrap">
-      <div class="row">
-        <template  v-if="!$typy($route.params,'project').isDefined">
-          <h2 class="chapter fs__h space--2">{{ $t("workslogan") }}</h2>
-          <Filters />
-        </template>
-        <nuxt-child :key="$route.params.slug" />
-      </div>
-    </div>
+  <section>
+    <template  v-if="!$typy($route.params,'project').isDefined">
+        <div class="wrap work__work">
+          <div class="row">
+            <h2 class="chapter fs__h space--2">{{ $t("workslogan") }}</h2>
+            <Filters />
+          </div>
+        </div>
+    </template>
+    <nuxt-child :key="$route.params.slug" />
   </section>
 </template>
 <script>

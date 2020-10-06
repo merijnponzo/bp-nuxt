@@ -1,12 +1,11 @@
 <style lang="scss" scoped>
   .preloader{
-    background:white;
-    width:2vw;
-    height:2vh;
+    background:black;
+    width:1rem;
+    height:1rem;
+    transform:translateY(2px) translateX(-5px);
   }
-  svg{
-   
-  }
+ 
   .oval--a{
     transform-origin:center center;
     animation: rotateA 1s ease-in-out infinite;
@@ -30,7 +29,14 @@
     66%{ transform: scale(1.15,1.15)rotate(180deg) }
     100%{ transform: scale(1,1)rotate(180deg) }
   }
-
+  @include min-medium(){
+    .preloader{
+      background:white;
+      width:2.5rem;
+      height:2.5rem;
+      transform:translateY(-5px) translateX(-5px);
+    }
+  }
 
 </style>
 <template>
