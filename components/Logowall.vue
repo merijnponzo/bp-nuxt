@@ -18,7 +18,7 @@
         <slot/>
         <h2 class="chapter fs__h space--3">{{ $t("ourclients") }}</h2>
         <template v-for="(clientItem, i) in clients">
-          <div class="col col-2 col--s-4 col--m-4" :card="clientItem" :key="'client'+i">
+          <div class="col col-2 col--m-4 col--ms-6" :card="clientItem" :key="'client'+i">
             <div class="visual">
               <div
               class="icon"

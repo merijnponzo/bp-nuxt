@@ -5,6 +5,12 @@
   position:relative;
   padding-top:rfs(4rem);
 }
+.about__intro{
+  background: linear-gradient(-180deg, rgba(0,0,0,1) 64%, rgba(34,34,34,1) 100%);
+  .bg__video{
+    background:transparent!important;
+  }
+}
 .about__cta{
   width:100%;
   z-index:2;
@@ -23,11 +29,6 @@
       border-left:1px solid var(--color-bg);
     }
 }
-.bg__video{
-  video{
-    margin-top:-10%;
-  }
-}
 @include min-large(){
    .dienst__expertises--expertises{
       margin-top:rfs(6rem);
@@ -38,10 +39,18 @@
 </style>
 <template>
   <div class="about" v-if="content">
-    <div class="wrap">
-      <div class="showreel__playwrap"></div>
-      <VideoPlayer outer="showreel" inner="bg__video" ratio="_":desktop="content.meta.headervideodesktop" :mobile="content.meta.headervideomobile" />
-    </div>
+    <section class="about__intro">
+      <div class="wrap gut--0">
+        <div class="showreel__playwrap"></div>
+        <VideoPlayer 
+        outer="showreel" 
+        inner="bg__video" 
+        ratio="_" 
+        :desktop="content.meta.headervideodesktop" 
+        :mobile="content.meta.headervideomobile" 
+      />
+      </div>
+    </section>
      <section class="about__content" data-theme="two">
       <div class="wrap">
         <div class="row">

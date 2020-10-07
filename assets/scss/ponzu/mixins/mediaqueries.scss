@@ -29,7 +29,7 @@
   }
 }
 @mixin small-medium{
-  @media (min-width: #{$small-width}) and (max-width: #{$medium-width}) {
+  @media (min-width: #{$small-width}) and (max-width: #{$large-width}) {
     @content;
   }
 }

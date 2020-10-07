@@ -141,7 +141,7 @@
     padding:rfs(2rem);
     padding-bottom:rfs(5rem);
     display:flex;
-    height:100%;
+    height:calc(100% - 100px);
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
@@ -156,6 +156,17 @@
       padding-left:0px;
       padding-right:0px;
       position:relative;
+      .ico-i_right:before{
+        transform:scale(0,0);
+        width:0px;
+        transition:0.3s ease all;
+      }
+    }
+    a:hover{
+      .ico-i_right:before{
+        width:rfs(30px);
+       transform:scale(0.66,0.66) translateY(0.66rem);
+      }
     }
     p,hr{
       //padding-left:rfs(0.5rem);
@@ -166,7 +177,7 @@
   }
   .nav__address{
     display:flex;
-    height:100%;
+    height:calc(100% - 100px);
     padding:rfs(2rem);
     flex-direction: column;
     justify-content: flex-end;
@@ -197,7 +208,7 @@
     cursor: pointer;
     position:relative;
     font-family:var(--productive-1);
-    padding-right:4rem;
+    
   }
   .nav__address--mobile-left{
     align-self:flex-start!important;
@@ -237,28 +248,7 @@
           white-space:nowrap;
           padding:rfs(0.25rem);
         }
-        a:before{
-          transition:0.3s ease-out all;
-          font-family: icons !important;
-          font-style: normal;
-          font-weight: normal !important;
-          font-variant: normal;
-          text-transform: none;
-          line-height: 1;
-          width:0px;
-          opacity:0;
-          transform:scale(0.4,0.4);
-          overflow:hidden;
-          display:inline-block;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          content: "\f104";
-        }
-        a:hover:before{
-          width:rfs(50px);
-          opacity:1;
-          transform:scale(0.8,0.8)translateY(20%);
-        }
+       
         
       }
   }
@@ -307,14 +297,14 @@
           <nav class="nav__menu">
             <p class="fs__b">BURO PONZO</p>
             <template v-for="(infoItem,i) in $store.getters.getInfoNav">
-              <router-link @click.native="navOut()" :to="getLinkObj(infoItem)" :key="'info-nav'+i">
+              <router-link @click.native="navOut()" :to="getLinkObj(infoItem)" :key="'info-nav'+i"><i class="ico-i_right"></i>
                 {{$t(infoItem.name)}}
               </router-link>
             </template>
             <hr/>
             <p class="fs__b">{{$t('diensten')}}</p>
             <template v-for="(dienstItem,s) in $store.getters.getDienstenNav">
-            <router-link @click.native="navOut()" :to="getLinkObj(dienstItem)" :key="'dienst-nav'+s">
+            <router-link @click.native="navOut()" :to="getLinkObj(dienstItem)" :key="'dienst-nav'+s"><i class="ico-i_right"></i>
                 {{$t(dienstItem.name)}}
               </router-link>
             </template>
@@ -433,7 +423,7 @@ export default {
         const func2 = this.blendOut
         this.tl = this.$anime.timeline({
           easing: 'easeInOutCirc',
-          duration: 350
+          duration: 450
         })
         let navWidth = '80vw'
         let whiteWidth = 70

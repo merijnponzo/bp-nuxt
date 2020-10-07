@@ -90,6 +90,12 @@
         @include createColumns("col--sm");
     }
 }
+// SMALL & MEDIUM ONLY
+@include max-small(){
+    .col{
+        @include createColumns("col--ms");
+    }
+}
 @include min-medium(){
     @include singleColumn('.col');
     .wrap{

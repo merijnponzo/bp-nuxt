@@ -3,6 +3,14 @@
   transition:0.3s ease all;
   z-index: 0;
 }
+#bg__video_hotspot{
+  width:0px;
+  height:0px;
+  position:absolute;
+  top:0px;
+  left:0px;
+  z-index:1;
+}
 .bg__video.in-active{
   opacity:0;
   transform:scale(0.75,0.75);
@@ -101,6 +109,10 @@ h1.fs__h{
   #fly {
     position: absolute;
   }
+  #bg__video_hotspot{
+    width:100%;
+    height:100%;
+  }
   .fs__h{
     max-width:1200px;
   }
@@ -117,7 +129,7 @@ h1.fs__h{
 </style>
 <template>
   <div v-if="content">
-      <section class="wrap intro__nav">
+      <section class="wrap gut--0 intro__nav">
         <div class="row" :style="{height:windowHeight+'px'}">
           <div class="col col-12">
             <div @click="hideVideo ? null : openFullScreen()" class="intro__icon">
@@ -146,7 +158,8 @@ h1.fs__h{
       <Morerows class="home__posts" :rows="content.meta.meer_posts" />
      <!-- video -->
        <template v-if="inScrollVideo">
-        <div class="bg__video" :class="{'in-active':hideVideo}" @click="hideVideo ? null : openFullScreen()">
+        <div class="bg__video" :class="{'in-active':hideVideo}">
+           <div id="bg__video_hotspot"  @click="hideVideo ? null : openFullScreen()"></div>
            <div id="fly" :style="flystyle">
               <span class="showreel_typo">PLAY SHOWREEL</span>
             </div>

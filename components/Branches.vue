@@ -35,13 +35,13 @@
    <section class="comp__branches" data-theme="two">
     <div class="wrap">
       <div class="row">
-        <div class="col col-5 comp__branches--visual">
+        <div class="col col-5 col--sm-6 comp__branches--visual">
         <Visual :visual="branches.browse_visual" ratio="ratio--3x4" />
           <div class="bp--stagwrap">
             <slot />
           </div>
         </div>
-        <div class="col col-7">
+        <div class="col col-7 col--sm-6">
           <h3 class="fs__h space--2" v-html="metaTextfield(branches,'browse_title')"></h3>
           <div class="box bp--indent">
             <div class="fs__l xl" v-html="metaTexthtml(branches,'browse_text')"></div>

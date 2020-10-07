@@ -11,6 +11,7 @@
         <video
             v-if="windowWidth"
             loop
+            autoplay
             :controls="showcontrols"
             ref="bpplayersingle"
             class="wid--fl"

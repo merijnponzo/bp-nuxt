@@ -30,10 +30,11 @@ export default {
   /*
   ** Env variables
   */
+  //http://cms.buroponzo.test http://cms.buroponzo.test
   env: {
-    wpApi: process.env.WP_API || 'http://cms.buroponzo.test/wp-json/wp/v2',
-    bpApi: process.env.BP_API || 'http://cms.buroponzo.test/wp-json/bp/v1',
-    sitePath: process.env.SITEPATH || 'http://cms.buroponzo.test'
+    wpApi: process.env.WP_API || 'http://localhost:8888/buroponzo/api/wp-json/wp/v2',
+    bpApi: process.env.BP_API || 'http://localhost:8888/buroponzo/api/wp-json/bp/v1',
+    sitePath: process.env.SITEPATH || 'http://localhost:8888/buroponzo/api'
   },
   /*
   ** Global CSS

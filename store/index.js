@@ -26,18 +26,18 @@ export const state = () => ({
     diensten: [
       {
         name: 'brandingstrategy',
-        path_nl: '/work/filter/dienst/branding-strategy',
-        path_en: '/en/work/filter/dienst/branding-strategy'
+        path_nl: '/branding-strategy',
+        path_en: '/en/branding-strategy'
       },
       {
         name: 'promotioncontent',
-        path_nl: '/work/filter/dienst/promotion-content',
-        path_en: '/en/work/filter/dienst/promotion-content'
+        path_nl: '/promotion-content',
+        path_en: '/en/promotion-content'
       },
       {
         name: 'websitesinterfaces',
-        path_nl: '/work/filter/dienst/websites',
-        path_en: '/en/work/filter/dienst/websites'
+        path_nl: '/work/websites',
+        path_en: '/en/websites'
       }
     ],
     info: [
