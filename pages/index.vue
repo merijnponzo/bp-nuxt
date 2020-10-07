@@ -131,6 +131,7 @@ h1.fs__h{
   <div v-if="content">
       <section class="wrap gut--0 intro__nav">
         <div class="row" :style="{height:windowHeight+'px'}">
+          <div id="bg__video_hotspot"  @click="hideVideo ? null : openFullScreen()"></div>
           <div class="col col-12">
             <div @click="hideVideo ? null : openFullScreen()" class="intro__icon">
               <Playbutton />
@@ -159,7 +160,6 @@ h1.fs__h{
      <!-- video -->
        <template v-if="inScrollVideo">
         <div class="bg__video" :class="{'in-active':hideVideo}">
-           <div id="bg__video_hotspot"  @click="hideVideo ? null : openFullScreen()"></div>
            <div id="fly" :style="flystyle">
               <span class="showreel_typo">PLAY SHOWREEL</span>
             </div>

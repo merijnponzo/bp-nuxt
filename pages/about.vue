@@ -42,16 +42,18 @@
     <section class="about__intro">
       <div class="wrap gut--0">
         <div class="showreel__playwrap"></div>
-        <VideoPlayer 
-        outer="showreel" 
-        inner="bg__video" 
-        ratio="_" 
-        :desktop="content.meta.headervideodesktop" 
-        :mobile="content.meta.headervideomobile" 
-      />
+        <template v-if="inScrollVideo">
+          <VideoPlayer 
+          outer="showreel" 
+          inner="bg__video" 
+          ratio="_" 
+          :desktop="content.meta.headervideodesktop" 
+          :mobile="content.meta.headervideomobile" 
+        />
+      </template>
       </div>
     </section>
-     <section class="about__content" data-theme="two">
+     <section class="about__content" data-theme="two" v-view="viewHandler">
       <div class="wrap">
         <div class="row">
           <div class="col col-12">
@@ -143,13 +145,28 @@ import Morerows from '@/components/Morerows.vue'
 // contenthelpers
 import contenthelpers from '@/mixins/contenthelper.js'
 
+import VueWindowSize from 'vue-window-size'
+import Vue from 'vue'
+import checkView from 'vue-check-view'
+Vue.use(checkView)
+Vue.use(VueWindowSize);
+
+
 export default {
   name: 'Page',
   components: { Visual, Diensten, Info, Morerows },
   data: function () {
     return {
-      content: false
+      content: false,
+      inScrollVideo: false
     }
+  },
+  mounted(){
+    if( window.scrollY > 1500 ){
+        this.inScrollVideo = false
+      } else {
+        this.inScrollVideo = true
+      }
   },
   asyncData({ app, params, store, $axios }) {
     const url = `${process.env.wpApi}/pages?slug=about`
@@ -158,6 +175,17 @@ export default {
        content:response.data[0]
       }
     })
+  },
+  methods : {
+    viewHandler (e) {
+    //  console.log(e.percentTop)
+       if(e.percentTop < 0.8){
+         this.inScrollVideo = true
+         this.hideVideo  = true
+       }else{
+         this.hideVideo  = false
+       }
+    },
   }
 }
 </script>
