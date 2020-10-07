@@ -8,6 +8,25 @@
     padding-bottom:rfs(4rem);
     border-top:2px solid white;
   }
+  .avatar--card{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    .avatar{
+      width:25%;
+      height:auto;
+      max-width:80px;
+      max-height:80px;
+      margin-right:20px;
+    }
+    .fs__p{
+      color:#7D7D7D;
+    }
+    .avatar--text{
+      width:calc(75% - 20px);
+    }
+  }
+  
   .siema{
     overflow:visible!important;
   }
@@ -147,12 +166,17 @@
               >
             <div class="slide clear" :class="{'active':index == i}" v-for="(testimonial, i) in testimonials" :key="'testimonial'+i">
                <div class="slide--visual">
-                <Visual :visual="testimonial.visual" ratio="ratio--4x3 ratio--m-3x4"/>
+                <Visual :visual="testimonial.visual" ratio="ratio--3x4"/>
               </div>
               <div class="slide--story">
                 <div class="box bp--indent">
-                  <h6 class="fs__p">{{testimonial.post_title}}</h6>
-                  <h6 class="fs__b">{{testimonial.meta.name}}</h6>
+                  <div class="avatar--card">
+                    <Visual class="avatar" :visual="testimonial.meta.avatar" ratio="ratio--1x1"/>
+                    <div class="avatar--text">
+                      <h6 class="fs__p">{{testimonial.meta.name}}</h6>
+                      <h6 class="fs__b">{{testimonial.post_title}}</h6>
+                    </div>
+                  </div>
                   <p class="fs__q xl" v-html="metaTextarea(testimonial.meta,'story')"></p>
                 </div>
                 <router-link class="bp--nxt" :to="getLink(testimonial.case)">Bekijk case</router-link>

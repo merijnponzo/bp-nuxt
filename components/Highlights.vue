@@ -1,6 +1,20 @@
 <style lang="scss" scoped>
   .cta{
     padding-bottom:rfs(5rem);
+    .btn{
+      &:hover{
+        i{
+          transform:scale(1,1);
+          width:rfs(18px);
+        }
+      }
+      i{
+        width:0px;
+        transition:0.5s ease all;
+        transform:scale(0,0);
+        font-size:rfs(18px);
+      }
+    }
   }
   .mwid--400{
     align-self: center;
@@ -25,7 +39,9 @@
       </div>
       <div class="col col-12">
         <div class="box ali--mc cta">
-          <router-link :to="getWorkArchive()" class="btn xl line mwid--400">{{$t('bekijkprojecten')}}</router-link>
+          <router-link :to="getWorkArchive()" class="btn xl line mwid--400">
+            <i class="ico-i_right"></i><span>{{$t('bekijkprojecten')}}</span>
+          </router-link>
         </div>
       </div>
     </div>

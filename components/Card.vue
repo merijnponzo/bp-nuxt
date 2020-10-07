@@ -22,6 +22,11 @@
   .terms{
     color:#7D7D7D;
   }
+  &:hover{
+    i{
+      font-size:225%!important;
+    }
+  }
 }
 .card.view-in{
   opacity:1;
@@ -29,20 +34,32 @@
 }
 .arrow, .arrow--trans{
     background: white;
-    padding-left:rfs(0.5rem);
-    padding-right:rfs(0.5rem);
     position:absolute;
     bottom:0px;
     right:0px;
     z-index:2;
-    height:rfs(45px);
-    width:rfs(65px);
-    padding-top:rfs(0.15rem);
+    height:auto;
+    width:20%;
+    padding-top:2.5%;
+    padding-bottom:2.5%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     text-align: center;
     i{
-       font-size:rfs(40px);
+      transition:0.5s ease all;
+      font-size:200%;
+      transform:translateY(5%);
     }
   }
+  .g3{
+    .arrow{
+      i{
+        font-size:150%;
+      }
+    }
+  }
+  
   .arrow--trans{
     z-index:1;
     transition: all 1s ease-out;

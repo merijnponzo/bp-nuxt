@@ -25,7 +25,7 @@
   position:relative;
 }
 .intro__nav{
-  min-height:$video-top;
+  transition:0.5s ease height;
   .col-12{
     position: relative;
     overflow:hidden;
