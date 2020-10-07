@@ -165,8 +165,8 @@ h1.fs__h{
             </div>
             <template v-if="switchVideo">
               <video
-                  pauze
                   loop
+                  autoplay
                   :controls="fullScreenMode"
                   ref="bpplayer"
                   class="wid--fl"
@@ -191,9 +191,10 @@ import Morerows from '@/components/Morerows.vue'
 import Staggergrid from '@/components/Staggergrid.vue'
 import VideoPlayer from '@/components/VideoPlayer.vue'
 import Playbutton from '@/components/Playbutton.vue'
+import contenthelpers from '@/mixins/contenthelper.js'
+
 // contenthelpers
 import VueWindowSize from 'vue-window-size'
-import contenthelpers from '@/mixins/contenthelper.js'
 import Vue from 'vue'
 import checkView from 'vue-check-view'
 Vue.use(checkView)

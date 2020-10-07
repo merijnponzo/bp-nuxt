@@ -227,6 +227,9 @@
         opacity: 1;
         height:40vh;
       }
+      .nav__address{
+        height:100%;
+      }
       .nav__logo{
         top:0.5rem;
         left:1rem;
@@ -244,12 +247,11 @@
         }
       }
       .nav__menu{
+        height:100%;
         a{
           white-space:nowrap;
           padding:rfs(0.25rem);
         }
-       
-        
       }
   }
   .fs__b{

@@ -59,11 +59,6 @@
        li{
          width:100%;
        }
-        // expertise filter
-        li.filter--6{
-            width:calc(50% - 10px);
-            margin-right:10px;
-        }
     }
  
   .nav__filters--all{
@@ -126,6 +121,11 @@
      
       .nav__filters--panel{
         overflow:hidden;
+      }
+      // expertise filter
+      li.filter--6{
+          width:calc(50% - 10px);
+          margin-right:10px;
       }
   }
   @include min-large(){

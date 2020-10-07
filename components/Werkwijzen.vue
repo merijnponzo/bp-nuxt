@@ -147,7 +147,7 @@
               >
             <div class="slide clear" :class="{'active':index == i}" v-for="(werkwijze, i) in werkwijzen" :key="'testimonial'+i">
                <div class="slide--visual">
-                <Visual :visual="werkwijze.visual" ratio="ratio--4x3 ratio--m-3x4"/>
+                <Visual :visual="werkwijze.visual" ratio="ratio--3x4"/>
               </div>
               <div class="slide--story">
                 <div class="box bp--indent">

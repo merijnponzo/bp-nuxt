@@ -6,6 +6,7 @@
   padding-top:rfs(4rem);
 }
 .about__intro{
+  min-height:calc(100vh - 150px);
   background: linear-gradient(-180deg, rgba(0,0,0,1) 64%, rgba(34,34,34,1) 100%);
   .bg__video{
     background:transparent!important;
@@ -39,21 +40,20 @@
 </style>
 <template>
   <div class="about" v-if="content">
-    <section class="about__intro">
+    <section class="about__intro" v-view="viewHandler">
       <div class="wrap gut--0">
         <div class="showreel__playwrap"></div>
-        <template v-if="inScrollVideo">
           <VideoPlayer 
           outer="showreel" 
           inner="bg__video" 
           ratio="_" 
+          v-if="showVideo"
           :desktop="content.meta.headervideodesktop" 
           :mobile="content.meta.headervideomobile" 
         />
-      </template>
       </div>
     </section>
-     <section class="about__content" data-theme="two" v-view="viewHandler">
+     <section class="about__content" data-theme="two">
       <div class="wrap">
         <div class="row">
           <div class="col col-12">
@@ -158,14 +158,14 @@ export default {
   data: function () {
     return {
       content: false,
-      inScrollVideo: false
+      showVideo: true
     }
   },
   mounted(){
     if( window.scrollY > 1500 ){
-        this.inScrollVideo = false
+        this.showVideo = false
       } else {
-        this.inScrollVideo = true
+        this.showVideo = true
       }
   },
   asyncData({ app, params, store, $axios }) {
@@ -178,13 +178,12 @@ export default {
   },
   methods : {
     viewHandler (e) {
-    //  console.log(e.percentTop)
-       if(e.percentTop < 0.8){
-         this.inScrollVideo = true
-         this.hideVideo  = true
+       if(e.percentTop > 0){
+         this.showVideo = true
        }else{
-         this.hideVideo  = false
+          this.showVideo = false
        }
+       console.log(e.percentTop, this.showVideo)
     },
   }
 }
