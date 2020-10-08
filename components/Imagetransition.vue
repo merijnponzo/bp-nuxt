@@ -1,14 +1,26 @@
+<style lang="scss" scoped>
+  .preloader{
+    width:rfs(2rem);
+    height:rfs(2rem);
+    position:absolute;
+    top:calc(50% - 1rem);
+    left:calc(50% - 1rem);
+  }
+</style>
 <template v-if="Imagetransition">
   <div id="imagetransition" :class="Imagetransition.classname">
+    <Preloader />
   </div>
 </template>
 
 <script>
+import Preloader from '@/components/Preloader.vue'
 import VueAnime from 'vue-animejs'
 import Vue from 'vue'
 Vue.use(VueAnime)
 export default {
   name: 'Imagetransition',
+  components: {Preloader},
   props: {
 
   },

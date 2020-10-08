@@ -36,8 +36,8 @@ export const state = () => ({
       },
       {
         name: 'websitesinterfaces',
-        path_nl: '/work/websites',
-        path_en: '/en/websites'
+        path_nl: '/websites-interfaces',
+        path_en: '/en/websites-interfaces'
       }
     ],
     info: [

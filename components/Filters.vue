@@ -251,7 +251,9 @@
     </div>
 </template>
 <script>
+import Preloader from '@/components/Preloader.vue'
 export default {
+  components: {Preloader},
   name: 'Visual',
   props: {
   
