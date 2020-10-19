@@ -4,7 +4,7 @@
     <div class="col col-12 grid g3">
       <Card
         v-for="(cardItem, i) in content"
-        class="card xs" 
+        class="card grow skrp xs" 
         :card="cardItem" 
         :key="'work'+i" 
       />
@@ -14,11 +14,8 @@
 </template>
 <script>
 import Card from '@/components/Card.vue'
-import contenthelpers from '@/mixins/contenthelper.js'
-
 export default {
   components: { Card },
-  mixins: { contenthelpers },
   data() {
     return {
       content: []

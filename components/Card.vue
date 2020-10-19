@@ -92,7 +92,7 @@
 }
 </style>
 <template>
-  <article :class="[cardclass]" class="card skrp">
+  <article :class="[cardclass]" class="card grow skrp">
     <p-link
       :url="card.slug"
       @click.native="setImageTransition(card)"

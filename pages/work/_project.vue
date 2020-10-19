@@ -30,15 +30,16 @@
   .chapter.fs__h{
     margin-top:rfs(150px);
   }
-  .project__comp{
-    transition:0.75s ease all;
+  .skrp{
+    transition: 1s ease all;
     opacity:0;
-    transform:translateY(5vw);
+     transform: translateY(5vw);
   }
-  .project__comp.view-in{
+  .skrp[data-scroll="in"]{
+    transform: translateY(0px);
     opacity:1;
-    transform:translateY(0px);
   }
+
   @include max-medium(){
     .terms__wrap{
       display:none;
@@ -160,7 +161,7 @@
     <template v-for="(flexcontent,s) in content.meta.projectcontent">
       <template v-if="flexcontent.acf_fc_layout">
         <component
-        class="project__comp space--4"
+        class="project__comp skrp space--4"
         :class="`flex--${s}`"
         v-bind:is="`${flexcontent.acf_fc_layout}Flex`"
         :flexcontent="flexcontent"
@@ -214,7 +215,6 @@
 
 <script>
 // contenthelpers
-import contenthelpers from '@/mixins/contenthelper.js'
 import BannerWork from '@/components/BannerWork.vue'
 import visualsFlex from '@/components/flex/Visuals.vue'
 import visualsingleFlex from '@/components/flex/Visualsingle.vue'
@@ -222,9 +222,9 @@ import sliderFlex from '@/components/flex/Slider.vue'
 import omschrijvingFlex from '@/components/flex/Omschrijving.vue'
 import movieFlex from '@/components/flex/Movie.vue'
 import Visual from '@/components/Visual.vue'
+import ScrollOut from "scroll-out";
 
 export default {
-  mixins: [contenthelpers],
   components: {
     BannerWork,
     movieFlex,
@@ -245,6 +245,20 @@ export default {
     }
   },
   name: 'WorkSingle',
+  mounted(){
+     this.so = ScrollOut({
+      scope: this.$el
+    });
+    ScrollOut({
+      targets: ".skrp",
+      onShown: function(element, ctx, scrollingElement) {
+       console.log('one??')
+      },
+    });
+  },
+  beforeDestroy() {
+    this.so = null;
+  },
   asyncData({ app, params, store, $axios }) {
     const slug = params.project.toLowerCase()
     const url = `${process.env.wpApi}/work?slug=${slug}`

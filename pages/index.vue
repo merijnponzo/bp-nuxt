@@ -3,7 +3,6 @@
   --scroll-length: 1.5;
 }
 .bg__video {
-  transition: 0.3s ease all;
   z-index: 0;
   display: none;
 }
@@ -177,12 +176,13 @@ h1.fs__h {
         <span class="showreel_typo">PLAY SHOWREEL</span>
       </div>
       <video
+        v-if="switchVideo"
         loop
         autoplay
         :controls="fullScreenMode"
         ref="bpplayer"
         class="wid--fl"
-        muted=""
+        :muted="fullScreenMode"
         :src="switchVideo"
         type="video/mp4"
       />
@@ -201,14 +201,6 @@ import Morerows from "@/components/Morerows.vue";
 import Staggergrid from "@/components/Staggergrid.vue";
 import VideoPlayer from "@/components/VideoPlayer.vue";
 import Playbutton from "@/components/Playbutton.vue";
-
-// contenthelpers
-// import VueWindowSize from "vue-window-size";
-// import Vue from "vue";
-// import checkView from "vue-check-view";
-// Vue.use(checkView);
-// Vue.use(VueWindowSize);
-
 import ScrollOut from "scroll-out";
 
 export default {

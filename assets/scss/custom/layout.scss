@@ -14,7 +14,7 @@
     }
 }
 */
-[data-scroll] {
+.grow[data-scroll] {
     will-change: transform; 
     opacity: 1;
     opacity: calc(var(--visible-y) * var(--visible-y));

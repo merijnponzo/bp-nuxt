@@ -46,12 +46,12 @@
   </section>
 </template>
 <script>
-import contenthelpers from '@/mixins/contenthelper.js'
 import Filters from '@/components/Filters.vue'
 import Card from '@/components/Card.vue'
+import ScrollOut from "scroll-out";
+
 export default {
   components: { Card, Filters},
-  mixins: { contenthelpers },
   scrollToTop: true,
   watchQuery: [
     '_start',
@@ -64,9 +64,26 @@ export default {
       content: []
     }
   },
+  mounted(){
+     this.so = ScrollOut({
+      scope: this.$el
+    });
+    ScrollOut({
+      targets: ".skrp",
+      offset: 400,
+      threshhold: 0.5, 
+      cssProps: {
+        visibleY: true
+      }
+    });
+  },
   asyncData({ app, params, query }) {
     return app.workQuery(query, params)
-  }
+  },
+  beforeDestroy() {
+    this.so = null;
+  },
+
   /*
   jsonld() {
     const items = this.puppies.map((item, index) => ({
