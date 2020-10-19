@@ -14,6 +14,13 @@
     }
 }
 */
+[data-scroll] {
+    will-change: transform; 
+    opacity: 1;
+    opacity: calc(var(--visible-y) * var(--visible-y));
+    transform: scale(calc(0.5 + calc(var(--visible-y) * 0.5)));
+ } 
+
 @include min-small(){
     :root{
         --page-margin:12rem;

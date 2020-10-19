@@ -30,7 +30,7 @@
   }
 </style>
 <template>
-  <div class="bp--stagger" :class="staggerclass"  v-view="viewHandler">
+  <div class="bp--stagger" :class="staggerclass">
     <hr/>
       <template v-if="show">
         <span class="stag" v-for="i in 600" :key="'dot'+i" :class="staggerclass"  >+</span>
@@ -40,11 +40,11 @@
 
 <script>
 import Vue from 'vue'
-import checkView from 'vue-check-view'
+/// import checkView from 'vue-check-view'
 import VueAnime from 'vue-animejs'
 
 Vue.use(VueAnime)
-Vue.use(checkView)
+// Vue.use(checkView)
 
 export default {
   name: 'Staggergrid',

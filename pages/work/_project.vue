@@ -166,7 +166,6 @@
         :flexcontent="flexcontent"
         :index="s"
         :key="'comp'+s"
-        v-view.once
         >
         </component>
       </template>
@@ -217,15 +216,12 @@
 // contenthelpers
 import contenthelpers from '@/mixins/contenthelper.js'
 import BannerWork from '@/components/BannerWork.vue'
-import checkView from 'vue-check-view'
 import visualsFlex from '@/components/flex/Visuals.vue'
 import visualsingleFlex from '@/components/flex/Visualsingle.vue'
 import sliderFlex from '@/components/flex/Slider.vue'
 import omschrijvingFlex from '@/components/flex/Omschrijving.vue'
 import movieFlex from '@/components/flex/Movie.vue'
 import Visual from '@/components/Visual.vue'
-import Vue from 'vue'
-Vue.use(checkView)
 
 export default {
   mixins: [contenthelpers],

@@ -61,7 +61,8 @@ export default {
   { src: '~/plugins/ga.js', mode: 'client' },
   { src: '~/plugins/vue-siema.js', ssr: false },
   { src: '~/plugins/typy.js'},
-  { src: '~/plugins/rellax.js', ssr: false },
+  { src: '~/plugins/ponzolang.js'},
+  { src: '~/plugins/scroll-out.js', ssr: false },
   { src: '~/plugins/worksearch.js' }
 ],
   /*

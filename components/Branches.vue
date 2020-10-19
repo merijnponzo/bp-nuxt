@@ -11,10 +11,10 @@
     width: auto;
     height: 100%;
   }
-  .img:nth-child(1){
+  .img:nth-child(1) {
     filter: brightness(50%);
   }
-  .img:nth-child(2){
+  .img:nth-child(2) {
     filter: brightness(-25%);
   }
 }
@@ -51,39 +51,40 @@
         <div class="col col-5 col--sm-6 comp__branches--visual">
           <img
             class="lazyload img"
-            v-rellax="{speed: -2, center:true}"
             src="~/assets/images/masonry_branches_visual_1.gif"
           />
           <img
             class="lazyload img"
-            v-rellax="{speed: -1, center:true}"
             src="~/assets/images/masonry_branches_visual_2.gif"
           />
           <img
             class="lazyload img"
-            v-rellax="{speed: 2, center:true}"
             src="~/assets/images/masonry_branches_visual_3.gif"
           />
         </div>
         <div class="col col-7 col--sm-6">
-          <h3
+          <p-meta
+            :meta="branches.browse_title"
+            field="textfield"
             class="fs__h space--2"
-            v-html="metaTextfield(branches, 'browse_title')"
-          ></h3>
+          />
           <div class="box bp--indent">
-            <div
+            <p-meta
+              :meta="branches.browse_text"
+              field="texthtml"
+              tag="html"
               class="fs__l xl"
-              v-html="metaTexthtml(branches, 'browse_text')"
-            ></div>
+            />
             <div class="split--m-12 split--l-6 split--u-4">
-              <nuxt-link
+              <p-link
                 v-for="(branche, i) in branches.branches"
                 :key="'branches' + i"
-                :to="getFilterLink(branche.slug, 'branche')"
+                :meta="branche.slug"
+                filter="branche"
                 class="fs__s xs bp--nxt"
               >
                 <span v-html="branche.name" />
-              </nuxt-link>
+              </p-link>
             </div>
           </div>
         </div>
@@ -93,13 +94,9 @@
 </template>
 
 <script>
-// contenthelpers
-import contenthelpers from "@/mixins/contenthelper.js";
-
 export default {
   name: "BranchesComp",
   components: {},
-  mixins: [contenthelpers],
   props: {
     branches: {
       type: Object,

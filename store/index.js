@@ -8,6 +8,8 @@ export const state = () => ({
     coordinates: {top:0,left:0},
     bgColor:null
   },
+  lang: 'nl',
+  langprefix : '',
   webp:'',
   //*info */
   slogan: "Let's meet! Say hi ;-)",
@@ -101,6 +103,12 @@ export const actions = {
   },
 }
 export const getters = {
+  getLang: state => {
+    return state.lang
+  },
+  getLangPrefix: state => {
+    return state.langprefix
+  }, 
   getInfoNav: state => {
     return state.nav.info
   },

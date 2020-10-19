@@ -150,7 +150,7 @@
 <script>
 // contenthelpers
 import contenthelpers from '@/mixins/contenthelper.js'
-import checkView from 'vue-check-view'
+// import checkView from 'vue-check-view'
 import Visual from '@/components/Visual.vue'
 import Staggergrid from '@/components/Staggergrid.vue'
 import Highlights from '@/components/Highlights.vue'
@@ -158,8 +158,8 @@ import Info from '@/components/Infoblock.vue'
 import Testimonialblock from '@/components/Testimonialblock.vue'
 import Werkwijzen from '@/components/Werkwijzen.vue'
 import Logowall from '@/components/Logowall.vue'
-import Vue from 'vue'
-Vue.use(checkView)
+// import Vue from 'vue'
+// Vue.use(checkView)
 
 export default {
   mixins: [contenthelpers],

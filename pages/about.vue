@@ -40,7 +40,7 @@
 </style>
 <template>
   <div class="about" v-if="content">
-    <section class="about__intro" v-view="viewHandler">
+    <section class="about__intro">
       <div class="wrap gut--0">
         <div class="showreel__playwrap"></div>
           <VideoPlayer 
@@ -145,11 +145,11 @@ import Morerows from '@/components/Morerows.vue'
 // contenthelpers
 import contenthelpers from '@/mixins/contenthelper.js'
 
-import VueWindowSize from 'vue-window-size'
-import Vue from 'vue'
-import checkView from 'vue-check-view'
-Vue.use(checkView)
-Vue.use(VueWindowSize);
+// import VueWindowSize from 'vue-window-size'
+//import Vue from 'vue'
+// import checkView from 'vue-check-view'
+// Vue.use(checkView)
+//Vue.use(VueWindowSize);
 
 
 export default {

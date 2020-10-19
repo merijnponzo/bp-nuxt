@@ -1,7 +1,14 @@
 <style lang="scss" scoped>
+.bp__home{
+  --scroll-length: 1.5;
+}
 .bg__video {
   transition: 0.3s ease all;
   z-index: 0;
+  display: none;
+}
+.bg__video[data-scroll="out"] {
+  display: flex;
 }
 #bg__video_hotspot {
   width: 0px;
@@ -128,7 +135,7 @@ h1.fs__h {
 }
 </style>
 <template>
-  <div v-if="content">
+  <div v-if="content" class='bp__home'>
     <section class="wrap gut--0 intro__nav">
       <div class="row" :style="{ height: windowHeight + 'px' }">
         <div
@@ -139,27 +146,24 @@ h1.fs__h {
           <div @click="hideVideo ? null : openFullScreen()" class="intro__icon">
             <Playbutton />
           </div>
-          <h1
+          <p-meta
             class="chapter fs__h intro__slogan space--0"
-            v-html="metaTextarea(content.meta, 'introtext')"
-          ></h1>
+            :meta="content.meta.introtext"
+            field="textarea"
+          />
           <div class="crumbs--xl">
-            <nuxt-link
+            <p-link
               v-for="(dienst, i) in $store.getters.getDienstenNav"
-              :to="getLinkObj(dienst)"
+              :meta="dienst"
               :key="'dienst' + i"
             >
               <p class="fs__s bp--nxt">{{ $t(dienst.name) }}</p>
-            </nuxt-link>
+            </p-link>
           </div>
         </div>
       </div>
     </section>
-    <Highlights
-      gutter="gut--u-5"
-      :highlights="content.meta.highlights"
-      v-view="viewHandler"
-    />
+    <Highlights gutter="gut--u-5" :highlights="content.meta.highlights" />
     <Logowall :clients="content.meta.clients" />
     <Branches :branches="content.meta.branches">
       <Staggergrid />
@@ -168,26 +172,22 @@ h1.fs__h {
     <Info gutter="gut--u-5" cta="contactop" :info="content.meta.meerweten" />
     <Morerows class="home__posts" :rows="content.meta.meer_posts" />
     <!-- video -->
-    <template v-if="inScrollVideo">
-      <div class="bg__video" :class="{ 'in-active': hideVideo }">
-        <div id="fly" :style="flystyle">
-          <span class="showreel_typo">PLAY SHOWREEL</span>
-        </div>
-        <template v-if="switchVideo">
-          <video
-            loop
-            autoplay
-            :controls="fullScreenMode"
-            ref="bpplayer"
-            class="wid--fl"
-            muted=""
-            :src="switchVideo"
-            type="video/mp4"
-          />
-        </template>
+    <div class="bg__video skrp" :class="{ 'in-active': hideVideo }">
+      <div id="fly" :style="flystyle">
+        <span class="showreel_typo">PLAY SHOWREEL</span>
       </div>
-      <!-- / video -->
-    </template>
+      <video
+        loop
+        autoplay
+        :controls="fullScreenMode"
+        ref="bpplayer"
+        class="wid--fl"
+        muted=""
+        :src="switchVideo"
+        type="video/mp4"
+      />
+    </div>
+    <!-- / video -->
   </div>
 </template>
 
@@ -201,18 +201,18 @@ import Morerows from "@/components/Morerows.vue";
 import Staggergrid from "@/components/Staggergrid.vue";
 import VideoPlayer from "@/components/VideoPlayer.vue";
 import Playbutton from "@/components/Playbutton.vue";
-import contenthelpers from "@/mixins/contenthelper.js";
 
 // contenthelpers
-import VueWindowSize from "vue-window-size";
-import Vue from "vue";
-import checkView from "vue-check-view";
-Vue.use(checkView);
-Vue.use(VueWindowSize);
+// import VueWindowSize from "vue-window-size";
+// import Vue from "vue";
+// import checkView from "vue-check-view";
+// Vue.use(checkView);
+// Vue.use(VueWindowSize);
+
+import ScrollOut from "scroll-out";
 
 export default {
   name: "Page",
-  mixins: [contenthelpers],
   components: {
     VideoPlayer,
     Playbutton,
@@ -260,14 +260,28 @@ export default {
     });
   },
   mounted() {
-    document.addEventListener("mousemove", this.getMouse);
+    // animate cards
+    this.so = ScrollOut({
+      scope: this.$el
+    });
+    ScrollOut({
+      targets: ".skrp",
+      offset: 400,
+      threshhold: 0.5, 
+      cssProps: {
+        visibleY: true
+      }
+    });
 
+    document.addEventListener("mousemove", this.getMouse);
     this.switchVideo = this.content.meta.showreel.bgvideo;
+    /*
     if (window.scrollY > 1500) {
       this.inScrollVideo = false;
     } else {
       this.inScrollVideo = true;
     }
+    */
 
     setTimeout(() => {
       this.toggleVideoFullscreen();
@@ -277,6 +291,7 @@ export default {
     document.removeEventListener("mousemove", this.getMouse);
     const elem = this.$refs["bpplayer"];
     document.removeEventListener("fullscreenchange", elem);
+    this.so = null;
   },
   methods: {
     getMouse(e) {
@@ -311,17 +326,19 @@ export default {
     },
     toggleVideoFullscreen() {
       const elem = this.$refs["bpplayer"];
-      elem.addEventListener("fullscreenchange", event => {
-        const elem = this.$refs["bpplayer"];
-        if (!this.fullScreenMode) {
-          this.switchVideo = this.content.meta.showreel.video;
-          this.fullScreenMode = true;
-        } else {
-          this.switchVideo = this.content.meta.showreel.bgvideo;
-          this.fullScreenMode = false;
-        }
-        elem.load();
-      });
+      if (elem) {
+        elem.addEventListener("fullscreenchange", event => {
+          const elem = this.$refs["bpplayer"];
+          if (!this.fullScreenMode) {
+            this.switchVideo = this.content.meta.showreel.video;
+            this.fullScreenMode = true;
+          } else {
+            this.switchVideo = this.content.meta.showreel.bgvideo;
+            this.fullScreenMode = false;
+          }
+          elem.load();
+        });
+      }
     },
     openFullScreen() {
       const elem = this.$refs["bpplayer"];

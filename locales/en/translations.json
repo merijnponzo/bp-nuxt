@@ -1,6 +1,7 @@
 {
   "highlights": "Uitgelichte projecten",
   "bekijkprojecten": "Bekijk alle projecten",
+  "bekijkcase":"Bekijk case",
   "ourclients": "Onze klanten",
   "ourclientstestimonials": "Dit zeggen onze klanten",
   "contactop": "Neem contact op",
@@ -22,6 +23,7 @@
   "expertise": "Expertise",
   "client": "Opdrachtgever",
   "meerweten": "Wil je graag meer weten over dit project?",
+  "meertal" : "Jaartal, Dienst ... ",
   "alleprojecten": "Toon alle projecten",
   "ditiswatwekunnen": "Dit is wat we kunnen",
   "hoewerkttraject": "Hoe werkt dit traject",
