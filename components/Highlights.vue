@@ -35,7 +35,7 @@
         <h2 class="chapter fs__h space--3">{{ $t("highlights") }}</h2>
         <template v-for="(cardItem, i) in highlights">
           <Card
-            class="col col-6 col--s-6"
+            class="col col-6 col--s-6 skrp slide"
             :card="cardItem"
             :key="'highlight' + i"
           />

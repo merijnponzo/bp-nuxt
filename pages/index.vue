@@ -1,13 +1,17 @@
 <style lang="scss" scoped>
-.bp__home{
-  --scroll-length: 1.5;
-}
-.bg__video {
-  z-index: 0;
-  display: none;
+.bg__video[data-scroll="in"] {
+  video {
+    display: block;
+  }
 }
 .bg__video[data-scroll="out"] {
-  display: flex;
+  video {
+    display: none;
+  }
+}
+.bg__video {
+  opacity: var(--visible-y);
+  transform: scale(var(--visible-y));
 }
 #bg__video_hotspot {
   width: 0px;
@@ -134,7 +138,7 @@ h1.fs__h {
 }
 </style>
 <template>
-  <div v-if="content" class='bp__home'>
+  <div v-if="content" class="bp__home">
     <section class="wrap gut--0 intro__nav">
       <div class="row" :style="{ height: windowHeight + 'px' }">
         <div
@@ -258,10 +262,12 @@ export default {
     });
     ScrollOut({
       targets: ".skrp",
-      offset: 400,
-      threshhold: 0.5, 
       cssProps: {
-        visibleY: true
+        visibleY: true,
+        viewportY: true
+      },
+      onShown: function(element, ctx, scrollingElement) {
+        element.classList.add("scrolled");
       }
     });
 

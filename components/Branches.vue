@@ -10,6 +10,7 @@
     position: absolute;
     width: auto;
     height: 100%;
+    transform:translateY(calc(5* (var(--viewport-y) )));
   }
   .img:nth-child(1) {
     filter: brightness(50%);
@@ -17,6 +18,9 @@
   .img:nth-child(2) {
     filter: brightness(-25%);
   }
+}
+.skrp.parallax{
+  opacity:1;
 }
 .fs__h {
   margin-bottom: rfs(3rem);
@@ -50,15 +54,15 @@
       <div class="row">
         <div class="col col-5 col--sm-6 comp__branches--visual">
           <img
-            class="lazyload img"
+            class="lazyload img skrp parallax"
             src="~/assets/images/masonry_branches_visual_1.gif"
           />
           <img
-            class="lazyload img"
+            class="lazyload img skrp parallax"
             src="~/assets/images/masonry_branches_visual_2.gif"
           />
           <img
-            class="lazyload img"
+            class="lazyload img skrp parallax"
             src="~/assets/images/masonry_branches_visual_3.gif"
           />
         </div>

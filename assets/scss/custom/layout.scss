@@ -19,7 +19,17 @@
     opacity: 1;
     opacity: calc(var(--visible-y) * var(--visible-y));
     transform: scale(calc(0.5 + calc(var(--visible-y) * 0.5)));
- } 
+}
+.skrp{
+    transition: 1s ease all;
+    transition-property: opacity, transform;
+    opacity:0;
+    transform: translateY(5vw);
+}
+.skrp.slide.scrolled{
+    transform: translateY(0px);
+    opacity:1;
+}
 
 @include min-small(){
     :root{

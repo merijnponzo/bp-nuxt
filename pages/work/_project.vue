@@ -30,15 +30,7 @@
   .chapter.fs__h{
     margin-top:rfs(150px);
   }
-  .skrp{
-    transition: 1s ease all;
-    opacity:0;
-     transform: translateY(5vw);
-  }
-  .skrp[data-scroll="in"]{
-    transform: translateY(0px);
-    opacity:1;
-  }
+
 
   @include max-medium(){
     .terms__wrap{
@@ -161,7 +153,7 @@
     <template v-for="(flexcontent,s) in content.meta.projectcontent">
       <template v-if="flexcontent.acf_fc_layout">
         <component
-        class="project__comp skrp space--4"
+        class="project__comp skrp slide space--4"
         :class="`flex--${s}`"
         v-bind:is="`${flexcontent.acf_fc_layout}Flex`"
         :flexcontent="flexcontent"
@@ -246,13 +238,14 @@ export default {
   },
   name: 'WorkSingle',
   mounted(){
-     this.so = ScrollOut({
+    this.so = ScrollOut({
       scope: this.$el
     });
     ScrollOut({
       targets: ".skrp",
+      once: true,
       onShown: function(element, ctx, scrollingElement) {
-       console.log('one??')
+        element.classList.add('scrolled')
       },
     });
   },
