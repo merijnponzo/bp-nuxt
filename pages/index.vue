@@ -264,7 +264,8 @@ export default {
       targets: ".skrp",
       cssProps: {
         visibleY: true,
-        viewportY: true
+        scrollPercentY: true
+        
       },
       onShown: function(element, ctx, scrollingElement) {
         element.classList.add("scrolled");

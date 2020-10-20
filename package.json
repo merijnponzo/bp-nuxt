@@ -13,7 +13,6 @@
     "@nuxtjs/axios": "^5.11.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "axios": "^0.19.2",
-    "basicscroll": "^3.0.3",
     "dotenv": "^8.2.0",
     "lazysizes": "^5.2.2",
     "leaflet": "^1.6.0",

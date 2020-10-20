@@ -10,7 +10,7 @@
     position: absolute;
     width: auto;
     height: 100%;
-    transform:translateY(calc(5* (var(--viewport-y) )));
+    transform: translateY(calc(-15% * var(--scroll-percent-y) * (var(--index) * 2)/ var(--total)))
   }
   .img:nth-child(1) {
     filter: brightness(50%);
@@ -52,17 +52,20 @@
   <section class="comp__branches" data-theme="two">
     <div class="wrap">
       <div class="row">
-        <div class="col col-5 col--sm-6 comp__branches--visual">
+        <div class="col col-5 col--sm-6 comp__branches--visual" style="--total: 3">
           <img
             class="lazyload img skrp parallax"
+            style="--index: 1"
             src="~/assets/images/masonry_branches_visual_1.gif"
           />
           <img
             class="lazyload img skrp parallax"
+            style="--index: 2"
             src="~/assets/images/masonry_branches_visual_2.gif"
           />
           <img
             class="lazyload img skrp parallax"
+            style="--index: 3"
             src="~/assets/images/masonry_branches_visual_3.gif"
           />
         </div>
