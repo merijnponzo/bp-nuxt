@@ -10,13 +10,21 @@
     position: absolute;
     width: auto;
     height: 100%;
-    transform: translateY(calc(-15% * var(--scroll-percent-y) * (var(--index) * 2)/ var(--total)))
+    transform: translateY(calc(10% * (var(--scroll-percent-y) * 10) * var(--index) / var(--total)))
   }
   .img:nth-child(1) {
-    filter: brightness(50%);
+    filter: brightness(40%);
+    margin-top:rfs(25px);
+    z-index:0;
   }
   .img:nth-child(2) {
-    filter: brightness(-25%);
+    // margin-top:rfs(-100px);
+    z-index:30;
+  }
+  .img:nth-child(3) {
+    filter: brightness(70%);
+    margin-top:rfs(-200px);
+    z-index:3;
   }
 }
 .skrp.parallax{
@@ -56,17 +64,17 @@
           <img
             class="lazyload img skrp parallax"
             style="--index: 1"
-            src="~/assets/images/masonry_branches_visual_1.gif"
+            :data-src="branches.visual1.url"
           />
           <img
             class="lazyload img skrp parallax"
             style="--index: 2"
-            src="~/assets/images/masonry_branches_visual_2.gif"
+            :data-src="branches.visual2.url"
           />
           <img
             class="lazyload img skrp parallax"
             style="--index: 3"
-            src="~/assets/images/masonry_branches_visual_3.gif"
+            :data-src="branches.visual3.url"
           />
         </div>
         <div class="col col-7 col--sm-6">

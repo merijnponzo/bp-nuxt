@@ -35,7 +35,7 @@
         <h2 class="chapter fs__h space--3">{{ $t("highlights") }}</h2>
         <template v-for="(cardItem, i) in highlights">
           <Card
-            class="col col-6 col--s-6 skrp slide"
+            class="col col-6 col--s-6 col--m skrp slide"
             :card="cardItem"
             :key="'highlight' + i"
           />
@@ -43,7 +43,7 @@
       </div>
       <div class="col col-12">
         <div class="box ali--mc cta">
-          <p-link archive="true" class="btn xl line mwid--40">
+          <p-link archive="true" class="btn xl line mwid--400">
             <i class="ico-i_right"></i><span>{{ $t("bekijkprojecten") }}</span>
           </p-link>
         </div>

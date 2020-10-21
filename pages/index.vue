@@ -1,4 +1,8 @@
 <style lang="scss" scoped>
+section{
+  z-index:3;
+  position:relative;
+}
 .bg__video[data-scroll="in"] {
   video {
     display: block;
@@ -10,8 +14,8 @@
   }
 }
 .bg__video {
-  opacity: var(--visible-y);
-  transform: scale(var(--visible-y));
+  opacity: 1;
+  transform: scale(calc(1 - (var(--scroll-percent-y)) * 10));
 }
 #bg__video_hotspot {
   width: 0px;
@@ -36,6 +40,7 @@
 }
 .intro__nav {
   transition: 0.5s ease height;
+  min-height: 100vh;
   .col-12 {
     position: relative;
     overflow: hidden;
@@ -139,7 +144,7 @@ h1.fs__h {
 </style>
 <template>
   <div v-if="content" class="bp__home">
-    <section class="wrap gut--0 intro__nav">
+    <div class="wrap gut--0 intro__nav">
       <div class="row" :style="{ height: windowHeight + 'px' }">
         <div
           id="bg__video_hotspot"
@@ -156,7 +161,7 @@ h1.fs__h {
           />
           <div class="crumbs--xl">
             <p-link
-              v-for="(dienst, i) in $store.getters.getDienstenNav"
+              v-for="(dienst, i) in getDienstenNav"
               :meta="dienst"
               :key="'dienst' + i"
             >
@@ -165,7 +170,7 @@ h1.fs__h {
           </div>
         </div>
       </div>
-    </section>
+    </div>
     <Highlights gutter="gut--u-5" :highlights="content.meta.highlights" />
     <Logowall :clients="content.meta.clients" />
     <Branches :branches="content.meta.branches">
@@ -186,7 +191,7 @@ h1.fs__h {
         :controls="fullScreenMode"
         ref="bpplayer"
         class="wid--fl"
-        :muted="fullScreenMode"
+        :muted="{'muted':!fullScreenMode}"
         :src="switchVideo"
         type="video/mp4"
       />
@@ -206,6 +211,7 @@ import Staggergrid from "@/components/Staggergrid.vue";
 import VideoPlayer from "@/components/VideoPlayer.vue";
 import Playbutton from "@/components/Playbutton.vue";
 import ScrollOut from "scroll-out";
+import { mapGetters } from 'vuex'
 
 export default {
   name: "Page",
@@ -233,20 +239,11 @@ export default {
       inScrollVideo: false
     };
   },
-  /*
   computed: {
-     videoScaleStyle () {
-       if(this.videoScale > 0.99){
-          return { transform: 'scale(1)' }
-       } else if(this.videoScale > 0.85 ){
-          const scrollFactor = window.scrollY
-          return { transform: 'scale('+this.videoScale / (scrollFactor * 0.02) +')' }
-       }else {
-         return { transform: 'scale(0)', opacity : 0 }
-       }
-     }
+    ...mapGetters([
+      'getDienstenNav'
+    ])
   },
-  */
   asyncData({ app, params, store, $axios, context }) {
     const url = `${process.env.wpApi}/pages?slug=home`;
     return $axios.get(url).then(response => {

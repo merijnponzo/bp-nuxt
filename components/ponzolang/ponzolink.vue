@@ -1,4 +1,4 @@
-<template v-if="render.length">
+<template>
   <nuxt-link :to="render">
     <slot></slot>
   </nuxt-link>
@@ -32,7 +32,7 @@ export default {
   },
   data: function() {
     return {
-      render: ""
+      render: "/"
     };
   },
   mounted() {
@@ -44,7 +44,7 @@ export default {
     } else if (this.url) {
       slug = `${prefix}${this.url}`;
     } else if (this.filter) {
-      slug = `work/filter/${this.meta}/${this.filter}`;
+      slug = `work/filter/${this.filter}/${this.meta}`;
     } else {
       slug = this.$typy(this.meta, "path_" + this.$store.getters.getLang)
         .safeObject;

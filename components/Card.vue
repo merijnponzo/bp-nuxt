@@ -21,7 +21,7 @@
   }
   &:hover {
     i {
-      font-size: 225% !important;
+     margin-left:rfs(25px);
     }
   }
 }

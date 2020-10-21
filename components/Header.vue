@@ -305,7 +305,7 @@ hr {
         <template v-if="activeContent">
           <nav class="nav__menu">
             <p class="fs__b">BURO PONZO</p>
-            <template v-for="(infoItem, i) in $store.getters.getInfoNav">
+            <template v-for="(infoItem, i) in getInfoNav">
               <p-link
                 @click.native="navOut()"
                 :meta="infoItem"
@@ -316,7 +316,7 @@ hr {
             </template>
             <hr />
             <p class="fs__b">{{ $t("diensten") }}</p>
-            <template v-for="(dienstItem, s) in $store.getters.getDienstenNav">
+            <template v-for="(dienstItem, s) in getDienstenNav">
               <p-link
                 @click.native="navOut()"
                 :meta="dienstItem"
@@ -347,9 +347,9 @@ hr {
             </div>
             <div class="nav__address--wrap">
               <p class="fs__b">{{ $t("contact") }}</p>
-              <p class="fs__r" v-html="$store.getters.getContactNav"></p>
+              <p class="fs__r" v-html="getContactNav"></p>
             </div>
-            <p class="fs__t nav__slogan">{{ $store.getters.getSlogan }}</p>
+            <p class="fs__t nav__slogan">{{ getSlogan }}</p>
           </div>
         </template>
       </span>
@@ -368,6 +368,7 @@ import Logo from "@/components/Logo.vue";
 import contenthelper from "@/mixins/contenthelper.js";
 import Vue from "vue";
 import VueAnime from "vue-animejs";
+import { mapGetters } from 'vuex'
 Vue.use(VueAnime);
 
 export default {
@@ -385,6 +386,15 @@ export default {
       blendmode: true,
       mobileLeft: false
     };
+  },
+  computed: {
+    ...mapGetters([
+      'getContactNav',
+      'getContact',
+      'getInfoNav',
+      'getDienstenNav',
+      'getSlogan'
+    ])
   },
   mounted() {
     this.$anime.set(".nav__burger", {

@@ -13,17 +13,17 @@
   flex-wrap: wrap;
   align-items: center;
   .avatar {
-    width: 25%;
+    width: 60px;
     height: auto;
-    max-width: 80px;
-    max-height: 80px;
+    max-width: 60px;
+    max-height: 60px;
     margin-right: 20px;
   }
   .fs__p {
     color: #7d7d7d;
   }
   .avatar--text {
-    width: calc(75% - 20px);
+    width: calc(100% - 80px);
   }
 }
 
@@ -123,6 +123,8 @@
       padding-right: rfs(4rem);
       .fs__q {
         padding-top: rfs(2rem);
+        max-height:320px;
+        overflow:hidden;
       }
     }
     .slide--visual {
@@ -134,14 +136,22 @@
     width: 90%;
   }
 }
+
 @include min-large() {
   .slide.active {
     .slide--story {
       transform: translateX(-60%) scale(1, 1);
-      padding-right: rfs(10rem);
+      padding-right: rfs(5rem);
     }
     .slide--visual {
       transform: translateX(140%) scale(1, 1);
+    }
+  }
+}
+@include min-wide(){
+  .slide.active{
+    .slide--story{
+       padding-right: rfs(12rem);
     }
   }
 }
@@ -191,7 +201,7 @@
                         class="fs__q xl"
                       />
                     </div>
-                    <p-link :url="`work/${testimonial.post_name}`">
+                    <p-link class="fs__s xs bp--nxt" :url="`${testimonial.meta.case}`">
                       {{ $t("bekijkcase") }}
                     </p-link>
                   </div>

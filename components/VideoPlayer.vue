@@ -6,7 +6,7 @@
 </style>
 <template>
   <client-only>
-    <div class="video" :class="outer" v-view="autoPlay"> 
+    <div class="video" :class="outer"> 
       <div :class="[ratio,inner]">
         <video
             v-if="windowWidth"

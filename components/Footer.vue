@@ -51,7 +51,10 @@
       color:black;
       font-size:rfs(24px);
       i:before{
-        font-size:rfs(40px);
+        font-size:rfs(30px);
+      }
+      i{
+        margin-right:5px;
       }
       .terms{
         order:4;
@@ -99,7 +102,7 @@
           </div>
           <div class="col col-6 vcenter">
             <div class="box indent">
-              <p class="fs__r xl">{{$store.getters.getSlogan}}</p>
+              <p class="fs__r xl">{{getSlogan}}</p>
             </div>
           </div>
         </div>
@@ -110,11 +113,11 @@
         <div class="col col-6">
           <nav class="footer__menu">
             <p class="fs__b">BURO PONZO</p>
-            <a v-for="(infoItem,i) in $store.getters.getInfoNav" :key="'info-nav'+i">
+            <a v-for="(infoItem,i) in getInfoNav" :key="'info-nav'+i">
               {{$t(infoItem.name)}}
             </a>
             <p class="fs__b">{{$t('diensten')}}</p>
-            <a v-for="(dienstItem,i) in $store.getters.getDienstenNav" :key="'dienst-nav'+i">
+            <a v-for="(dienstItem,i) in getDienstenNav" :key="'dienst-nav'+i">
               {{$t(dienstItem.name)}}
             </a>
           </nav>
@@ -123,9 +126,9 @@
            <p class="fs__b">{{$t('contact')}}</p>
           <div class="box indent">
             <p class="fs__r xl">
-              <span v-html="$store.getters.getContact.adres"></span>
-              <span>{{$store.getters.getContact.mail}}</span>
-              <span>{{$store.getters.getContact.telefoon}}</span>
+              <span v-html="getContact.adres"></span>
+              <span>{{getContact.mail}}</span>
+              <span>{{getContact.telefoon}}</span>
             </p>
           </div>
         </div>
@@ -135,8 +138,8 @@
       <div class="wrap">
           <div class="row">
             <div class="col col-6 terms">
-              <a class="fs__r xs" :href="this.getLinkObj($store.getters.getTerms)">
-                {{$t($store.getters.getTerms.name)}}
+              <a class="fs__r xs" :href="this.getLinkObj(getTerms)">
+                {{$t(getTerms.name)}}
               </a>
             </div>
             <div class="col col-6 social">
@@ -154,7 +157,7 @@
 <script>
 import LogoFull from '@/components/LogoFull.vue'
 import contenthelpers from '@/mixins/contenthelper.js'
-
+import { mapGetters } from 'vuex'
 
 export default {
   mixins: {contenthelpers},
@@ -165,7 +168,15 @@ export default {
 
     }
   },
-  methods: {
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters([
+      'getTerms',
+      'getContact',
+      'getInfoNav',
+      'getDienstenNav',
+      'getSlogan'
+    ])
   }
 }
 </script>

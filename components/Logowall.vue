@@ -1,11 +1,11 @@
 <style lang="scss" scoped>
   .icon{
-    min-height:rfs(6rem);
+    min-height:rfs(8rem);
     width:100%;
     display:block;
     background-repeat: no-repeat;
     background-size: contain;
-    margin-bottom:rfs(2rem);
+    margin-bottom:rfs(3rem);
   }
   .comp__clients{
     padding-bottom:rfs(3rem);
