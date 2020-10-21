@@ -6,6 +6,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     margin-bottom:rfs(3rem);
+    background-position: center;
   }
   .comp__clients{
     padding-bottom:rfs(3rem);

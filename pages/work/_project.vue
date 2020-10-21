@@ -32,7 +32,7 @@
   }
 
 
-  @include max-medium(){
+  @include max-small(){
     .terms__wrap{
       display:none;
     }
@@ -40,7 +40,7 @@
       display: block;
     }
     .nav__terms{
-      margin-top:5px;
+      margin-top:10px;
       width:100%;
       display: block;
       text-align: right;
@@ -58,10 +58,10 @@
           margin-left:5px;
           order:2;
         }
-      }
-      .visual{
-        width:30%;
-        order:1;
+        .visual{
+          width:30%;
+          order:1;
+        }
       }
     }
     .project__title{
@@ -73,12 +73,15 @@
     .nav__terms{
       display:none;
     }
+    .terms__wrap{
+      display: flex;
+    }
     .chapter.fs__h{
        margin-top:rfs(100px);
     }
     .work__paginate{
       padding-left:$work-single-indent;
-     
+      padding-top:rfs(50px);
       .bp--next{
         position:absolute;
         opacity:1;
@@ -106,7 +109,7 @@
 <template>
 <section v-if="content">
   <div class="work__head">
-    <section v-rellax="rellax">
+    <section>
       <div class="wrap">
         <div class="row">
           <h1 class="chapter project__title fs__h space--2">{{content.title.rendered}}</h1>
@@ -125,10 +128,10 @@
     <div class="wrap">
       <div class="row">
         <div class="col col-12">
-            <a v-if="!mobile" @click="mobile ? mobile = true : mobile = false" class="nav__terms">&#8594; {{$t('meertal')}}</a>
+            <a v-if="!mobile" @click="mobile ? mobile = false : mobile = true" class="nav__terms">&#8594; {{$t('meertal')}}</a>
         </div>
         <div class="col col-12 space--1">
-          <ul class="terms split--l-3 gut terms__wrap" v-if="mobile" :class="{'active':mobile}">
+          <ul class="terms split--l-3 split--sm-6 gut terms__wrap" :class="{'active':mobile}">
             <ol>
               <li class="fs__b">{{$t('dienst')}}</li>
               <li v-for="(term, t) in getChildTerms(content.meta.terms,5)" :key="'term'+t" class="term" v-html="term.name"></li>
@@ -153,7 +156,7 @@
     <template v-for="(flexcontent,s) in content.meta.projectcontent">
       <template v-if="flexcontent.acf_fc_layout">
         <component
-        class="project__comp skrp slide space--4"
+        class="project__comp skrp space--4"
         :class="`flex--${s}`"
         v-bind:is="`${flexcontent.acf_fc_layout}Flex`"
         :flexcontent="flexcontent"
@@ -183,7 +186,7 @@
       <!-- next prev -->
         <div class="wrap gut--0 work__paginate">
           <div class="row">
-            <div class="col col-6">
+            <div class="col col-6 col--mm-6">
               <template v-if="content.meta.previous">
                 <router-link class="bp--next  fs__s xs" :to="getLink(content.meta.previous.slug)">
                   &#8592; {{content.meta.previous.post_title}}
@@ -191,7 +194,7 @@
                 <Visual :visual="content.meta.previous.visual" key="visualprev" />
               </template>
             </div>
-            <div class="col col-6">
+            <div class="col col-6 col--mm-6">
               <template v-if="content.meta.next">
                   <router-link class="bp--next fs__s xs" :to="getLink(content.meta.next.slug)">
                     &#8594; {{content.meta.next.post_title}}
@@ -230,10 +233,7 @@ export default {
   data () {
     return {
       content: null,
-      mobile: false,
-      rellax: {
-        speed: -8
-      }
+      mobile: false
     }
   },
   name: 'WorkSingle',

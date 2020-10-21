@@ -113,13 +113,13 @@
         <div class="col col-6">
           <nav class="footer__menu">
             <p class="fs__b">BURO PONZO</p>
-            <a v-for="(infoItem,i) in getInfoNav" :key="'info-nav'+i">
+            <p-link v-for="(infoItem,i) in getInfoNav" :key="'info-nav'+i" :meta="infoItem">
               {{$t(infoItem.name)}}
-            </a>
+            </p-link>
             <p class="fs__b">{{$t('diensten')}}</p>
-            <a v-for="(dienstItem,i) in getDienstenNav" :key="'dienst-nav'+i">
+            <p-link v-for="(dienstItem,i) in getDienstenNav" :key="'info-nav'+i" :meta="dienstItem">
               {{$t(dienstItem.name)}}
-            </a>
+            </p-link>
           </nav>
         </div>
         <div class="col col-6 contact">
@@ -169,7 +169,6 @@ export default {
     }
   },
   computed: {
-    // mix the getters into computed with object spread operator
     ...mapGetters([
       'getTerms',
       'getContact',

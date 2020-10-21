@@ -114,6 +114,11 @@
         @include createColumns("col--m");
     }
 }
+@include max-medium(){
+    .col{
+        @include createColumns("col--mm");
+    }
+}
 // REGULAR COLUMNS
 @include min-large(){
     .col{

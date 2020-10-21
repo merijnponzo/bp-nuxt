@@ -1,18 +1,18 @@
 <template v-if="render">
-  <div>
+  <span>
     <template v-if="tag === 'html'">
-      <div v-html="render"></div>
+      <div :class="tagclass" v-html="render"></div>
     </template>
     <template v-if="tag === 'p'">
-      <p>{{ render }}</p>
+      <p :class="tagclass">{{ render }}</p>
     </template>
     <template v-else-if="tag === 'h1'">
-      <h1>{{ render }}</h1>
+      <h1 :class="tagclass">{{ render }}</h1>
     </template>
     <template v-else-if="tag === 'h3'">
-      <h1>{{ render }}</h1>
+      <h3 :class="tagclass">{{ render }}</h3>
     </template>
-  </div>
+  </span>
 </template>
 <script>
 export default {
@@ -21,6 +21,10 @@ export default {
     tag: {
       type: String,
       default: "p"
+    },
+    tagclass:{
+      type: String,
+      default: false
     },
     field: {
       type: String,

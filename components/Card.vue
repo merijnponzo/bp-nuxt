@@ -12,6 +12,9 @@
     margin-bottom: 5px;
     font-weight: 300;
   }
+  .fs__s{
+    margin-bottom:2px;
+  }
   .fs__q {
     margin-bottom: 0px;
     font-weight: normal;
@@ -20,8 +23,8 @@
     color: #7d7d7d;
   }
   &:hover {
-    i {
-     margin-left:rfs(25px);
+    .arrow{
+      width:15%;
     }
   }
 }
@@ -111,11 +114,12 @@
         </span>
       </Visual>
       <div class="box">
-        <h2 class="fs__l">{{ card.meta.client }}</h2>
-        <h3
-          class="fs__s"
-          v-html="metaTextfield(card.meta.projectsamenvatting)"
-        ></h3>
+        <h4 class="fs__l">{{ card.meta.client }}</h4>
+        <p-meta
+            tagclass="fs__s"
+            :meta="card.meta.projectsamenvatting"
+            field="textfield"
+          />
         <ul class="terms crumbs--xs">
           <li
             v-for="(term, t) in getChildTerms(card.terms, 5)"

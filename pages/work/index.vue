@@ -1,7 +1,7 @@
 <template>
 <div class="wrap">
   <div class="row">
-    <div class="col col-12 grid g3">
+    <div class="col col-12 grid g3 g2--sm">
       <Card
         v-for="(cardItem, i) in content"
         class="card grow skrp xs" 

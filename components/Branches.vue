@@ -8,13 +8,13 @@
   height: 600px;
   .img {
     position: absolute;
-    width: auto;
-    height: 100%;
+    width: 100%;
+    height: auto;
     transform: translateY(calc(10% * (var(--scroll-percent-y) * 10) * var(--index) / var(--total)))
   }
   .img:nth-child(1) {
     filter: brightness(40%);
-    margin-top:rfs(25px);
+    // margin-top:rfs(25px);
     z-index:0;
   }
   .img:nth-child(2) {
@@ -23,7 +23,7 @@
   }
   .img:nth-child(3) {
     filter: brightness(70%);
-    margin-top:rfs(-200px);
+    // margin-top:rfs(-200px);
     z-index:3;
   }
 }

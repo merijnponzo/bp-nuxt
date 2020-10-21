@@ -11,7 +11,7 @@
 <template>
   <section class="wrap gut--m">
     <div class="row">
-      <div class="col col-6" v-for="(visual, v) in flexcontent.visuals" :key="'colV'+v" >
+      <div class="col col-6 col--mm-6" v-for="(visual, v) in flexcontent.visuals" :key="'colV'+v" >
          <template v-if="visual.video">
             <VideoPlayer :mobile="$typy(visual,'video.url').safeObject" />
           </template>

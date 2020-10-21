@@ -12,9 +12,7 @@
     font-family:var(--font-expressive-1);
     font-weight:bold;
   }
-  .filters--count{
 
-  }
   .nav__filters--panel{
     background:var(--color-two);
     color:white;
@@ -117,8 +115,8 @@
       }
       .nav__filters--all{
         margin-bottom:1rem;
+        display:block;
       }
-     
       .nav__filters--panel{
         overflow:hidden;
       }
@@ -126,6 +124,9 @@
       li.filter--6{
           width:calc(50% - 10px);
           margin-right:10px;
+      }
+      .nav__filters--childpanel{
+        top:75px;
       }
   }
   @include min-large(){

@@ -24,6 +24,7 @@
     .chapter{
       margin-left:0px;
       font-size:34px;
+      max-width: 600px;
     }
   }
   @include min-medium(){

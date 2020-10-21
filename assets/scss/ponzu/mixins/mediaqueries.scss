@@ -13,6 +13,7 @@
     @content;
   }
 }
+
 @mixin small-only {
   @media (min-width: #{$small-width}) and (max-width: #{$medium-width}) {
     @content;
@@ -34,7 +35,7 @@
   }
 }
 @mixin max-medium{
-  @media (max-width: #{$large-width}) {
+  @media (min-width: #{$small-width}) and (max-width: #{$large-width}) {
     @content;
   }
 }
