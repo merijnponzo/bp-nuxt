@@ -27,7 +27,8 @@ export default {
     return {
       active: false,
       styleObject: {},
-      preload: false
+      preload: false,
+      preloadInterval: null
     };
   },
   // compute property changes from clicked tile
@@ -51,7 +52,7 @@ export default {
   },
   methods: {
     changeIn() {
-      setInterval(() => {
+      this.preloadInterval = setInterval(() => {
         this.preload = true;
       }, 1500);
       this.$anime.set("#imagetransition", {
@@ -73,9 +74,7 @@ export default {
       });
     },
     changeOut() {
-      setInterval(() => {
-        this.preload = false;
-      }, 1500);
+      clearInterval(this.preloadInterval)
       this.$anime.set("#imagetransition", {
         top: "0px",
         left: "0px",

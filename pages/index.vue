@@ -1,7 +1,7 @@
 <style lang="scss" scoped>
-section{
-  z-index:3;
-  position:relative;
+section {
+  z-index: 3;
+  position: relative;
 }
 .bg__video[data-scroll="in"] {
   video {
@@ -39,13 +39,13 @@ section{
   position: relative;
 }
 .intro__nav {
-  transition: 0.5s ease height;
-  min-height: 100vh;
   .col-12 {
     position: relative;
     overflow: hidden;
   }
   .row {
+    min-height: 100vh;
+    transition: 0.5s ease height;
     // height:$video-top;
     align-items: flex-end;
   }
@@ -191,7 +191,7 @@ h1.fs__h {
         :controls="fullScreenMode"
         ref="bpplayer"
         class="wid--fl"
-        :muted="{'muted':!fullScreenMode}"
+        :muted="{ muted: !fullScreenMode }"
         :src="switchVideo"
         type="video/mp4"
       />
@@ -210,11 +210,13 @@ import Morerows from "@/components/Morerows.vue";
 import Staggergrid from "@/components/Staggergrid.vue";
 import VideoPlayer from "@/components/VideoPlayer.vue";
 import Playbutton from "@/components/Playbutton.vue";
-import ScrollOut from "scroll-out";
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
+// contenthelpers
+import scrollouthelper from "@/mixins/scrollouthelper.js";
 
 export default {
   name: "Page",
+  mixins: [scrollouthelper],
   components: {
     VideoPlayer,
     Playbutton,
@@ -240,9 +242,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters([
-      'getDienstenNav'
-    ])
+    ...mapGetters(["getDienstenNav"])
   },
   asyncData({ app, params, store, $axios, context }) {
     const url = `${process.env.wpApi}/pages?slug=home`;
@@ -253,32 +253,9 @@ export default {
     });
   },
   mounted() {
-    // animate cards
-    this.so = ScrollOut({
-      scope: this.$el
-    });
-    ScrollOut({
-      targets: ".skrp",
-      cssProps: {
-        visibleY: true,
-        scrollPercentY: true
-        
-      },
-      onShown: function(element, ctx, scrollingElement) {
-        element.classList.add("scrolled");
-      }
-    });
-
     document.addEventListener("mousemove", this.getMouse);
     this.switchVideo = this.content.meta.showreel.bgvideo;
-    /*
-    if (window.scrollY > 1500) {
-      this.inScrollVideo = false;
-    } else {
-      this.inScrollVideo = true;
-    }
-    */
-
+    this.createScrollOut();
     setTimeout(() => {
       this.toggleVideoFullscreen();
     }, 1000);
@@ -287,7 +264,7 @@ export default {
     document.removeEventListener("mousemove", this.getMouse);
     const elem = this.$refs["bpplayer"];
     document.removeEventListener("fullscreenchange", elem);
-    this.so = null;
+    this.destroyScrollOut();
   },
   methods: {
     getMouse(e) {

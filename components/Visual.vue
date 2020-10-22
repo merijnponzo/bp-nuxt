@@ -9,7 +9,7 @@
           </span>
         </template>
         <template v-else>
-            <picture class="picture"  >
+            <picture class="picture" :key="visual.file">
               <template v-if="visual.sizes.thumbnail">
                 <source
                 class="img lazyload"
@@ -24,7 +24,7 @@
               </template>
               <img
                 :data-src="visual.sizes.large"
-                class="img  lazyload"
+                class="img lazyload"
                 data-sizes="auto"/>
             </picture>
         </template>

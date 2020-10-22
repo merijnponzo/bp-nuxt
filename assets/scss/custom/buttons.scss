@@ -1,5 +1,5 @@
 // NEXT BUTTON
-.bp--nxt{
+.bp--nxt, .bp--prv{
     position: relative;
     display:inline-block;    
     padding-bottom:rfs(0.5rem);
@@ -16,11 +16,26 @@
     position: absolute;
     bottom:0px;
 }
+.bp--prv::after{
+    height:2px;
+    background-color:var(--color-bg-text);
+    content:'';
+    width:100%;
+    position: absolute;
+    bottom:0px;
+    left:0px;
+}
 .bp--nxt:hover::before{
     animation-name: bp__line;
     animation-duration: 1s;
     animation-fill-mode: forwards;
 }
+.bp--prv:hover::after{
+    animation-name: bp__line;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
 @keyframes bp__line {
     0%   {width:100%;}
     50%  {bottom:-1rem;opacity:0;}
@@ -40,10 +55,24 @@
     display: inline-block;
     margin-left:rfs(0.5rem);
 }
+.bp--prv::before{
+    transition: 0.5s ease all;
+    display: '';
+    content:'←';
+    font-family: var(--productive-1);
+    display: inline-block;
+    margin-left:rfs(0.5rem);
+}
 .bp--nxt:hover::after{
     margin-left:rfs(1rem);
 }
+.bp--prv:hover::before{
+    margin-right:rfs(1rem);
+}
 .bp--nxt:hover{
+    border-width: 0px;
+}
+.bp--prv:hover{
     border-width: 0px;
 }
 .bp--paginate{

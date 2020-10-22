@@ -14,7 +14,13 @@
     }
 }
 */
-.skrp {
+img.skrp:not([src]) {
+	visibility: hidden;
+}
+.img-wrap{
+  background-color: var(--color-bg);
+}
+.skrp.card {
   transition: 1s ease all;
   transition-property: opacity, transform;
   will-change: transform;

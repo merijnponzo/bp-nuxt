@@ -23,7 +23,7 @@ export default {
       default: "p"
     },
     tagclass:{
-      type: String,
+      type: [Boolean, String],
       default: false
     },
     field: {

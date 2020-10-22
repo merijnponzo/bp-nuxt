@@ -136,9 +136,6 @@
 <script>
 import Visual from "@/components/Visual.vue";
 import contenthelper from "@/mixins/contenthelper.js";
-// import checkView from 'vue-check-view'
-import Vue from "vue";
-// Vue.use(checkView)
 
 export default {
   name: "Card",

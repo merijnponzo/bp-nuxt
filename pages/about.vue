@@ -155,6 +155,7 @@ import contenthelpers from '@/mixins/contenthelper.js'
 export default {
   name: 'Page',
   components: { Visual, Diensten, Info, Morerows },
+  mixins:[contenthelpers],
   data: function () {
     return {
       content: false,

@@ -16,6 +16,7 @@
             ref="bpplayersingle"
             class="wid--fl"
             muted=""
+            :key="desktop"
             >
             <template v-if="windowWidth < 1000">
               <source :src="mobile" type="video/mp4">
