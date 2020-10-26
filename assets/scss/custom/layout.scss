@@ -14,9 +14,7 @@
     }
 }
 */
-img.skrp:not([src]) {
-	visibility: hidden;
-}
+
 .img-wrap{
   background-color: var(--color-bg);
 }
@@ -24,16 +22,6 @@ img.skrp:not([src]) {
   .img-wrap{
     background-color:white!important;
   }
-}
-.skrp.card {
-  transition: 1s ease all;
-  transition-property: opacity, transform;
-  will-change: transform;
-  transform: translateY(5vw);
-}
-.skrp.slide.scrolled {
-  transform: translateY(0px);
-  opacity: 1;
 }
 .video{
     background:var(--color-bg);

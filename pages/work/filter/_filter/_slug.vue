@@ -14,11 +14,9 @@
 </template>
 <script>
 import Card from "@/components/Card.vue";
-import scrollouthelper from "@/mixins/scrollouthelper.js";
 
 export default {
   components: { Card },
-  mixins: [scrollouthelper],
   scrollToTop: true,
   data() {
     return {
