@@ -10,7 +10,6 @@
     position: absolute;
     width: 100%;
     height: auto;
-    transform: translateY(calc(10% * (var(--scroll-percent-y) * 10) * var(--index) / var(--total)))
   }
   .img:nth-child(1) {
     filter: brightness(40%);

@@ -159,7 +159,7 @@ h1.fs__h {
     -->
     <!-- video -->
     <template v-if="!hideVideo">
-      <div class="bg__video skrp" :style="scaleVideo">
+      <div class="bg__video skrp">
         <div id="fly" :style="flystyle">
           <span class="showreel_typo">PLAY SHOWREEL</span>
         </div>
@@ -221,7 +221,6 @@ export default {
       fullScreenMode: false,
       hideVideo: 0,
       inScrollVideo: false,
-      videoScale: 1
     };
   },
   computed: {

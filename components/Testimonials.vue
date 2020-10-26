@@ -4,6 +4,7 @@
   overflow-x: hidden;
   position:relative;
   z-index:1;
+  background:black;
 }
 .fs__h {
   padding-top: rfs(4rem);
@@ -246,6 +247,9 @@ export default {
       autoplay: false,
       index: 0
     };
+  },
+  mounted(){
+    console.log('testimonial block is mounted')
   },
   methods: {
     change(e) {
