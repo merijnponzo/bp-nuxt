@@ -1,4 +1,7 @@
 <style lang="scss" scoped>
+  section{
+    background-color: white;
+  }
   .icon{
     min-height:rfs(8rem);
     width:100%;

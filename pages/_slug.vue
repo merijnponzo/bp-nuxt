@@ -6,6 +6,7 @@
       padding-top:rfs(6rem);
       padding-bottom:rfs(6rem);
   }
+  
   h1{
     max-width:400px;
     position:sticky;
@@ -93,10 +94,10 @@
           <h1 v-html="content.title.rendered"></h1>
         </div>
         <div class="col col-6 col--m-6 dienst__intro--text">
-          <p class="fs__s" v-html="metaTextarea(content.meta,'intro')"></p>
+          <p-meta :meta="content.meta.intro" field="textarea" tagclass="fs__s" tag="p" />
         </div>
         <div class="col col-12 col--m-6 dienst__intro--visual">
-          <Visual ratio="ratio--16x9" :visual="content.meta.intro.visual"/>
+          <Visual class="diensten--visual" ratio="ratio--16x9" :visual="content.meta.intro.visual"/>
           <div class="bp--stagwrap">
            <Staggergrid staggerclass="dienst" />
           </div>
@@ -107,7 +108,7 @@
       <div class="wrap gut--0">
         <div class="row">
           <div class="col col-6 col--m-6 dienst__expertises--text">
-              <p class="fs__s" v-html="metaTextarea(content.meta,'expertises')"></p>
+              <p-meta :meta="content.meta.expertises" field="textarea" tagclass="fs__s" tag="p" />
           </div>
           <div class="col col-6 col--m-6 dienst__expertises--visual">
             <Visual ratio="ratio--3x4" :visual="content.meta.expertises.visual"/>
@@ -118,7 +119,7 @@
               <ul v-for="(expertiseCol, c) in 3" :key="'expertise__ul'+c">
                 <template v-for="(expertise, e) in content.meta.expertises.expertises">
                   <li v-if="e % 3 === c" :key="'expertise'+e">
-                    <p class="fs__s" v-html="metaTextfield(expertise)"></p>
+                    <p-meta :meta="expertise" field="textfield" tagclass="fs__s" tag="p" />
                   </li>
                 </template>
               </ul>
@@ -142,7 +143,9 @@
       </Logowall>
     </section>
     <section class="dienst__contactop">
-      <Info gutter="gut--u-5" cta="contactop" :info="content.meta.meerweten.meerweten"/>
+      <pre>
+      {{ content.meta.meerweten }}
+      </pre>
     </section>
   </div>
 </template>
@@ -154,7 +157,7 @@ import contenthelpers from '@/mixins/contenthelper.js'
 import Visual from '@/components/Visual.vue'
 import Staggergrid from '@/components/Staggergrid.vue'
 import Highlights from '@/components/Highlights.vue'
-import Info from '@/components/Infoblock.vue'
+// import Info from '@/components/Infoblock.vue'
 import Testimonialblock from '@/components/Testimonialblock.vue'
 import Werkwijzen from '@/components/Werkwijzen.vue'
 import Logowall from '@/components/Logowall.vue'
@@ -164,7 +167,7 @@ import Logowall from '@/components/Logowall.vue'
 export default {
   mixins: [contenthelpers],
   components: {
-    Visual, Staggergrid, Highlights, Info, Werkwijzen, Testimonialblock, Logowall
+    Visual, Staggergrid, Highlights, Werkwijzen, Testimonialblock, Logowall
   },
   data () {
     return {

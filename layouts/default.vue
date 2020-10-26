@@ -17,6 +17,7 @@ import Imagetransition from "@/components/Imagetransition.vue";
 export default {
   name: "Page",
   components: { Footer, Header, Imagetransition },
+  scrollTop: true
 };
 </script>
 <style lang="scss">

@@ -1,5 +1,9 @@
 <style lang="scss" scoped>
+.work__highlights{
+  background-color:var(--color-bg);
+}
 .cta {
+  margin-top:rfs(5rem);
   padding-bottom: rfs(5rem);
   .btn {
     &:hover {
@@ -29,7 +33,7 @@
 }
 </style>
 <template>
-  <section class="work__highlights" data-theme="bg">
+  <section class="work__highlights">
     <div class="wrap" :class="gutter">
       <div class="row">
         <h2 class="chapter fs__h space--3">{{ $t("highlights") }}</h2>

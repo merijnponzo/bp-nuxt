@@ -21,6 +21,9 @@
         <div class="col col-6">
           <div class="box pad--no">
             <p-meta tagclass="fs__l xl" :meta="info" field="textarea" />
+            <template v-if="cta">
+              {{ info }}
+            </template>
           </div>
         </div>
         <div class="col col-6 comp__info--visual">

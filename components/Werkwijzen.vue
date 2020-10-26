@@ -152,8 +152,8 @@
               <div class="slide--story">
                 <div class="box bp--indent">
                   <p class="fs__p">{{$t('stap')}} {{index + 1}}</p>
-                  <h6 class="fs__s" v-html="metaTextfield(werkwijze.meta)"></h6>
-                  <p class="fs__q xl" v-html="metaTextarea(werkwijze.meta)"></p>
+                  <p-meta :meta="werkwijze.meta" field="textfield" tagclass="fs__s" tag="h5" />
+                  <p-meta :meta="werkwijze.meta" field="textarea" tagclass="fs__q xl" tag="p" />
                 </div>
               </div>
             </div>

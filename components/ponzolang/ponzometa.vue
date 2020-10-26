@@ -1,9 +1,9 @@
 <template v-if="render">
   <span>
-    <template v-if="tag === 'html'">
+    <template v-if="field === 'textarea' || tag === 'html'">
       <div :class="tagclass" v-html="render"></div>
     </template>
-    <template v-if="tag === 'p'">
+    <template v-else-if="tag === 'p'">
       <p :class="tagclass">{{ render }}</p>
     </template>
     <template v-else-if="tag === 'h1'">

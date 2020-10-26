@@ -49,13 +49,6 @@ section {
     // height:$video-top;
     align-items: flex-end;
   }
-  .fs__h {
-    color: white;
-    mix-blend-mode: difference;
-    z-index: 3;
-    position: relative;
-    margin-bottom: rfs(3rem);
-  }
   .crumbs--xl {
     height: 150px;
     z-index: 5;
@@ -85,12 +78,6 @@ section {
   color: black;
   z-index: 2;
   transform: translateY(15px) translateX(15px);
-}
-
-.square {
-  width: 50px;
-  height: 50px;
-  background: red;
 }
 h1.fs__h {
   mix-blend-mode: exclusion;
@@ -155,7 +142,9 @@ h1.fs__h {
             <Playbutton />
           </div>
           <p-meta
-            class="chapter fs__h intro__slogan space--0"
+            class="chapter intro__slogan space--0"
+            tagclass="fs__h"
+            tag="h1"
             :meta="content.meta.introtext"
             field="textarea"
           />
@@ -178,7 +167,9 @@ h1.fs__h {
     </Branches>
     <Testimonials :testimonials="content.meta.testimonials" />
     <Info gutter="gut--u-5" cta="contactop" :info="content.meta.meerweten" />
+    <!-- 
     <Morerows class="home__posts" :rows="content.meta.meer_posts" />
+    -->
     <!-- video -->
     <div class="bg__video skrp" :class="{ 'in-active': hideVideo }">
       <div id="fly" :style="flystyle">
@@ -206,7 +197,7 @@ import Logowall from "@/components/Logowall.vue";
 import Branches from "@/components/Branches.vue";
 import Testimonials from "@/components/Testimonials.vue";
 import Info from "@/components/Infoblock.vue";
-import Morerows from "@/components/Morerows.vue";
+// import Morerows from "@/components/Morerows.vue";
 import Staggergrid from "@/components/Staggergrid.vue";
 import VideoPlayer from "@/components/VideoPlayer.vue";
 import Playbutton from "@/components/Playbutton.vue";
@@ -224,7 +215,7 @@ export default {
     Logowall,
     Branches,
     Testimonials,
-    Morerows,
+    // Morerows,
     Info,
     Staggergrid
   },
@@ -264,7 +255,7 @@ export default {
     document.removeEventListener("mousemove", this.getMouse);
     const elem = this.$refs["bpplayer"];
     document.removeEventListener("fullscreenchange", elem);
-    this.destroyScrollOut();
+    this.createScrollOut();
   },
   methods: {
     getMouse(e) {

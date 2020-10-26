@@ -110,9 +110,7 @@
       <section>
         <div class="wrap">
           <div class="row">
-            <h1 class="chapter project__title fs__h space--2">
-              {{ content.title.rendered }}
-            </h1>
+            <h1 class="chapter project__title fs__h space--2" v-html="content.title.rendered" />
           </div>
         </div>
         <div class="wrap">

@@ -20,6 +20,11 @@ img.skrp:not([src]) {
 .img-wrap{
   background-color: var(--color-bg);
 }
+.diensten--visual{
+  .img-wrap{
+    background-color:white!important;
+  }
+}
 .skrp.card {
   transition: 1s ease all;
   transition-property: opacity, transform;

@@ -101,7 +101,7 @@
       @click.native="setImageTransition(card)"
       class="card--link"
     >
-      <Visual
+      <VisualThumb
         :style="{ backgroundColor: card.meta.tilecolor }"
         :visual="card.visual"
         :key="'visual' + card.id"
@@ -112,7 +112,7 @@
             <span v-if="show" class="arrow--trans"></span>
           </transition>
         </span>
-      </Visual>
+      </VisualThumb>
       <div class="box">
         <h4 class="fs__l">{{ card.meta.client }}</h4>
         <p-meta
@@ -134,12 +134,12 @@
 </template>
 
 <script>
-import Visual from "@/components/Visual.vue";
+import VisualThumb from "@/components/VisualThumb.vue";
 import contenthelper from "@/mixins/contenthelper.js";
 
 export default {
   name: "Card",
-  components: { Visual },
+  components: { VisualThumb },
   mixins: [contenthelper],
   props: {
     cardclass: {
