@@ -2,6 +2,8 @@
 .comp__testimonials {
   padding-bottom: rfs(2rem);
   overflow-x: hidden;
+  position:relative;
+  z-index:1;
 }
 .fs__h {
   padding-top: rfs(4rem);
@@ -123,8 +125,6 @@
       padding-right: rfs(4rem);
       .fs__q {
         padding-top: rfs(2rem);
-        max-height:320px;
-        overflow:hidden;
       }
     }
     .slide--visual {

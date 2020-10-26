@@ -64,7 +64,6 @@ export default {
     { src: "~/plugins/vue-siema.js", ssr: false },
     { src: "~/plugins/typy.js" },
     { src: "~/plugins/ponzolang.js" },
-    { src: "~/plugins/scroll-out.js", ssr: false },
     { src: "~/plugins/worksearch.js" }
   ],
   /*

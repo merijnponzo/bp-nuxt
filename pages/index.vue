@@ -3,19 +3,8 @@ section {
   z-index: 3;
   position: relative;
 }
-.bg__video[data-scroll="in"] {
-  video {
-    display: block;
-  }
-}
-.bg__video[data-scroll="out"] {
-  video {
-    display: none;
-  }
-}
 .bg__video {
-  opacity: 1;
-  transform: scale(calc(1 - (var(--scroll-percent-y)) * 10));
+  // transition:0.5s ease transform;
 }
 #bg__video_hotspot {
   width: 0px;
@@ -23,12 +12,7 @@ section {
   position: absolute;
   top: 0px;
   left: 0px;
-  z-index: 1;
-}
-.bg__video.in-active {
-  opacity: 0;
-  transform: scale(0.75, 0.75);
-  pointer-events: none;
+  z-index: 2;
 }
 .showreel__controls {
   background: var(--color-bg);
@@ -148,7 +132,7 @@ h1.fs__h {
             :meta="content.meta.introtext"
             field="textarea"
           />
-          <div class="crumbs--xl">
+          <div class="crumbs--xl"   v-view="viewHandler">
             <p-link
               v-for="(dienst, i) in getDienstenNav"
               :meta="dienst"
@@ -160,7 +144,10 @@ h1.fs__h {
         </div>
       </div>
     </div>
-    <Highlights gutter="gut--u-5" :highlights="content.meta.highlights" />
+    <Highlights
+      gutter="gut--u-5"
+      :highlights="content.meta.highlights"
+    />
     <Logowall :clients="content.meta.clients" />
     <Branches :branches="content.meta.branches">
       <Staggergrid />
@@ -171,22 +158,24 @@ h1.fs__h {
     <Morerows class="home__posts" :rows="content.meta.meer_posts" />
     -->
     <!-- video -->
-    <div class="bg__video skrp" :class="{ 'in-active': hideVideo }">
-      <div id="fly" :style="flystyle">
-        <span class="showreel_typo">PLAY SHOWREEL</span>
+    <template v-if="!hideVideo">
+      <div class="bg__video skrp" :style="scaleVideo">
+        <div id="fly" :style="flystyle">
+          <span class="showreel_typo">PLAY SHOWREEL</span>
+        </div>
+        <video
+          loop
+          autoplay
+          v-if="switchVideo"
+          :controls="fullScreenMode"
+          ref="bpplayer"
+          class="wid--fl"
+          :muted="{ muted: !fullScreenMode }"
+          :src="switchVideo"
+          type="video/mp4"
+        />
       </div>
-      <video
-        v-if="switchVideo"
-        loop
-        autoplay
-        :controls="fullScreenMode"
-        ref="bpplayer"
-        class="wid--fl"
-        :muted="{ muted: !fullScreenMode }"
-        :src="switchVideo"
-        type="video/mp4"
-      />
-    </div>
+    </template>
     <!-- / video -->
   </div>
 </template>
@@ -203,11 +192,13 @@ import VideoPlayer from "@/components/VideoPlayer.vue";
 import Playbutton from "@/components/Playbutton.vue";
 import { mapGetters } from "vuex";
 // contenthelpers
-import scrollouthelper from "@/mixins/scrollouthelper.js";
+// import scrollouthelper from "@/mixins/scrollouthelper.js";
+import checkView from "vue-check-view";
+import Vue from "vue";
+Vue.use(checkView);
 
 export default {
   name: "Page",
-  mixins: [scrollouthelper],
   components: {
     VideoPlayer,
     Playbutton,
@@ -229,11 +220,12 @@ export default {
       switchVideo: null,
       fullScreenMode: false,
       hideVideo: 0,
-      inScrollVideo: false
+      inScrollVideo: false,
+      videoScale: 1
     };
   },
   computed: {
-    ...mapGetters(["getDienstenNav"])
+    ...mapGetters(["getDienstenNav"]),
   },
   asyncData({ app, params, store, $axios, context }) {
     const url = `${process.env.wpApi}/pages?slug=home`;
@@ -244,18 +236,18 @@ export default {
     });
   },
   mounted() {
-    document.addEventListener("mousemove", this.getMouse);
+    // document.addEventListener("mousemove", this.getMouse);
     this.switchVideo = this.content.meta.showreel.bgvideo;
-    this.createScrollOut();
+    // this.createScrollOut();
     setTimeout(() => {
       this.toggleVideoFullscreen();
     }, 1000);
   },
   beforeDestroy() {
-    document.removeEventListener("mousemove", this.getMouse);
+    // document.removeEventListener("mousemove", this.getMouse);
     const elem = this.$refs["bpplayer"];
     document.removeEventListener("fullscreenchange", elem);
-    this.createScrollOut();
+    // this.createScrollOut();
   },
   methods: {
     getMouse(e) {
@@ -281,8 +273,8 @@ export default {
       this.flystyle = { left: this.flypos.x + "px", top: this.flypos.y + "px" };
     },
     viewHandler(e) {
-      if (e.percentTop < 0.95) {
-        this.inScrollVideo = true;
+      this.videoScale = 1 - (e.scrollPercent * 10)
+      if (this.videoScale < 0) {
         this.hideVideo = true;
       } else {
         this.hideVideo = false;

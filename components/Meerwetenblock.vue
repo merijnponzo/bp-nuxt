@@ -16,18 +16,15 @@
     <div class="wrap" :class="gutter">
       <div class="row">
         <h3 class="chapter fs__h space--2">
-          <p-meta :meta="info" field="textfield" />
+          <p-meta :meta="meerweten" field="textfield" />
         </h3>
         <div class="col col-6">
           <div class="box pad--no">
-            <p-meta tagclass="fs__l xl" :meta="info" field="textarea" />
-            <template v-if="cta">
-              {{ info }}
-            </template>
+            <p-meta tagclass="fs__l xl" :meta="meerweten" field="textarea" />
           </div>
         </div>
-        <div class="col col-6 comp__info--visual">
-          <Visual :visual="info.visual" :ratio="ratio" />
+        <div class="col col-6 comp__info--visual" v-if="meerweten.visual">
+          <Visual :visual="meerweten.visual" :ratio="ratio" />
           <div class="bp--stagwrap">
             <slot />
           </div>
@@ -59,7 +56,7 @@ export default {
       type: String,
       default: "ratio--4x3"
     },
-    info: {
+    meerweten: {
       type: Object,
       default: function() {
         return {};

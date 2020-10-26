@@ -143,9 +143,7 @@
       </Logowall>
     </section>
     <section class="dienst__contactop">
-      <pre>
-      {{ content.meta.meerweten }}
-      </pre>
+      <Meerweten :meerweten="content.meta.meerweten.meerweten" />
     </section>
   </div>
 </template>
@@ -157,7 +155,7 @@ import contenthelpers from '@/mixins/contenthelper.js'
 import Visual from '@/components/Visual.vue'
 import Staggergrid from '@/components/Staggergrid.vue'
 import Highlights from '@/components/Highlights.vue'
-// import Info from '@/components/Infoblock.vue'
+import Meerweten from '@/components/Meerwetenblock.vue'
 import Testimonialblock from '@/components/Testimonialblock.vue'
 import Werkwijzen from '@/components/Werkwijzen.vue'
 import Logowall from '@/components/Logowall.vue'
@@ -167,7 +165,7 @@ import Logowall from '@/components/Logowall.vue'
 export default {
   mixins: [contenthelpers],
   components: {
-    Visual, Staggergrid, Highlights, Werkwijzen, Testimonialblock, Logowall
+    Visual, Staggergrid, Highlights, Werkwijzen, Testimonialblock, Logowall, Meerweten
   },
   data () {
     return {
