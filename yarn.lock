@@ -1618,6 +1618,11 @@ acorn@^7.1.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.4.1.tgz#feaed255973d2e77555b83dbc08851a6c63520fa"
   integrity sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==
 
+add@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/add/-/add-2.0.6.tgz#248f0a9f6e5a528ef2295dbeec30532130ae2235"
+  integrity sha1-JI8Kn25aUo7yKV2+7DBTITCuIjU=
+
 aggregate-error@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/aggregate-error/-/aggregate-error-3.1.0.tgz#92670ff50f5359bdb7a3e0d40d0ec30c5737687a"
@@ -8823,11 +8828,6 @@ vue-cookies@^1.7.0:
   resolved "https://registry.yarnpkg.com/vue-cookies/-/vue-cookies-1.7.4.tgz#d241d0a0431da0795837651d10b4d73e7c8d3e8d"
   integrity sha512-mOS5Btr8V9zvAtkmQ7/TfqJIropOx7etDAgBywPCmHjvfJl2gFbH2XgoMghleLoyyMTi5eaJss0mPN7arMoslA==
 
-vue-demi@^0.4.0:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.4.1.tgz#2261b8afe57b99ef4a6ee82a7bd2e6fe471bdcde"
-  integrity sha512-3xxnqY426eMKhmYdNygYwOvuaJlrgP+aSZLiD5GdCF7cBsMNmUZM7g3RL0NqIuY19WB5CCzuFbi/xW1Nd053xw==
-
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
@@ -8901,13 +8901,12 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue-window-size@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/vue-window-size/-/vue-window-size-1.0.2.tgz#932b03c87efdad041b78e2ac85dea8267ba1d61f"
-  integrity sha512-zQQhrc5GQiyiKgmuzZHWiGTRQSEgUegq+h6c43n1pw4g3g20qG/BuHhPoutHLaqS/8xF+QXEqyxNguFmTDC+Kw==
+vue-window-size@0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/vue-window-size/-/vue-window-size-0.6.2.tgz#02522e2c0d8a95f242e0249b6d72a47848bc4e01"
+  integrity sha512-/mODjnC5xdZb0T0UlnUzYgOgxeaUVCEuBZkiD4jss2LkByA+208SA+MhMKvZFcMvej484+7mDjr2q9TNIRj+Dw==
   dependencies:
-    vue-demi "^0.4.0"
-    window-resize-subject "^1.4.3"
+    window-resize-subject "^1.4.2"
 
 vue2-leaflet@^2.5.2:
   version "2.6.0"
@@ -9104,7 +9103,7 @@ widest-line@^3.1.0:
   dependencies:
     string-width "^4.0.0"
 
-window-resize-subject@^1.4.3:
+window-resize-subject@^1.4.2:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/window-resize-subject/-/window-resize-subject-1.4.3.tgz#91cb9d3f0e383b45253d58f966ccb0b43106290b"
   integrity sha512-B1is3uwkqR4L0oBZ1OePtAly8PJV956J+WM8AGTVhhPL9U4jcBt6MJoZMRVrZe9y1RLFvMOrTGAyTEcjBi5siw==
@@ -9255,3 +9254,8 @@ yargs@^15.3.1:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
+
+yarn@^1.22.10:
+  version "1.22.10"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.10.tgz#c99daa06257c80f8fa2c3f1490724e394c26b18c"
+  integrity sha512-IanQGI9RRPAN87VGTF7zs2uxkSyQSrSPsju0COgbsKQOOXr5LtcVPeyXWgwVa0ywG3d8dg6kSYKGBuYK021qeA==
