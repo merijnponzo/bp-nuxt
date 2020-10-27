@@ -5,11 +5,11 @@ $asset-base-path: '../' !default;
 
 // FONT TYPES
 $font-types:(
-  ('fs-hero', 80px, 25%, 'fs__h', 'productive-1',normal, 1),
+  ('fs-hero', 80px, 25%, 'fs__h', 'productive-1',normal, 0.9),
   ('fs-title',  50px, 37.5%, 'fs__t','productive-1',500, 1.1),
   ('fs-subtitle', 28px, 25%, 'fs__s','productive-1',normal, 1.1),
   ('fs-read',  22px, 22%, 'fs__r','expressive-1',normal, 1.25),
-  ('fs-quote',  24px, 14%, 'fs__q','productive-1',300, 1.1),
+  ('fs-quote',  24px, 14%, 'fs__q','productive-1',300, 1.2),
   ('fs-label',  18px, 10%, 'fs__l','productive-1',normal,1.1),
   ('fs-input',  18px, 25%, 'fs__i','productive-1',normal,1.1),
   ('fs-btn',  18px, 30%, 'fs__b','productive-1',normal,1.1),

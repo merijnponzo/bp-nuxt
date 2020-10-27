@@ -28,7 +28,7 @@ section {
     overflow: hidden;
   }
   .row {
-    min-height: 100vh;
+    min-height: 90vh;
     transition: 0.5s ease height;
     // height:$video-top;
     align-items: flex-end;
@@ -77,6 +77,7 @@ section {
   z-index: 10;
   pointer-events: none;
   position: absolute;
+  display:none;
 }
 @include max-medium() {
   .intro__slogan {
@@ -89,13 +90,11 @@ section {
       height: 150px;
     }
   }
-  #fly {
-    display: none;
-  }
 }
 @include min-large() {
   #fly {
     position: absolute;
+    display:block;
   }
   #bg__video_hotspot {
     width: 100%;
@@ -133,7 +132,7 @@ section {
             :meta="content.meta.introtext"
             field="textarea"
           />
-          <div class="crumbs--xl" v-view="viewHandler">
+          <div class="crumbs--xl">
             <p-link
               v-for="(dienst, i) in getDienstenNav"
               :meta="dienst"
@@ -145,7 +144,7 @@ section {
         </div>
       </div>
     </div>
-    <Highlights gutter="gut--u-5" :highlights="content.meta.highlights" />
+    <Highlights gutter="gut--u-5" :highlights="content.meta.highlights" v-view="viewHandler" />
     <Logowall :clients="content.meta.clients" />
     <Branches :branches="content.meta.branches">
       <Staggergrid />

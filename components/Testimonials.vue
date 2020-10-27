@@ -15,6 +15,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  margin-bottom:rfs(1rem);
   .avatar {
     width: 60px;
     height: auto;
@@ -29,54 +30,14 @@
     width: calc(100% - 80px);
   }
 }
-
-.siema {
-  overflow: visible !important;
-}
-.slide.active {
-  .slide--story {
-    left: 0px;
-    opacity: 1;
-    transform: scale(1, 1);
-  }
-  .slide--visual {
-    left: 20%;
-
-    transform: scale(1, 1);
-    .visual {
-      opacity: 1;
-    }
-  }
-}
 .slide {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  display:block;
+  width: 101%;
+  padding-right:10px;
   position: relative;
 }
-.slide--story {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  transition: 0.5s ease all;
-  transform: scale(0.8, 0.8);
-  .bp--nxt {
-    align-self: flex-end;
-  }
-}
-.slide--visual {
-  z-index: 1;
-  width: 100%;
-  transition: 0.5s ease all;
-  transform: scale(0.8, 0.8);
-  background: var(--color-two);
-  .visual {
-    transition: 0.5s ease opacity;
-    opacity: 0.6;
-    max-width: 500px;
-  }
-}
+
 .slide--nav {
   display: flex;
   justify-content: flex-end;
@@ -90,71 +51,76 @@
   opacity: 0.5;
   margin-right: 5px;
 }
-.slide--index.active {
-  opacity: 1;
-}
 .bp--paginate {
   cursor: pointer;
+}
+.bp--nxt{
+  align-self:flex-end;
+  margin-right:rfs(1rem);
 }
 .bp--paginate:hover {
   opacity: 0.5;
 }
+.slide--story{
+  display:flex;
+  flex-direction:column;
+  margin-bottom:rfs(1rem);
+} 
+@include max-medium(){
+  .avatar--card{
+    margin-top:rfs(1rem);
+    margin-bottom:rfs(1rem);
+  }
+}
 @include min-medium() {
-  .siema-wrap {
-    width: 90%;
+  
+  .siema {
+    overflow: visible !important;
   }
-  .slide {
-    flex-direction: row;
+  .slide{
+    position:relative;
+    height:750px;
+    opacity:0.55;
+    width:95%;
+    margin-right:5%;
+    transition:1s ease opacity;
   }
-  .slide--story {
-    width: 60%;
-    opacity: 0;
-    justify-content: space-between;
+  .slide--story{
+    position:absolute;
+    height:450px;
+    left:50%;
+    width:45%;
+    transition:0.3s ease all;
   }
-
-  .slide--visual {
-    width: 40%;
-    left: 0px;
-    padding-top: rfs(1rem);
-    padding-left: rfs(5em);
-    //transform: translateX(-150%)scale(0.8,0.8);
-  }
-  .slide.active {
-    .slide--story {
-      opacity: 1;
-      transform: translateX(-60%) scale(1, 1);
-      padding-right: rfs(4rem);
-      .fs__q {
-        padding-top: rfs(2rem);
-      }
-    }
-    .slide--visual {
-      transform: translateX(160%) scale(1, 1);
+  .slide--visual{
+    height:450px;
+    position:absolute;
+    left:0px;
+    width:45%;
+    transition:0.3s ease all;
+    transform:scale(0.66,0.66);
+    .visual{
+      height:100%;
     }
   }
-  .slide--nav {
-    padding-top: rfs(0.5rem);
-    width: 90%;
+  .slide.active{
+    opacity:1;
+    .slide--story{
+      left:0px;
+    }
+    .slide--visual{
+      left:45%;
+      transform:scale(0.85,0.85);
+    }
   }
+  
 }
 
 @include min-large() {
-  .slide.active {
-    .slide--story {
-      transform: translateX(-60%) scale(1, 1);
-      padding-right: rfs(5rem);
-    }
-    .slide--visual {
-      transform: translateX(140%) scale(1, 1);
-    }
-  }
+ 
 }
 @include min-wide(){
-  .slide.active{
-    .slide--story{
-       padding-right: rfs(12rem);
-    }
-  }
+  
 }
 </style>
 <template>
@@ -170,19 +136,16 @@
               <siema
                 ref="siema"
                 :loop="true"
-                @change="change"
+                @change="change()"
                 :autoplay="autoplay"
                 :autoplay-duration="duration"
               >
                 <div
+                  v-for="(testimonial, s) in testimonials"
+                  :class="{ 'active' : index == s }"
+                  :key="'testimonial' + s"
                   class="slide clear"
-                  :class="{ active: index == i }"
-                  v-for="(testimonial, i) in testimonials"
-                  :key="'testimonial' + i"
                 >
-                  <div class="slide--visual">
-                    <Visual :visual="testimonial.visual" ratio="ratio--3x4" />
-                  </div>
                   <div class="slide--story">
                     <div class="box bp--indent">
                       <div class="avatar--card">
@@ -207,6 +170,9 @@
                       {{ $t("bekijkcase") }}
                     </p-link>
                   </div>
+                  <div class="slide--visual">
+                    <Visual :visual="testimonial.visual" ratio="ratio--ml-3x4" />
+                  </div>
                 </div>
               </siema>
             </no-ssr>
@@ -215,10 +181,10 @@
         <div class="col col-12">
           <div class="slide--nav">
             <div
-              class="slide--index"
-              :class="{ active: index == i }"
               v-for="(testimonial, i) in testimonials"
+              :class="{ active: index === i }"
               :key="'testimonial_index' + i"
+              class="slide--index"
             />
             <div class="bp--paginate prv" @click="siemaPaginate('prev')"></div>
             <div class="bp--paginate nxt" @click="siemaPaginate('next')"></div>
@@ -253,8 +219,9 @@ export default {
     console.log('testimonial block is mounted')
   },
   methods: {
-    change(e) {
-      this.index = this.$refs.siema.currentSlide;
+    change() {
+      console.log(this.$refs.siema.currentSlide)
+      this.index = this.$refs.siema.currentSlide
     },
     siemaPaginate(direction) {
       if (direction === "next") {

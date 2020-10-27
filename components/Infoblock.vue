@@ -15,12 +15,10 @@
   <section class="comp__info" data-theme="">
     <div class="wrap" :class="gutter">
       <div class="row">
-        <h3 class="chapter fs__h space--2">
-          <p-meta :meta="info" field="textfield" />
-        </h3>
+          <p-meta :meta="info" tag="h3" tagclass="chapter fs__h space--2" field="textfield" />
         <div class="col col-6">
           <div class="box pad--no">
-            <p-meta tagclass="fs__l xl" :meta="info" field="textarea" />
+            <p-meta tagclass="fs__r xl" :meta="info" field="textarea" />
           </div>
         </div>
         <div class="col col-6 comp__info--visual">

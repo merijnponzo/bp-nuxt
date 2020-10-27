@@ -287,13 +287,13 @@ img.contain{
     .wid--x{
         width:$large-width
     }
-    .ratio--l-3x4::after{
+    .ratio--l-3x4{
         padding-bottom: 133.33%;
     }
-    .ratio--l-4x3::after{
+    .ratio--l-4x3{
         padding-bottom: 66.66%;
     }  
-    .ratio--l-16x9::after{
+    .ratio--l-16x9{
         padding-bottom: 56,25%;
     }
     // SIZES
@@ -332,6 +332,15 @@ img.contain{
     }
     .img.contain--l{
         object-fit: contain!important;
+    }
+    .ratio--ml-3x4{
+        padding-bottom: 133.33%;
+    }
+    .ratio--ml-4x3{
+        padding-bottom: 66.66%;
+    }  
+    .ratio--ml-16x9{
+        padding-bottom: 56,25%;
     }
 }
 
