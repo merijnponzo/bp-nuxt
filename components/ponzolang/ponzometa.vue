@@ -1,28 +1,30 @@
-<template v-if="render">
-  <span>
-    <template v-if="field === 'textarea' || tag === 'html'">
-      <div :class="tagclass" v-html="render"></div>
-    </template>
-    <template v-else-if="tag === 'p'">
-      <p :class="tagclass">{{ render }}</p>
-    </template>
-    <template v-else-if="tag === 'h1'">
-      <h1 :class="tagclass">{{ render }}</h1>
-    </template>
-    <template v-else-if="tag === 'h3'">
-      <h3 :class="tagclass">{{ render }}</h3>
-    </template>
-  </span>
-</template>
 <script>
 export default {
   name: "PMeta",
+  functional: true,
+  render: function(h, { props, parent }) {
+    // default field type is a textfield
+    const field = props.field + ".textfield";
+    // get html from the right field and language
+    const html = parent.$typy(
+      props.meta,
+      `${props.field}.${parent.$store.getters.getLang}`
+    ).safeObject;
+    // render always as html
+    const value = {
+      class: props.tagclass,
+      domProps: {
+        innerHTML: html
+      }
+    };
+    return h(props.tag, value);
+  },
   props: {
     tag: {
       type: String,
       default: "p"
     },
-    tagclass:{
+    tagclass: {
       type: [Boolean, String],
       default: false
     },
@@ -36,18 +38,6 @@ export default {
         return {};
       }
     }
-  },
-  data: function() {
-    return {
-      render: null
-    };
-  },
-  mounted() {
-    const field = this.field + ".textfield";
-    this.render = this.$typy(
-      this.meta,
-      `${this.field}.${this.$store.getters.getLang}`
-    ).safeObject;
   }
 };
 </script>

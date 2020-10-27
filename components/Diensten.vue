@@ -35,9 +35,19 @@
     <div class="wrap comp__diensten">
       <div class="row">
         <div class="col col-7">
-          <h3 class="fs__h space--2" v-html="metaTextfield(diensten,'browse_title')"></h3>
+           <p-meta
+              tagclass="fs__h space--2"
+              tag="h3"
+              :meta="diensten.browse_title"
+              field="textfield"
+            />
           <div class="box bp--indent">
-            <div class="fs__l xl" v-html="metaTexthtml(diensten,'browse_text')"></div>
+            <p-meta
+              tagclass="fs__l xl"
+              tag="h3"
+              :meta="diensten.browse_text"
+              field="html"
+            />
             <div class="split--m-12 split--l-6 split--u-4">
               <div v-for="(dienst,i) in diensten.diensten" :key="'diensten'+i">
               <a class="fs__s xs bp--nxt" v-html="dienst.name"></a>

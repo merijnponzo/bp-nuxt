@@ -60,10 +60,20 @@
             <h1 class="chapter about__title">{{$t('overbp')}}</h1>
           </div>
           <div class="col col-4 col--u-6">
-            <p class="fs__s" v-html="metaTextfield(content.meta,'who')"></p>
+            <p-meta
+              tagclass="fs__s"
+              tag="p"
+              :meta="content.meta.who"
+              field="textfield"
+            />
           </div>
           <div class="col col-8 col--u-6">
-            <p class="fs__r mwid--750" v-html="metaTextarea(content.meta,'who_long')"></p>
+            <p-meta
+              tagclass="fs__r mwid--750"
+              tag="p"
+              :meta="content.meta.who_long"
+              field="textarea"
+            />
           </div>
         </div>
       </div>
@@ -71,10 +81,20 @@
       <div class="wrap space--2">
         <div class="row">
           <div class="col col-4 col--u-6">
-            <p class="fs__s" v-html="metaTextfield(content.meta,'what')"></p>
+            <p-meta
+              tagclass="fs__r"
+              tag="p"
+              :meta="content.meta.what"
+              field="textfield"
+            />
           </div>
           <div class="col col-8 col--u-6">
-            <p class="fs__r mwid--750" v-html="metaTextarea(content.meta,'what_long')"></p>
+            <p-meta
+              tagclass="fs__r mwid--750"
+              tag="p"
+              :meta="content.meta.what_long"
+              field="textarea"
+            />
           </div>
         </div>
       </div>
@@ -87,7 +107,12 @@
           </div>
           <div class="col col-4 col--u-6"></div>
           <div class="col col-8 col--u-6">
-            <p class="fs__r mwid--750" v-html="metaTextarea(content.meta,'teamsamenvatting')"></p>
+             <p-meta
+              tagclass="fs__r mwid--750"
+              tag="p"
+              :meta="content.meta.teamsamenvatting"
+              field="textarea"
+            />
           </div>
         </div>
       </div>
@@ -98,7 +123,12 @@
             <Visual ratio="ratio--4x3" :visual="member.visual"/>
             <div class="box px0">
               <h4 class="fs__a">{{member.naam}}</h4>
-              <p class="fs__r xs" v-html="metaTextarea(member)"></p>
+              <p-meta
+                tagclass="fs__r xs"
+                tag="p"
+                :meta="member"
+                field="textarea"
+              />
             </div>
           </div>
         </div>
@@ -109,10 +139,20 @@
       <div class="wrap space--2">
         <div class="row">
           <div class="col col-4 col--u-6">
-            <p class="fs__s" v-html="metaTextfield(content.meta,'netwerk')"></p>
+            <p-meta
+                tagclass="fs__r"
+                tag="p"
+                :meta="content.meta.netwerk"
+                field="textarea"
+              />
           </div>
           <div class="col col-8 col--u-6">
-            <p class="fs__r mwid--750" v-html="metaTextarea(content.meta,'netwerk_long')"></p>
+            <p-meta
+                tagclass="fs__r mwid--750"
+                tag="p"
+                :meta="content.meta.netwerk_long"
+                field="textarea"
+              />
           </div>
           <div class="col col-4"></div>
           <div class="col col-8">
@@ -120,7 +160,12 @@
               <ul v-for="(expertiseCol, c) in 3" :key="'expertise__ul'+c">
                 <template v-for="(expertise, e) in content.meta.netwerk_expertise">
                   <li v-if="e % 2 === c" :key="'expertise'+e">
-                    <p class="fs__s" v-html="metaTextfield(expertise)"></p>
+                     <p-meta
+                      tagclass="fs__s"
+                      tag="p"
+                      :meta="expertise"
+                      field="textarea"
+                    />
                   </li>
                 </template>
               </ul>

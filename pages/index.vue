@@ -63,9 +63,11 @@ section {
   z-index: 2;
   transform: translateY(15px) translateX(15px);
 }
-h1.fs__h {
+.intro__slogan {
   mix-blend-mode: exclusion;
   color: white;
+  position:relative;
+  z-index:10;
 }
 .home__posts {
   margin-top: rfs(2rem);
@@ -74,7 +76,7 @@ h1.fs__h {
 #fly {
   z-index: 10;
   pointer-events: none;
-  position: relative;
+  position: absolute;
 }
 @include max-medium() {
   .intro__slogan {
@@ -116,7 +118,7 @@ h1.fs__h {
 <template>
   <div v-if="content" class="bp__home">
     <div class="wrap gut--0 intro__nav">
-      <div class="row" :style="{ height: windowHeight + 'px' }">
+      <div class="row" :style="{ height: windowHeight + 'px' }" v-on:mousemove="updateCoordinates">
         <div
           id="bg__video_hotspot"
           @click="hideVideo ? null : openFullScreen()"
@@ -126,13 +128,12 @@ h1.fs__h {
             <Playbutton />
           </div>
           <p-meta
-            class="chapter intro__slogan space--0"
-            tagclass="fs__h"
+            tagclass="fs__h chapter intro__slogan space--0"
             tag="h1"
             :meta="content.meta.introtext"
             field="textarea"
           />
-          <div class="crumbs--xl"   v-view="viewHandler">
+          <div class="crumbs--xl" v-view="viewHandler">
             <p-link
               v-for="(dienst, i) in getDienstenNav"
               :meta="dienst"
@@ -144,10 +145,7 @@ h1.fs__h {
         </div>
       </div>
     </div>
-    <Highlights
-      gutter="gut--u-5"
-      :highlights="content.meta.highlights"
-    />
+    <Highlights gutter="gut--u-5" :highlights="content.meta.highlights" />
     <Logowall :clients="content.meta.clients" />
     <Branches :branches="content.meta.branches">
       <Staggergrid />
@@ -213,18 +211,19 @@ export default {
   data: function() {
     return {
       dir: "right",
-      mouse: { x: 0, y: 0 },
       flypos: { x: 0, y: 0 },
-      flystyle: { left: 0, top: 0 },
       show: true,
       switchVideo: null,
       fullScreenMode: false,
       hideVideo: 0,
-      inScrollVideo: false,
+      inScrollVideo: false
     };
   },
   computed: {
     ...mapGetters(["getDienstenNav"]),
+    flystyle() {
+      return { left: this.flypos.x + "px", top: this.flypos.y + "px" };
+    }
   },
   asyncData({ app, params, store, $axios, context }) {
     const url = `${process.env.wpApi}/pages?slug=home`;
@@ -235,44 +234,19 @@ export default {
     });
   },
   mounted() {
-    // document.addEventListener("mousemove", this.getMouse);
     this.switchVideo = this.content.meta.showreel.bgvideo;
     // this.createScrollOut();
     setTimeout(() => {
       this.toggleVideoFullscreen();
     }, 1000);
   },
-  beforeDestroy() {
-    // document.removeEventListener("mousemove", this.getMouse);
-    const elem = this.$refs["bpplayer"];
-    document.removeEventListener("fullscreenchange", elem);
-    // this.createScrollOut();
-  },
   methods: {
-    getMouse(e) {
-      this.mouse.x = e.pageX;
-      this.mouse.y = e.pageY;
-      //Checking directional change
-      if (this.mouse.x > this.flypos.x) {
-        this.dir = "right";
-      } else {
-        this.dir = "left";
-      }
-      this.followMouse();
-    },
-
-    followMouse() {
-      //1. find distance X , distance Y
-      var distX = this.mouse.x - this.flypos.x;
-      var distY = this.mouse.y - this.flypos.y;
-      //Easing motion
-      //Progressive reduction of distance
-      this.flypos.x = this.mouse.x;
-      this.flypos.y = this.mouse.y;
-      this.flystyle = { left: this.flypos.x + "px", top: this.flypos.y + "px" };
+    updateCoordinates(e){
+      this.flypos.x = e.clientX
+      this.flypos.y = e.clientY
     },
     viewHandler(e) {
-      this.videoScale = 1 - (e.scrollPercent * 10)
+      this.videoScale = 1 - e.scrollPercent * 10;
       if (this.videoScale < 0) {
         this.hideVideo = true;
       } else {

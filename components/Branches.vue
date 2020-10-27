@@ -80,14 +80,14 @@
           <p-meta
             :meta="branches.browse_title"
             field="textfield"
-            class="fs__h space--2"
+            tagclass="fs__h space--2"
           />
           <div class="box bp--indent">
             <p-meta
               :meta="branches.browse_text"
               field="texthtml"
-              tag="html"
-              class="fs__l xl"
+              tag="div"
+              tagclass="fs__l xl"
             />
             <div class="split--m-12 split--l-6 split--u-4">
               <p-link

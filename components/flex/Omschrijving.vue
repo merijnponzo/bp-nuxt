@@ -12,7 +12,7 @@
       </div>
       <div class="col col-9 col--u-6">
         <p-meta
-          tag="p"
+          tag="div"
           tagclass="fs__r mwid--750"
           :meta="flexcontent.omschrijving"
           field="textarea"

@@ -199,7 +199,8 @@
                       <p-meta
                         :meta="testimonial.meta.story"
                         field="textarea"
-                        class="fs__q xl"
+                        tag="div"
+                        tagclass="fs__q xl"
                       />
                     </div>
                     <p-link class="fs__s xs bp--nxt" :url="`${testimonial.meta.case}`">

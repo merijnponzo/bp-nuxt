@@ -70,7 +70,7 @@
               :meta="testimonial.meta"
               field="textarea"
               tagclass="fs__l xl"
-              tag="p"
+              tag="div"
             />
             <p-link class="fs__s xs bp--nxt" :url="`${testimonial.meta.case}`">
               {{ $t("bekijkcase") }}
