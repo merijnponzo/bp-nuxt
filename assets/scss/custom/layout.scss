@@ -9,6 +9,7 @@
     background-color:white!important;
   }
 }
+
 @include min-small() {
   :root {
     --page-margin: 12rem;

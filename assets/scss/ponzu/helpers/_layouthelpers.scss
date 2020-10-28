@@ -143,7 +143,7 @@ img.contain{
 //default
 [class*="ratio--"]{
     position: relative;
-    padding-bottom: 66.66%;
+    padding-bottom: 66%;
     overflow: hidden;
     width:100%;
     & :first-child{
@@ -158,19 +158,19 @@ img.contain{
     padding-bottom: 100%;
 }
 .ratio--4x3{
-    padding-bottom: 66.66%;
+    padding-bottom: 66%;
 }
 .ratio--3x4{
-    padding-bottom: 133.33%;
+    padding-bottom: 133%;
 }  
 .ratio--16x9{
-    padding-bottom: 56.25%;
+    padding-bottom: 56%;
 }  
 .ratio--2x1{
     padding-bottom: 50%;
 }  
 .ratio--3x1{
-    padding-bottom: 33.33333%;
+    padding-bottom: 33%;
 }
 .ratio--35x10{
     padding-bottom: 35%;

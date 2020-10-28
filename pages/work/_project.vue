@@ -1,4 +1,4 @@
-<style lang="scss" scoped>
+<style lang="scss">
 .chapter {
   margin-bottom: 0px;
   max-width: 1200px;
@@ -8,8 +8,27 @@
     margin-bottom: rfs(1.5rem);
   }
 }
-.work__paginate{
-  margin-top:rfs(50px);
+
+.project__comp{
+  .img-wrap {
+    background-color: var(--tile-color);
+  }
+  .video {
+    background-color: var(--tile-color);
+  }
+  &.wallpaper{
+    .img-wrap {
+      background-color: transparent;
+    }
+    .video {
+      background-color: transparent;
+    }
+  }
+}
+
+
+.work__paginate {
+  margin-top: rfs(50px);
 }
 .work__content {
   background: white;
@@ -63,7 +82,7 @@
     margin-top: rfs(100px);
   }
   .work__paginate {
-      padding-left: $work-single-indent;
+    padding-left: $work-single-indent;
   }
 }
 </style>
@@ -73,7 +92,10 @@
       <section>
         <div class="wrap">
           <div class="row">
-            <h1 class="chapter project__title fs__h space--2" v-html="content.title.rendered" />
+            <h1
+              class="chapter project__title fs__h space--2"
+              v-html="content.title.rendered"
+            />
           </div>
         </div>
         <div class="wrap">
@@ -145,6 +167,7 @@
           <component
             class="project__comp skrp space--4"
             :class="`flex--${s}`"
+            :style="{'--tile-color':content.meta.tilecolor}"
             v-bind:is="`${flexcontent.acf_fc_layout}Flex`"
             :flexcontent="flexcontent"
             :index="s"
@@ -160,14 +183,14 @@
           <div class="col col-12 space--1">
             <div class="split--fl">
               <span>
-                <p-link archive="true" class="bp--prv">
-                  {{ $t("alleprojecten") }}
-                </p-link>
-              </span>
-              <span>
-                <router-link class="bp--nxt" to="/contact">{{
+                <router-link class="bp--nxt xl" to="/contact">{{
                   $t("contactop")
                 }}</router-link>
+              </span>
+              <span>
+                <p-link archive="true" class="bp--prv xl">
+                  {{ $t("alleprojecten") }}
+                </p-link>
               </span>
             </div>
           </div>
@@ -247,8 +270,8 @@ export default {
       };
     });
   },
-  mounted(){
-    console.log('mounted project')
+  mounted() {
+    console.log("mounted project");
   }
 };
 </script>

@@ -2,15 +2,6 @@
 .col-6 {
   margin-bottom: rfs(1.5rem);
 }
-.visual__single:not(.wallpaper) {
-  .img-wrap {
-    background-color: var(--color-bg);
-  }
-  .video {
-    background: var(--color-bg);
-  }
-}
-
 @include min-large() {
   .visual__single:not(.wallpaper) {
     .wrap {
