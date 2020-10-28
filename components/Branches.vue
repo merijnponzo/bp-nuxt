@@ -84,7 +84,7 @@
 @include min-medium() {
   .comp__branches--visual {
     padding-right: 0px;
-    height: auto;
+    height: 700px;
   }
 }
 </style>

@@ -456,7 +456,7 @@ export default {
         const func2 = this.blendOut;
         this.tl = this.$anime.timeline({
           easing: "easeInOutCirc",
-          duration: 450
+          duration: 400
         });
         let navWidth = "80vw";
         let whiteWidth = 70;
@@ -487,7 +487,7 @@ export default {
         this.tl
           .add({
             targets: ".nav__burger",
-            rotate: "360deg",
+            rotate: "0deg",
             top: 0,
             right: 0,
             width: burgerWidth,

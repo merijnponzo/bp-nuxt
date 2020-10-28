@@ -38,7 +38,7 @@ export default {
   mounted() {
     const prefix = this.$store.getters.getLangPrefix;
     let slug = false;
-
+    /*
     if (this.archive) {
       slug = this.workArchive();
     } else if (this.url) {
@@ -54,6 +54,7 @@ export default {
     } else {
       this.render = "/404";
     }
+    */
   },
   methods: {
     workArchive() {

@@ -14,9 +14,9 @@
         color: white;
         justify-content: center;
         align-items: center;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.66);
         transition: 1s ease all;
-        font-size: 16px;
+        font-size: rfs(22px);
         &:hover {
             background: rgba(0, 0, 0, 0);
             font-size: 22px;

@@ -79,23 +79,22 @@
   .slide {
     position: relative;
     height: 750px;
-    opacity: 0.55;
-    width: 95%;
-    margin-right: 5%;
+    opacity: 0.45;
+    width: 100%;
     transition: 1s ease opacity;
   }
   .slide--story {
     position: absolute;
     height: 450px;
     left: 50%;
-    width: 45%;
+    width: 50%;
     transition: 0.3s ease all;
   }
   .slide--visual {
     height: 550px;
     position: absolute;
     left: 0px;
-    width: 45%;
+    width: 50%;
     transition: 0.3s ease all;
     transform: scale(0.66, 0.66);
     .visual {
@@ -108,9 +107,27 @@
       left: 0px;
     }
     .slide--visual {
-      left: 45%;
+      left: 50%;
       transform: scale(0.85, 0.85);
     }
+  }
+}
+@include min-large() {
+  .slide{
+    width:95%;
+    height:600px;
+  }
+  .slide--story{
+    height:600px;
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+  }
+  .slide--nav{
+    width:calc(95% - 1rem);
+  }
+  .slide--visual {
+    height: 600px;
   }
 }
 </style>
