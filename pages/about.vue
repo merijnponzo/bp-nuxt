@@ -12,6 +12,7 @@
     background:transparent!important;
   }
 }
+
 .about__cta{
   width:100%;
   z-index:2;
@@ -24,6 +25,7 @@
 }
 .dienst__expertises--expertises{
     margin-top:rfs(3rem);
+    padding-bottom:rfs(6rem);
     ul{
       padding-left:rfs(1rem);
       border-left:1px solid var(--color-bg);
@@ -38,6 +40,13 @@
     .fs__h{
       max-width:550px;
     }
+  }
+  .stagger--absolute{
+    width:650px;
+    height:600px;
+    overflow:hidden;
+    position:absolute;
+    transform:translateY(-75%);
   }
 }
 
@@ -149,16 +158,19 @@
                 :meta="content.meta.netwerk"
                 field="textarea"
               />
+              <Staggergrid class="stagger--absolute" />
           </div>
           <div class="col col-8 col--u-6">
             <p-meta
-                tagclass="fs__r mwid--750"
+                tagclass="fs__r xl mwid--750"
                 tag="p"
                 :meta="content.meta.netwerk_long"
                 field="textarea"
               />
           </div>
-          <div class="col col-4"></div>
+          <div class="col col-4">
+          
+          </div>
           <div class="col col-8">
             <div class="split--l-6 split--m-6 dienst__expertises--expertises" >
               <ul v-for="(expertiseCol, c) in 3" :key="'expertise__ul'+c">
@@ -193,7 +205,7 @@ import Info from '@/components/Infoblock.vue'
 import Morerows from '@/components/Morerows.vue'
 // contenthelpers
 import contenthelpers from '@/mixins/contenthelper.js'
-
+import Staggergrid from '@/components/Staggergrid.vue'
 // import VueWindowSize from 'vue-window-size'
 //import Vue from 'vue'
 // import checkView from 'vue-check-view'
@@ -203,7 +215,7 @@ import contenthelpers from '@/mixins/contenthelper.js'
 
 export default {
   name: 'Page',
-  components: { Visual, Diensten, Info, Morerows },
+  components: { Visual, Diensten, Info, Morerows, Staggergrid },
   mixins:[contenthelpers],
   data: function () {
     return {

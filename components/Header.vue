@@ -175,7 +175,9 @@ button.nav__burger:focus,
   }
 }
 hr {
-  border-color: var(--color-text);
+   border: none;
+  height: 2px;
+  background:black;
 }
 .nav__address {
   display: flex;

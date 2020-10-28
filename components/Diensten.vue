@@ -11,6 +11,7 @@
   }
   .bp--nxt{
     margin-top: rfs(1rem);
+   
   }
   .bp--stagwrap{
     position:absolute;
@@ -49,9 +50,14 @@
               field="html"
             />
             <div class="split--m-12 split--l-6 split--u-4">
-              <div v-for="(dienst,i) in diensten.diensten" :key="'diensten'+i">
-              <a class="fs__s xs bp--nxt" v-html="dienst.name"></a>
-              </div>
+                <p-link
+                  v-for="(dienst, i) in getDienstenNav"
+                  :meta="dienst"
+                  :key="'dienst' + i"
+                  class="fs__s bp--nxt"
+                >
+                  {{ $t(dienst.name) }}
+                </p-link>
             </div>
           </div>
         </div>
@@ -69,7 +75,7 @@
 import Visual from '@/components/Visual.vue'
 // contenthelpers
 import contenthelpers from '@/mixins/contenthelper.js'
-
+import { mapGetters } from "vuex";
 export default {
   name: 'DienstenComp',
   components: { Visual },
@@ -81,6 +87,9 @@ export default {
         return {}
       }
     }
-  }
+  },
+  computed: {
+    ...mapGetters(["getDienstenNav"])
+  },
 }
 </script>

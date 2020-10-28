@@ -138,8 +138,8 @@
       <Testimonialblock :testimonial="content.meta.testimonial" />
     </section>
     <section class="dienst__logowall">
-      <Logowall :clients="content.meta.clients">
-        <hr class="chapter"/>
+      <Logowall :clients="content.meta.clients" :smallmode="true">
+       <hr class="chapter"/>
       </Logowall>
     </section>
     <section class="dienst__contactop">
