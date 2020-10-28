@@ -1,0 +1,31 @@
+.bp--tile{
+    position: relative;
+    a{
+        position: absolute;
+        opacity: 1;
+        z-index: 1;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        left:0px;
+        top:0px;;
+        left: 0px;
+        display: flex;
+        color: white;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.5);
+        transition: 1s ease all;
+        font-size: 16px;
+        &:hover {
+            background: rgba(0, 0, 0, 0);
+            font-size: 22px;
+        }
+    }
+    .bp--prv::before{
+        height:0px;
+    }
+    .bp--nxt::before{
+        height:0px;
+    }
+}

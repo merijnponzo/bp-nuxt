@@ -2,6 +2,10 @@
 .box {
   max-width: 500px;
 }
+.comp__info{
+  margin-top:rfs(5rem);
+  margin-bottom:rfs(5rem);
+}
 @include min-medium() {
   .fs__h {
     span {

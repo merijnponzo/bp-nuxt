@@ -12,8 +12,8 @@
     margin-bottom: 5px;
     font-weight: 300;
   }
-  .fs__s{
-    margin-bottom:2px;
+  .fs__s {
+    margin-bottom: 2px;
   }
   .fs__q {
     margin-bottom: 0px;
@@ -23,8 +23,8 @@
     color: #7d7d7d;
   }
   &:hover {
-    .arrow{
-      width:15%;
+    .arrow {
+      width: 15%;
     }
   }
 }
@@ -96,8 +96,8 @@
 </style>
 <template>
   <article :class="[cardclass]" class="card">
-    <p-link
-      :url="card.slug"
+    <nuxt-link
+      :to="localePath(card.slug)"
       @click.native="setImageTransition(card)"
       class="card--link"
     >
@@ -116,10 +116,10 @@
       <div class="box">
         <h4 class="fs__l">{{ card.meta.client }}</h4>
         <p-meta
-            tagclass="fs__s"
-            :meta="card.meta.projectsamenvatting"
-            field="textfield"
-          />
+          tagclass="fs__s"
+          :meta="card.meta.projectsamenvatting"
+          field="textfield"
+        />
         <ul class="terms crumbs--xs">
           <li
             v-for="(term, t) in getChildTerms(card.terms, 5)"
@@ -129,7 +129,7 @@
           ></li>
         </ul>
       </div>
-    </p-link>
+    </nuxt-link>
   </article>
 </template>
 

@@ -8,6 +8,9 @@
     margin-bottom: rfs(1.5rem);
   }
 }
+.work__paginate{
+  margin-top:rfs(50px);
+}
 .work__content {
   background: white;
   position: relative;
@@ -44,25 +47,6 @@
     display: block;
     text-align: right;
   }
-  .work__paginate {
-    margin-top: rfs(3rem);
-    margin-bottom: rfs(3rem);
-    .col-6 {
-      display: flex;
-      flex-direction: row;
-      margin-bottom: 5px;
-      align-items: center;
-      a {
-        width: calc(70% - 5px);
-        margin-left: 5px;
-        order: 2;
-      }
-      .visual {
-        width: 30%;
-        order: 1;
-      }
-    }
-  }
   .project__title {
     margin-left: 0px;
     font-size: 34px;
@@ -79,28 +63,7 @@
     margin-top: rfs(100px);
   }
   .work__paginate {
-    padding-left: $work-single-indent;
-    padding-top: rfs(50px);
-    .bp--next {
-      position: absolute;
-      opacity: 1;
-      z-index: 1;
-      text-align: center;
-      width: 100%;
-      height: 100%;
-      left: 0px;
-      display: flex;
-      color: white;
-      justify-content: center;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.5);
-      transition: 1s ease all;
-      font-size: 16px;
-      &:hover {
-        background: rgba(0, 0, 0, 0);
-        font-size: 22px;
-      }
-    }
+      padding-left: $work-single-indent;
   }
 }
 </style>
@@ -214,11 +177,11 @@
       <!-- next prev -->
       <div class="wrap gut--0 work__paginate">
         <div class="row">
-          <div class="col col-6 col--mm-6">
+          <div class="bp--tile col col-6 col--mm-6">
             <template v-if="content.meta.previous">
               <p-link
                 :url="content.meta.previous.slug"
-                class="bp--prev  fs__s xs"
+                class="bp--prev fs__s xs"
               >
                 &#8592; {{ content.meta.previous.post_title }}
               </p-link>
@@ -228,9 +191,9 @@
               />
             </template>
           </div>
-          <div class="col col-6 col--mm-6">
+          <div class="bp--tile col col-6 col--mm-6">
             <template v-if="content.meta.next">
-              <p-link :url="content.meta.next.slug" class="bp--next  fs__s xs">
+              <p-link :url="content.meta.next.slug" class="bp--next fs__s xs">
                 &#8594; {{ content.meta.next.post_title }}
               </p-link>
               <Visual

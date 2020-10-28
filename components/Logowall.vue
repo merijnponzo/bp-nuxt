@@ -3,16 +3,22 @@
     background-color: white;
   }
   .icon{
-    min-height:rfs(8rem);
+    min-height:rfs(12rem);
     width:100%;
     display:block;
     background-repeat: no-repeat;
     background-size: contain;
-    margin-bottom:rfs(3rem);
+    margin-bottom:rfs(1rem);
     background-position: center;
   }
   .comp__clients{
     padding-bottom:rfs(3rem);
+  }
+  @include min-medium(){
+    .icon{
+       min-height:rfs(8rem);
+       margin-bottom:rfs(3rem);
+    }
   }
 </style>
 <template>

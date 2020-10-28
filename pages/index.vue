@@ -37,6 +37,7 @@ section {
     height: 150px;
     z-index: 5;
     position: relative;
+    margin-top:rfs(1.5rem);
   }
   .intro__icon {
     svg {
@@ -88,6 +89,13 @@ section {
       stroke-width: 2px;
       width: 150px;
       height: 150px;
+    }
+  }
+}
+@include medium-only(){
+  .crumbs--xl{
+    a{
+     // padding-right:5rem;
     }
   }
 }

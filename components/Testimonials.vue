@@ -1,10 +1,10 @@
 <style lang="scss" scoped>
 .comp__testimonials {
   padding-bottom: rfs(2rem);
-  overflow-x: hidden;
-  position:relative;
-  z-index:1;
-  background:black;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  background: black;
 }
 .fs__h {
   padding-top: rfs(4rem);
@@ -15,7 +15,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom:rfs(1rem);
+  margin-bottom: rfs(1rem);
   .avatar {
     width: 60px;
     height: auto;
@@ -32,9 +32,9 @@
 }
 .slide {
   height: 100%;
-  display:block;
+  display: block;
   width: 101%;
-  padding-right:10px;
+  padding-right: 10px;
   position: relative;
 }
 
@@ -54,73 +54,64 @@
 .bp--paginate {
   cursor: pointer;
 }
-.bp--nxt{
-  align-self:flex-end;
-  margin-right:rfs(1rem);
+.bp--nxt {
+  align-self: flex-end;
+  margin-right: rfs(1rem);
 }
 .bp--paginate:hover {
   opacity: 0.5;
 }
-.slide--story{
-  display:flex;
-  flex-direction:column;
-  margin-bottom:rfs(1rem);
-} 
-@include max-medium(){
-  .avatar--card{
-    margin-top:rfs(1rem);
-    margin-bottom:rfs(1rem);
+.slide--story {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: rfs(1rem);
+}
+@include max-medium() {
+  .avatar--card {
+    margin-top: rfs(1rem);
+    margin-bottom: rfs(1rem);
   }
 }
-@include min-medium() {
-  
+@include min-small() {
   .siema {
     overflow: visible !important;
   }
-  .slide{
-    position:relative;
-    height:750px;
-    opacity:0.55;
-    width:95%;
-    margin-right:5%;
-    transition:1s ease opacity;
+  .slide {
+    position: relative;
+    height: 750px;
+    opacity: 0.55;
+    width: 95%;
+    margin-right: 5%;
+    transition: 1s ease opacity;
   }
-  .slide--story{
-    position:absolute;
-    height:450px;
-    left:50%;
-    width:45%;
-    transition:0.3s ease all;
+  .slide--story {
+    position: absolute;
+    height: 450px;
+    left: 50%;
+    width: 45%;
+    transition: 0.3s ease all;
   }
-  .slide--visual{
-    height:450px;
-    position:absolute;
-    left:0px;
-    width:45%;
-    transition:0.3s ease all;
-    transform:scale(0.66,0.66);
-    .visual{
-      height:100%;
+  .slide--visual {
+    height: 550px;
+    position: absolute;
+    left: 0px;
+    width: 45%;
+    transition: 0.3s ease all;
+    transform: scale(0.66, 0.66);
+    .visual {
+      height: 100%;
     }
   }
-  .slide.active{
-    opacity:1;
-    .slide--story{
-      left:0px;
+  .slide.active {
+    opacity: 1;
+    .slide--story {
+      left: 0px;
     }
-    .slide--visual{
-      left:45%;
-      transform:scale(0.85,0.85);
+    .slide--visual {
+      left: 45%;
+      transform: scale(0.85, 0.85);
     }
   }
-  
-}
-
-@include min-large() {
- 
-}
-@include min-wide(){
-  
 }
 </style>
 <template>
@@ -142,7 +133,7 @@
               >
                 <div
                   v-for="(testimonial, s) in testimonials"
-                  :class="{ 'active' : index == s }"
+                  :class="{ active: index == s }"
                   :key="'testimonial' + s"
                   class="slide clear"
                 >
@@ -166,12 +157,15 @@
                         tagclass="fs__q xl"
                       />
                     </div>
-                    <p-link class="fs__s xs bp--nxt" :url="`${testimonial.meta.case}`">
-                      {{ $t("bekijkcase") }}
-                    </p-link>
                   </div>
-                  <div class="slide--visual">
-                    <Visual :visual="testimonial.visual" ratio="ratio--ml-3x4" />
+                  <div class="slide--visual bp--tile">
+                    <Visual :visual="testimonial.visual" ratio="" />
+                    <nuxt-link
+                      :to="localePath(testimonial.meta.case)"
+                      class="fs__s xs bp--nxt"
+                    >
+                      {{ $t("bekijkcase") }}</nuxt-link
+                    >
                   </div>
                 </div>
               </siema>
@@ -215,13 +209,13 @@ export default {
       index: 0
     };
   },
-  mounted(){
-    console.log('testimonial block is mounted')
+  mounted() {
+    console.log("testimonial block is mounted");
   },
   methods: {
     change() {
-      console.log(this.$refs.siema.currentSlide)
-      this.index = this.$refs.siema.currentSlide
+      console.log(this.$refs.siema.currentSlide);
+      this.index = this.$refs.siema.currentSlide;
     },
     siemaPaginate(direction) {
       if (direction === "next") {
