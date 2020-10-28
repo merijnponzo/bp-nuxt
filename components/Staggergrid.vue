@@ -13,6 +13,7 @@
   }
   .bp--stagger{
     opacity:0;
+    padding-left:6px;
     transition: 1s ease all;
   }
   .bp--stagger.view-in{
@@ -30,7 +31,7 @@
   }
 </style>
 <template>
-  <div class="bp--stagger" :class="staggerclass">
+  <div class="bp--stagger" :class="staggerclass" v-view="viewHandler">
     <hr/>
       <template v-if="show">
         <span class="stag" v-for="i in 600" :key="'dot'+i" :class="staggerclass"  >+</span>
@@ -61,6 +62,7 @@ export default {
   },
   methods: {
     viewHandler (e) {
+      console.log(e)
       if (e.type === 'enter') {
         this.show = true
         this.$nextTick(() => {
@@ -78,7 +80,7 @@ export default {
           { value: 1, easing: 'easeInOutQuad', duration: 1200 }
         ],
         // rotateZ: this.$anime.stagger([0, 90], { grid: [10, 21], from: 'center', axis: 'x' }),
-        delay: this.$anime.stagger(50, { grid: [14, 5], from: 'center' }),
+        delay: this.$anime.stagger(70, { grid: [14, 14], from: 'center' }),
         easing: 'easeInOutQuad'
       })
     }

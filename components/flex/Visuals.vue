@@ -2,6 +2,13 @@
   .col-6{
     margin-bottom:rfs(1.5rem);
   }
+  .img-wrap{
+    background-color: var(--color-bg);
+  }
+  .video{
+      background:var(--color-bg);
+  }
+
   @include min-large(){
     .wrap{
       padding-left:$work-single-indent;

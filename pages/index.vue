@@ -196,11 +196,7 @@ import Staggergrid from "@/components/Staggergrid.vue";
 import VideoPlayer from "@/components/VideoPlayer.vue";
 import Playbutton from "@/components/Playbutton.vue";
 import { mapGetters } from "vuex";
-// contenthelpers
-// import scrollouthelper from "@/mixins/scrollouthelper.js";
-import checkView from "vue-check-view";
-import Vue from "vue";
-Vue.use(checkView);
+
 
 export default {
   name: "Page",

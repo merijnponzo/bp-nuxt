@@ -8,6 +8,9 @@
     padding-bottom:rfs(4rem);
     border-top:2px solid white;
   }
+  .fs__s{
+    margin-bottom:5px;
+  }
   .siema{
     overflow:visible!important;
   }

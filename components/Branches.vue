@@ -65,16 +65,6 @@
 .bp--nxt {
   margin-top: rfs(1rem);
 }
-.bp--stagwrap {
-  position: absolute;
-  top: rfs(-6rem);
-  bottom: rfs(-6rem);
-  left: 0px;
-  height: calc(100% + 12rem);
-  width: 75%;
-  overflow: hidden;
-  z-index: 0;
-}
 .visual {
   z-index: 1;
 }

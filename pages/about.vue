@@ -17,7 +17,6 @@
   z-index:2;
   position:relative;
   background:#ffff;
-  margin-top:calc(#{$video-top}/2) ;
 }
 .about__title{
   transform: translateY(calc(-1 * var(--header-height) - (var(--fs-hero) / 2)));
@@ -35,6 +34,11 @@
       margin-top:rfs(6rem);
       min-height:100px;
     }
+  .comp__diensten{
+    .fs__h{
+      max-width:550px;
+    }
+  }
 }
 
 </style>
@@ -47,13 +51,13 @@
           outer="showreel" 
           inner="bg__video" 
           ratio="_" 
-          v-if="showVideo"
+          v-if="!hideVideo"
           :desktop="content.meta.headervideodesktop" 
           :mobile="content.meta.headervideomobile" 
         />
       </div>
     </section>
-     <section class="about__content" data-theme="two">
+     <section class="about__content" data-theme="two" v-view="viewHandler">
       <div class="wrap">
         <div class="row">
           <div class="col col-12">
@@ -164,7 +168,7 @@
                       tagclass="fs__s"
                       tag="p"
                       :meta="expertise"
-                      field="textarea"
+                      field="textfield"
                     />
                   </li>
                 </template>
@@ -204,7 +208,7 @@ export default {
   data: function () {
     return {
       content: false,
-      showVideo: true
+      hideVideo: true
     }
   },
   mounted(){
@@ -223,13 +227,13 @@ export default {
     })
   },
   methods : {
-    viewHandler (e) {
-       if(e.percentTop > 0){
-         this.showVideo = true
-       }else{
-          this.showVideo = false
-       }
-       console.log(e.percentTop, this.showVideo)
+     viewHandler(e) {
+      this.videoScale = 1 - e.scrollPercent * 10;
+      if (this.videoScale < 0) {
+        this.hideVideo = true;
+      } else {
+        this.hideVideo = false;
+      }
     },
   }
 }

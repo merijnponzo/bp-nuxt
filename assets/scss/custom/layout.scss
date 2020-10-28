@@ -4,27 +4,10 @@
 :root {
   --page-margin: 4rem;
 }
-/*
-.visual{
-    .img{
-        opacity:0;
-    }
-    .img.lazyloaded{
-        opacity:1;
-    }
-}
-*/
-
-.img-wrap{
-  background-color: var(--color-bg);
-}
 .diensten--visual{
   .img-wrap{
     background-color:white!important;
   }
-}
-.video{
-    background:var(--color-bg);
 }
 @include min-small() {
   :root {

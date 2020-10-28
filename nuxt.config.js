@@ -64,7 +64,8 @@ export default {
     { src: "~/plugins/vue-siema.js", ssr: false },
     { src: "~/plugins/typy.js" },
     { src: "~/plugins/ponzolang.js" },
-    { src: "~/plugins/worksearch.js" }
+    { src: "~/plugins/worksearch.js" },
+    { src: "~/plugins/checkview.js" }
   ],
   /*
    ** Auto import components

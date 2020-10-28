@@ -29,7 +29,7 @@
     height:calc(100% + 20rem);
     width:80%;
     overflow: hidden;
-    z-index:0;
+    z-index:2;
   }
   .dienst__expertises{
     padding-top:rfs(8rem);
