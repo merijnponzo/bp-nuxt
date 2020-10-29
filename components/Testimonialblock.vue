@@ -41,7 +41,7 @@
 }
 </style>
 <template>
-  <section class="comp__testimonial" data-theme="">
+  <section class="comp__testimonial" data-theme="" v-if="testimonial">
     <div class="wrap" :class="gutter">
       <div class="row">
         <div class="col col-5 col--m-6 comp__testimonial--visual">
@@ -55,7 +55,7 @@
             {{ $t("happycustomer") }}
           </h3>
           <div class="box bp--indent">
-            <div class="avatar--card">
+            <div class="avatar--card" v-if="testimonial.meta.avatar">
               <Visual
                 class="avatar"
                 :visual="testimonial.meta.avatar"
@@ -105,9 +105,9 @@ export default {
       default: "ratio--4x3"
     },
     testimonial: {
-      type: Object,
+      type: [Boolean, Object],
       default: function() {
-        return {};
+        return false;
       }
     }
   }

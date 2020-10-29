@@ -12,7 +12,14 @@
     background:transparent!important;
   }
 }
-
+.member{
+  .box{
+    margin-top:rfs(1rem);
+  }
+  .fs__a{
+    margin-bottom:2px;
+  }
+}
 .about__cta{
   width:100%;
   z-index:2;
@@ -132,10 +139,11 @@
       <!-- members -->
       <div class="wrap space--3">
         <div class="row">
-          <div class="col col-4" v-for="(member,m) in content.meta.members" :key="'members'+m">
+          <div class="col member col-4" v-for="(member,m) in content.meta.members" :key="'members'+m">
             <Visual ratio="ratio--4x3" :visual="member.visual"/>
-            <div class="box px0">
+            <div class="box pad--0">
               <h4 class="fs__a">{{member.naam}}</h4>
+              <p class="fs__m">{{member.functie}}</p>
               <p-meta
                 tagclass="fs__r xs"
                 tag="p"

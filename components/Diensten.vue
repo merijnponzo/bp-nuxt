@@ -11,7 +11,7 @@
   }
   .bp--nxt{
     margin-top: rfs(1rem);
-   
+    padding-right:rfs(1rem);
   }
   .bp--stagwrap{
     position:absolute;
@@ -54,7 +54,7 @@
                   v-for="(dienst, i) in getDienstenNav"
                   :meta="dienst"
                   :key="'dienst' + i"
-                  class="fs__s bp--nxt"
+                  class="bp--nxt xl"
                 >
                   {{ $t(dienst.name) }}
                 </p-link>

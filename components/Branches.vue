@@ -118,14 +118,14 @@
                 :key="'branches' + i"
                 :meta="branche.slug"
                 filter="branche"
-                class="fs__s xs bp--nxt"
+                class="bp--nxt"
               >
                 <span v-html="branche.name" />
               </p-link>
               <p-link
                 filter="branche"
                 :archive="true"
-                class="fs__s xs bp--nxt"
+                class="bp--nxt"
               >
                 <span>{{$t('allebranches')}}</span>
               </p-link>

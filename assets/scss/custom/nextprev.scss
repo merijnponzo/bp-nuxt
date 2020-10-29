@@ -21,11 +21,23 @@
             background: rgba(0, 0, 0, 0);
             font-size: 22px;
         }
+        span{
+            border:thin solid white;
+            border-radius: 50px;
+            padding:rfs(1rem);
+        }
     }
     .bp--prv::before{
         height:0px;
     }
     .bp--nxt::before{
         height:0px;
+    }
+}
+@include min-large(){
+    .bp--tile{
+        a{
+            
+        }
     }
 }

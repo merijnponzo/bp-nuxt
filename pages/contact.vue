@@ -6,11 +6,19 @@
       margin-bottom:rfs(2rem);
       display:block;
     }
+    .contact{
+      padding-top:rfs(6rem);
+    }
+    .meta{
+      a{
+        display:block;
+      }
+    }
     .fs__t{
       font-weight: normal;
     }
     .visual{
-      margin-top:rfs(6rem);
+      margin-top:rfs(4.5rem);
     }
     .contact__posts{
       margin-top:rfs(2rem);
@@ -63,16 +71,12 @@
 </style>
 <template>
   <div v-if="content">
-    <section class="wrap">
+    <section class="wrap contact">
       <div class="row">
         <h1 class="fs__h chapter">Contact</h1>
         <div class="col col-6">
-          <span class="">
-              <p class="fs__b">{{$t('mail')}}</p>
+          <span class="meta">
               <a class="fs__t" :href="`mailto:${$store.getters.getContact.mail}`">{{$store.getters.getContact.mail}}</a>
-          </span>
-          <span class="">
-              <p class="fs__b">{{$t('telefoon')}}</p>
               <a class="fs__t" :href="`mailto:${$store.getters.getContact.telefoon}`">{{$store.getters.getContact.telefoon}}</a>
           </span>
           <span class="">
@@ -85,8 +89,8 @@
         <div class="col col-6">
           <span class="">
               <p class="fs__b">{{$t('social')}}</p>
-              <a class="fs__t " :href="`mailto:${$store.getters.getContact.instagram}`">Instagram</a><br/>
-              <a class="fs__t" :href="`mailto:${$store.getters.getContact.facebook}`">Facebook</a>
+              <a class="fs__t " :href="`${$store.getters.getContact.instagram}`">Instagram</a><br/>
+              <a class="fs__t" :href="`${$store.getters.getContact.facebook}`">Facebook</a>
           </span>
           <Visual :visual="content.meta.contactvisual" />
         </div>

@@ -29,13 +29,13 @@
     <div class="wrap">
       <div class="row">
         <template v-if="smallmode">
-          <h2 class="fs__t chapter">{{ $t("morehappycustomers") }}</h2>
+          <h2 class="fs__t col col-12">{{ $t("morehappycustomers") }}</h2>
         </template>
         <template v-else>
-          <h2 class="chapter fs__h space--3">{{ $t("ourclients") }}</h2>
+          <h2 class="fs__h col col-12 space--3">{{ $t("ourclients") }}</h2>
         </template>
         <template v-for="(clientItem, i) in clients">
-          <div class="col col-2 col--m-4 col--ms-6" :card="clientItem" :key="'client'+i">
+          <div class="col col-2 col--m-4 col--ms-6" :key="'client'+i">
             <div class="visual">
               <div
               class="icon"
@@ -55,7 +55,8 @@ export default {
   name: 'Logowall',
   props: {
     smallmode:{
-      type: [String, Boolean]
+      type: [String, Boolean],
+      default: false
     },
     clients: {
       type: Array,

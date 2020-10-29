@@ -11,10 +11,10 @@
 
 .project__comp{
   .img-wrap {
-    background-color: var(--tile-color);
+    background-color: rgba(0, 0, 0, 0.5);
   }
   .video {
-    background-color: var(--tile-color);
+    background-color: rgba(0, 0, 0, 0.5);
   }
   &.wallpaper{
     .img-wrap {

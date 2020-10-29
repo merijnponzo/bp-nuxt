@@ -51,6 +51,9 @@
   opacity: 0.5;
   margin-right: 5px;
 }
+.slide--index.active{
+  opacity:1;
+}
 .bp--paginate {
   cursor: pointer;
 }
@@ -113,18 +116,18 @@
   }
 }
 @include min-large() {
-  .slide{
-    width:95%;
-    height:600px;
+  .slide {
+    width: 95%;
+    height: 600px;
   }
-  .slide--story{
-    height:600px;
-    display:flex;
-    justify-content:center;
-    flex-direction:column;
+  .slide--story {
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
-  .slide--nav{
-    width:calc(95% - 1rem);
+  .slide--nav {
+    width: calc(95% - 1rem);
   }
   .slide--visual {
     height: 600px;
@@ -173,16 +176,29 @@
                         tag="div"
                         tagclass="fs__q xl"
                       />
+                      <template v-if="windowWidth > 768">
+                        <nuxt-link
+                          :to="localePath(testimonial.meta.case)"
+                          class="bp--nxt"
+                        >
+                          {{ $t("bekijkcase") }}</nuxt-link
+                        >
+                      </template>
                     </div>
                   </div>
-                  <div class="slide--visual bp--tile">
+                  <div
+                    class="slide--visual"
+                    :class="{ 'bp--tile': windowWidth < 768 }"
+                  >
                     <Visual :visual="testimonial.visual" ratio="" />
-                    <nuxt-link
-                      :to="localePath(testimonial.meta.case)"
-                      class="fs__s xs bp--nxt"
-                    >
-                      {{ $t("bekijkcase") }}</nuxt-link
-                    >
+                    <template v-if="windowWidth < 768">
+                      <nuxt-link
+                        :to="localePath(testimonial.meta.case)"
+                        class="bp--nxt"
+                      >
+                        {{ $t("bekijkcase") }}</nuxt-link
+                      >
+                    </template>
                   </div>
                 </div>
               </siema>
