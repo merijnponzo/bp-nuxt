@@ -1,18 +1,17 @@
 <style lang="scss">
 #revised__wrap {
   overflow: hidden;
-  .simple-range-slider-bg-bar {
+  .slider {
     margin: 0px !important;
     background: rgba(0, 0, 0, 0) !important;
-    .simple-range-slider-anchor {
+    .slider-dot {
       height: 100vh !important;
       width: 60px !important;
       background: rgba(255, 255, 255, 0) !important;
       box-shadow: 0 0 0px 0px #000000 !important;
     }
   }
-  
-  .simple-range-slider:focus, .simple-range-slider-handle:focus {
+  .slider:focus {
     box-shadow: 0 0 0px 0px #000000 !important;
   }
 }
@@ -43,7 +42,6 @@
     }
   }
 }
-
 
 input {
   &:active {
@@ -92,13 +90,14 @@ input {
         class="col col-12 col--mm-12"
         :style="`--percentage:${doNegative}%;--current:${number}%`"
       >
-        <VueSimpleRangeSlider
-          class="revised--drag"
-          :min="0"
-          barColor="transparant"
-          :max="100"
-          v-model="number"
-        />
+        <div class="revided--drag">
+          <vue-range-slider
+            ref="slider"
+            :min="0"
+            :max="100"
+            v-model="number"
+          ></vue-range-slider>
+        </div>
         <span class="range--indicator" :class="{ active: dragActive }" />
         <template v-if="flexcontent.before">
           <Visual
@@ -120,11 +119,12 @@ input {
 </template>
 <script>
 import Visual from "@/components/Visual.vue";
-import VueSimpleRangeSlider from "vue-simple-range-slider";
-import "vue-simple-range-slider/dist/vueSimpleRangeSlider.css";
+import "vue-range-component/dist/vue-range-slider.css";
+import VueRangeSlider from "vue-range-component";
+
 export default {
   name: "RevisedFlex",
-  components: { Visual, VueSimpleRangeSlider },
+  components: { Visual, VueRangeSlider },
   props: {
     flexcontent: {
       type: Object,

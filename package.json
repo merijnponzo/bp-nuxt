@@ -29,7 +29,7 @@
     "vue-animejs": "^2.1.1",
     "vue-check-view": "^0.3.0",
     "vue-cookies": "^1.7.0",
-    "vue-simple-range-slider": "^0.1.10",
+    "vue-range-component": "^1.0.3",
     "vue-window-size": "0.6.2",
     "vue2-leaflet": "^2.5.2",
     "yarn": "^1.22.10"
