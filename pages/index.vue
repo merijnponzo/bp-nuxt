@@ -146,7 +146,7 @@ section {
               :meta="dienst"
               :key="'dienst' + i"
             >
-              <p class="fs__s bp--nxt">{{ $t(dienst.name) }}</p>
+              <p class="bp--nxt xl">{{ $t(dienst.name) }}</p>
             </p-link>
           </div>
         </div>

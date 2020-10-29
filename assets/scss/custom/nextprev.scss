@@ -13,13 +13,14 @@
         display: flex;
         color: white;
         justify-content: center;
+        font-family: var(--productive-1);
         align-items: center;
         background: rgba(0, 0, 0, 0.66);
         transition: 1s ease all;
-        font-size: rfs(22px);
+        font-size: var(--fs-btn);
         &:hover {
             background: rgba(0, 0, 0, 0);
-            font-size: 22px;
+            font-size: var(--fs-btn);
         }
         span{
             border:thin solid white;
@@ -32,12 +33,5 @@
     }
     .bp--nxt::before{
         height:0px;
-    }
-}
-@include min-large(){
-    .bp--tile{
-        a{
-            
-        }
     }
 }

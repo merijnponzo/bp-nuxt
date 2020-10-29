@@ -236,6 +236,8 @@
 import BannerWork from "@/components/BannerWork.vue";
 import visualsFlex from "@/components/flex/Visuals.vue";
 import visualsingleFlex from "@/components/flex/Visualsingle.vue";
+import revisedFlex from "@/components/flex/Revised.vue";
+import visualsPortrait from "@/components/flex/Visualsportrait.vue";
 import sliderFlex from "@/components/flex/Slider.vue";
 import omschrijvingFlex from "@/components/flex/Omschrijving.vue";
 import movieFlex from "@/components/flex/Movie.vue";
@@ -250,6 +252,8 @@ export default {
     omschrijvingFlex,
     visualsFlex,
     visualsingleFlex,
+    revisedFlex,
+    visualsPortrait,
     Visual
   },
   middleware: "delay",
