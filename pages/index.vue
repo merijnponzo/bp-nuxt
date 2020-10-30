@@ -6,6 +6,14 @@ section {
 .bg__video {
   // transition:0.5s ease transform;
 }
+video:after {
+  border: 2px solid red;
+  content: "";
+  width: 100px;
+  position: absolute;
+  height: 100px;
+  z-index: 2;
+}
 #bg__video_hotspot {
   width: 0px;
   height: 0px;
@@ -37,7 +45,7 @@ section {
     height: 150px;
     z-index: 5;
     position: relative;
-    margin-top:rfs(1.5rem);
+    margin-top: rfs(1.5rem);
   }
   .intro__icon {
     svg {
@@ -67,8 +75,8 @@ section {
 .intro__slogan {
   mix-blend-mode: exclusion;
   color: white;
-  position:relative;
-  z-index:10;
+  position: relative;
+  z-index: 10;
 }
 .home__posts {
   margin-top: rfs(2rem);
@@ -78,7 +86,7 @@ section {
   z-index: 10;
   pointer-events: none;
   position: absolute;
-  display:none;
+  display: none;
 }
 @include max-medium() {
   .intro__slogan {
@@ -92,17 +100,17 @@ section {
     }
   }
 }
-@include medium-only(){
-  .crumbs--xl{
-    a{
-     // padding-right:5rem;
+@include medium-only() {
+  .crumbs--xl {
+    a {
+      // padding-right:5rem;
     }
   }
 }
 @include min-large() {
   #fly {
     position: absolute;
-    display:block;
+    display: block;
   }
   #bg__video_hotspot {
     width: 100%;
@@ -125,7 +133,11 @@ section {
 <template>
   <div v-if="content" class="bp__home">
     <div class="wrap gut--0 intro__nav">
-      <div class="row" :style="{ height: windowHeight + 'px' }" v-on:mousemove="updateCoordinates">
+      <div
+        class="row"
+        :style="{ height: windowHeight + 'px' }"
+        v-on:mousemove="updateCoordinates"
+      >
         <div
           id="bg__video_hotspot"
           @click="hideVideo ? null : openFullScreen()"
@@ -145,14 +157,19 @@ section {
               v-for="(dienst, i) in getDienstenNav"
               :meta="dienst"
               :key="'dienst' + i"
+              class="bp--nxt xl"
             >
-              <p class="bp--nxt xl">{{ $t(dienst.name) }}</p>
+              <span>{{ $t(dienst.name) }}</span>
             </p-link>
           </div>
         </div>
       </div>
     </div>
-    <Highlights gutter="gut--u-5" :highlights="content.meta.highlights" v-view="viewHandler" />
+    <Highlights
+      gutter="gut--u-5"
+      :highlights="content.meta.highlights"
+      v-view="viewHandler"
+    />
     <Logowall :clients="content.meta.clients" />
     <Branches :branches="content.meta.branches">
       <Staggergrid />
@@ -171,12 +188,10 @@ section {
         <video
           loop
           autoplay
-          v-if="switchVideo"
-          :controls="fullScreenMode"
           ref="bpplayer"
           class="wid--fl"
-          :muted="{ muted: !fullScreenMode }"
-          :src="switchVideo"
+          muted
+          :src="content.meta.showreel.bgvideo"
           type="video/mp4"
         />
       </div>
@@ -197,7 +212,6 @@ import VideoPlayer from "@/components/VideoPlayer.vue";
 import Playbutton from "@/components/Playbutton.vue";
 import { mapGetters } from "vuex";
 
-
 export default {
   name: "Page",
   components: {
@@ -216,7 +230,6 @@ export default {
       dir: "right",
       flypos: { x: 0, y: 0 },
       show: true,
-      switchVideo: null,
       fullScreenMode: false,
       hideVideo: 0,
       inScrollVideo: false
@@ -237,16 +250,15 @@ export default {
     });
   },
   mounted() {
-    this.switchVideo = this.content.meta.showreel.bgvideo;
     // this.createScrollOut();
     setTimeout(() => {
       this.toggleVideoFullscreen();
     }, 1000);
   },
   methods: {
-    updateCoordinates(e){
-      this.flypos.x = e.clientX
-      this.flypos.y = e.clientY
+    updateCoordinates(e) {
+      this.flypos.x = e.clientX;
+      this.flypos.y = e.clientY;
     },
     viewHandler(e) {
       this.videoScale = 1 - e.scrollPercent * 10;
@@ -262,11 +274,15 @@ export default {
         elem.addEventListener("fullscreenchange", event => {
           const elem = this.$refs["bpplayer"];
           if (!this.fullScreenMode) {
-            this.switchVideo = this.content.meta.showreel.video;
             this.fullScreenMode = true;
+            elem.src = this.content.meta.showreel.video;
+            elem.muted = false;
+            elem.controls = true;
           } else {
-            this.switchVideo = this.content.meta.showreel.bgvideo;
             this.fullScreenMode = false;
+            elem.src = this.content.meta.showreel.bgvideo;
+            elem.muted = true;
+            elem.controls = false;
           }
           elem.load();
         });

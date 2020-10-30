@@ -2,14 +2,17 @@
 .bp--nxt,
 .bp--prv {
   position: relative;
-  display: inline-block;
-  padding-bottom: rfs(0.5rem);
-  padding-top: rfs(0.5rem);
-  align-self: flex-start;
+  display: inline-flex;
+  // align-self: flex-start;
   text-decoration: none !important;
   font-size: var(--fs-btn);
   cursor: pointer;
   font-family: var(--productive-1);
+  span {
+    position: relative;
+    padding-bottom: rfs(0.5rem);
+    padding-top: rfs(0.5rem);
+  }
 }
 .bp--nxt.xl,
 .bp--prv.xl {
@@ -19,7 +22,7 @@
 .bp--prv.xs {
   font-size: var(--fs-btn-small);
 }
-.bp--nxt::before {
+.bp--nxt span:before {
   height: 2px;
   background-color: var(--color-bg-text);
   content: "";
@@ -27,7 +30,7 @@
   position: absolute;
   bottom: 0px;
 }
-.bp--prv::after {
+.bp--prv span:after {
   height: 2px;
   background-color: var(--color-bg-text);
   content: "";
@@ -36,14 +39,14 @@
   bottom: 0px;
   left: 0px;
 }
-.bp--nxt:hover::before {
+.bp--nxt span:hover::before {
   animation-name: bp__line;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
-.bp--prv:hover::after {
+.bp--prv span:hover::after {
   animation-name: bp__line;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
@@ -54,6 +57,7 @@
   50% {
     bottom: -1rem;
     opacity: 0;
+    width: 0px;
   }
   100% {
     width: 100%;
@@ -74,6 +78,7 @@
   font-family: var(--productive-1);
   display: inline-block;
   margin-left: rfs(0.5rem);
+  transform: translateY(25%);
 }
 .bp--prv::before {
   transition: 0.5s ease all;
@@ -82,6 +87,7 @@
   font-family: var(--productive-1);
   display: inline-block;
   margin-left: rfs(0.5rem);
+  transform: translateY(25%);
 }
 .bp--nxt:hover::after {
   margin-left: rfs(1rem);

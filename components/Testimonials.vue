@@ -51,8 +51,8 @@
   opacity: 0.5;
   margin-right: 5px;
 }
-.slide--index.active{
-  opacity:1;
+.slide--index.active {
+  opacity: 1;
 }
 .bp--paginate {
   cursor: pointer;
@@ -181,7 +181,7 @@
                           :to="localePath(testimonial.meta.case)"
                           class="bp--nxt"
                         >
-                          {{ $t("bekijkcase") }}</nuxt-link
+                          <span>{{ $t("bekijkcase") }}</span></nuxt-link
                         >
                       </template>
                     </div>
@@ -196,7 +196,7 @@
                         :to="localePath(testimonial.meta.case)"
                         class="bp--nxt"
                       >
-                        {{ $t("bekijkcase") }}</nuxt-link
+                        <span>{{ $t("bekijkcase") }}</span></nuxt-link
                       >
                     </template>
                   </div>
