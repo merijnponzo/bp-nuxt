@@ -207,7 +207,9 @@
     </section>
     <section class="about__cta">
       <Info gutter="gut--u-5" cta="contactop" :info="content.meta.meerweten" />
+      <!-- 
       <Morerows class="push--2" :rows="content.meta.meer_posts" />
+      -->
     </section>
   </div>
 </template>
