@@ -12,10 +12,10 @@
           v-if="windowWidth"
           loop
           autoplay
-          playinline
           ref="bpplayersingle"
           class="wid--fl"
-          muted=""
+          muted
+          playsinline
           :key="desktop"
         >
           <template v-if="windowWidth < 1000">

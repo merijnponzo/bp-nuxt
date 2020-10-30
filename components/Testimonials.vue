@@ -74,6 +74,9 @@
     margin-top: rfs(1rem);
     margin-bottom: rfs(1rem);
   }
+  .comp__testimonials {
+    min-height: 110vh;
+  }
 }
 @include min-small() {
   .siema {
@@ -194,7 +197,7 @@
                     <template v-if="windowWidth < 768">
                       <nuxt-link
                         :to="localePath(testimonial.meta.case)"
-                        class="bp--nxt"
+                        class=""
                       >
                         <span>{{ $t("bekijkcase") }}</span></nuxt-link
                       >
