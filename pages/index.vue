@@ -193,6 +193,7 @@ video:after {
           muted
           :src="content.meta.showreel.bgvideo"
           type="video/mp4"
+          playsinline
         />
       </div>
     </template>
