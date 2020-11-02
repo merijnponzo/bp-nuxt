@@ -34,11 +34,9 @@ export default {
    */
   //http://cms.buroponzo.test http://cms.buroponzo.test
   env: {
-    wpApi:
-      process.env.WP_API || "http://localhost:8888/buroponzo/api/wp-json/wp/v2",
-    bpApi:
-      process.env.BP_API || "http://localhost:8888/buroponzo/api/wp-json/bp/v1",
-    sitePath: process.env.SITEPATH || "http://localhost:8888/buroponzo/api"
+    wpApi: "https://cms.buroponzo.nl/api/wp-json/wp/v2",
+    bpApi: "https://cms.buroponzo.nl/api/wp-json/bp/v1",
+    sitePath: "https://cms.buroponzo.nl/api"
   },
   /*
    ** Global CSS
@@ -109,8 +107,8 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   router: {
-    scrollBehavior: function (to, from, savedPosition) {
-      return { x: 0, y: 0 }
+    scrollBehavior: function(to, from, savedPosition) {
+      return { x: 0, y: 0 };
     }
   },
   build: {
