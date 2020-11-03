@@ -6,17 +6,17 @@
 .box {
   max-width: 600px;
 }
-.chapter{
-  margin-bottom:rfs(1rem);
+.chapter {
+  margin-bottom: rfs(1rem);
 }
-.bp--nxt{
-  margin-top:rfs(1rem);
+.bp--nxt {
+  margin-top: rfs(1rem);
 }
 .avatar--card {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom:rfs(20px);
+  margin-bottom: rfs(20px);
   .avatar {
     width: 60px;
     height: auto;
@@ -69,10 +69,10 @@
             <p-meta
               :meta="testimonial.meta"
               field="textarea"
-              tagclass="fs__l xl"
+              tagclass="fs__r xl"
               tag="div"
             />
-            <p-link class="fs__s xs bp--nxt" :url="`${testimonial.meta.case}`">
+            <p-link class="fs__s bp--nxt xl" :url="`${testimonial.meta.case}`">
               {{ $t("bekijkcase") }}
             </p-link>
           </div>

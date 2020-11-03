@@ -157,7 +157,7 @@ h1 {
     <section class="dienst__werkwijzen" v-if="content.meta.werkwijze">
       <Werkwijzen cta="contactop" :werkwijzen="content.meta.werkwijze" />
     </section>
-    <section class="dienst__testimonial" v-if="content.meta.testimonial.length">
+    <section class="dienst__testimonial" v-if="content.meta.testimonial">
       <Testimonialblock :testimonial="content.meta.testimonial" />
     </section>
     <section class="dienst__logowall" v-if="content.meta.clients">

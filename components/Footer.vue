@@ -145,15 +145,19 @@ footer {
       <div class="wrap">
         <div class="row">
           <div class="col col-6 terms">
-            <p-link class="fs__r xs" :meta="getTerms">{{
-              $t(getTerms.name)
-            }}</p-link>
+            <a
+              href="https://cms.buropponzo.nl/bp-algemenevoorwaarden.pdf"
+              target="_blank"
+              class="fs__r xs"
+              >Algemene voorwaarden</a
+            >
           </div>
           <div class="col col-6 social">
             <div class="split--m-6">
               <span
-                ><i class="ico-i_facebook"/><i class="ico-i_instagram"
-              /></span>
+                ><a :href="getContact.facebook"><i class="ico-i_facebook"/></a
+                ><a :href="getContact.instagram"><i class="ico-i_instagram"/></a
+              ></span>
               <span class="copyright fs__r xs">© Copyright 2020 [v0.9]</span>
             </div>
           </div>

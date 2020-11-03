@@ -78,7 +78,7 @@
   font-family: var(--productive-1);
   display: inline-block;
   margin-left: rfs(0.5rem);
-  transform: translateY(25%);
+  transform: translateY(5%);
 }
 .bp--prv::before {
   transition: 0.5s ease all;
@@ -87,7 +87,7 @@
   font-family: var(--productive-1);
   display: inline-block;
   margin-left: rfs(0.5rem);
-  transform: translateY(25%);
+  transform: translateY(5%);
 }
 .bp--nxt:hover::after {
   margin-left: rfs(1rem);
