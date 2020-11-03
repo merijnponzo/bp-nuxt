@@ -95,7 +95,7 @@
 }
 </style>
 <template>
-  <article :class="[cardclass]" class="card">
+  <article :class="[cardclass]" class="card" v-view.once>
     <nuxt-link
       :to="localePath(card.slug)"
       @click.native="setImageTransition(card)"

@@ -9,14 +9,14 @@
   }
 }
 
-.project__comp{
+.project__comp {
   .img-wrap {
     background-color: rgba(0, 0, 0, 0.5);
   }
   .video {
     background-color: rgba(0, 0, 0, 0.5);
   }
-  &.wallpaper{
+  &.wallpaper {
     .img-wrap {
       background-color: transparent;
     }
@@ -25,7 +25,6 @@
     }
   }
 }
-
 
 .work__paginate {
   margin-top: rfs(50px);
@@ -167,7 +166,8 @@
           <component
             class="project__comp skrp space--4"
             :class="`flex--${s}`"
-            :style="{'--tile-color':content.meta.tilecolor}"
+            v-view.once
+            :style="{ '--tile-color': content.meta.tilecolor }"
             v-bind:is="`${flexcontent.acf_fc_layout}Flex`"
             :flexcontent="flexcontent"
             :index="s"

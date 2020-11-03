@@ -146,7 +146,7 @@ footer {
         <div class="row">
           <div class="col col-6 terms">
             <a
-              href="https://cms.buroponzo.nl/Algemene_voorwaarden_BP.pdf"
+              href="https://cms.buroponzo.nl/wp-content/uploads/2020/11/Algemene_voorwaarden_BP.pdf"
               target="_blank"
               class="fs__r xs"
               >Algemene voorwaarden</a
