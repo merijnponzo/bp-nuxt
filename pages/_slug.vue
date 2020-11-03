@@ -126,12 +126,12 @@ h1 {
         </div>
         <div class="col col-12 dienst__intro--visual" v-view>
           <Visual
-            class="skrp element diensten--visual-1"
+            class="element diensten--visual-1"
             ratio="ratio--16x9"
             :visual="content.meta.intro.visual1"
           />
           <Visual
-            class="skrp element diensten--visual-2"
+            class="element diensten--visual-2"
             ratio="ratio--16x9"
             :visual="content.meta.intro.visual2"
           />
