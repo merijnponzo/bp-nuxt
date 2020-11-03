@@ -146,7 +146,7 @@ footer {
         <div class="row">
           <div class="col col-6 terms">
             <a
-              href="https://cms.buropponzo.nl/bp-algemenevoorwaarden.pdf"
+              href="https://cms.buroponzo.nl/Algemene_voorwaarden_BP.pdf"
               target="_blank"
               class="fs__r xs"
               >Algemene voorwaarden</a
@@ -158,7 +158,7 @@ footer {
                 ><a :href="getContact.facebook"><i class="ico-i_facebook"/></a
                 ><a :href="getContact.instagram"><i class="ico-i_instagram"/></a
               ></span>
-              <span class="copyright fs__r xs">© Copyright 2020 [v0.9]</span>
+              <span class="copyright fs__r xs">© Copyright 2020</span>
             </div>
           </div>
         </div>
