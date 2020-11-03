@@ -21,6 +21,9 @@
         <div class="col col-6">
           <div class="box pad--no">
             <p-meta tagclass="fs__l xl" :meta="meerweten" field="textarea" />
+            <router-link class="bp--nxt xl" :to="meerweten.link">{{
+              $t("more")
+            }}</router-link>
           </div>
         </div>
         <div class="col col-6 comp__info--visual" v-if="meerweten.visual">
