@@ -204,9 +204,10 @@ video:after {
           :src="content.meta.showreel.bgvideo"
           type="video/mp4"
           playsinline
+          autoplay
         />
       </template>
-      <Preloader :xl="true" v-else-if="initVideo" />
+      <Preloader :xl="true" v-else-if="init" />
     </div>
 
     <!-- / video -->
