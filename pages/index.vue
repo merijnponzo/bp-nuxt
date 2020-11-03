@@ -6,6 +6,13 @@ section {
 .bg__video {
   // transition:0.5s ease transform;
 }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 video:after {
   border: 2px solid red;
   content: "";
@@ -46,22 +53,24 @@ video:after {
     z-index: 5;
     position: relative;
     margin-top: rfs(1.5rem);
+    background: white;
   }
   .intro__icon {
     svg {
       fill: none;
       stroke: white;
       mix-blend-mode: difference;
-      width: rfs(100px);
-      height: rfs(100px);
+      width: rfs(150px);
+      height: rfs(150px);
       position: relative;
       z-index: 4;
+      stroke-width: 2px;
     }
     cursor: pointer;
     margin-bottom: rfs(2rem);
     background: transparent;
     &:hover {
-      stroke-width: 2px;
+      stroke-width: 4px;
     }
   }
 }
@@ -180,24 +189,26 @@ video:after {
     <Morerows class="home__posts" :rows="content.meta.meer_posts" />
     -->
     <!-- video -->
-    <template v-if="!hideVideo && !initVideo">
-      <div class="bg__video skrp">
-        <div id="fly" :style="flystyle">
-          <span class="showreel_typo">PLAY SHOWREEL</span>
+    <transition name="fade">
+      <template v-if="!hideVideo && !initVideo">
+        <div class="bg__video skrp">
+          <div id="fly" :style="flystyle">
+            <span class="showreel_typo">PLAY SHOWREEL</span>
+          </div>
+          <video
+            loop
+            autoplay
+            ref="bpplayer"
+            onloadeddata="this.play();"
+            class="wid--fl"
+            muted
+            :src="content.meta.showreel.bgvideo"
+            type="video/mp4"
+            playsinline
+          />
         </div>
-        <video
-          loop
-          autoplay
-          ref="bpplayer"
-          onloadeddata="this.play();"
-          class="wid--fl"
-          muted
-          :src="content.meta.showreel.bgvideo"
-          type="video/mp4"
-          playsinline
-        />
-      </div>
-    </template>
+      </template>
+    </transition>
     <!-- / video -->
   </div>
 </template>
