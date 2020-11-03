@@ -64,7 +64,8 @@ export default {
     { src: "~/plugins/typy.js" },
     { src: "~/plugins/ponzolang.js" },
     { src: "~/plugins/worksearch.js" },
-    { src: "~/plugins/checkview.js" }
+    { src: "~/plugins/checkview.js" },
+    { src: "~/plugins/vue-range-slider", ssr: false }
   ],
   /*
    ** Auto import components
@@ -119,6 +120,7 @@ export default {
         config.devtool = ctx.isClient ? "source-map" : "inline-source-map";
       }
     },
+    vendor: ["vue-slider-component"],
     indicator: true,
     cssSourceMap: true,
     postcss: {

@@ -3,20 +3,25 @@
   width: 1rem;
   height: 1rem;
 }
+.preloader.xl {
+  width: rfs(5rem);
+  height: rfs(5rem);
+}
 .preloader.darkmode {
-  background:black;
+  background: black;
   svg {
     background: black;
   }
 }
-.preloader:not(.darkmode){
-  background:white;
-   svg {
+.preloader:not(.darkmode) {
+  background: white;
+  svg {
     background: black;
-    mix-blend-mode:exclusion;
+    mix-blend-mode: exclusion;
   }
-  .oval--a, .oval--b{
-    fill:white;
+  .oval--a,
+  .oval--b {
+    fill: white;
   }
 }
 .oval--a {
@@ -61,10 +66,14 @@
     height: 2.5rem;
     transform: translateY(-5px) translateX(5px);
   }
+  .preloader.xl {
+    width: rfs(4rem);
+    height: rfs(4rem);
+  }
 }
 </style>
 <template>
-  <div class="preloader" :class="{ darkmode: darkmode }">
+  <div class="preloader" :class="{ darkmode: darkmode, xl: xl }">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75 75">
       <path
         class="oval--a"
@@ -86,6 +95,10 @@ export default {
     darkmode: {
       type: [String, Boolean],
       default: false
+    },
+    xl: {
+      type: [String, Boolean],
+      default: ""
     }
   }
 };

@@ -189,26 +189,26 @@ video:after {
     <Morerows class="home__posts" :rows="content.meta.meer_posts" />
     -->
     <!-- video -->
-    <transition name="fade">
+
+    <div class="bg__video skrp">
       <template v-if="!hideVideo && !initVideo">
-        <div class="bg__video skrp">
-          <div id="fly" :style="flystyle">
-            <span class="showreel_typo">PLAY SHOWREEL</span>
-          </div>
-          <video
-            loop
-            autoplay
-            ref="bpplayer"
-            onloadeddata="this.play();"
-            class="wid--fl"
-            muted
-            :src="content.meta.showreel.bgvideo"
-            type="video/mp4"
-            playsinline
-          />
+        <div id="fly" :style="flystyle">
+          <span class="showreel_typo">PLAY SHOWREEL</span>
         </div>
+        <video
+          loop
+          ref="bpplayer"
+          v-view="autoPlay"
+          class="wid--fl"
+          muted
+          :src="content.meta.showreel.bgvideo"
+          type="video/mp4"
+          playsinline
+        />
       </template>
-    </transition>
+      <Preloader :xl="true" v-else />
+    </div>
+
     <!-- / video -->
   </div>
 </template>
@@ -224,6 +224,7 @@ import Staggergrid from "@/components/Staggergrid.vue";
 import Playbutton from "@/components/Playbutton.vue";
 import { mapGetters } from "vuex";
 import Vue from "vue";
+import Preloader from "@/components/Preloader.vue";
 import VueWindowSize from "vue-window-size";
 Vue.use(VueWindowSize);
 
@@ -234,6 +235,7 @@ export default {
     Highlights,
     Logowall,
     Branches,
+    Preloader,
     Testimonials,
     Info,
     Staggergrid
@@ -246,7 +248,8 @@ export default {
       fullScreenMode: false,
       hideVideo: 0,
       initVideo: 1,
-      inScrollVideo: false
+      inScrollVideo: false,
+      play: false
     };
   },
   computed: {
@@ -283,11 +286,21 @@ export default {
         this.hideVideo = false;
       }
     },
+    autoPlay(e) {
+      if (e.percentInView > 0.85 && !this.play) {
+        this.play = true;
+        const player = this.$refs["bpplayer"];
+        if (player) {
+          player.play();
+        }
+      } else if (e.type === "exit") {
+        this.play = false;
+      }
+    },
     toggleVideoFullscreen() {
       const elem = this.$refs["bpplayer"];
       if (elem) {
         elem.addEventListener("fullscreenchange", event => {
-          console.log("chahhhhhhaned??");
           const elem = this.$refs["bpplayer"];
           if (!this.fullScreenMode) {
             this.fullScreenMode = true;

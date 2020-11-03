@@ -1,21 +1,4 @@
 <style lang="scss">
-#revised__wrap {
-  overflow: hidden;
-  .slider {
-    margin: 0px !important;
-    background: rgba(0, 0, 0, 0) !important;
-    .slider-dot {
-      height: 100vh !important;
-      width: 60px !important;
-      background: rgba(255, 255, 255, 0) !important;
-      box-shadow: 0 0 0px 0px #000000 !important;
-    }
-  }
-  .slider:focus {
-    box-shadow: 0 0 0px 0px #000000 !important;
-  }
-}
-
 .range--indicator {
   position: absolute;
   left: calc(100% - var(--percentage));
@@ -32,7 +15,8 @@
     left: -10px;
     border-radius: 100px;
     position: absolute;
-    background: black;
+    background: white;
+    border: 2px solid black;
     content: "";
   }
   &.active {
@@ -43,19 +27,29 @@
   }
 }
 
-input {
-  &:active {
-    outline: none !important;
-    border: none !important;
-  }
-}
 .revised--drag {
   position: absolute;
   z-index: 4;
   width: 100%;
   height: 100%;
   top: 0px;
+  overflow: hidden;
   left: 0px;
+  input {
+    &:active {
+      outline: none !important;
+      border: none !important;
+    }
+    height: 0px;
+  }
+  .vue-slider-dot {
+    background: black;
+    height: 2000px !important;
+    width: 60px !important;
+    margin-left: -25px;
+    opacity: 0;
+    cursor: pointer;
+  }
 }
 .revised--after {
   z-index: 2;
@@ -75,10 +69,21 @@ input {
   content: "";
   background: black;
   z-index: 1;
+  pointer-events: none;
+  cursor: pointer;
 }
 @include min-large() {
   .revised__comp.wrap {
     padding-left: $work-single-indent;
+  }
+}
+.revised--title {
+  margin-top: rfs(0.5rem);
+  display: block;
+  text-align: center;
+  span {
+    margin-left: -3px;
+    color: black;
   }
 }
 </style>
@@ -90,15 +95,10 @@ input {
         class="col col-12 col--mm-12"
         :style="`--percentage:${doNegative}%;--current:${number}%`"
       >
-        <div class="revided--drag">
-          <vue-range-slider
-            ref="slider"
-            :min="0"
-            :max="100"
-            v-model="number"
-          ></vue-range-slider>
+        <div class="revised--drag">
+          <vue-slider ref="slider" :min="0" :max="100" v-model="number" />
+          <span class="range--indicator" :class="{ active: dragActive }" />
         </div>
-        <span class="range--indicator" :class="{ active: dragActive }" />
         <template v-if="flexcontent.before">
           <Visual
             :visual="flexcontent.before"
@@ -114,17 +114,20 @@ input {
           />
         </template>
       </div>
+      <div class="col col-12">
+        <span class="fs__b xl revised--title"
+          ><span>←</span><span>→</span></span
+        >
+      </div>
     </div>
   </section>
 </template>
 <script>
 import Visual from "@/components/Visual.vue";
-import "vue-range-component/dist/vue-range-slider.css";
-import VueRangeSlider from "vue-range-component";
 
 export default {
   name: "RevisedFlex",
-  components: { Visual, VueRangeSlider },
+  components: { Visual },
   props: {
     flexcontent: {
       type: Object,
@@ -135,17 +138,14 @@ export default {
   },
   data() {
     return {
-      number: 33,
+      number: 50,
       dragActive: false
     };
   },
   computed: {
     doNegative() {
       const negative = 100 - this.number;
-      let fix = 0;
-      if (negative < 55) {
-        fix = 2;
-      }
+      const fix = 0;
       return negative + fix;
     }
   }
