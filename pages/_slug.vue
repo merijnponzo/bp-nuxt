@@ -35,13 +35,15 @@ h1 {
     width: 40%;
     align-self: flex-end;
   }
-}
-.element {
-  transition: 1s ease all;
-  transform: scale(0, 0);
-}
-.element.view-in {
-  transform: scale(1, 1);
+  .element {
+    transition: 1s ease all;
+    transform: scale(0, 0);
+  }
+  &.view-in {
+    .element {
+      transform: scale(1, 1);
+    }
+  }
 }
 
 .bp--stagwrap {
@@ -122,17 +124,15 @@ h1 {
             tag="p"
           />
         </div>
-        <div class="col col-12 dienst__intro--visual">
+        <div class="col col-12 dienst__intro--visual" v-view>
           <Visual
             class="skrp element diensten--visual-1"
             ratio="ratio--16x9"
-            v-view
             :visual="content.meta.intro.visual1"
           />
           <Visual
             class="skrp element diensten--visual-2"
             ratio="ratio--16x9"
-            v-view
             :visual="content.meta.intro.visual2"
           />
           <div class="bp--stagwrap">
