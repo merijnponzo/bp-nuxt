@@ -203,11 +203,9 @@ video:after {
           muted
           :src="content.meta.showreel.bgvideo"
           type="video/mp4"
-          playsinline
-          autoplay
         />
       </template>
-      <Preloader :xl="true" v-else-if="init" />
+      <Preloader :xl="true" v-else-if="initVideo" />
     </div>
 
     <!-- / video -->
@@ -272,6 +270,10 @@ export default {
     setTimeout(() => {
       this.toggleVideoFullscreen();
       this.initVideo = 0;
+      const player = this.$refs["bpplayer"];
+      if (player) {
+        player.play();
+      }
     }, 2000);
   },
   methods: {
