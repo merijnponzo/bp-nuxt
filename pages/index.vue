@@ -180,7 +180,7 @@ video:after {
     <Morerows class="home__posts" :rows="content.meta.meer_posts" />
     -->
     <!-- video -->
-    <template v-if="!hideVideo">
+    <template v-if="!hideVideo && !initVideo">
       <div class="bg__video skrp">
         <div id="fly" :style="flystyle">
           <span class="showreel_typo">PLAY SHOWREEL</span>
@@ -189,6 +189,7 @@ video:after {
           loop
           autoplay
           ref="bpplayer"
+          onloadeddata="this.play();"
           class="wid--fl"
           muted
           :src="content.meta.showreel.bgvideo"
@@ -209,20 +210,20 @@ import Testimonials from "@/components/Testimonials.vue";
 import Info from "@/components/Infoblock.vue";
 // import Morerows from "@/components/Morerows.vue";
 import Staggergrid from "@/components/Staggergrid.vue";
-import VideoPlayer from "@/components/VideoPlayer.vue";
 import Playbutton from "@/components/Playbutton.vue";
 import { mapGetters } from "vuex";
+import Vue from "vue";
+import VueWindowSize from "vue-window-size";
+Vue.use(VueWindowSize);
 
 export default {
   name: "Page",
   components: {
-    VideoPlayer,
     Playbutton,
     Highlights,
     Logowall,
     Branches,
     Testimonials,
-    // Morerows,
     Info,
     Staggergrid
   },
@@ -233,6 +234,7 @@ export default {
       show: true,
       fullScreenMode: false,
       hideVideo: 0,
+      initVideo: 1,
       inScrollVideo: false
     };
   },
@@ -254,7 +256,8 @@ export default {
     // this.createScrollOut();
     setTimeout(() => {
       this.toggleVideoFullscreen();
-    }, 1000);
+      this.initVideo = 0;
+    }, 2000);
   },
   methods: {
     updateCoordinates(e) {
@@ -273,6 +276,7 @@ export default {
       const elem = this.$refs["bpplayer"];
       if (elem) {
         elem.addEventListener("fullscreenchange", event => {
+          console.log("chahhhhhhaned??");
           const elem = this.$refs["bpplayer"];
           if (!this.fullScreenMode) {
             this.fullScreenMode = true;

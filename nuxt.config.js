@@ -35,9 +35,9 @@ export default {
    */
   //http://cms.buroponzo.test http://cms.buroponzo.test
   env: {
-    wpApi: "https://cms.buroponzo.nl/wp-json/wp/v2",
-    bpApi: "https://cms.buroponzo.nl/wp-json/bp/v1",
-    sitePath: "https://cms.buroponzo.nl"
+    wpApi: process.env.WP_API,
+    bpApi: process.env.BP_API,
+    sitePath: process.env.SITEPATH
   },
   /*
    ** Global CSS
