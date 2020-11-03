@@ -206,7 +206,7 @@ video:after {
           playsinline
         />
       </template>
-      <Preloader :xl="true" v-else />
+      <Preloader :xl="true" v-else-if="initVideo" />
     </div>
 
     <!-- / video -->
