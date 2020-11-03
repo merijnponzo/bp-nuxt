@@ -2,9 +2,12 @@
 .dienst {
   padding-top: rfs(4rem);
 }
+.dienst__intro {
+  padding-top: rfs(3rem);
+}
 .dienst__intro--text {
-  padding-top: rfs(6rem);
-  padding-bottom: rfs(6rem);
+  padding-top: rfs(3rem);
+  padding-bottom: rfs(3rem);
 }
 
 h1 {
@@ -17,17 +20,36 @@ h1 {
 }
 .dienst__intro--visual {
   margin-top: rfs(-2rem);
-  padding-bottom: rfs(10rem);
+  padding-bottom: rfs(5rem);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
   .visual {
     z-index: 1;
   }
+  .diensten--visual-1 {
+    width: 60%;
+    z-index: 5;
+  }
+  .diensten--visual-2 {
+    width: 40%;
+    align-self: flex-end;
+  }
 }
+.element {
+  transition: 1s ease all;
+  transform: scale(0, 0);
+}
+.element.view-in {
+  transform: scale(1, 1);
+}
+
 .bp--stagwrap {
   position: absolute;
   top: rfs(4rem);
-  right: 0px;
+  left: 25%;
   height: calc(100% + 20rem);
-  width: 80%;
+  max-width: 640px;
   overflow: hidden;
   z-index: 2;
 }
@@ -92,7 +114,7 @@ h1 {
         <div class="col col-6">
           <h1 v-html="content.title.rendered"></h1>
         </div>
-        <div class="col col-6 col--m-6 dienst__intro--text">
+        <div class="col col-6 dienst__intro--text">
           <p-meta
             :meta="content.meta.intro"
             field="textarea"
@@ -100,11 +122,18 @@ h1 {
             tag="p"
           />
         </div>
-        <div class="col col-12 col--m-6 dienst__intro--visual">
+        <div class="col col-12 dienst__intro--visual">
           <Visual
-            class="diensten--visual"
+            class="skrp element diensten--visual-1"
             ratio="ratio--16x9"
-            :visual="content.meta.intro.visual"
+            v-view
+            :visual="content.meta.intro.visual1"
+          />
+          <Visual
+            class="skrp element diensten--visual-2"
+            ratio="ratio--16x9"
+            v-view
+            :visual="content.meta.intro.visual2"
           />
           <div class="bp--stagwrap">
             <Staggergrid staggerclass="dienst" />
