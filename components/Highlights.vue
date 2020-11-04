@@ -1,9 +1,9 @@
 <style lang="scss" scoped>
-.work__highlights {
-  background-color: var(--color-bg);
+.work__highlights{
+  background-color:var(--color-bg);
 }
 .cta {
-  margin-top: rfs(5rem);
+  margin-top:rfs(5rem);
   padding-bottom: rfs(5rem);
   .btn {
     &:hover {

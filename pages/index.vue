@@ -180,7 +180,9 @@ video:after {
       v-view="viewHandler"
     />
     <Logowall :clients="content.meta.clients" />
-    <Branches :branches="content.meta.branches"> </Branches>
+    <Branches :branches="content.meta.branches">
+      <Staggergrid />
+    </Branches>
     <Testimonials :testimonials="content.meta.testimonials" />
     <Info gutter="gut--u-5" cta="contactop" :info="content.meta.meerweten" />
     <!-- 
@@ -217,6 +219,7 @@ import Branches from "@/components/Branches.vue";
 import Testimonials from "@/components/Testimonials.vue";
 import Info from "@/components/Infoblock.vue";
 // import Morerows from "@/components/Morerows.vue";
+import Staggergrid from "@/components/Staggergrid.vue";
 import Playbutton from "@/components/Playbutton.vue";
 import { mapGetters } from "vuex";
 import Vue from "vue";
@@ -233,7 +236,8 @@ export default {
     Branches,
     Preloader,
     Testimonials,
-    Info
+    Info,
+    Staggergrid
   },
   data: function() {
     return {
@@ -265,7 +269,7 @@ export default {
     // this.createScrollOut();
     setTimeout(() => {
       this.toggleVideoFullscreen();
-      this.initVideo = 1;
+      this.initVideo = 0;
       const player = this.$refs["bpplayer"];
       if (player) {
         player.play();

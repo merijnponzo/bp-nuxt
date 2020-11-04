@@ -1,108 +1,100 @@
 //headings
-$heading-weight: normal;
-$heading-transform: inherit;
-$heading-spacing: -0.02em;
-$bread-weight: normal;
+$heading-weight:normal;
+$heading-transform:inherit;
+$heading-spacing:-0.02em;
+$bread-weight:normal;
 //general typography
-$line-height: 1.25em;
-$fontaliasing: true;
-$fontsize-body: 16px !default;
-$fontsize-hero: 80px !default;
-$minimum-fontsize: 12px !default;
-$default-font: var(productive-1);
+$line-height:1.25em;
+$fontaliasing:true;
+$fontsize-body:16px!default;
+$fontsize-hero:80px!default;
+$minimum-fontsize:12px!default;
+$default-font:var(productive-1);
 
-html {
-  font-family: $default-font;
-  font-size: $fontsize-body;
-  line-height: $line-height;
-  @if $fontaliasing {
+html{
+    font-family:$default-font;
+    font-size:$fontsize-body;
+    line-height: $line-height;
+    @if $fontaliasing {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
+    }
 }
-// TYPOGRAPHY
+// TYPOGRAPHY 
 // set font-sizes
-$font-types: () !default;
+$font-types:()!default;
 
 //create 3 sizes of fontsize css variables of each fonttype
-:root {
+:root{
   @each $name, $fontsize, $scalefactor, $classname in $font-types {
     // set small medium and large
-    $small: "#{$name}-small";
-    $medium: "#{$name}-medium";
-    $large: "#{$name}-large";
+    $small : '#{$name}-small';
+    $medium : '#{$name}-medium';
+    $large : '#{$name}-large';
     // calculate 3 steps of fontsizes
-    $fontsize-small: $fontsize * ((100% - $scalefactor) / 100%);
-    $fontsize-medium: $fontsize;
-    $fontsize-large: $fontsize / ((100% - $scalefactor) / 100%);
+    $fontsize-small : $fontsize * ((100% - $scalefactor) / 100%);
+    $fontsize-medium : $fontsize;
+    $fontsize-large : $fontsize / ((100% - $scalefactor) / 100%);
 
     @if $fontsize-small < 14px {
-      $fontsize-small: $minimum-fontsize;
+      $fontsize-small : $minimum-fontsize;
     }
     // set variables
-    --#{$small}: rfs(#{$fontsize-small});
-    --#{$medium}: rfs(#{$fontsize-medium});
-    --#{$large}: rfs(#{$fontsize-large});
-    --#{$name}: var(--#{$medium});
+    --#{$small}:rfs(#{$fontsize-small});
+    --#{$medium}:rfs(#{$fontsize-medium});
+    --#{$large}:rfs(#{$fontsize-large});
+    --#{$name}:var(--#{$medium}); 
   }
 }
 
 //create fontsize classhelpers
-@each $name, $fontsize, $scalefactor, $classname, $typeface, $weight,
-  $line-height in $font-types
-{
-  .#{$classname} {
-    font-size: v($name);
+@each $name, $fontsize, $scalefactor, $classname, $typeface, $weight, $line-height in $font-types{
+  .#{$classname}{
+    font-size:v($name);
     line-height: $line-height;
     font-family: v($typeface);
     font-weight: $weight;
     //scale icons as well;
-    .pi:before {
-      font-size: v($name);
+    .pi:before{
+      font-size:v($name);
     }
   }
 }
-.xs {
-  @each $name, $fontsize, $scalefactor, $classname in $font-types {
-    $small: "#{$name}-small";
-    --#{$name}: var(--#{$small});
+.xs{
+  @each $name, $fontsize, $scalefactor, $classname in $font-types{
+    $small : '#{$name}-small';
+    --#{$name}:var(--#{$small}); 
   }
 }
-.xl {
-  @each $name, $fontsize, $scalefactor, $classname in $font-types {
-    $large: "#{$name}-large";
-    --#{$name}: var(--#{$large});
+.xl{
+  @each $name, $fontsize, $scalefactor, $classname in $font-types{
+    $large : '#{$name}-large';
+    --#{$name}:var(--#{$large}); 
   }
 }
 
-h1 {
+h1{
   font-size: var(--fs-title-large);
 }
-h2 {
+h2{
   font-size: var(--fs-title-medium);
 }
-h3 {
+h3{
   font-size: var(--fs-title-small);
 }
-h4 {
+h4{
   font-size: var(--fs-longread-large);
 }
-h5 {
+h5{
   font-size: var(--fs-longread);
 }
-h6 {
+h6{
   font-size: var(--fs-longread-small);
 }
-p,
-li {
+p, li{
   font-size: var(--fs-longread);
   line-height: $line-height;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1,h2,h3,h4,h5,h6{
   font-family: var(--productive-1);
 }

@@ -7,7 +7,7 @@
   width: 100%;
   overflow: hidden;
   height: calc(#{$video-top} - 150px);
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   background: white;

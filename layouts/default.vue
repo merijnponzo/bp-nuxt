@@ -1,19 +1,22 @@
 <template>
   <div id="app">
+    <Header class="nav" />
+    <Imagetransition />
     <main>
       <Nuxt :key="$route.path" />
     </main>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-// import Imagetransition from "@/components/Imagetransition.vue";
+import Imagetransition from "@/components/Imagetransition.vue";
 
 export default {
   name: "Page",
-  components: { Footer, Header },
+  components: { Footer, Header, Imagetransition },
   scrollTop: true,
   mounted() {
     window.addEventListener("resize", this.handleResize);
