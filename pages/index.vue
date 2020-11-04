@@ -28,6 +28,7 @@ video:after {
   top: 0px;
   left: 0px;
   z-index: 2;
+  cursor: pointer;
 }
 .showreel__controls {
   background: var(--color-bg);
@@ -37,24 +38,26 @@ video:after {
   z-index: 3;
   position: relative;
 }
+
+.crumbs--wrap {
+  position: relative;
+  background: white;
+  padding-top: rfs(1.5rem);
+  padding-bottom: rfs(1.5rem);
+}
+
 .intro__nav {
   .col-12 {
     position: relative;
     overflow: hidden;
   }
-  .row {
-    min-height: 90vh;
+  .intro__stretch {
+    min-height: calc(100vh - 150px);
     transition: 0.5s ease height;
     // height:$video-top;
     align-items: flex-end;
   }
-  .crumbs--xl {
-    height: 150px;
-    z-index: 5;
-    position: relative;
-    margin-top: rfs(1.5rem);
-    background: white;
-  }
+
   .intro__icon {
     svg {
       fill: none;
@@ -129,12 +132,11 @@ video:after {
     max-width: 1200px;
   }
   .intro__nav {
-    .crumbs--xl {
-      height: 125px;
-      margin-top: 25px;
-      .bp--nxt {
-        align-self: center;
-      }
+  }
+  .crumbs--xl {
+    height: 125px;
+    .bp--nxt {
+      align-self: center;
     }
   }
 }
@@ -143,16 +145,19 @@ video:after {
   <div v-if="content" class="bp__home">
     <div class="wrap gut--0 intro__nav">
       <div
-        class="row"
-        :style="{ height: windowHeight + 'px' }"
+        class="row intro__stretch"
+        :style="{ height: windowHeight - 150 + 'px' }"
         v-on:mousemove="updateCoordinates"
       >
         <div
           id="bg__video_hotspot"
-          @click="hideVideo ? null : openFullScreen()"
+          @click="showVideo ? false : openFullScreen()"
         ></div>
         <div class="col col-12">
-          <div @click="hideVideo ? null : openFullScreen()" class="intro__icon">
+          <div
+            @click="showVideo ? false : openFullScreen()"
+            class="intro__icon"
+          >
             <Playbutton />
           </div>
           <p-meta
@@ -161,19 +166,27 @@ video:after {
             :meta="content.meta.introtext"
             field="textarea"
           />
-          <div class="crumbs--xl">
-            <p-link
-              v-for="(dienst, i) in getDienstenNav"
-              :meta="dienst"
-              :key="'dienst' + i"
-              class="bp--nxt xl"
-            >
-              <span>{{ $t(dienst.name) }}</span>
-            </p-link>
-          </div>
         </div>
       </div>
     </div>
+    <section class="crumbs--wrap">
+      <div class="wrap">
+        <div class="row">
+          <div class="col col-12">
+            <div class="crumbs--xl">
+              <p-link
+                v-for="(dienst, i) in getDienstenNav"
+                :meta="dienst"
+                :key="'dienst' + i"
+                class="bp--nxt xl"
+              >
+                <span>{{ $t(dienst.name) }}</span>
+              </p-link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <Highlights
       gutter="gut--u-5"
       :highlights="content.meta.highlights"
@@ -215,7 +228,6 @@ video:after {
           />
         </template>
       </div>
-      <Preloader :xl="true" v-if="initVideo" />
     </div>
 
     <!-- / video -->
@@ -279,6 +291,8 @@ export default {
     // this.createScrollOut();
     setTimeout(() => {
       this.initVideo = 0;
+      const elem = this.$refs["bpplayer"];
+      elem.play();
     }, 2000);
   },
   methods: {

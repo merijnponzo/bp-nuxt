@@ -1,4 +1,4 @@
-<style lang="scss">
+<style lang="scss" scoped>
 .chapter {
   margin-bottom: 0px;
   max-width: 1200px;
