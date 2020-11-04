@@ -196,12 +196,24 @@ video:after {
         <video
           loop
           ref="bpplayer"
-          v-view="autoPlay"
           class="wid--fl"
           muted
+          autoplay
+          v-if="!showVideo"
+          playsinline
           :src="content.meta.showreel.bgvideo"
           type="video/mp4"
         />
+        <template v-if="showVideo">
+          <video
+            loop
+            ref="bpplayervideo"
+            class="wid--fl"
+            controls
+            :src="content.meta.showreel.video"
+            type="video/mp4"
+          />
+        </template>
       </div>
       <Preloader :xl="true" v-if="initVideo" />
     </div>
@@ -241,10 +253,12 @@ export default {
       flypos: { x: 0, y: 0 },
       show: true,
       fullScreenMode: false,
+      showVideo: false,
       hideVideo: 0,
       initVideo: 1,
       inScrollVideo: false,
-      play: false
+      play: false,
+      hasListener: false
     };
   },
   computed: {
@@ -265,11 +279,6 @@ export default {
     // this.createScrollOut();
     setTimeout(() => {
       this.initVideo = 0;
-      const player = this.$refs["bpplayer"];
-      if (player) {
-        player.play();
-      }
-      this.toggleVideoFullscreen();
     }, 2000);
   },
   methods: {
@@ -285,44 +294,32 @@ export default {
         this.hideVideo = false;
       }
     },
-    autoPlay(e) {
-      if (e.percentInView > 0.85 && !this.play) {
-        this.play = true;
-        const player = this.$refs["bpplayer"];
-        if (player) {
-          player.play();
-        }
-      } else if (e.type === "exit") {
-        this.play = false;
+    checkFs() {
+      if (!this.fullScreenMode) {
+        this.fullScreenMode = true;
+      } else {
+        this.showVideo = false;
+        this.fullScreenMode = false;
       }
     },
-    toggleVideoFullscreen() {
-      const elem = this.$refs["bpplayer"];
-      if (elem) {
-        elem.addEventListener("fullscreenchange", event => {
-          const elem = this.$refs["bpplayer"];
-          if (!this.fullScreenMode) {
-            this.fullScreenMode = true;
-            elem.src = this.content.meta.showreel.video;
-            elem.muted = false;
-            elem.controls = true;
-            setTimeout(() => {
-              elem.play();
-            }, 1000);
-          } else {
-            this.fullScreenMode = false;
-            elem.src = this.content.meta.showreel.bgvideo;
-            elem.muted = true;
-            elem.controls = false;
-          }
-          elem.load();
-        });
+    fullscreenListener(elem) {
+      if (!this.hasListener) {
+        [
+          "fullscreenchange",
+          "webkitfullscreenchange",
+          "mozfullscreenchange",
+          "msfullscreenchange"
+        ].forEach(eventType =>
+          document.addEventListener(eventType, this.checkFs, false)
+        );
       }
-      console.log(this.fullScreenMode, elem);
+      this.hasListener = true;
     },
     openFullScreen() {
-      const elem = this.$refs["bpplayer"];
-      if (!this.fullScreenMode) {
+      this.showVideo = true;
+
+      setTimeout(() => {
+        const elem = this.$refs["bpplayervideo"];
         if (elem.requestFullscreen) {
           elem.requestFullscreen();
         } else if (elem.mozRequestFullScreen) {
@@ -335,7 +332,9 @@ export default {
           /* IE/Edge */
           elem.msRequestFullscreen();
         }
-      }
+        elem.play();
+        this.fullscreenListener(elem);
+      }, 1000);
     }
   }
 };
