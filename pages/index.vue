@@ -180,9 +180,7 @@ video:after {
       v-view="viewHandler"
     />
     <Logowall :clients="content.meta.clients" />
-    <Branches :branches="content.meta.branches">
-      <Staggergrid />
-    </Branches>
+    <Branches :branches="content.meta.branches"> </Branches>
     <Testimonials :testimonials="content.meta.testimonials" />
     <Info gutter="gut--u-5" cta="contactop" :info="content.meta.meerweten" />
     <!-- 
@@ -191,7 +189,7 @@ video:after {
     <!-- video -->
 
     <div class="bg__video skrp">
-      <template v-if="!hideVideo && !initVideo">
+      <div v-show="!hideVideo && !initVideo">
         <div id="fly" :style="flystyle">
           <span class="showreel_typo">PLAY SHOWREEL</span>
         </div>
@@ -204,8 +202,8 @@ video:after {
           :src="content.meta.showreel.bgvideo"
           type="video/mp4"
         />
-      </template>
-      <Preloader :xl="true" v-else-if="initVideo" />
+      </div>
+      <Preloader :xl="true" v-if="initVideo" />
     </div>
 
     <!-- / video -->
@@ -219,7 +217,6 @@ import Branches from "@/components/Branches.vue";
 import Testimonials from "@/components/Testimonials.vue";
 import Info from "@/components/Infoblock.vue";
 // import Morerows from "@/components/Morerows.vue";
-import Staggergrid from "@/components/Staggergrid.vue";
 import Playbutton from "@/components/Playbutton.vue";
 import { mapGetters } from "vuex";
 import Vue from "vue";
@@ -236,8 +233,7 @@ export default {
     Branches,
     Preloader,
     Testimonials,
-    Info,
-    Staggergrid
+    Info
   },
   data: function() {
     return {
@@ -268,12 +264,12 @@ export default {
   mounted() {
     // this.createScrollOut();
     setTimeout(() => {
-      this.toggleVideoFullscreen();
       this.initVideo = 0;
       const player = this.$refs["bpplayer"];
       if (player) {
         player.play();
       }
+      this.toggleVideoFullscreen();
     }, 2000);
   },
   methods: {
@@ -310,6 +306,9 @@ export default {
             elem.src = this.content.meta.showreel.video;
             elem.muted = false;
             elem.controls = true;
+            setTimeout(() => {
+              elem.play();
+            }, 1000);
           } else {
             this.fullScreenMode = false;
             elem.src = this.content.meta.showreel.bgvideo;
@@ -319,6 +318,7 @@ export default {
           elem.load();
         });
       }
+      console.log(this.fullScreenMode, elem);
     },
     openFullScreen() {
       const elem = this.$refs["bpplayer"];
