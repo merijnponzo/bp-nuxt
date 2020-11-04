@@ -262,9 +262,10 @@ export default {
     });
   },
   mounted() {
+    // this.createScrollOut();
     setTimeout(() => {
       this.toggleVideoFullscreen();
-      this.initVideo = 0;
+      this.initVideo = 1;
       const player = this.$refs["bpplayer"];
       if (player) {
         player.play();
