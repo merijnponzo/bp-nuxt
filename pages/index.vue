@@ -27,7 +27,9 @@ video:after {
   position: absolute;
   top: 0px;
   left: 0px;
-  z-index: 2;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+
   cursor: pointer;
 }
 .showreel__controls {
@@ -199,7 +201,6 @@ video:after {
         </div>
         <video
           loop
-          ref="bpplayer"
           class="wid--fl"
           muted
           autoplay
@@ -210,8 +211,7 @@ video:after {
         />
         <video
           loop
-          id="bpplayerfs"
-          ref="bpplayervideo"
+          id="bpplayervideo"
           class="wid--fl"
           controls
           v-show="showVideo"
@@ -283,18 +283,18 @@ export default {
     // this.createScrollOut();
     setTimeout(() => {
       this.initVideo = 0;
-      const elem = this.$refs["bpplayer"];
-      elem.play();
-
       // use screenfull
       document
         .getElementById("bg__video_hotspot")
         .addEventListener("click", () => {
+          alert("click bitch?");
           this.showVideo = true;
-          const elem = this.$refs["bpplayervideo"];
+          const elem = document.getElementById("bpplayervideo");
           if (screenfull.isEnabled) {
-            screenfull.request(elem);
-            elem.play();
+            if (this.$typy(elem).isDefined) {
+              screenfull.request(elem);
+              elem.play();
+            }
           }
         });
     }, 2000);
@@ -302,12 +302,14 @@ export default {
     if (screenfull.isEnabled) {
       screenfull.on("change", () => {
         if (!screenfull.isFullscreen) {
-          const elem = this.$refs["bpplayervideo"];
-          elem.pause();
-          elem.currentTime = 0;
-          setTimeout(() => {
-            this.showVideo = false;
-          }, 500);
+          const elem = document.getElementById("bpplayervideo");
+          if (this.$typy(elem).isDefined) {
+            elem.pause();
+            elem.currentTime = 0;
+            setTimeout(() => {
+              this.showVideo = false;
+            }, 500);
+          }
         }
       });
     }
