@@ -2,6 +2,7 @@
 .fs__t.xs {
   text-transform: Capitalize;
   font-weight: 400;
+  margin-bottom: rfs(0.5rem);
 }
 </style>
 <template>

@@ -64,7 +64,7 @@
   .preloader {
     width: 2.5rem;
     height: 2.5rem;
-    transform: translateY(-5px) translateX(5px);
+    // transform: translateY(-5px) translateX(5px);
   }
   .preloader.xl {
     width: rfs(4rem);

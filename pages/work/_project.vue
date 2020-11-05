@@ -55,6 +55,13 @@
 @include max-small() {
   .terms__wrap {
     display: none;
+    li {
+      font-size: 16px;
+    }
+    .fs__b {
+      margin-bottom: 0px;
+    }
+    margin-bottom: rfs(2rem);
   }
   .terms__wrap.active {
     display: block;
@@ -180,7 +187,7 @@
       <div class="wrap work__knowmore">
         <div class="row">
           <h2 class="chapter fs__h">{{ $t("meerweten") }}</h2>
-          <div class="col col-12 space--1">
+          <div class="col col-12 space--3">
             <div class="split--fl">
               <span>
                 <router-link class="bp--nxt xl" to="/contact">{{

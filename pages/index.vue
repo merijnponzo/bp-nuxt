@@ -5,8 +5,8 @@ section {
 }
 .bg__video {
   // transition:0.5s ease transform;
-  & > div{
-    text-align:center;
+  & > div {
+    text-align: center;
   }
 }
 .fade-enter-active,
@@ -55,7 +55,7 @@ video:after {
     overflow: hidden;
   }
   .intro__stretch {
-    min-height: calc(100vh - 150px);
+    min-height: calc(100vh - 200px);
     transition: 0.5s ease height;
     // height:$video-top;
     align-items: flex-end;
@@ -149,7 +149,7 @@ video:after {
     <div class="wrap gut--0 intro__nav">
       <div
         class="row intro__stretch"
-        :style="{ height: windowHeight - 150 + 'px' }"
+        :style="{ height: windowHeight - 200 + 'px' }"
         v-on:mousemove="updateCoordinates"
       >
         <div id="bg__video_hotspot"></div>

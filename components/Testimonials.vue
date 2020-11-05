@@ -68,6 +68,10 @@
   display: flex;
   flex-direction: column;
   margin-bottom: rfs(1rem);
+  .box {
+    display: flex;
+    flex-direction: row;
+  }
 }
 @include max-medium() {
   .avatar--card {

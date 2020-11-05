@@ -9,6 +9,10 @@
   min-height: calc(100vh - 150px);
   // background: linear-gradient(-180deg, rgba(0,0,0,1) 64%, rgba(34,34,34,1) 100%);
   background: black;
+  background: url("~assets/images/bg.png");
+  background-repeat: repeat-x;
+  background-size: 100% 100%;
+  background-position: bottom;
   .bg__video {
     background: transparent !important;
   }
@@ -67,8 +71,8 @@
       <div class="wrap gut--0">
         <div class="showreel__playwrap"></div>
         <VideoPlayer
-          outer="showreel"
-          inner="bg__video"
+          outer="bg__video"
+          inner="wid--fl"
           ratio="_"
           v-if="!hideVideo"
           :desktop="content.meta.headervideodesktop"
