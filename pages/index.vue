@@ -160,12 +160,9 @@ video:after {
           >
             <Playbutton />
           </div>
-          <p-meta
-            tagclass="fs__h chapter intro__slogan space--0"
-            tag="h1"
-            :meta="content.meta.introtext"
-            field="textarea"
-          />
+          <div class="fs__h chapter intro__slogan">
+            {{ showVideo }} -- {{ fullScreenMode }}
+          </div>
         </div>
       </div>
     </div>
@@ -312,6 +309,7 @@ export default {
       if (!this.fullScreenMode) {
         this.fullScreenMode = true;
       } else {
+        alert("leave fullscreen");
         this.showVideo = false;
         this.fullScreenMode = false;
       }
