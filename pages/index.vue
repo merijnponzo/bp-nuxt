@@ -287,8 +287,8 @@ export default {
       document
         .getElementById("bg__video_hotspot")
         .addEventListener("click", () => {
-          alert("click bitch?");
           this.showVideo = true;
+          this.test = "clicking";
           const elem = document.getElementById("bpplayervideo");
           if (screenfull.isEnabled) {
             if (this.$typy(elem).isDefined) {
@@ -306,6 +306,7 @@ export default {
           if (this.$typy(elem).isDefined) {
             elem.pause();
             elem.currentTime = 0;
+            this.test = "exit on ios?";
             setTimeout(() => {
               this.showVideo = false;
             }, 500);
