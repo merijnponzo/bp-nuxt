@@ -5,6 +5,9 @@ section {
 }
 .bg__video {
   // transition:0.5s ease transform;
+  & > div{
+    text-align:center;
+  }
 }
 .fade-enter-active,
 .fade-leave-active {
@@ -28,8 +31,6 @@ video:after {
   top: 0px;
   left: 0px;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.5);
-
   cursor: pointer;
 }
 .showreel__controls {
@@ -156,9 +157,12 @@ video:after {
           <div class="intro__icon">
             <Playbutton />
           </div>
-          <div class="fs__h chapter intro__slogan">
-            {{ showVideo }} -- {{ fullScreenMode }} -- {{ test }}
-          </div>
+          <p-meta
+            tagclass="fs__h chapter intro__slogan space--0"
+            tag="h1"
+            :meta="content.meta.introtext"
+            field="textarea"
+          />
         </div>
       </div>
     </div>
