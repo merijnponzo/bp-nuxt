@@ -24,6 +24,7 @@
     "nuxt-leaflet": "0.0.22",
     "nuxt-sass-resources-loader": "^2.0.5",
     "rfs": "^9.0.3",
+    "screenfull": "^5.0.2",
     "typy": "^3.3.0",
     "v-siema": "0.0.6",
     "vue": "^2.6.11",

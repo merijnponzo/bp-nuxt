@@ -149,19 +149,13 @@ video:after {
         :style="{ height: windowHeight - 150 + 'px' }"
         v-on:mousemove="updateCoordinates"
       >
-        <div
-          id="bg__video_hotspot"
-          @click="showVideo ? false : openFullScreen()"
-        ></div>
+        <div id="bg__video_hotspot"></div>
         <div class="col col-12">
-          <div
-            @click="showVideo ? false : openFullScreen()"
-            class="intro__icon"
-          >
+          <div class="intro__icon">
             <Playbutton />
           </div>
           <div class="fs__h chapter intro__slogan">
-            {{ showVideo }} -- {{ fullScreenMode }}
+            {{ showVideo }} -- {{ fullScreenMode }} -- {{ test }}
           </div>
         </div>
       </div>
@@ -209,21 +203,21 @@ video:after {
           class="wid--fl"
           muted
           autoplay
-          v-if="!showVideo"
+          v-show="!showVideo"
           playsinline
           :src="content.meta.showreel.bgvideo"
           type="video/mp4"
         />
-        <template v-if="showVideo">
-          <video
-            loop
-            ref="bpplayervideo"
-            class="wid--fl"
-            controls
-            :src="content.meta.showreel.video"
-            type="video/mp4"
-          />
-        </template>
+        <video
+          loop
+          id="bpplayerfs"
+          ref="bpplayervideo"
+          class="wid--fl"
+          controls
+          v-show="showVideo"
+          :src="content.meta.showreel.video"
+          type="video/mp4"
+        />
       </div>
     </div>
 
@@ -244,7 +238,7 @@ import Vue from "vue";
 import Preloader from "@/components/Preloader.vue";
 import VueWindowSize from "vue-window-size";
 Vue.use(VueWindowSize);
-
+const screenfull = require("screenfull");
 export default {
   name: "Page",
   components: {
@@ -267,7 +261,8 @@ export default {
       initVideo: 1,
       inScrollVideo: false,
       play: false,
-      hasListener: false
+      hasListener: false,
+      test: "ios test"
     };
   },
   computed: {
@@ -290,7 +285,32 @@ export default {
       this.initVideo = 0;
       const elem = this.$refs["bpplayer"];
       elem.play();
+
+      // use screenfull
+      document
+        .getElementById("bg__video_hotspot")
+        .addEventListener("click", () => {
+          this.showVideo = true;
+          const elem = this.$refs["bpplayervideo"];
+          if (screenfull.isEnabled) {
+            screenfull.request(elem);
+            elem.play();
+          }
+        });
     }, 2000);
+    // listener for change
+    if (screenfull.isEnabled) {
+      screenfull.on("change", () => {
+        if (!screenfull.isFullscreen) {
+          const elem = this.$refs["bpplayervideo"];
+          elem.pause();
+          elem.currentTime = 0;
+          setTimeout(() => {
+            this.showVideo = false;
+          }, 500);
+        }
+      });
+    }
   },
   methods: {
     updateCoordinates(e) {
@@ -304,49 +324,6 @@ export default {
       } else {
         this.hideVideo = false;
       }
-    },
-    checkFs() {
-      if (!this.fullScreenMode) {
-        this.fullScreenMode = true;
-      } else {
-        alert("leave fullscreen");
-        this.showVideo = false;
-        this.fullScreenMode = false;
-      }
-    },
-    fullscreenListener(elem) {
-      if (!this.hasListener) {
-        [
-          "fullscreenchange",
-          "webkitfullscreenchange",
-          "mozfullscreenchange",
-          "msfullscreenchange"
-        ].forEach(eventType =>
-          document.addEventListener(eventType, this.checkFs, false)
-        );
-      }
-      this.hasListener = true;
-    },
-    openFullScreen() {
-      this.showVideo = true;
-
-      setTimeout(() => {
-        const elem = this.$refs["bpplayervideo"];
-        if (elem.requestFullscreen) {
-          elem.requestFullscreen();
-        } else if (elem.mozRequestFullScreen) {
-          /* Firefox */
-          elem.mozRequestFullScreen();
-        } else if (elem.webkitRequestFullscreen) {
-          /* Chrome, Safari and Opera */
-          elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-          /* IE/Edge */
-          elem.msRequestFullscreen();
-        }
-        elem.play();
-        this.fullscreenListener(elem);
-      }, 1000);
     }
   }
 };
