@@ -41,8 +41,8 @@
   position: absolute;
   padding: 0;
   transform-origin: center center;
-  top: 2rem;
-  right: 2rem;
+  top: rfs(3rem);
+  right: rfs(3rem);
   z-index: 2;
 }
 .sq {
