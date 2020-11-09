@@ -45,6 +45,11 @@ export const state = () => ({
     ],
     info: [
       {
+        name: "home",
+        path_nl: "/",
+        path_en: "/en/"
+      },
+      {
         name: "work",
         path_nl: "/work",
         path_en: "/en/work"

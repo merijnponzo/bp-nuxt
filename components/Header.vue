@@ -5,8 +5,7 @@
     opacity: 0;
   }
   .nav__content {
-    right: 0px;
-    z-index: 1;
+    height: 100%;
   }
 }
 .nav.blendmode {
@@ -76,10 +75,11 @@
   position: fixed;
   right: 0px;
   width: 100%;
-  height: 100%;
-}
-div[class*="panel__"] {
-  position: absolute;
+  height: 0px;
+  z-index: 1;
+  div[class*="panel__"] {
+    position: absolute;
+  }
 }
 
 //MENU
@@ -110,9 +110,9 @@ div[class*="panel__"] {
     }
   }
   a:hover {
-    padding-left: 3rem;
+    padding-left: 1rem;
     i {
-      transform: scale(0.66, 0.66) translateX(-3.5rem);
+      transform: scale(0.66, 0.66) translateX(-1.5rem);
     }
   }
   p,
@@ -126,8 +126,11 @@ div[class*="panel__"] {
 }
 .panel__1 {
   width: 100%;
-  background: url("~assets/images/bg.png");
-  background-size: 100% 100%;
+  background: linear-gradient(
+    -180deg,
+    rgba(0, 0, 0, 1) 25%,
+    rgba(34, 34, 34, 1) 100%
+  );
   padding-left: rfs(2rem);
   padding-right: rfs(2rem);
   padding-bottom: rfs(2rem);
@@ -145,7 +148,7 @@ div[class*="panel__"] {
     margin-bottom: rfs(0.25rem);
   }
 }
-.address {
+.nav__address {
   height: 100%;
   color: white;
   display: flex;
@@ -154,9 +157,8 @@ div[class*="panel__"] {
   br {
     height: 0px;
   }
-  .fs__r,
   .fs__b {
-    font-size: 14px;
+    font-size: var(--fs-btn);
   }
   .fs__r {
     display: flex;
@@ -183,16 +185,7 @@ div[class*="panel__"] {
     width: 0px;
   }
 }
-.fs__b.nav__link:before {
-  max-width: 600px;
-  height: 2px;
-  width: 100%;
-  content: "";
-  display: block;
-  background: white;
-  margin-bottom: rfs(0.25rem);
-  margin-top: rfs(1rem);
-}
+
 .header__logo {
   width: rfs(200px);
   margin-bottom: rfs(2rem);
@@ -218,6 +211,11 @@ div[class*="panel__"] {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+header {
+  .fs__b {
+    color: #ccc;
+  }
+}
 @include min-medium() {
   .panel__1 {
     width: 40%;
@@ -225,7 +223,7 @@ div[class*="panel__"] {
     background-color: #333;
     z-index: 3;
     height: 100%;
-    padding-bottom: rfs(10rem);
+    padding-bottom: rfs(5rem);
   }
   .panel__2 {
     background: black;
@@ -237,9 +235,17 @@ div[class*="panel__"] {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    padding-bottom: rfs(10rem);
+    padding-bottom: rfs(5rem);
     a {
-      font-size: rfs(40px);
+      font-size: rfs(42px);
+      padding-bottom: rfs(0.5rem);
+      padding-top: rfs(0.5rem);
+    }
+    a:hover {
+      padding-left: 3rem;
+      i {
+        transform: scale(0.66, 0.66) translateX(-3.5rem);
+      }
     }
   }
   .nav__content {
@@ -253,10 +259,9 @@ div[class*="panel__"] {
     padding-top: 3rem;
     margin-bottom: 3rem;
   }
-  .address {
-    .fs__r,
-    .fs__b {
-      font-size: 18px;
+  .nav__address {
+    .fs__r {
+      margin-bottom: 3px;
     }
     .fs__r {
       display: block;
@@ -268,41 +273,43 @@ div[class*="panel__"] {
     .nav__slogan {
       display: block;
       padding-bottom: 0rem;
+      margin-top: 3.5rem;
       span {
         display: block;
         width: 100%;
       }
     }
   }
-  a:hover {
-    padding-left: 5rem;
-    i {
-      transform: scale(0.66, 0.66) translateX(-4rem);
-    }
-  }
 }
 @include min-wide() {
   .header__logo {
     margin-bottom: 3rem;
+    width: 250px;
   }
   .panel__2 {
+    padding-left: 5rem;
     a {
-      font-size: rfs(55px);
+      font-size: rfs(52px);
       padding: rfs(0.5rem);
     }
     justify-content: flex-end;
+    a:hover {
+      padding-left: 5rem;
+      i {
+        transform: scale(0.66, 0.66) translateX(-5rem);
+      }
+    }
   }
-  .address {
-    .fs__r,
-    .fs__b {
+  .nav__address {
+    .fs__r {
       font-size: 28px;
     }
-  }
-  a:hover {
-    padding-left: 5rem;
-    i {
-      transform: scale(0.66, 0.66) translateX(-5rem);
+    .fs__t {
+      margin-top: 9rem;
     }
+  }
+  .nav__content {
+    width: 80%;
   }
 }
 </style>
@@ -325,7 +332,7 @@ div[class*="panel__"] {
     </button>
     <nav class="nav__content">
       <div class="panel__1">
-        <div class="address">
+        <div class="nav__address">
           <div>
             <p class="fs__b">{{ $t("contact") }}</p>
             <p class="fs__r" v-html="getContactNav"></p>
@@ -335,7 +342,8 @@ div[class*="panel__"] {
       </div>
       <div class="panel__2">
         <LogoFull class="header__logo" />
-        <div>
+        <div class="nav__wrap">
+          <p class="fs__b nav__link">{{ $t("bekijk") }}</p>
           <p-link
             v-for="(infoItem, i) in getInfoNav"
             :key="'info-nav' + i"
@@ -345,8 +353,7 @@ div[class*="panel__"] {
             ><i class="ico-i_right"></i>
             {{ $t(infoItem.name) }}
           </p-link>
-
-          <p class="fs__b nav__link">{{ $t("diensten") }}</p>
+          <p class="fs__b nav__link dienst">{{ $t("diensten") }}</p>
           <p-link
             v-for="(dienstItem, s) in getDienstenNav"
             :key="'dienst-nav' + s"
@@ -379,7 +386,8 @@ export default {
   components: { Logo, LogoFull },
   data: function() {
     return {
-      blendmode: true
+      blendmode: true,
+      navBusy: false
     };
   },
   computed: {
@@ -408,22 +416,23 @@ export default {
     },
 
     navToggle() {
-      if (this.blendmode) {
+      if (this.blendmode && !this.navBusy) {
         this.blendmode = false;
+        this.navBusy = true;
         this.$anime({
           targets: ".sq",
           width: 0,
           right: 0,
           duration: 800,
           easing: "easeOutSine",
-          delay: this.$anime.stagger(200)
+          delay: this.$anime.stagger(50)
         });
         this.$anime({
           targets: ".sq__cross",
           width: "100%",
           duration: 500,
-          easing: "spring(1, 80, 10, 0)",
-          delay: 1000
+          easing: "easeOutSine",
+          delay: 500
         });
         this.$anime.set(".panel__1", {
           right: "-100%",
@@ -457,35 +466,44 @@ export default {
             },
             delay: this.$anime.stagger(50)
           });
+        this.tl.finished.then(this.navUnbusy);
       } else {
         this.navOut();
       }
     },
     navOut() {
-      this.$anime({
-        targets: ".sq",
-        width: "100%",
-        delay: 1000 + this.$anime.stagger(100)
-      });
-      this.$anime({
-        targets: ".sq__cross",
-        width: "0%",
-        duration: 500,
-        easing: "easeOutSine"
-      });
-      this.$anime({
-        targets: ".panel__1",
-        right: "-100%",
-        duration: 400,
-        delay: 800,
-        easing: "easeInSine"
-      });
-      this.tl.reverse();
-      this.tl.play();
-      this.tl.finished.then(this.blendIn);
+      if (!this.navBusy) {
+        this.navBusy = true;
+        this.tl.reverse();
+        this.tl.play();
+        this.tl.finished.then(this.blendIn);
+
+        this.$anime({
+          targets: ".sq__cross",
+          width: 0,
+          duration: 500,
+          easing: "spring(1, 80, 10, 0)"
+        });
+        this.$anime({
+          targets: ".sq",
+          width: "100%",
+          delay: 500
+        });
+        this.$anime({
+          targets: ".panel__1",
+          right: "-100%",
+          duration: 400,
+          delay: 800,
+          easing: "easeInSine"
+        });
+      }
     },
     blendIn() {
       this.blendmode = true;
+      this.navBusy = false;
+    },
+    navUnbusy() {
+      this.navBusy = false;
     }
   }
 };

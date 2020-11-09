@@ -101,7 +101,7 @@ footer {
           </div>
           <div class="col col-6 vcenter">
             <div class="box indent">
-              <p class="fs__r xl">{{ getSlogan }}</p>
+              <p class="fs__r xl" v-html="getSlogan"></p>
             </div>
           </div>
         </div>
