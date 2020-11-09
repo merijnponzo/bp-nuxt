@@ -12,7 +12,7 @@ export const state = () => ({
   langprefix: "",
   webp: "",
   //*info */
-  slogan: "Let's meet! Say hi ;-)",
+  slogan: "<span>Let's meet!</span><span>Say hi ;-)</span>",
   adres: "Voorhaven 27B<br/>3025 HC Rotterdam",
   telefoon: "+316 83 177 826",
   mail: "team@ponzo.nl",
@@ -146,7 +146,7 @@ export const getters = {
     };
   },
   getContactNav: state => {
-    return `${state.adres}<br/><br/><a href="mailto:${state.mail}">Team@ponzo.nl</a>\n${state.telefoon}`;
+    return `<span>${state.adres}</span><span><a href="mailto:${state.mail}">Team@ponzo.nl</a><br/>${state.telefoon}</span>`;
   },
   getImagetransition: state => {
     return state.imagetransition;

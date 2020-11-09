@@ -1,38 +1,12 @@
 <style lang="scss">
-.nav {
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  mix-blend-mode: normal;
-  align-items: flex-start;
-  width: 100%;
-  pointer-events: none;
-}
-.nav__underlay {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 0px;
-  height: 100vh;
-  background: #000;
-  z-index: 1;
-  opacity: 0;
-  transition: 1s ease all;
-  pointer-events: auto;
-}
-.nav__underlay.active {
-  opacity: 0.3;
-  width: 100vw;
-  cursor: pointer;
-}
-.nav.active {
-  .nav__burger {
-    cursor: default;
-  }
-}
 .nav:not(.blendmode) {
   .nav__logo {
     z-index: 2;
+    opacity: 0;
+  }
+  .nav__content {
+    right: 0px;
+    z-index: 1;
   }
 }
 .nav.blendmode {
@@ -46,6 +20,8 @@
   position: fixed;
   top: rfs(1rem);
   left: rfs(1rem);
+  opacity: 1;
+  transition: 1s ease all;
   pointer-events: auto;
   svg {
     width: rfs(150px);
@@ -55,21 +31,9 @@
     }
   }
 }
-.nav__close {
-  width: rfs(3rem);
-  height: rfs(3rem);
-  top: rfs(2rem);
-  right: rfs(2rem);
-  position: fixed;
-  background: transparent;
-  cursor: pointer;
-  border: none;
-  padding: 0;
-  position: fixed;
-}
 .nav__burger {
-  width: 1.5rem;
-  height: 2rem;
+  width: rfs(3rem);
+  height: rfs(2rem);
   pointer-events: auto;
   background: transparent;
   cursor: pointer;
@@ -80,83 +44,63 @@
   top: 2rem;
   right: 2rem;
   z-index: 2;
-  span {
-    width: 3px;
-    height: 100%;
-    display: block;
-    background: white;
-    position: absolute;
-    top: 0px;
-  }
 }
-
-button.nav__burger:focus,
-.nav__logo.button:focus {
-  outline: none;
-  box-shadow: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
-}
-
-//inner
-.sq__2--buttonwrap {
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-  right: calc(50% - (2rem) / 2);
-  top: 1rem;
-  opacity: 0;
-}
-.sq__4,
-.sq__5 {
+.sq {
   width: 100%;
-  height: rfs(5px);
-  position: absolute;
+  height: 5px;
+  display: block;
   background: white;
+  position: absolute;
+  top: 0px;
+}
+.sq:nth-child(2) {
   top: 50%;
-  right: 50%;
+}
+.sq:nth-child(3) {
+  top: 100%;
+}
+.sq__cross {
+  width: 0%;
+  height: 5px;
+  display: block;
+  background: white;
+  position: absolute;
+  top: 50%;
   transform-origin: center center;
+  transform: rotate(-45deg);
+}
+.sq__cross:last-child {
+  transform: rotate(45deg);
+}
+.nav__content {
+  position: fixed;
+  right: 0px;
+  width: 100%;
+  height: 100%;
+}
+div[class*="panel__"] {
+  position: absolute;
 }
 
-//ACTIVE STATE
-.nav--content {
-  .sq__2--buttonwrap {
-    opacity: 1;
-    z-index: 1;
-  }
-  .sq__4 {
-    transform: rotate(45deg);
-  }
-  .sq__5 {
-    transform: rotate(-45deg);
-  }
-  .nav__menu {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-  .nav__address {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
-.nav__menu {
+//MENU
+.panel__2 {
   padding: rfs(2rem);
-  padding-bottom: rfs(5rem);
+  overflow: hidden;
   display: flex;
-  height: calc(100% - 100px);
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
+  width: 100%;
+  color: white;
   //transition:0.5s ease all;
-  opacity: 0;
-  text-align: left;
-  transform: translateY(100px);
   a {
     font-family: var(--productive-1);
-    font-size: rfs(55px);
-    padding: rfs(0.5rem);
+    font-size: rfs(40px);
     padding-left: 0px;
     padding-right: 0px;
     position: relative;
+    color: white;
+    display: block;
+    padding-top: rfs(0.25rem);
+    padding-bottom: rfs(0.25rem);
     .ico-i_right:before {
       transform: scale(0, 0);
       width: 0px;
@@ -174,126 +118,165 @@ button.nav__burger:focus,
     //padding-left:rfs(0.5rem);
   }
 }
-hr {
-   border: none;
-  height: 2px;
-  background:black;
+.panel__1,
+.panel__2 {
+  right: -100%;
 }
-.nav__address {
-  display: flex;
-  height: calc(100% - 100px);
-  padding: rfs(2rem);
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-  transition: 0.5s ease all;
-  opacity: 0;
-  text-align: left;
-  transition-delay: 0.2s;
-  transform: translateY(100px);
-  .fs__r {
-    white-space: pre-line;
+.panel__1 {
+  width: 100%;
+  background: url("~assets/images/bg.png");
+  background-size: 100% 100%;
+  padding-left: rfs(2rem);
+  padding-right: rfs(2rem);
+  padding-bottom: rfs(2rem);
+  height: 100vh;
+  bottom: 0px;
+}
+.panel__2 {
+  background: black;
+  min-height: 400px;
+  height: 50vh;
+  top: 0px;
+  .fs__b {
+    width: 100%;
+    display: block;
+    margin-top: rfs(1rem);
+    margin-bottom: rfs(0.25rem);
   }
 }
-.nav__slogan {
-  max-width: 2550px;
-  opacity: 0;
-  height: 0px;
-}
-.nav__address--wrap {
-  height: 0px;
-  opacity: 0;
-}
-.nav__address--mobile {
-  transform: rotate(90deg);
-  white-space: nowrap;
-  z-index: 1;
-  align-self: center;
-  cursor: pointer;
-  position: relative;
-  font-family: var(--productive-1);
-}
-.nav__address--mobile-left {
-  align-self: flex-start !important;
-}
-
-@include min-large() {
-  .nav__address--mobile {
-    display: none;
+.address {
+  height: 100%;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  br {
+    height: 0px;
+  }
+  .fs__r,
+  .fs__b {
+    font-size: 16px;
   }
   .nav__slogan {
-    opacity: 1;
-    max-width: 330px;
-    height: 20vh;
-  }
-  .nav__address--wrap {
-    opacity: 1;
-    height: 40vh;
-  }
-  .nav__address {
-    height: 100%;
-  }
-  .nav__logo {
-    top: 0.5rem;
-    left: 1rem;
-    svg {
-      width: 10rem;
+    display: flex;
+    padding-bottom: 1rem;
+    span:nth-child(1) {
+      margin-right: rfs(1rem);
     }
   }
-  .nav__burger {
-    top: 2rem;
-    right: 3rem;
-    width: 2rem;
-    height: 3rem;
-    span {
-      width: 5px;
-    }
+  .fs__t {
+    margin-top: rfs(1rem);
   }
-  .nav__menu {
+}
+.nav__link {
+  opacity: 0;
+  transform: translateY(75px);
+  i {
+    width: 0px;
+  }
+}
+.fs__b.nav__link:before {
+  max-width: 600px;
+  height: 2px;
+  width: 100%;
+  content: "";
+  display: block;
+  background: white;
+  margin-bottom: rfs(0.25rem);
+  margin-top: rfs(1rem);
+}
+.header__logo {
+  width: rfs(250px);
+  margin-bottom: rfs(1rem);
+  path {
+    fill: white;
+  }
+}
+.nav__underlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 0;
+  opacity: 0.3;
+  pointer-events: cursor;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+@include min-medium() {
+  .panel__1 {
+    width: 40%;
+    right: -40%;
+    background-color: #333;
+    z-index: 3;
     height: 100%;
+    padding-bottom: rfs(10rem);
+  }
+  .panel__2 {
+    background: black;
+    right: -100%;
+    padding-right: 40%;
+    width: 100%;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    padding-bottom: rfs(10rem);
     a {
-      white-space: nowrap;
-      padding: rfs(0.25rem);
+      font-size: rfs(40px);
+    }
+  }
+  .nav__content {
+    width: 90%;
+  }
+  .address {
+    .fs__r,
+    .fs__b {
+      font-size: 18px;
+    }
+    .fs__r {
+      span {
+        display: block;
+      }
+      span:nth-child(1) {
+        margin-bottom: 1rem;
+      }
+    }
+    .nav__slogan {
+      display: block;
+      padding-bottom: 0rem;
+      span {
+        display: block;
+        width: 100%;
+      }
     }
   }
 }
-.fs__b {
-  margin-top: rfs(0.5rem);
-  margin-bottom: rfs(0.5rem);
-}
-.logo--bp {
-  transform: translateX(-25%);
-  transition: 1s ease all;
-  &.active {
-    transform: translateX(0px);
-    .logo--arrow {
-      transform: scale(1, 1);
-    }
-    .logo--square {
-      transform: scale(1, 1);
+@include min-large() {
+  .panel__2 {
+    a {
+      font-size: rfs(55px);
+      padding: rfs(0.5rem);
     }
   }
-}
-.logo--arrow {
-  transform: scale(0, 0);
-  transform-origin: center left;
-  transition: 1s ease all;
-}
-.logo--square {
-  transform: scale(0, 0);
-  transform-origin: center left;
-  transition: 1s ease all;
+  .address {
+    .fs__r,
+    .fs__b {
+      font-size: 28px;
+    }
+  }
 }
 </style>
 <template>
-  <header
-    :class="{
-      active: active,
-      'nav--content': activeContentAnim,
-      blendmode: blendmode
-    }"
-    data-state="fixed"
-  >
+  <header :class="{ blendmode: blendmode }" data-state="fixed">
     <button class="nav__logo">
       <template v-if="$route.params.project">
         <router-link to="/work"><Logo class="active"/></router-link>
@@ -302,119 +285,84 @@ hr {
         <router-link to="/"><Logo /></router-link>
       </template>
     </button>
-    <button class="nav__burger" @click="navIn()">
-      <span class="sq__1">
-        <template v-if="activeContent">
-          <nav class="nav__menu">
-            <p class="fs__b">BURO PONZO</p>
-            <template v-for="(infoItem, i) in getInfoNav">
-              <p-link
-                @click.native="navOut()"
-                :meta="infoItem"
-                :key="'info-nav' + i"
-                ><i class="ico-i_right"></i>
-                {{ $t(infoItem.name) }}
-              </p-link>
-            </template>
-            <hr />
-            <p class="fs__b">{{ $t("diensten") }}</p>
-            <template v-for="(dienstItem, s) in getDienstenNav">
-              <p-link
-                @click.native="navOut()"
-                :meta="dienstItem"
-                :key="'dienst-nav' + s"
-                ><i class="ico-i_right"></i>
-                {{ $t(dienstItem.name) }}
-              </p-link>
-            </template>
-          </nav>
-        </template>
-      </span>
-      <span class="sq__2">
-        <template v-if="activeContent">
-          <div class="sq__2--buttonwrap">
-            <button class="nav__close" @click.stop="navOut()">
-              <span class="sq__4"></span>
-              <span class="sq__5"></span>
-            </button>
-          </div>
-          <div class="nav__address">
-            <div
-              class="nav__address--mobile"
-              :class="{ 'nav__address--mobile-left': mobileLeft }"
-              @click="navSubToggle()"
-            >
-              <template v-if="!navSub">Say Hi!</template>
-              <template v-else>&larr; {{ $t("tonav") }}</template>
-            </div>
-            <div class="nav__address--wrap">
-              <p class="fs__b">{{ $t("contact") }}</p>
-              <p class="fs__r" v-html="getContactNav"></p>
-            </div>
-            <p class="fs__t nav__slogan">{{ getSlogan }}</p>
-          </div>
-        </template>
-      </span>
-      <span class="sq__3"></span>
+    <button class="nav__burger" @click="navToggle()">
+      <span class="sq"></span>
+      <span class="sq"></span>
+      <span class="sq"></span>
+      <span class="sq__cross"></span>
+      <span class="sq__cross"></span>
     </button>
-    <div
-      class="nav__underlay"
-      :class="{ active: activeContentAnim }"
-      @click="navOut()"
-    ></div>
+    <nav class="nav__content">
+      <div class="panel__1">
+        <div class="address">
+          <div>
+            <p class="fs__b">{{ $t("contact") }}</p>
+            <p class="fs__r" v-html="getContactNav"></p>
+          </div>
+          <p class="fs__t nav__slogan" v-html="getSlogan"></p>
+        </div>
+      </div>
+      <div class="panel__2">
+        <LogoFull class="header__logo" />
+        <p-link
+          v-for="(infoItem, i) in getInfoNav"
+          :key="'info-nav' + i"
+          @click.native="navOut()"
+          :meta="infoItem"
+          class="nav__link"
+          ><i class="ico-i_right"></i>
+          {{ $t(infoItem.name) }}
+        </p-link>
+
+        <p class="fs__b nav__link">{{ $t("diensten") }}</p>
+        <p-link
+          v-for="(dienstItem, s) in getDienstenNav"
+          :key="'dienst-nav' + s"
+          @click.native="navOut()"
+          :meta="dienstItem"
+          class="nav__link"
+          ><i class="ico-i_right"></i>
+          {{ $t(dienstItem.name) }}
+        </p-link>
+      </div>
+    </nav>
+    <transition name="fade">
+      <div class="nav__underlay" v-show="!blendmode" @click="navOut()"></div>
+    </transition>
   </header>
 </template>
-
 <script>
+import LogoFull from "@/components/LogoFull.vue";
 import Logo from "@/components/Logo.vue";
 import contenthelper from "@/mixins/contenthelper.js";
 import Vue from "vue";
 import VueAnime from "vue-animejs";
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 Vue.use(VueAnime);
 
 export default {
   name: "Header",
   mixins: [contenthelper],
-  components: { Logo },
+  components: { Logo, LogoFull },
   data: function() {
     return {
-      active: false,
-      activeContent: false,
-      activeContentAnim: false,
-      direction: "in",
-      tl: null,
-      navSub: false,
-      blendmode: true,
-      mobileLeft: false
+      blendmode: true
     };
   },
   computed: {
     ...mapGetters([
-      'getContactNav',
-      'getContact',
-      'getInfoNav',
-      'getDienstenNav',
-      'getSlogan'
+      "getContactNav",
+      "getContact",
+      "getInfoNav",
+      "getDienstenNav",
+      "getSlogan"
     ])
   },
   mounted() {
-    this.$anime.set(".nav__burger", {
-      rotate: 90
-    });
-    this.$anime.set(".sq__1", {
-      right: "0%",
-      height: "100%"
-    });
-    this.$anime.set(".sq__2", {
-      right: "50%",
-      height: "100%"
-    });
-    this.$anime.set(".sq__3", {
-      right: "100%",
-      height: "100%"
-    });
     window.addEventListener("resize", this.onResize);
+    this.$anime.set(".nav__link", {
+      translateY: "25px"
+    });
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.onResize);
@@ -425,190 +373,85 @@ export default {
         this.navOut();
       }
     },
-    displayIn() {
-      if (!this.activeContent) {
-        this.activeContent = true;
-        // trigger class
-        setTimeout(() => {
-          this.activeContentAnim = true;
-        }, 500);
+
+    navToggle() {
+      if (this.blendmode) {
+        this.blendmode = false;
+        this.$anime({
+          targets: ".sq",
+          width: 0,
+          right: 0,
+          duration: 1000,
+          easing: "easeOutSine",
+          delay: this.$anime.stagger(200)
+        });
+        this.$anime({
+          targets: ".sq__cross",
+          width: "100%",
+          duration: 500,
+          easing: "easeOutSine"
+        });
+        this.$anime.set(".panel__1", {
+          right: "-100%",
+          backgroundColor: "#333"
+        });
+        this.$anime.set(".panel__2", {
+          right: "-100%"
+        });
+        this.$anime({
+          targets: ".panel__1",
+          right: 0,
+          duration: 400,
+          easing: "easeOutSine"
+        });
+        this.tl = this.$anime.timeline({
+          easing: "easeOutSine",
+          duration: 400,
+          delay: 200
+        });
+        this.tl
+          .add({
+            targets: ".panel__2",
+            right: "0%"
+          })
+          .add({
+            targets: ".nav__link",
+            opacity: 1,
+            translateY: {
+              value: 0,
+              easing: "easeOutSine"
+            },
+            delay: this.$anime.stagger(50)
+          });
+      } else {
+        this.navOut();
       }
     },
-    displayOut() {
-      if (this.activeContent) {
-        this.activeContentAnim = false;
-        this.activeContent = false;
-      }
-    },
-    displayDoneOut() {
-      this.active = false;
-    },
-    blendOut() {
-      this.blendmode = false;
+    navOut() {
+      this.$anime({
+        targets: ".sq",
+        width: "100%",
+        delay: 1000 + this.$anime.stagger(100)
+      });
+      this.$anime({
+        targets: ".sq__cross",
+        width: "0%",
+        duration: 500,
+        easing: "easeOutSine"
+      });
+      this.$anime({
+        targets: ".panel__1",
+        right: "-100%",
+        duration: 400,
+        delay: 800,
+        easing: "easeInSine"
+      });
+      this.tl.reverse();
+      this.tl.play();
+      this.tl.finished.then(this.blendIn);
     },
     blendIn() {
       this.blendmode = true;
-    },
-    navIn() {
-      if (!this.active) {
-        this.active = true;
-        this.direction = "in";
-        // pass function
-        const func1 = this.displayIn;
-        const func2 = this.blendOut;
-        this.tl = this.$anime.timeline({
-          easing: "easeInOutCirc",
-          duration: 400
-        });
-        let navWidth = "80vw";
-        let whiteWidth = 70;
-        let blackWidth = 30;
-        let burgerWidth = "2rem";
-        let burgerHeight = "2rem";
-
-        if (window.innerWidth < window.innerHeight) {
-          navWidth = "100vw";
-          blackWidth = 10;
-          whiteWidth = 90;
-          burgerWidth = "1.5rem";
-          burgerHeight = "2rem";
-        }
-        if (window.innerWidth < 640) {
-          navWidth = "100vw";
-          blackWidth = 20;
-          whiteWidth = 80;
-          burgerWidth = "2rem";
-          burgerHeight = "3rem";
-        }
-        this.tl.update = function(anim) {
-          if (anim.progress > 70) {
-            func1();
-            func2();
-          }
-        };
-        this.tl
-          .add({
-            targets: ".nav__burger",
-            rotate: "0deg",
-            top: 0,
-            right: 0,
-            width: burgerWidth,
-            height: burgerHeight
-          })
-          .add(
-            {
-              targets: ".sq__1, .sq__2, .sq__3",
-              right: "0%",
-              height: "100%",
-              width: "5px"
-            },
-            "-=150"
-          )
-          .add(
-            {
-              targets: ".nav__burger",
-              width: navWidth,
-              height: "100vh"
-            },
-            "-=150"
-          )
-          // black
-          .add({
-            targets: ".sq__2",
-            width: blackWidth + "%",
-            backgroundColor: "#000",
-            color: "#fff"
-          })
-          // white
-          .add(
-            {
-              targets: ".sq__1",
-              width: whiteWidth + "%",
-              right: blackWidth + "%"
-            },
-            "-=400"
-          );
-      }
-      this.tl.finished.then(this.displayDoneIn);
-    },
-    navOut() {
-      const func1 = this.displayOut;
-      const func2 = this.blendIn;
-      this.tl.update = function(anim) {
-        if (anim.progress < 70) {
-          func1();
-        }
-        if (anim.progress < 20) {
-          func2();
-        }
-      };
-      this.tl.reverse();
-      this.tl.play();
-      this.tl.finished.then(this.displayDoneOut);
-    },
-    // SUB NAV MOBILE
-    navSubToggle() {
-      !this.navSub ? (this.navSub = 1) : (this.navSub = 0);
-      if (this.navSub) {
-        this.$anime.set(".nav__address--mobile", {
-          rotate: function() {
-            return 90;
-          },
-          translateX: function() {
-            return 0;
-          }
-        });
-        this.$anime.set(".nav__address--wrap", {
-          height: function() {
-            return 0;
-          }
-        });
-      }
-      if (this.navSub) {
-        this.tlSub = this.$anime.timeline({
-          easing: "easeOutSine",
-          duration: 600
-        });
-        this.mobileLeft = true;
-        this.tlSub
-          .add({
-            targets: ".sq__2",
-            width: "100%"
-          })
-          .add(
-            {
-              targets: ".nav__address--mobile",
-              rotate: "0deg",
-              paddingRight: "0px"
-            },
-            "-=600"
-          )
-          .add(
-            {
-              targets: ".nav__address--wrap",
-              height: "60vh",
-              opacity: 1,
-              padding: "1rem"
-            },
-            "-=600"
-          )
-          .add(
-            {
-              targets: ".nav__slogan",
-              padding: "1rem",
-              height: "12vh",
-              opacity: 1
-            },
-            "-=600"
-          );
-      } else {
-        this.tlSub.reverse();
-        this.tlSub.play();
-        //reset flexbox align left to center
-        setTimeout(() => {
-          this.mobileLeft = false;
-        }, 600);
-      }
     }
   }
 };
