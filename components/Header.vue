@@ -47,7 +47,7 @@
 }
 .sq {
   width: 100%;
-  height: 5px;
+  height: 2px;
   display: block;
   background: white;
   position: absolute;
@@ -61,7 +61,7 @@
 }
 .sq__cross {
   width: 0%;
-  height: 5px;
+  height: 2px;
   display: block;
   background: white;
   position: absolute;
@@ -101,16 +101,18 @@ div[class*="panel__"] {
     display: block;
     padding-top: rfs(0.25rem);
     padding-bottom: rfs(0.25rem);
-    .ico-i_right:before {
+    transition: 0.3s ease all;
+    i {
       transform: scale(0, 0);
       width: 0px;
       transition: 0.3s ease all;
+      position: absolute;
     }
   }
   a:hover {
-    .ico-i_right:before {
-      width: rfs(30px);
-      transform: scale(0.66, 0.66) translateY(0.66rem);
+    padding-left: 3rem;
+    i {
+      transform: scale(0.66, 0.66) translateX(-3.5rem);
     }
   }
   p,
@@ -133,7 +135,6 @@ div[class*="panel__"] {
   bottom: 0px;
 }
 .panel__2 {
-  background: black;
   min-height: 400px;
   height: 50vh;
   top: 0px;
@@ -155,7 +156,14 @@ div[class*="panel__"] {
   }
   .fs__r,
   .fs__b {
-    font-size: 16px;
+    font-size: 14px;
+  }
+  .fs__r {
+    display: flex;
+    span {
+      display: block;
+      width: 50%;
+    }
   }
   .nav__slogan {
     display: flex;
@@ -186,8 +194,8 @@ div[class*="panel__"] {
   margin-top: rfs(1rem);
 }
 .header__logo {
-  width: rfs(250px);
-  margin-bottom: rfs(1rem);
+  width: rfs(200px);
+  margin-bottom: rfs(2rem);
   path {
     fill: white;
   }
@@ -227,7 +235,7 @@ div[class*="panel__"] {
     z-index: 2;
     height: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     flex-direction: column;
     padding-bottom: rfs(10rem);
     a {
@@ -237,17 +245,24 @@ div[class*="panel__"] {
   .nav__content {
     width: 90%;
   }
+  .sq,
+  .sq__cross {
+    height: 3px;
+  }
+  .header__logo {
+    padding-top: 3rem;
+    margin-bottom: 3rem;
+  }
   .address {
     .fs__r,
     .fs__b {
       font-size: 18px;
     }
     .fs__r {
+      display: block;
       span {
+        width: 100%;
         display: block;
-      }
-      span:nth-child(1) {
-        margin-bottom: 1rem;
       }
     }
     .nav__slogan {
@@ -259,18 +274,34 @@ div[class*="panel__"] {
       }
     }
   }
+  a:hover {
+    padding-left: 5rem;
+    i {
+      transform: scale(0.66, 0.66) translateX(-4rem);
+    }
+  }
 }
-@include min-large() {
+@include min-wide() {
+  .header__logo {
+    margin-bottom: 3rem;
+  }
   .panel__2 {
     a {
       font-size: rfs(55px);
       padding: rfs(0.5rem);
     }
+    justify-content: flex-end;
   }
   .address {
     .fs__r,
     .fs__b {
       font-size: 28px;
+    }
+  }
+  a:hover {
+    padding-left: 5rem;
+    i {
+      transform: scale(0.66, 0.66) translateX(-5rem);
     }
   }
 }
@@ -304,26 +335,28 @@ div[class*="panel__"] {
       </div>
       <div class="panel__2">
         <LogoFull class="header__logo" />
-        <p-link
-          v-for="(infoItem, i) in getInfoNav"
-          :key="'info-nav' + i"
-          @click.native="navOut()"
-          :meta="infoItem"
-          class="nav__link"
-          ><i class="ico-i_right"></i>
-          {{ $t(infoItem.name) }}
-        </p-link>
+        <div>
+          <p-link
+            v-for="(infoItem, i) in getInfoNav"
+            :key="'info-nav' + i"
+            @click.native="navOut()"
+            :meta="infoItem"
+            class="nav__link"
+            ><i class="ico-i_right"></i>
+            {{ $t(infoItem.name) }}
+          </p-link>
 
-        <p class="fs__b nav__link">{{ $t("diensten") }}</p>
-        <p-link
-          v-for="(dienstItem, s) in getDienstenNav"
-          :key="'dienst-nav' + s"
-          @click.native="navOut()"
-          :meta="dienstItem"
-          class="nav__link"
-          ><i class="ico-i_right"></i>
-          {{ $t(dienstItem.name) }}
-        </p-link>
+          <p class="fs__b nav__link">{{ $t("diensten") }}</p>
+          <p-link
+            v-for="(dienstItem, s) in getDienstenNav"
+            :key="'dienst-nav' + s"
+            @click.native="navOut()"
+            :meta="dienstItem"
+            class="nav__link"
+            ><i class="ico-i_right"></i>
+            {{ $t(dienstItem.name) }}
+          </p-link>
+        </div>
       </div>
     </nav>
     <transition name="fade">
@@ -381,7 +414,7 @@ export default {
           targets: ".sq",
           width: 0,
           right: 0,
-          duration: 1000,
+          duration: 800,
           easing: "easeOutSine",
           delay: this.$anime.stagger(200)
         });
@@ -389,7 +422,8 @@ export default {
           targets: ".sq__cross",
           width: "100%",
           duration: 500,
-          easing: "easeOutSine"
+          easing: "spring(1, 80, 10, 0)",
+          delay: 1000
         });
         this.$anime.set(".panel__1", {
           right: "-100%",

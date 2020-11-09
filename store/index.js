@@ -146,7 +146,7 @@ export const getters = {
     };
   },
   getContactNav: state => {
-    return `<span>${state.adres}</span><span><a href="mailto:${state.mail}">Team@ponzo.nl</a><br/>${state.telefoon}</span>`;
+    return `<span>${state.adres}</span><br/><span><a href="mailto:${state.mail}">Team@ponzo.nl</a><br/>${state.telefoon}</span>`;
   },
   getImagetransition: state => {
     return state.imagetransition;
