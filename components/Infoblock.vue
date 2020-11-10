@@ -35,9 +35,6 @@
         </div>
         <div class="col col-6 comp__info--visual">
           <Visual :visual="info.visual" :ratio="ratio" />
-          <div class="bp--stagwrap">
-            <slot />
-          </div>
         </div>
       </div>
     </div>

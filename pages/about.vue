@@ -54,6 +54,12 @@
     border-left: 1px solid var(--color-bg);
   }
 }
+@include max-medium() {
+  .comp__diensten--visual,
+  .member {
+    margin-top: rfs(3rem);
+  }
+}
 @include min-medium() {
   .about__title {
     transform: translateY(2rem);
@@ -226,7 +232,11 @@
       </div>
     </section>
     <section class="about__cta">
-      <Info gutter="gut--u-5" cta="contactop" :info="content.meta.meerweten" />
+      <InfoVideo
+        gutter="gut--u-5"
+        cta="contactop"
+        :info="content.meta.meerweten"
+      />
       <!-- 
       <Morerows class="push--2" :rows="content.meta.meer_posts" />
       -->
@@ -238,7 +248,7 @@
 import VideoPlayer from "@/components/VideoPlayer.vue";
 import Visual from "@/components/Visual.vue";
 import Diensten from "@/components/Diensten.vue";
-import Info from "@/components/Infoblock.vue";
+import InfoVideo from "@/components/InfoVideoblock.vue";
 import Morerows from "@/components/Morerows.vue";
 // contenthelpers
 import contenthelpers from "@/mixins/contenthelper.js";
@@ -251,7 +261,7 @@ import Staggergrid from "@/components/Staggergrid.vue";
 
 export default {
   name: "Page",
-  components: { Visual, Diensten, Info, Morerows, Staggergrid },
+  components: { Visual, Diensten, InfoVideo, Morerows, Staggergrid },
   mixins: [contenthelpers],
   data: function() {
     return {

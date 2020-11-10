@@ -265,8 +265,7 @@ export default {
       initVideo: 1,
       inScrollVideo: false,
       play: false,
-      hasListener: false,
-      test: "ios test"
+      hasListener: false
     };
   },
   computed: {
@@ -292,7 +291,6 @@ export default {
         .getElementById("bg__video_hotspot")
         .addEventListener("click", () => {
           this.showVideo = true;
-          this.test = "clicking";
           const elem = document.getElementById("bpplayervideo");
           if (screenfull.isEnabled) {
             if (this.$typy(elem).isDefined) {
@@ -310,7 +308,6 @@ export default {
           if (this.$typy(elem).isDefined) {
             elem.pause();
             elem.currentTime = 0;
-            this.test = "exit on ios?";
             setTimeout(() => {
               this.showVideo = false;
             }, 500);
