@@ -44,7 +44,7 @@
         />
         <div class="box bp--indent">
           <p-meta
-            tagclass="fs__l xl"
+            tagclass="fs__r xl"
             tag="h3"
             :meta="diensten.browse_text"
             field="texthtml"

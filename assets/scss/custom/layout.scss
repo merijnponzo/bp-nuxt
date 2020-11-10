@@ -11,7 +11,8 @@
 }
 .skrp.card,
 .skrp.element,
-.skrp.project--description {
+.skrp.project--description,
+.skrp.meta--description {
   transition: 1s ease all;
   opacity: 0;
   transform: translateY(2rem);

@@ -3,7 +3,7 @@
   z-index: 2;
   width: 100%;
   position: relative;
-  padding-top: rfs(4rem);
+  padding-top: rfs(6rem);
 }
 .about__intro {
   // background: linear-gradient(-180deg, rgba(0,0,0,1) 64%, rgba(34,34,34,1) 100%);
@@ -45,6 +45,9 @@
   mix-blend-mode: exclusion;
   position: absolute;
   bottom: 0px;
+}
+.dienst__expertises {
+  padding-bottom: rfs(5rem);
 }
 .dienst__expertises--expertises {
   margin-top: rfs(3rem);
@@ -107,10 +110,10 @@
     </section>
     <section class="about__content" data-theme="two">
       <div class="wrap">
-        <div class="row">
+        <div class="row meta--description skrp" v-view.once>
           <div class="col col-4 col--u-6">
             <p-meta
-              tagclass="fs__s"
+              tagclass="fs__s xl"
               tag="p"
               :meta="content.meta.who"
               field="textfield"
@@ -118,7 +121,7 @@
           </div>
           <div class="col col-8 col--u-6">
             <p-meta
-              tagclass="fs__r mwid--750"
+              tagclass="fs__r xl mwid--750"
               tag="p"
               :meta="content.meta.who_long"
               field="textarea"
@@ -128,10 +131,10 @@
       </div>
       <!-- what -->
       <div class="wrap space--2">
-        <div class="row">
+        <div class="row meta--description skrp" v-view.once>
           <div class="col col-4 col--u-6">
             <p-meta
-              tagclass="fs__r"
+              tagclass="fs__r xl"
               tag="p"
               :meta="content.meta.what"
               field="textfield"
@@ -139,7 +142,7 @@
           </div>
           <div class="col col-8 col--u-6">
             <p-meta
-              tagclass="fs__r mwid--750"
+              tagclass="fs__r xl mwid--750"
               tag="p"
               :meta="content.meta.what_long"
               field="textarea"
@@ -155,9 +158,9 @@
             <Visual ratio="ratio--4x3" :visual="content.meta.visualgroot" />
           </div>
           <div class="col col-4 col--u-6"></div>
-          <div class="col col-8 col--u-6">
+          <div class="col col-8 col--u-6 meta--description skrp" v-view.once>
             <p-meta
-              tagclass="fs__r mwid--750"
+              tagclass="fs__r xl mwid--750"
               tag="p"
               :meta="content.meta.teamsamenvatting"
               field="textarea"
@@ -190,11 +193,11 @@
       <!-- diensten -->
       <Diensten :diensten="content.meta.diensten" />
       <!-- netwerk -->
-      <div class="wrap space--2">
+      <div class="wrap space--2 dienst__expertises">
         <div class="row stagger-container">
-          <div class="col col-4 col--u-6">
+          <div class="col col-4 col--u-6 meta--description skrp" v-view.once>
             <p-meta
-              tagclass="fs__r"
+              tagclass="fs__r xl"
               tag="p"
               :meta="content.meta.netwerk"
               field="textfield"
