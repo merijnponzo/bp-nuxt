@@ -7,7 +7,8 @@ hr {
   height: 5vw;
   display: inline-block;
   color: white;
-  font-size: 14px;
+  font-size: 10px;
+  font-weight: 100;
 }
 .bp--stagger {
   pointer-events: none;
@@ -22,6 +23,7 @@ hr {
 }
 @include min-large() {
   .stag {
+    font-size: 14px;
     width: 2vw;
     height: 2vw;
   }
@@ -115,7 +117,6 @@ export default {
             }
           ],
           duration: 1000,
-          scale: 0.5,
           delay: this.$anime.stagger(100, { grid: grid, from: "center" })
         })
         .add({
@@ -129,33 +130,31 @@ export default {
             from: "center",
             axis: "x"
           }),
-          translateY: this.$anime.stagger(".25rem", {
+          translateY: this.$anime.stagger(".1rem", {
             grid: grid,
             from: "center",
             axis: "y"
           }),
           rotate: 0,
+          opacity: 0,
           delay: this.$anime.stagger(4, { from: "center" })
         })
         .add({
+          opacity: this.$anime.stagger([90, 0], { grid: grid, from: "center" }),
           rotate: this.$anime.stagger([90, 0], { grid: grid, from: "center" }),
           delay: this.$anime.stagger(50, { grid: grid, from: "center" })
         })
         .add({
           translateX: 0,
           translateY: 0,
-          scale: 0.5,
           scaleX: 1,
-          rotate: 180,
           duration: 1000,
-          delay: this.$anime.stagger(100, { grid: grid, from: "center" })
-        })
-        .add({
           scaleY: 1,
           scale: 1,
-          delay: this.$anime.stagger(20, { grid: grid, from: "center" })
+          rotate: 0,
+          opacity: 1,
+          delay: this.$anime.stagger(100, { grid: grid, from: "center" })
         });
-
       staggersAnimation.play();
 
       /*

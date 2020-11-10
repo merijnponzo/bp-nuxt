@@ -5,8 +5,9 @@
   position: fixed;
   top: 0px;
   width: 100%;
+  left: 0px;
   overflow: hidden;
-  height: calc(#{$video-top} - 150px);
+  height: calc(#{$video-top} - 300px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,11 +15,13 @@
   video {
     height: auto;
     margin: 0 auto;
-    width: calc(200% - var(--page-margin));
+    width: 100%;
   }
 }
 @include min-medium() {
   .bg__video {
+    left: auto;
+    height: calc(#{$video-top} - 150px);
     video {
       width: calc(100% - var(--page-margin));
     }

@@ -47,7 +47,7 @@
             tagclass="fs__l xl"
             tag="h3"
             :meta="diensten.browse_text"
-            field="html"
+            field="texthtml"
           />
           <div class="split--m-12 split--l-6 split--u-4">
             <p-link

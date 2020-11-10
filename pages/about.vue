@@ -6,17 +6,21 @@
   padding-top: rfs(4rem);
 }
 .about__intro {
-  min-height: calc(100vh - 150px);
   // background: linear-gradient(-180deg, rgba(0,0,0,1) 64%, rgba(34,34,34,1) 100%);
   background: black;
   background: url("~assets/images/bg.png");
-  background-repeat: repeat-x;
+  background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: bottom;
-  .bg__video {
-    background: transparent !important;
+  z-index: 3;
+  position: relative;
+
+  video {
+    height: auto;
+    width: 100%;
   }
 }
+
 .member {
   .box {
     margin-top: rfs(1rem);
@@ -25,6 +29,9 @@
     margin-bottom: 2px;
   }
 }
+.stagger-container {
+  overflow: hidden;
+}
 .about__cta {
   width: 100%;
   z-index: 2;
@@ -32,11 +39,12 @@
   background: #ffff;
 }
 .about__title {
-  transform: translateY(calc(-1 * var(--header-height) - (var(--fs-hero) / 2)));
+  transform: translateY(2rem);
   z-index: 3;
   color: white;
   mix-blend-mode: exclusion;
-  position: relative;
+  position: absolute;
+  bottom: 0px;
 }
 .dienst__expertises--expertises {
   margin-top: rfs(3rem);
@@ -46,7 +54,15 @@
     border-left: 1px solid var(--color-bg);
   }
 }
+@include min-medium() {
+  .about__title {
+    transform: translateY(2rem);
+  }
+}
 @include min-large() {
+  .about__title {
+    transform: translateY(3rem);
+  }
   .dienst__expertises--expertises {
     margin-top: rfs(6rem);
     min-height: 100px;
@@ -57,11 +73,10 @@
     }
   }
   .stagger--absolute {
-    width: 650px;
+    width: 100%;
     height: 600px;
     overflow: hidden;
     position: absolute;
-    transform: translateY(-75%);
   }
 }
 </style>
@@ -69,23 +84,24 @@
   <div class="about" v-if="content">
     <section class="about__intro">
       <div class="wrap gut--0">
-        <div class="showreel__playwrap"></div>
-        <VideoPlayer
-          outer="bg__video"
-          inner="wid--fl"
-          ratio="_"
-          v-if="!hideVideo"
-          :desktop="content.meta.headervideodesktop"
-          :mobile="content.meta.headervideomobile"
-        />
-      </div>
-    </section>
-    <section class="about__content" data-theme="two" v-view="viewHandler">
-      <div class="wrap">
         <div class="row">
           <div class="col col-12">
+            <VideoPlayer
+              outer=""
+              inner=""
+              ratio="_"
+              v-if="!hideVideo"
+              :desktop="content.meta.headervideodesktop"
+              :mobile="content.meta.headervideomobile"
+            />
             <h1 class="chapter about__title">{{ $t("overbp") }}</h1>
           </div>
+        </div>
+      </div>
+    </section>
+    <section class="about__content" data-theme="two">
+      <div class="wrap">
+        <div class="row">
           <div class="col col-4 col--u-6">
             <p-meta
               tagclass="fs__s"
@@ -151,7 +167,7 @@
             v-for="(member, m) in content.meta.members"
             :key="'members' + m"
           >
-            <Visual ratio="ratio--4x3" :visual="member.visual" />
+            <Visual ratio="ratio--3x4" :visual="member.visual" />
             <div class="box pad--0">
               <h4 class="fs__a">{{ member.naam }}</h4>
               <p class="fs__m">{{ member.functie }}</p>
@@ -169,13 +185,13 @@
       <Diensten :diensten="content.meta.diensten" />
       <!-- netwerk -->
       <div class="wrap space--2">
-        <div class="row">
+        <div class="row stagger-container">
           <div class="col col-4 col--u-6">
             <p-meta
               tagclass="fs__r"
               tag="p"
               :meta="content.meta.netwerk"
-              field="textarea"
+              field="textfield"
             />
             <Staggergrid class="stagger--absolute" />
           </div>
@@ -239,16 +255,8 @@ export default {
   mixins: [contenthelpers],
   data: function() {
     return {
-      content: false,
-      hideVideo: true
+      content: false
     };
-  },
-  mounted() {
-    if (window.scrollY > 1500) {
-      this.showVideo = false;
-    } else {
-      this.showVideo = true;
-    }
   },
   asyncData({ app, params, store, $axios }) {
     const url = `${process.env.wpApi}/pages?slug=about`;
@@ -257,16 +265,6 @@ export default {
         content: response.data[0]
       };
     });
-  },
-  methods: {
-    viewHandler(e) {
-      this.videoScale = 1 - e.scrollPercent * 10;
-      if (this.videoScale < 0) {
-        this.hideVideo = true;
-      } else {
-        this.hideVideo = false;
-      }
-    }
   }
 };
 </script>

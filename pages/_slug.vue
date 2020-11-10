@@ -1,9 +1,6 @@
 <style lang="scss" scoped>
-.dienst {
-  padding-top: rfs(4rem);
-}
 .dienst__intro {
-  padding-top: rfs(3rem);
+  padding-top: rfs(10rem);
 }
 .dienst__intro--text {
   padding-top: rfs(3rem);
@@ -14,14 +11,14 @@ h1 {
   max-width: 400px;
   position: sticky;
   top: rfs(10rem);
-  z-index: 2;
+  z-index: 3;
   color: white;
   mix-blend-mode: exclusion;
 }
 .dienst__intro--visual {
-  margin-top: rfs(-2rem);
   padding-bottom: rfs(5rem);
   display: flex;
+  z-index: 0;
   justify-content: space-between;
   flex-direction: column;
   .visual {
@@ -34,6 +31,7 @@ h1 {
   .diensten--visual-2 {
     width: 40%;
     align-self: flex-end;
+    z-index: 6;
   }
   .element {
     transition: 1s ease all;
@@ -48,10 +46,10 @@ h1 {
 
 .bp--stagwrap {
   position: absolute;
-  top: rfs(4rem);
-  left: 25%;
-  height: calc(100% + 20rem);
-  max-width: 640px;
+  top: rfs(1rem);
+  left: rfs(1rem);
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   z-index: 2;
 }
@@ -73,6 +71,21 @@ h1 {
     border-left: 1px solid var(--color-bg);
   }
 }
+@include min-medium() {
+  .bp--stagwrap {
+    position: absolute;
+    top: 25%;
+    right: 5rem;
+    left: auto;
+    height: calc(100% + 20rem);
+    max-width: 600px;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .diensten--visual-2 {
+    z-index: 1;
+  }
+}
 @include large-only() {
   .dienst__expertises--visual {
     margin-right: calc(-1 * (var(--page-margin) / 2));
@@ -88,7 +101,7 @@ h1 {
     padding-bottom: rfs(6rem);
   }
   .dienst__intro--visual {
-    padding-right: $dienst-single-indent;
+    // padding-right: $dienst-single-indent;
   }
   .dienst__expertises--visual {
     .visual {

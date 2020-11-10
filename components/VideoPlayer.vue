@@ -16,16 +16,13 @@
           class="wid--fl"
           muted
           playsinline
-          :key="desktop"
+          :key="desktop + mobile"
         >
-          <template v-if="windowWidth < 1000">
+          <template v-if="windowWidth < 1000 && mobile">
             <source :src="mobile" type="video/mp4" />
-          </template>
-          <template v-else-if="desktop">
-            <source :src="desktop" type="video/mp4" />
           </template>
           <template v-else>
-            <source :src="mobile" type="video/mp4" />
+            <source :src="desktop" type="video/mp4" />
           </template>
         </video>
       </div>

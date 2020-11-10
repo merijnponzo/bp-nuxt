@@ -8,6 +8,40 @@
     height: 100%;
   }
 }
+.no-scroll {
+  #__nuxt {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: absolute;
+    width: 100%;
+  }
+}
+// logo
+.logo--bp {
+  transform: translateX(-25%);
+  transition: 1s ease all;
+  &.active {
+    transform: translateX(0px);
+    .logo--arrow {
+      transform: scale(1, 1);
+    }
+    .logo--square {
+      transform: scale(1, 1);
+    }
+  }
+}
+.logo--arrow {
+  transform: scale(0, 0);
+  transform-origin: center left;
+  transition: 1s ease all;
+}
+.logo--square {
+  transform: scale(0, 0);
+  transform-origin: center left;
+  transition: 1s ease all;
+}
+
 .nav.blendmode {
   mix-blend-mode: exclusion;
 }
@@ -22,6 +56,9 @@
   opacity: 1;
   transition: 1s ease all;
   pointer-events: auto;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  @include noselect();
   svg {
     width: rfs(150px);
     display: block;
@@ -39,10 +76,21 @@
   border: none;
   position: absolute;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
   transform-origin: center center;
   top: rfs(3rem);
   right: rfs(3rem);
   z-index: 2;
+  outline: none;
+  @include noselect();
+  &:before {
+    content: "";
+    width: rfs(6rem);
+    height: rfs(6rem);
+    position: absolute;
+    top: rfs(-1rem);
+    left: rfs(-1rem);
+  }
 }
 .sq {
   width: 100%;
@@ -88,6 +136,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
   color: white;
   //transition:0.5s ease all;
@@ -138,8 +187,7 @@
   bottom: 0px;
 }
 .panel__2 {
-  min-height: 400px;
-  height: 50vh;
+  height: calc(100% - 200px);
   top: 0px;
   .fs__b {
     width: 100%;
@@ -164,7 +212,8 @@
     display: flex;
     span {
       display: block;
-      width: 50%;
+      width: calc(50% - 0.5rem);
+      margin-right: 0.5rem;
     }
   }
   .nav__slogan {
@@ -246,6 +295,16 @@ header {
       i {
         transform: scale(0.66, 0.66) translateX(-3.5rem);
       }
+    }
+  }
+  .nav__burger {
+    &:before {
+      content: "";
+      width: rfs(4rem);
+      height: rfs(4rem);
+      position: absolute;
+      top: rfs(-1rem);
+      left: rfs(-1rem);
     }
   }
   .nav__content {
@@ -419,6 +478,7 @@ export default {
       if (this.blendmode && !this.navBusy) {
         this.blendmode = false;
         this.navBusy = true;
+        document.body.classList.add("no-scroll");
         this.$anime({
           targets: ".sq",
           width: 0,
@@ -477,7 +537,7 @@ export default {
         this.tl.reverse();
         this.tl.play();
         this.tl.finished.then(this.blendIn);
-
+        document.body.classList.remove("no-scroll");
         this.$anime({
           targets: ".sq__cross",
           width: 0,
