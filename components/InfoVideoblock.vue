@@ -78,7 +78,6 @@
             id="bpplayervideo"
             class="wid--fl"
             controls
-            autoplay
             v-show="showVideo"
             :src="info.video"
             type="video/mp4"
