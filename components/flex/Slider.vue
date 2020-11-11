@@ -1,6 +1,7 @@
 <style lang="scss" scoped>
 .comp__slides {
   padding-bottom: rfs(2rem);
+  padding-top: rfs(2rem);
   overflow-x: hidden;
 }
 .fs__h {

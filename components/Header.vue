@@ -293,7 +293,7 @@ header {
     a:hover {
       padding-left: 3rem;
       i {
-        transform: scale(0.66, 0.66) translateX(-3.5rem);
+        transform: scale(0.5, 0.5) translateX(-3rem);
       }
     }
   }
@@ -353,9 +353,9 @@ header {
     }
     justify-content: flex-end;
     a:hover {
-      padding-left: 5rem;
+      padding-left: 3rem;
       i {
-        transform: scale(0.66, 0.66) translateX(-5rem);
+        transform: scale(0.5, 0.5) translateX(-4rem);
       }
     }
   }

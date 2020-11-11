@@ -156,7 +156,7 @@
           <div class="col col-12 space--3">
             <Revised
               :flexcontent="content.meta.teamvisual"
-              defaultnumber="10"
+              defaultnumber="20"
             />
           </div>
           <div class="col col-4 col--u-6"></div>
@@ -174,7 +174,7 @@
       <div class="wrap space--3">
         <div class="row">
           <div
-            class="col member col-4"
+            class="col member col-4 col--sm-6"
             v-for="(member, m) in content.meta.members"
             :key="'members' + m"
           >

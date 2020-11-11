@@ -13,7 +13,7 @@ hr {
 .bp--stagger {
   pointer-events: none;
 }
-.bp--stagger.view-in {
+.bp--stagger {
   opacity: 1;
 }
 .dienst {
@@ -30,9 +30,9 @@ hr {
 }
 </style>
 <template>
-  <div class="bp--stagger" :class="staggerclass" v-view="viewHandler">
+  <div class="bp--stagger" :class="staggerclass">
     <hr />
-    <template v-if="show">
+    <template>
       <span class="stag" v-for="i in 130" :key="'dot' + i" :class="staggerclass"
         >+</span
       >
@@ -57,9 +57,7 @@ export default {
     }
   },
   data: function() {
-    return {
-      show: false
-    };
+    return {};
   },
   methods: {
     viewHandler(e) {

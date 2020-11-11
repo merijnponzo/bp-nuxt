@@ -85,6 +85,9 @@ h1 {
   .diensten--visual-2 {
     z-index: 1;
   }
+  .dienst__expertises--text {
+    padding-right: rfs(2rem);
+  }
 }
 @include large-only() {
   .dienst__expertises--visual {
@@ -137,7 +140,7 @@ h1 {
             tag="p"
           />
         </div>
-        <div class="col col-12 dienst__intro--visual" v-view>
+        <div class="col col-12 dienst__intro--visual" v-view.once>
           <Visual
             class="element diensten--visual-1"
             ratio="ratio--16x9"
