@@ -99,7 +99,6 @@
               outer=""
               inner=""
               ratio="_"
-              v-if="!hideVideo"
               :desktop="content.meta.headervideodesktop"
               :mobile="content.meta.headervideomobile"
             />
@@ -155,7 +154,10 @@
         <div class="row">
           <h1 class="chapter">Meet the team</h1>
           <div class="col col-12 space--3">
-            <Visual ratio="ratio--4x3" :visual="content.meta.visualgroot" />
+            <Revised
+              :flexcontent="content.meta.teamvisual"
+              defaultnumber="10"
+            />
           </div>
           <div class="col col-4 col--u-6"></div>
           <div class="col col-8 col--u-6 meta--description skrp" v-view.once>
@@ -253,6 +255,7 @@ import Visual from "@/components/Visual.vue";
 import Diensten from "@/components/Diensten.vue";
 import InfoVideo from "@/components/InfoVideoblock.vue";
 import Morerows from "@/components/Morerows.vue";
+import Revised from "@/components/flex/Revised.vue";
 // contenthelpers
 import contenthelpers from "@/mixins/contenthelper.js";
 import Staggergrid from "@/components/Staggergrid.vue";
@@ -264,7 +267,7 @@ import Staggergrid from "@/components/Staggergrid.vue";
 
 export default {
   name: "Page",
-  components: { Visual, Diensten, InfoVideo, Morerows, Staggergrid },
+  components: { Visual, Diensten, InfoVideo, Morerows, Staggergrid, Revised },
   mixins: [contenthelpers],
   data: function() {
     return {

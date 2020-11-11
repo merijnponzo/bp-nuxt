@@ -134,6 +134,10 @@ export default {
       default: function() {
         return {};
       }
+    },
+    defaultnumber: {
+      type: [Number, String],
+      default: 50
     }
   },
   data() {
@@ -148,6 +152,9 @@ export default {
       const fix = 0;
       return negative + fix;
     }
+  },
+  mounted() {
+    this.number = parseInt(this.defaultnumber);
   }
 };
 </script>
