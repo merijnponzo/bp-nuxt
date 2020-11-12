@@ -459,21 +459,11 @@ export default {
     ])
   },
   mounted() {
-    window.addEventListener("resize", this.onResize);
     this.$anime.set(".nav__link", {
       translateY: "25px"
     });
   },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.onResize);
-  },
   methods: {
-    onResize() {
-      if (this.activeContent) {
-        this.navOut();
-      }
-    },
-
     navToggle() {
       if (this.blendmode && !this.navBusy) {
         this.blendmode = false;

@@ -17,26 +17,7 @@ import Imagetransition from "@/components/Imagetransition.vue";
 export default {
   name: "Page",
   components: { Footer, Header, Imagetransition },
-  scrollTop: true,
-  mounted() {
-    window.addEventListener("resize", this.handleResize);
-    this.handleResize();
-  },
-  beforeDestroy() {
-    // Unregister the event listener before destroying this Vue instance
-    window.removeEventListener("resize", this.handleResize);
-  },
-  methods: {
-    handleResize() {
-      if (process.client) {
-        // always set models to false on resize
-        this.$store.dispatch("setViewport", {
-          width: window.innerWidth,
-          height: window.innerHeight
-        });
-      }
-    }
-  }
+  scrollTop: true
 };
 </script>
 <style lang="scss">

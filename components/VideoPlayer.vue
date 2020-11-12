@@ -7,20 +7,8 @@
 <template>
   <div class="video" :class="outer">
     <div :class="[ratio, inner]" v-view="autoPlay">
-      <video
-        loop
-        ref="bpplayersingle"
-        class="wid--fl"
-        muted
-        playsinline
-        :key="desktop + mobile"
-      >
-        <template v-if="$vssWidth < 1000 && mobile">
-          <source :src="mobile" type="video/mp4" />
-        </template>
-        <template v-else>
-          <source :src="desktop" type="video/mp4" />
-        </template>
+      <video loop ref="bpplayersingle" class="wid--fl" muted playsinline>
+        <source v-if="videoSource" :src="videoSource" type="video/mp4" />
       </video>
     </div>
   </div>
@@ -28,6 +16,7 @@
 
 <script>
 import NuxtSSRScreenSize from "nuxt-ssr-screen-size";
+
 export default {
   name: "Video",
   mixins: [NuxtSSRScreenSize.NuxtSSRScreenSizeMixin],
@@ -65,24 +54,31 @@ export default {
   },
   data: function() {
     return {
-      play: false
+      play: false,
+      videoSource: false,
+      timeOut: false
     };
+  },
+  mounted() {
+    let videoUrl = false;
+    if (this.$vssWidth < 1000 && this.mobile) {
+      videoUrl = this.mobile;
+    } else {
+      videoUrl = this.desktop;
+    }
+    this.videoSource = videoUrl;
   },
   methods: {
     autoPlay(e) {
+      const player = this.$refs["bpplayersingle"];
+      console.log(e);
       if (e.percentInView > 0.85 && !this.play) {
-        const player = this.$refs["bpplayersingle"];
-        if (player) {
-          player.play();
-        }
-        this.play = true;
-      } else if (e.type === "exit") {
-        const player = this.$refs["bpplayersingle"];
-        if (player) {
-          player.pause();
-        }
-        this.play = false;
+        console.log("yes!");
+        //this.pgtDebounce(this.checkUserIdValid, 1000);
       }
+    },
+    checkUserIdValid() {
+      console.log("is valid");
     }
   }
 };

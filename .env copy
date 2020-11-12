@@ -1,0 +1,3 @@
+WP_API=http://localhost:8888/buroponzo/api/wp-json/wp/v2
+BP_API=http://localhost:8888/buroponzo/api/wp-json/bp/v1
+SITEPATH=http://localhost:8888/buroponzo/api
