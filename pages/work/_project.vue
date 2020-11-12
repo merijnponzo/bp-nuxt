@@ -263,7 +263,7 @@ export default {
     visualsPortrait,
     Visual
   },
-  middleware: "delay",
+  // middleware: "delay",
   data() {
     return {
       content: null,
