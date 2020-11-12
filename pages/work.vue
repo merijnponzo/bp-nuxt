@@ -35,6 +35,7 @@
 </style>
 <template>
   <section>
+    <!--
     <template v-if="!$typy($route.params, 'project').isDefined">
       <div class="wrap work__work">
         <div class="row">
@@ -43,17 +44,17 @@
         </div>
       </div>
     </template>
-    <nuxt-child :key="$route.params.slug" />
+    -->
+    <nuxt-child :key="$route.fullPath" />
   </section>
 </template>
 <script>
-import Filters from "@/components/Filters.vue";
-import Card from "@/components/Card.vue";
+// import Filters from "@/components/Filters.vue";
+// import Card from "@/components/Card.vue";
 
 export default {
   name: "Work",
-  components: { Card, Filters },
-  scrollToTop: true,
+  // components: { Filters },
   watchQuery: ["_start", "filter", "project"],
   data() {
     return {
@@ -62,7 +63,7 @@ export default {
     };
   },
   asyncData({ app, params, query }) {
-    return app.workQuery(query, params);
+    // return app.workQuery(query, params);
   }
 };
 </script>
