@@ -5,37 +5,32 @@
 }
 </style>
 <template>
-  <client-only>
-    <div class="video" :class="outer">
-      <div :class="[ratio, inner]" v-view="autoPlay">
-        <video
-          v-if="windowWidth"
-          loop
-          ref="bpplayersingle"
-          class="wid--fl"
-          muted
-          playsinline
-          :key="desktop + mobile"
-        >
-          <template v-if="windowWidth < 1000 && mobile">
-            <source :src="mobile" type="video/mp4" />
-          </template>
-          <template v-else>
-            <source :src="desktop" type="video/mp4" />
-          </template>
-        </video>
-      </div>
+  <div class="video" :class="outer">
+    <div :class="[ratio, inner]" v-view="autoPlay">
+      <video
+        loop
+        ref="bpplayersingle"
+        class="wid--fl"
+        muted
+        playsinline
+        :key="desktop + mobile"
+      >
+        <template v-if="$vssWidth < 1000 && mobile">
+          <source :src="mobile" type="video/mp4" />
+        </template>
+        <template v-else>
+          <source :src="desktop" type="video/mp4" />
+        </template>
+      </video>
     </div>
-  </client-only>
+  </div>
 </template>
 
 <script>
-import Vue from "vue";
-import VueWindowSize from "vue-window-size";
-Vue.use(VueWindowSize);
-
+import NuxtSSRScreenSize from "nuxt-ssr-screen-size";
 export default {
   name: "Video",
+  mixins: [NuxtSSRScreenSize.NuxtSSRScreenSizeMixin],
   props: {
     poster: {
       type: [Object, Boolean],
@@ -76,17 +71,17 @@ export default {
   methods: {
     autoPlay(e) {
       if (e.percentInView > 0.85 && !this.play) {
-        this.play = true;
         const player = this.$refs["bpplayersingle"];
         if (player) {
           player.play();
         }
+        this.play = true;
       } else if (e.type === "exit") {
-        this.play = false;
         const player = this.$refs["bpplayersingle"];
         if (player) {
           player.pause();
         }
+        this.play = false;
       }
     }
   }

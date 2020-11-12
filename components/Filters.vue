@@ -244,7 +244,7 @@ sup {
                 <span class="nav_filters--arrow" v-if="!mobile">&#8594;</span>
                 <span class="fs__b">Filters</span>
                 <Preloader
-                  :darkmode="windowWidth < 1260 ? 'darkmode' : ''"
+                  :darkmode="$vssWidth < 1260 ? 'darkmode' : ''"
                   v-if="filters.length === 0 || loading === true"
                 />
               </span>
@@ -296,10 +296,12 @@ sup {
 </template>
 <script>
 import Preloader from "@/components/Preloader.vue";
+import NuxtSSRScreenSize from "nuxt-ssr-screen-size";
 export default {
   components: { Preloader },
   name: "Visual",
   props: {},
+  mixins: [NuxtSSRScreenSize.NuxtSSRScreenSizeMixin],
   data: function() {
     return {
       filters: [],

@@ -149,7 +149,7 @@ video:after {
     <div class="wrap gut--0 intro__nav">
       <div
         class="row intro__stretch"
-        :style="{ height: windowHeight - 200 + 'px' }"
+        :style="{ height: $vssHeight - 200 + 'px' }"
         v-on:mousemove="updateCoordinates"
       >
         <div id="bg__video_hotspot"></div>
@@ -240,8 +240,8 @@ import Playbutton from "@/components/Playbutton.vue";
 import { mapGetters } from "vuex";
 import Vue from "vue";
 import Preloader from "@/components/Preloader.vue";
-import VueWindowSize from "vue-window-size";
-Vue.use(VueWindowSize);
+import NuxtSSRScreenSize from "nuxt-ssr-screen-size";
+
 const screenfull = require("screenfull");
 export default {
   name: "Page",
@@ -254,6 +254,7 @@ export default {
     Testimonials,
     Info
   },
+  mixins: [NuxtSSRScreenSize.NuxtSSRScreenSizeMixin],
   data: function() {
     return {
       dir: "right",

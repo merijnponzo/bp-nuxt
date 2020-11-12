@@ -61,12 +61,12 @@ export default {
     // { src: "~/plugins/vue-lazysizes", ssr: false },
     // google analytics
     { src: "~/plugins/ga.js", mode: "client" },
-    { src: "~/plugins/vue-siema.js", ssr: false },
+    { src: "~/plugins/vue-siema.js", mode: "client" },
     { src: "~/plugins/typy.js" },
     { src: "~/plugins/ponzolang.js" },
     { src: "~/plugins/worksearch.js" },
-    { src: "~/plugins/checkview.js" },
-    { src: "~/plugins/vue-range-slider", ssr: false }
+    { src: "~/plugins/checkview.js" }
+    // { src: "~/plugins/vue-range-slider" }
   ],
   /*
    ** Auto import components
@@ -117,7 +117,7 @@ export default {
         config.devtool = ctx.isClient ? "source-map" : "inline-source-map";
       }
     },
-    vendor: ["vue-slider-component"],
+    // vendor: ["vue-slider-component"],
     indicator: true,
     cssSourceMap: true,
     postcss: {

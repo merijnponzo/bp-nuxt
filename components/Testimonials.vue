@@ -183,7 +183,7 @@
                         tag="div"
                         tagclass="fs__q xl"
                       />
-                      <template v-if="windowWidth > 768">
+                      <template v-if="$vssWidth > 768">
                         <nuxt-link
                           :to="localePath(testimonial.meta.case)"
                           class="bp--nxt"
@@ -195,10 +195,10 @@
                   </div>
                   <div
                     class="slide--visual"
-                    :class="{ 'bp--tile': windowWidth < 768 }"
+                    :class="{ 'bp--tile': $vssWidth < 768 }"
                   >
                     <Visual :visual="testimonial.visual" ratio="" />
-                    <template v-if="windowWidth < 768">
+                    <template v-if="$vssWidth < 768">
                       <nuxt-link
                         :to="localePath(testimonial.meta.case)"
                         class=""
@@ -230,10 +230,12 @@
 </template>
 
 <script>
+import NuxtSSRScreenSize from "nuxt-ssr-screen-size";
 import Visual from "@/components/Visual.vue";
 export default {
   name: "Testimonials",
   components: { Visual },
+  mixins: [NuxtSSRScreenSize.NuxtSSRScreenSizeMixin],
   props: {
     testimonials: {
       type: Array,

@@ -136,7 +136,7 @@
                 <li class="fs__b">{{ $t("dienst") }}</li>
                 <li
                   v-for="(term, t) in getChildTerms(content.meta.terms, 5)"
-                  :key="'term' + t"
+                  :key="'termdiens' + t"
                   class="term"
                   v-html="term.name"
                 ></li>
@@ -145,7 +145,7 @@
                 <li class="fs__b">{{ $t("expertise") }}</li>
                 <li
                   v-for="(term, t) in getChildTerms(content.meta.terms, 6)"
-                  :key="'term' + t"
+                  :key="'termexps' + t"
                   class="term"
                   v-html="term.name"
                 ></li>
@@ -158,7 +158,7 @@
                 <li class="fs__b">{{ $t("branche") }}</li>
                 <li
                   v-for="(term, t) in getChildTerms(content.meta.terms, 9)"
-                  :key="'term' + t"
+                  :key="'termbranc' + t"
                   class="term"
                   v-html="term.name"
                 ></li>
@@ -276,13 +276,9 @@ export default {
     const url = `${process.env.wpApi}/work?slug=${slug}`;
     return $axios.get(url).then(response => {
       store.dispatch("doImageTransition", { classname: "after" });
-      if (response.data.length) {
-        return {
-          content: response.data[0]
-        };
-      } else {
-        return { content: false };
-      }
+      return {
+        content: response.data[0]
+      };
     });
   }
 };

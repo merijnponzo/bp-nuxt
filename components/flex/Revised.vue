@@ -95,10 +95,14 @@
         class="col col-12 col--mm-12"
         :style="`--percentage:${doNegative}%;--current:${number}%`"
       >
-        <div class="revised--drag">
-          <vue-slider ref="slider" :min="0" :max="100" v-model="number" />
-          <span class="range--indicator" :class="{ active: dragActive }" />
-        </div>
+        <client-only>
+          <div class="revised--drag">
+            <!-- 
+            <vue-slider ref="slider" :min="0" :max="100" v-model="number" />
+            -->
+            <span class="range--indicator" :class="{ active: dragActive }" />
+          </div>
+        </client-only>
         <template v-if="flexcontent.before">
           <Visual
             :visual="flexcontent.before"
@@ -124,6 +128,8 @@
 </template>
 <script>
 import Visual from "@/components/Visual.vue";
+// import Vue from "vue";
+// import VueSlider from "vue-slider-component";
 
 export default {
   name: "RevisedFlex",

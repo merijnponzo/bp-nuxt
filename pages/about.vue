@@ -259,11 +259,6 @@ import Revised from "@/components/flex/Revised.vue";
 // contenthelpers
 import contenthelpers from "@/mixins/contenthelper.js";
 import Staggergrid from "@/components/Staggergrid.vue";
-// import VueWindowSize from 'vue-window-size'
-//import Vue from 'vue'
-// import checkView from 'vue-check-view'
-// Vue.use(checkView)
-//Vue.use(VueWindowSize);
 
 export default {
   name: "Page",
