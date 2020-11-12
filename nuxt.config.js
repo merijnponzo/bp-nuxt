@@ -39,6 +39,7 @@ export default {
     bpApi: process.env.BP_API,
     sitePath: process.env.SITEPATH
   },
+  modern: "client",
   /*
    ** Global CSS
    */

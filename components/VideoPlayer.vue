@@ -7,11 +7,10 @@
 <template>
   <client-only>
     <div class="video" :class="outer">
-      <div :class="[ratio, inner]">
+      <div :class="[ratio, inner]" v-view="autoPlay">
         <video
           v-if="windowWidth"
           loop
-          autoplay
           ref="bpplayersingle"
           class="wid--fl"
           muted
@@ -84,6 +83,10 @@ export default {
         }
       } else if (e.type === "exit") {
         this.play = false;
+        const player = this.$refs["bpplayersingle"];
+        if (player) {
+          player.pause();
+        }
       }
     }
   }

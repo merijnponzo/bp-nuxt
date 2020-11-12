@@ -30,7 +30,7 @@ hr {
 }
 </style>
 <template>
-  <div class="bp--stagger" :class="staggerclass">
+  <div class="bp--stagger" :class="staggerclass" v-view:viewHandler>
     <hr />
     <template>
       <span class="stag" v-for="i in 130" :key="'dot' + i" :class="staggerclass"
@@ -62,11 +62,10 @@ export default {
   methods: {
     viewHandler(e) {
       if (e.type === "enter") {
-        this.show = true;
         this.$nextTick(() => {
           this.doStagger();
         });
-      } else if (e.type === "exit") this.show = false;
+      }
     },
     doStagger() {
       const grid = [5, 5];
