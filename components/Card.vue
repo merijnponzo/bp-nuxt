@@ -161,12 +161,14 @@ export default {
   },
   methods: {
     setImageTransition(project) {
+      /*
       this.show = true;
       this.$store.dispatch("doImageTransition", {
         bgColor: project.meta.tilecolor,
         classname: "before"
       });
       //this.$emit('toggleProjects')
+      */
     }
   }
 };

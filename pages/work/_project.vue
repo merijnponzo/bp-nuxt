@@ -270,19 +270,19 @@ export default {
       mobile: false
     };
   },
-  scrollToTop: true,
   asyncData({ app, params, store, $axios }) {
     const slug = params.project.toLowerCase();
     const url = `${process.env.wpApi}/work?slug=${slug}`;
     return $axios.get(url).then(response => {
-      store.dispatch("doImageTransition", { classname: "after" });
-      return {
-        content: response.data[0]
-      };
+      // store.dispatch("doImageTransition", { classname: "after" });
+      if (response.data.length) {
+        return {
+          content: response.data[0]
+        };
+      } else {
+        return { content: false };
+      }
     });
-  },
-  mounted() {
-    console.log("mounted project");
   }
 };
 </script>

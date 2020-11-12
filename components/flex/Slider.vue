@@ -105,7 +105,7 @@ p {
       <div class="row">
         <div class="col col-12">
           <div class="siema-wrap">
-            <no-ssr>
+            <client-only>
               <siema
                 ref="siema"
                 :loop="true"
@@ -125,7 +125,7 @@ p {
                   </div>
                 </div>
               </siema>
-            </no-ssr>
+            </client-only>
           </div>
         </div>
         <div class="col col-12">

@@ -72,7 +72,7 @@ export default {
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
    */
-  components: true,
+  // components: true,
   /*
    ** Nuxt.js dev-modules
    */
@@ -85,6 +85,7 @@ export default {
     "nuxt-i18n",
     "@nuxtjs/style-resources",
     "nuxt-leaflet"
+    //"nuxt-memwatch"
   ],
   i18n: {
     defaultLocale: "nl",
@@ -109,11 +110,6 @@ export default {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  router: {
-    scrollBehavior: function(to, from, savedPosition) {
-      return { x: 0, y: 0 };
-    }
-  },
   build: {
     //analyze:true,
     extend(config, ctx) {
