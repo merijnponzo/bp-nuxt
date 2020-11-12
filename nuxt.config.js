@@ -58,7 +58,7 @@ export default {
    */
   plugins: [
     // lazyload images
-    { src: "~/plugins/vue-lazysizes", ssr: false },
+    // { src: "~/plugins/vue-lazysizes", ssr: false },
     // google analytics
     { src: "~/plugins/ga.js", mode: "client" },
     { src: "~/plugins/vue-siema.js", ssr: false },

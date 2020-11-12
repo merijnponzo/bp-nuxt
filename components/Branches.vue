@@ -2,62 +2,62 @@
 .comp__branches {
   padding-top: rfs(8rem);
   padding-bottom: rfs(8rem);
-  position:relative;
+  position: relative;
 }
 .comp__branches--visual {
   position: relative;
-  margin-top:rfs(50px);
+  margin-top: rfs(50px);
   .img {
     position: absolute;
     width: 100%;
     height: auto;
-    transition:1s ease all;
+    transition: 1s ease all;
   }
   .img:nth-child(1) {
     filter: brightness(40%);
-    z-index:0;
-    bottom:5%;
+    z-index: 0;
+    bottom: 5%;
   }
   .img:nth-child(2) {
-    z-index:30;
+    z-index: 30;
     filter: brightness(70%);
-    bottom:0%;
+    bottom: 0%;
   }
   .img:nth-child(3) {
     filter: brightness(70%);
-    z-index:3;
-    bottom:15%;
+    z-index: 3;
+    bottom: 15%;
   }
 }
-.view-in--gt-above{
+.view-in--gt-above {
   .img:nth-child(1) {
     filter: brightness(60%);
-    bottom:10%;
+    bottom: 10%;
   }
   .img:nth-child(2) {
-    bottom:15%;
+    bottom: 15%;
   }
   .img:nth-child(3) {
     filter: brightness(70%);
-    bottom:25%;
+    bottom: 25%;
   }
 }
-.view-in--gt-half{
+.view-in--gt-half {
   .img:nth-child(1) {
     filter: brightness(40%);
-    bottom:15%;
+    bottom: 15%;
   }
   .img:nth-child(2) {
-    bottom:10%;
+    bottom: 10%;
     filter: brightness(100%);
   }
   .img:nth-child(3) {
     filter: brightness(50%);
-    bottom:10%;
+    bottom: 10%;
   }
 }
-.skrp.parallax{
-  opacity:1;
+.skrp.parallax {
+  opacity: 1;
 }
 .fs__h {
   margin-bottom: rfs(3rem);
@@ -68,8 +68,8 @@
 .visual {
   z-index: 1;
 }
-.comp__branches--visual{
-  height:550px;
+.comp__branches--visual {
+  height: 550px;
 }
 @include min-medium() {
   .comp__branches--visual {
@@ -82,7 +82,10 @@
   <section class="comp__branches" data-theme="two">
     <div class="wrap">
       <div class="row">
-        <div class="col col-5 col--sm-6 comp__branches--visual" v-view>
+        <div
+          class="col col-5 col--sm-6 comp__branches--visual"
+          v-view="lazyload"
+        >
           <img
             class="lazyload img skrp parallax"
             style="--index: 1"
@@ -122,12 +125,8 @@
               >
                 <span v-html="branche.name" />
               </p-link>
-              <p-link
-                filter="branche"
-                :archive="true"
-                class="bp--nxt"
-              >
-                <span>{{$t('allebranches')}}</span>
+              <p-link filter="branche" :archive="true" class="bp--nxt">
+                <span>{{ $t("allebranches") }}</span>
               </p-link>
             </div>
           </div>
@@ -137,12 +136,10 @@
   </section>
 </template>
 <script>
-import checkView from "vue-check-view";
-import Vue from "vue";
-Vue.use(checkView);
+import LazyloadHelper from "@/mixins/lazyloadhelper.js";
 export default {
   name: "BranchesComp",
-  components: {},
+  mixins: [LazyloadHelper],
   props: {
     branches: {
       type: Object,

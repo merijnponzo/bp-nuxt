@@ -16,6 +16,7 @@
   transition: 1s ease all;
   opacity: 0;
   transform: translateY(2rem);
+  transition-property: transform opacity;
 }
 .skrp.view-in {
   opacity: 1;

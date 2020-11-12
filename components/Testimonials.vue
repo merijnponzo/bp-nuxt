@@ -249,9 +249,6 @@ export default {
       index: 0
     };
   },
-  mounted() {
-    console.log("testimonial block is mounted");
-  },
   methods: {
     change() {
       console.log(this.$refs.siema.currentSlide);
