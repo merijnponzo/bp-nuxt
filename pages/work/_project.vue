@@ -8,6 +8,10 @@
     margin-bottom: rfs(1.5rem);
   }
 }
+.project__title {
+  padding-top: rfs(1rem);
+  padding-bottom: rfs(1rem);
+}
 
 .project__comp {
   .img-wrap {
@@ -252,6 +256,8 @@ import Visual from "@/components/Visual.vue";
 
 export default {
   name: "WorkSingle",
+  scrollToTop: true,
+  transition: "default",
   components: {
     BannerWork,
     movieFlex,
@@ -270,7 +276,6 @@ export default {
       mobile: false
     };
   },
-  scrollToTop: true,
   asyncData({ app, params, store, $axios }) {
     const slug = params.project.toLowerCase();
     const url = `${process.env.wpApi}/work?slug=${slug}`;

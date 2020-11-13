@@ -95,12 +95,27 @@
       <div class="wrap gut--0">
         <div class="row">
           <div class="col col-12">
-            <VideoPlayer
-              outer=""
-              inner=""
-              ratio="_"
-              :desktop="content.meta.headervideodesktop"
-              :mobile="content.meta.headervideomobile"
+            <video
+              loop
+              id="bpplayervideo"
+              class="video"
+              v-if="$vssWidth < 1260"
+              autoplay
+              muted
+              playsinline
+              :src="content.meta.headervideodesktop"
+              type="video/mp4"
+            />
+            <video
+              loop
+              id="bpplayervideo"
+              class="video"
+              autoplay
+              v-else
+              playsinline
+              muted
+              :src="content.meta.headervideomobile"
+              type="video/mp4"
             />
             <h1 class="chapter about__title">{{ $t("overbp") }}</h1>
           </div>
@@ -262,6 +277,7 @@ import Staggergrid from "@/components/Staggergrid.vue";
 
 export default {
   name: "Page",
+  transition: "default",
   components: { Visual, Diensten, InfoVideo, Morerows, Staggergrid, Revised },
   mixins: [contenthelpers],
   data: function() {

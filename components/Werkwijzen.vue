@@ -160,7 +160,10 @@
                   :key="'testimonial' + i"
                 >
                   <div class="slide--visual">
-                    <Visual :visual="werkwijze.visual" ratio="ratio--3x4" />
+                    <VisualSlide
+                      :visual="werkwijze.visual"
+                      ratio="ratio--3x4"
+                    />
                   </div>
                   <div class="slide--story">
                     <div class="box bp--indent">
@@ -202,13 +205,13 @@
 </template>
 
 <script>
-import Visual from "@/components/Visual.vue";
+import VisualSlide from "@/components/VisualSlide.vue";
 // contenthelpers
 import contenthelpers from "@/mixins/contenthelper.js";
 
 export default {
   name: "Werkwijzen",
-  components: { Visual },
+  components: { VisualSlide },
   mixins: [contenthelpers],
   props: {
     werkwijzen: {

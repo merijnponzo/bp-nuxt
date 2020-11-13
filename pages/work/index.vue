@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <div class="row">
-      <div class="col col-12 grid g3 g2--sm">
+      <div class="col col-12 grid g3--min-l g2 g2--sm">
         <Card
           v-for="(cardItem, i) in content"
           class="card grow skrp xs"
@@ -17,8 +17,8 @@ import Card from "@/components/Card.vue";
 
 export default {
   name: "WorkIndex",
+  transition: "default",
   components: { Card },
-  scrollToTop: true,
   data() {
     return {
       content: []

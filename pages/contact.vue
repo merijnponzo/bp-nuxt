@@ -139,6 +139,7 @@ import Visual from "@/components/Visual.vue";
 import Morerows from "@/components/Morerows.vue";
 export default {
   name: "Page",
+  transition: "default",
   components: { Visual, Morerows },
   data: function() {
     return {

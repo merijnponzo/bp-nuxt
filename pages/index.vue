@@ -245,6 +245,7 @@ import NuxtSSRScreenSize from "nuxt-ssr-screen-size";
 const screenfull = require("screenfull");
 export default {
   name: "Page",
+  transition: "default",
   components: {
     Playbutton,
     Highlights,

@@ -84,21 +84,24 @@
       <div class="row">
         <div
           class="col col-5 col--sm-6 comp__branches--visual"
-          v-view="lazyload"
+          v-view="lazyLoad"
         >
           <img
             class="lazyload img skrp parallax"
             style="--index: 1"
+            v-view.once="lazyLoad"
             :data-src="branches.visual1.url"
           />
           <img
             class="lazyload img skrp parallax"
             style="--index: 2"
+            v-view.once="lazyLoad"
             :data-src="branches.visual2.url"
           />
           <img
             class="lazyload img skrp parallax"
             style="--index: 3"
+            v-view.once="lazyLoad"
             :data-src="branches.visual3.url"
           />
         </div>

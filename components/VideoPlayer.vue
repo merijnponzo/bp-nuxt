@@ -5,6 +5,10 @@
 }
 .video {
   position: relative;
+  hr {
+    opacity: 0;
+    height: 0.1px;
+  }
 }
 .slide-loader {
   height: 3px;
@@ -15,7 +19,7 @@
   z-index: 1;
 }
 .slide-fade-enter-active {
-  transition: all 3s ease;
+  transition: all 32s ease;
 }
 .slide-fade-leave-active {
   transition: all 3s cubic-bezier(1, 0.5, 0.8, 1);
@@ -27,6 +31,7 @@
 </style>
 <template>
   <div class="video" :class="outer">
+    <hr />
     <div :class="[ratio, inner]" v-view="autoPlay">
       <video loop ref="bpplayersingle" class="wid--fl" muted playsinline>
         <source v-if="videoSource" :src="videoSource" type="video/mp4" />
@@ -101,7 +106,7 @@ export default {
             player.play();
             this.play = true;
           }
-        }, 3000);
+        }, 2000);
         this.debounce = true;
       } else if (e.type === "exit") {
         this.debounce = false;

@@ -97,9 +97,7 @@
       >
         <client-only>
           <div class="revised--drag">
-            <!-- 
             <vue-slider ref="slider" :min="0" :max="100" v-model="number" />
-            -->
             <span class="range--indicator" :class="{ active: dragActive }" />
           </div>
         </client-only>
@@ -127,9 +125,12 @@
   </section>
 </template>
 <script>
+import Vue from "vue";
 import Visual from "@/components/Visual.vue";
-// import Vue from "vue";
-// import VueSlider from "vue-slider-component";
+import VueSlider from "vue-slider-component/dist-css/vue-slider-component.umd.min.js";
+import "vue-slider-component/dist-css/vue-slider-component.css";
+
+Vue.component("vue-slider", VueSlider);
 
 export default {
   name: "RevisedFlex",

@@ -132,7 +132,10 @@ h1 {
         <div class="col col-6">
           <h1 v-html="content.title.rendered"></h1>
         </div>
-        <div class="col col-6 dienst__intro--text">
+        <div
+          class="col col-6 dienst__intro--text meta--description skrp"
+          v-view.once
+        >
           <p-meta
             :meta="content.meta.intro"
             field="textarea"
@@ -160,7 +163,10 @@ h1 {
     <section class="dienst__expertises" data-theme="two">
       <div class="wrap gut--0">
         <div class="row">
-          <div class="col col-6 col--m-6 dienst__expertises--text">
+          <div
+            class="col col-6 col--m-6 dienst__expertises--text meta--description skrp"
+            v-view.once
+          >
             <p-meta
               :meta="content.meta.expertises"
               field="textarea"
@@ -232,6 +238,7 @@ import Logowall from "@/components/Logowall.vue";
 
 export default {
   mixins: [contenthelpers],
+  transition: "default",
   components: {
     Visual,
     Staggergrid,

@@ -126,7 +126,7 @@ export const getters = {
     return state.nav.info;
   },
   getWorknav: state => {
-    return state.nav.info[0];
+    return state.nav.info[1];
   },
   getDienstenNav: state => {
     return state.nav.diensten;

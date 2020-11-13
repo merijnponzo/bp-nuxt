@@ -315,8 +315,8 @@ header {
     height: 3px;
   }
   .header__logo {
-    padding-top: 3rem;
-    margin-bottom: 3rem;
+    padding-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
   .nav__address {
     .fs__r {

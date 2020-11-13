@@ -120,7 +120,7 @@ p {
                   :key="'slider' + i"
                 >
                   <div class="slide--visual">
-                    <Visual :visual="slide.visual" ratio="ratio--16x9" />
+                    <VisualSlide :visual="slide.visual" ratio="ratio--16x9" />
                     <p-meta tag="p" :meta="slide" field="textfield" />
                   </div>
                 </div>
@@ -146,13 +146,13 @@ p {
 </template>
 
 <script>
-import Visual from "@/components/Visual.vue";
+import VisualSlide from "@/components/VisualSlide.vue";
 // contenthelpers
 import contenthelpers from "@/mixins/contenthelper.js";
 
 export default {
   name: "SliderFlex",
-  components: { Visual },
+  components: { VisualSlide },
   mixins: [contenthelpers],
   props: {
     flexcontent: {

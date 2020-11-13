@@ -39,7 +39,8 @@ export default {
     bpApi: process.env.BP_API,
     sitePath: process.env.SITEPATH
   },
-  modern: "client",
+
+  // modern: "client",
   /*
    ** Global CSS
    */
@@ -66,7 +67,7 @@ export default {
     { src: "~/plugins/ponzolang.js" },
     { src: "~/plugins/worksearch.js" },
     { src: "~/plugins/checkview.js" }
-    // { src: "~/plugins/vue-range-slider" }
+    // { src: "~/plugins/vue-range-slider", mode: "client", ssr: false }
   ],
   /*
    ** Auto import components

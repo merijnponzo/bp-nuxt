@@ -16,8 +16,7 @@ import Imagetransition from "@/components/Imagetransition.vue";
 
 export default {
   name: "Page",
-  components: { Footer, Header, Imagetransition },
-  scrollTop: true
+  components: { Footer, Header, Imagetransition }
 };
 </script>
 <style lang="scss">
@@ -26,14 +25,14 @@ main {
   z-index: 1;
 }
 
-.page-enter-active {
+.default-enter-active {
   transition: opacity 0.5s, transform 0.5s;
 }
-.page-enter {
+.default-enter {
   opacity: 0;
-  transform: translateY(25vh);
+  transform: translateY(100px);
 }
-.page-enter-to {
+.default-enter-to {
   transform: translateY(0px);
   opacity: 1;
 }
