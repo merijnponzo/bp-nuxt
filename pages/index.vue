@@ -294,10 +294,11 @@ export default {
         .getElementById("bg__video_hotspot")
         .addEventListener("click", () => {
           this.showVideo = true;
-          alert("test");
+
           const elem = document.getElementById("bpplayervideo");
           if (screenfull.isEnabled) {
             if (this.$typy(elem).isDefined) {
+              alert("request and play");
               screenfull.request(elem);
               elem.play();
             }
