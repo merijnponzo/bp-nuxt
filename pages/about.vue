@@ -5,6 +5,13 @@
   position: relative;
   padding-top: rfs(6rem);
 }
+.about--revised {
+  .revised--title {
+    span {
+      color: white !important;
+    }
+  }
+}
 .about__intro {
   // background: linear-gradient(-180deg, rgba(0,0,0,1) 64%, rgba(34,34,34,1) 100%);
   background: black;
@@ -62,10 +69,16 @@
   .member {
     margin-top: rfs(3rem);
   }
+  .video.desktop {
+    display: none;
+  }
 }
 @include min-medium() {
   .about__title {
     transform: translateY(2rem);
+  }
+  .video.mobile {
+    display: none;
   }
 }
 @include min-large() {
@@ -97,23 +110,21 @@
           <div class="col col-12">
             <video
               loop
-              id="bpplayervideo"
-              class="video"
-              v-if="$vssWidth < 1260"
+              class="video mobile"
               autoplay
               muted
               playsinline
+              preload="none"
               :src="content.meta.headervideodesktop"
               type="video/mp4"
             />
             <video
               loop
-              id="bpplayervideo"
-              class="video"
+              class="video desktop"
               autoplay
-              v-else
               playsinline
               muted
+              preload="none"
               :src="content.meta.headervideomobile"
               type="video/mp4"
             />
@@ -165,7 +176,7 @@
         </div>
       </div>
       <!-- visual groot -->
-      <div class="wrap space--2">
+      <div class="wrap space--2 about--revised">
         <div class="row">
           <h1 class="chapter">Meet the team</h1>
           <div class="col col-12 space--3">

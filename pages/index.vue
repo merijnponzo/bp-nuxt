@@ -31,7 +31,6 @@ video:after {
   top: 0px;
   left: 0px;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
 .showreel__controls {
@@ -213,6 +212,7 @@ video:after {
           playsinline
           :src="content.meta.showreel.bgvideo"
           type="video/mp4"
+          preload="none"
         />
         <video
           loop
@@ -221,6 +221,7 @@ video:after {
           controls
           v-show="showVideo"
           :src="content.meta.showreel.video"
+          preload="none"
           type="video/mp4"
         />
       </div>
@@ -294,7 +295,6 @@ export default {
         .getElementById("bg__video_hotspot")
         .addEventListener("click", () => {
           this.showVideo = true;
-
           const elem = document.getElementById("bpplayervideo");
           if (screenfull.isEnabled) {
             if (this.$typy(elem).isDefined) {

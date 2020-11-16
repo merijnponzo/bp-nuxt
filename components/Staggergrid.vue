@@ -62,6 +62,7 @@ export default {
   methods: {
     viewHandler(e) {
       if (e.type === "enter") {
+        console.log("staggggg!");
         this.$nextTick(() => {
           this.doStagger();
         });

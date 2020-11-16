@@ -10,6 +10,11 @@
   position: relative;
   transition: 1s ease all;
 }
+#bpplayervideo_about {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
 .intro__icon {
   position: absolute;
   width: 100%;
@@ -75,10 +80,9 @@
           <Visual :visual="info.visual" :ratio="ratio" />
           <video
             loop
-            id="bpplayervideo"
+            id="bpplayervideo_about"
             class="wid--fl"
-            controls
-            v-show="showVideo"
+            v-if="showVideo"
             :src="info.video"
             type="video/mp4"
           />
@@ -131,21 +135,27 @@ export default {
         .getElementById("bg__video_hotspot")
         .addEventListener("click", () => {
           this.showVideo = true;
-          this.test = "clicking";
-          const elem = document.getElementById("bpplayervideo");
-          if (screenfull.isEnabled) {
-            if (this.$typy(elem).isDefined) {
-              screenfull.request(elem);
-              elem.play();
+
+          setTimeout(() => {
+            const elem = document.getElementById("bpplayervideo_about");
+            if (screenfull.isEnabled) {
+              if (this.$typy(elem).isDefined) {
+                screenfull.request(elem);
+                elem.play();
+              }
+            } else {
+              if (this.$typy(elem).isDefined) {
+                elem.play();
+              }
             }
-          }
+          }, 500);
         });
     }, 2000);
     // listener for change
     if (screenfull.isEnabled) {
       screenfull.on("change", () => {
         if (!screenfull.isFullscreen) {
-          const elem = document.getElementById("bpplayervideo");
+          const elem = document.getElementById("bpplayervideo_about");
           if (this.$typy(elem).isDefined) {
             elem.pause();
             elem.currentTime = 0;
