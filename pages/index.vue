@@ -297,6 +297,7 @@ export default {
 
           const elem = document.getElementById("bpplayervideo");
           if (screenfull.isEnabled) {
+            alert("screen full is enabled");
             if (this.$typy(elem).isDefined) {
               alert("request and play");
               screenfull.request(elem);
