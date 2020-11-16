@@ -296,12 +296,13 @@ export default {
           this.showVideo = true;
 
           const elem = document.getElementById("bpplayervideo");
-          alert("click works");
           if (screenfull.isEnabled) {
-            alert("screen full is enabled");
             if (this.$typy(elem).isDefined) {
-              alert("click works, screenfull enabled and element is defined");
               screenfull.request(elem);
+              elem.play();
+            }
+          } else {
+            if (this.$typy(elem).isDefined) {
               elem.play();
             }
           }
