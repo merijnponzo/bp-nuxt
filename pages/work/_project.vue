@@ -194,14 +194,16 @@
           <div class="col col-12 space--3">
             <div class="split--fl">
               <span>
-                <router-link class="bp--nxt xl" to="/contact">{{
-                  $t("contactop")
-                }}</router-link>
+                <p-link archive="true" class="bp--prv xl">
+                  <p class="desktop">Terug naar&nbsp;</p>
+                  <p>{{ $t("work") }}</p>
+                </p-link>
               </span>
               <span>
-                <p-link archive="true" class="bp--prv xl">
-                  {{ $t("alleprojecten") }}
-                </p-link>
+                <router-link class="bp--nxt xl" to="/contact">
+                  <p class="desktop">Naar&nbsp;</p>
+                  <p>{{ $t("contact") }}</p></router-link
+                >
               </span>
             </div>
           </div>

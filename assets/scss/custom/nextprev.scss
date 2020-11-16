@@ -1,37 +1,54 @@
-.bp--tile{
-    position: relative;
-    a{
-        position: absolute;
-        opacity: 1;
-        z-index: 1;
-        text-align: center;
-        width: 100%;
-        height: 100%;
-        left:0px;
-        top:0px;;
-        left: 0px;
-        display: flex;
-        color: white;
-        justify-content: center;
-        font-family: var(--productive-1);
-        align-items: center;
-        background: rgba(0, 0, 0, 0.66);
-        transition: 1s ease all;
-        font-size: var(--fs-btn);
-        &:hover {
-            background: rgba(0, 0, 0, 0);
-            font-size: var(--fs-btn);
-        }
-        span{
-            border:thin solid white;
-            border-radius: 50px;
-            padding:rfs(1rem);
-        }
+.bp--tile {
+  position: relative;
+  a {
+    position: absolute;
+    opacity: 1;
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    font-family: var(--productive-1);
+    align-items: center;
+    background: rgba(0, 0, 0, 0.66);
+    transition: 1s ease all;
+    font-size: var(--fs-btn);
+    &:hover {
+      background: rgba(0, 0, 0, 0);
+      font-size: var(--fs-btn);
     }
-    .bp--prv::before{
-        height:0px;
+    span {
+      border: thin solid white;
+      border-radius: 50px;
+      padding: rfs(1rem);
     }
-    .bp--nxt::before{
-        height:0px;
+  }
+  .bp--prv::before {
+    height: 0px;
+  }
+  .bp--nxt::before {
+    height: 0px;
+  }
+}
+.work__knowmore {
+  .desktop {
+    display: none;
+  }
+}
+
+@include min-medium() {
+  .work__knowmore {
+    .bp--next,
+    .bp--prev {
+      align-items: center !important;
     }
+    .desktop {
+      display: inline-block;
+    }
+  }
 }
