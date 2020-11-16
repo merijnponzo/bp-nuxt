@@ -8,6 +8,8 @@
   hr {
     opacity: 0;
     height: 0.1px;
+    padding: 0px;
+    margin: 0px;
   }
 }
 .slide-loader {

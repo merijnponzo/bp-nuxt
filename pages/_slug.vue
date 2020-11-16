@@ -262,6 +262,9 @@ export default {
         content: response.data[0]
       };
     });
+  },
+  mounted() {
+    window.scrollTo(0, 0);
   }
 };
 </script>

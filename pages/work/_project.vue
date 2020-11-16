@@ -276,6 +276,9 @@ export default {
       mobile: false
     };
   },
+  mounted() {
+    window.scrollTo(0, 0);
+  },
   asyncData({ app, params, store, $axios }) {
     const slug = params.project.toLowerCase();
     const url = `${process.env.wpApi}/work?slug=${slug}`;

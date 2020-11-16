@@ -150,7 +150,7 @@
     display: block;
     padding-top: rfs(0.25rem);
     padding-bottom: rfs(0.25rem);
-    transition: 0.3s ease all;
+    transition: 0.3s ease padding-left;
     i {
       transform: scale(0, 0);
       width: 0px;
@@ -175,11 +175,6 @@
 }
 .panel__1 {
   width: 100%;
-  background: linear-gradient(
-    -180deg,
-    rgba(0, 0, 0, 1) 25%,
-    rgba(34, 34, 34, 1) 100%
-  );
   padding-left: rfs(2rem);
   padding-right: rfs(2rem);
   padding-bottom: rfs(2rem);
@@ -187,7 +182,7 @@
   bottom: 0px;
 }
 .panel__2 {
-  height: calc(100% - 200px);
+  height: 100%;
   top: 0px;
   .fs__b {
     width: 100%;
@@ -265,6 +260,24 @@ header {
     color: #ccc;
   }
 }
+@include max-medium() {
+  .panel__1 {
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 25%,
+      rgba(34, 34, 34, 1) 100%
+    );
+  }
+  .panel__2 {
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 25%,
+      rgba(34, 34, 34, 1) 100%
+    );
+    height: calc(100% - 200px);
+    padding-bottom: 200px;
+  }
+}
 @include min-medium() {
   .panel__1 {
     width: 40%;
@@ -273,6 +286,11 @@ header {
     z-index: 3;
     height: 100%;
     padding-bottom: rfs(5rem);
+    background: linear-gradient(
+      -180deg,
+      rgba(0, 0, 0, 1) 25%,
+      rgba(34, 34, 34, 1) 100%
+    );
   }
   .panel__2 {
     background: black;
@@ -468,7 +486,7 @@ export default {
       if (this.blendmode && !this.navBusy) {
         this.blendmode = false;
         this.navBusy = true;
-        document.body.classList.add("no-scroll");
+        document.querySelector("html").style.overflow = "hidden";
         this.$anime({
           targets: ".sq",
           width: 0,
@@ -514,7 +532,7 @@ export default {
               value: 0,
               easing: "easeOutSine"
             },
-            delay: this.$anime.stagger(50)
+            delay: this.$anime.stagger(100)
           });
         this.tl.finished.then(this.navUnbusy);
       } else {
@@ -527,7 +545,7 @@ export default {
         this.tl.reverse();
         this.tl.play();
         this.tl.finished.then(this.blendIn);
-        document.body.classList.remove("no-scroll");
+        document.querySelector("html").style.overflow = "auto";
         this.$anime({
           targets: ".sq__cross",
           width: 0,

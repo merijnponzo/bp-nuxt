@@ -1,4 +1,4 @@
-<style lang="scss" scoped>
+<style lang="scss">
 $filter-width: 200px;
 .nav__filters--home {
   display: flex;
@@ -10,10 +10,6 @@ $filter-width: 200px;
   span:nth-child(1) {
     margin-right: rfs(0.5rem);
   }
-}
-sup {
-  font-family: var(--font-expressive-1);
-  font-weight: bold;
 }
 
 .nav__filters--panel {
@@ -36,6 +32,10 @@ sup {
   }
   a {
     @include noselect();
+  }
+  sup {
+    font-family: var(--font-expressive-1);
+    font-weight: bold;
   }
 }
 .nav__filters--close {
@@ -145,6 +145,12 @@ sup {
   .nav__filters--childpanel {
     top: 75px;
   }
+  .preloader {
+    background: black !important;
+    svg {
+      background: black !important;
+    }
+  }
 }
 @include min-large() {
   .nav__filters-mobile {
@@ -243,10 +249,7 @@ sup {
               <span class="nav__filters--home">
                 <span class="nav_filters--arrow" v-if="!mobile">&#8594;</span>
                 <span class="fs__b">Filters</span>
-                <Preloader
-                  :darkmode="$vssWidth < 1260 ? 'darkmode' : ''"
-                  v-if="filters.length === 0 || loading === true"
-                />
+                <Preloader v-if="filters.length === 0 || loading === true" />
               </span>
             </template>
           </router-link>

@@ -18,6 +18,7 @@ import Card from "@/components/Card.vue";
 export default {
   name: "WorkIndex",
   transition: "default",
+  scrollTop: true,
   components: { Card },
   data() {
     return {
@@ -26,6 +27,9 @@ export default {
   },
   asyncData({ app, params, query }) {
     return app.workQuery(query, params);
+  },
+  mounted() {
+    window.scrollTo(0, 0);
   }
 };
 </script>

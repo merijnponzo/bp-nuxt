@@ -1,31 +1,25 @@
-html, body{
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+html,
+body {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
-body.no-scroll{
-    height:100%;
-    overflow-x:hidden;
-    overflow-y:hidden;
-    position: absolute;
-    width:100%;
-}
-div{
-    box-sizing: border-box;
+div {
+  box-sizing: border-box;
 }
 
-main{
-    width:100%;
+main {
+  width: 100%;
 }
-footer{
-    margin: auto auto 0 auto;
-    width:100%;
+footer {
+  margin: auto auto 0 auto;
+  width: 100%;
 }
-@include min-large(){
-    //collapsing is available from min medium
-    main[data-state="collapsed"]{
-        width:calc(100% - #{$nav-aside-width});
-        margin-left:$nav-aside-width;
-     }
+@include min-large() {
+  //collapsing is available from min medium
+  main[data-state="collapsed"] {
+    width: calc(100% - #{$nav-aside-width});
+    margin-left: $nav-aside-width;
+  }
 }

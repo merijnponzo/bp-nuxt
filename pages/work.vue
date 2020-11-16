@@ -31,6 +31,9 @@
   .work__work {
     padding-top: 4rem;
   }
+  .chapter {
+    max-width: 1020px;
+  }
 }
 </style>
 <template>
@@ -52,6 +55,7 @@ import Filters from "@/components/Filters.vue";
 
 export default {
   name: "Work",
+  scrollToTop: true,
   transition: "default",
   components: { Filters },
   watchQuery: ["_start", "filter", "project"],

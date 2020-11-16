@@ -28,6 +28,7 @@
               :data-src="visual.sizes.large"
               class="img lazyload"
               data-sizes="auto"
+              src="/empty.gif"
             />
           </picture>
         </template>

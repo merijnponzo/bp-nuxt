@@ -17,7 +17,10 @@
         :key="'colV' + v"
       >
         <template v-if="visual.video">
-          <VideoPlayer :mobile="$typy(visual, 'video.url').safeObject" />
+          <VideoPlayer
+            :mobile="$typy(visual, 'video.url').safeObject"
+            :desktop="$typy(visual, 'video.url').safeObject"
+          />
         </template>
         <template v-else>
           <Visual :visual="visual.visual" :key="'visual' + visual.id" />
