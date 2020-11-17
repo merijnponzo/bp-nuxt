@@ -66,9 +66,15 @@ h1 {
 }
 .dienst__expertises--expertises {
   margin-top: rfs(3rem);
+  padding-bottom: rfs(6rem);
   ul {
     padding-left: rfs(1rem);
     border-left: 1px solid var(--color-bg);
+    line-height: 220%;
+    li,
+    p {
+      line-height: inherit !important;
+    }
   }
 }
 @include min-medium() {
