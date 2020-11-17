@@ -14,7 +14,7 @@
 }
 .about__intro {
   // background: linear-gradient(-180deg, rgba(0,0,0,1) 64%, rgba(34,34,34,1) 100%);
-  background: black;
+  background-color: black;
   background: url("~assets/images/bg.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;

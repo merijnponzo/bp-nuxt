@@ -52,12 +52,13 @@
   }
 }
 .revised--after {
-  z-index: 2;
+  z-index: 1;
   top: 0px;
   left: 0px;
   position: absolute;
-  opacity: 1;
   clip-path: inset(0px var(--percentage) 0px 0px);
+  filter: brightness(calc(100% - var(--percentage)));
+  background: black;
 }
 .revised--before::after {
   position: absolute;
@@ -65,10 +66,8 @@
   height: 100%;
   top: 0px;
   left: 0px;
-  opacity: var(--current);
   content: "";
-  background: black;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
   cursor: pointer;
 }
@@ -101,16 +100,16 @@
             <span class="range--indicator" :class="{ active: dragActive }" />
           </div>
         </client-only>
-        <template v-if="flexcontent.before">
+        <template v-if="flexcontent.after">
           <Visual
-            :visual="flexcontent.before"
+            :visual="flexcontent.after"
             class="revised--before"
             :key="'visual-fwwjjw1'"
           />
         </template>
         <template v-if="flexcontent.before">
           <Visual
-            :visual="flexcontent.after"
+            :visual="flexcontent.before"
             class="revised--after"
             :key="'visual-dodwi902'"
           />

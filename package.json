@@ -21,6 +21,7 @@
     "npm": "^6.14.8",
     "nuxt": "^2.14.7",
     "nuxt-i18n": "^6.15.4",
+    "nuxt-jsonld": "^1.5.0",
     "nuxt-leaflet": "0.0.22",
     "nuxt-memwatch": "^0.1.2",
     "nuxt-sass-resources-loader": "^2.0.5",
@@ -35,6 +36,7 @@
     "vue-check-view": "^0.3.0",
     "vue-cookies": "^1.7.0",
     "vue-debounce": "^2.5.7",
+    "vue-gtag": "^1.10.0",
     "vue-slider-component": "^3.2.10",
     "vue2-leaflet": "^2.5.2",
     "yarn": "^1.22.10"

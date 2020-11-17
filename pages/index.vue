@@ -205,7 +205,8 @@ video:after {
         </div>
         <video
           loop
-          class="wid--fl"
+          class="wid--fl desktop"
+          id="bpplayerbg"
           muted
           autoplay
           v-show="!showVideo"
@@ -288,6 +289,14 @@ export default {
   },
   mounted() {
     // this.createScrollOut();
+    const elemBg = document.getElementById("bpplayerbg");
+    if (this.$vssWidth < 700) {
+      elemBg.src = this.content.meta.showreel.bgvideomobile;
+    } else {
+      elemBg.src = this.content.meta.showreel.bgvideo;
+    }
+    elemBg.play();
+
     setTimeout(() => {
       this.initVideo = 0;
       // use screenfull
@@ -299,10 +308,20 @@ export default {
           if (screenfull.isEnabled) {
             if (this.$typy(elem).isDefined) {
               screenfull.request(elem);
+              if (this.$vssWidth < 700) {
+                elem.src = this.content.meta.showreel.videomobile;
+              } else {
+                elem.src = this.content.meta.showreel.video;
+              }
               elem.play();
             }
           } else {
             if (this.$typy(elem).isDefined) {
+              if (this.$vssWidth < 700) {
+                elem.src = this.content.meta.showreel.videomobile;
+              } else {
+                elem.src = this.content.meta.showreel.video;
+              }
               elem.play();
             }
           }

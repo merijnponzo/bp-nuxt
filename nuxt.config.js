@@ -40,7 +40,7 @@ export default {
     sitePath: process.env.SITEPATH
   },
 
-  // modern: "client",
+  modern: "client",
   /*
    ** Global CSS
    */
@@ -66,7 +66,8 @@ export default {
     { src: "~/plugins/typy.js" },
     { src: "~/plugins/ponzolang.js" },
     { src: "~/plugins/worksearch.js" },
-    { src: "~/plugins/checkview.js" }
+    { src: "~/plugins/checkview.js" },
+    { src: "~/plugins/jsonld" }
     // { src: "~/plugins/vue-range-slider", mode: "client", ssr: false }
   ],
   /*

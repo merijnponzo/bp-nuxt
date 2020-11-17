@@ -16,7 +16,57 @@ import Imagetransition from "@/components/Imagetransition.vue";
 
 export default {
   name: "Page",
-  components: { Footer, Header, Imagetransition }
+  components: { Footer, Header, Imagetransition },
+  data: function() {
+    return {
+      sitenav: [
+        {
+          url: "https://wwww.buroponzo.nl",
+          text: "Home"
+        },
+        {
+          url: "https://wwww.buroponzo.nl/work",
+          text: "Werk"
+        },
+        {
+          url: "https://wwww.buroponzo.nl/branding-strategy",
+          text: "Branding&Strategy"
+        },
+        {
+          url: "https://www.buroponzo.nl/promotion-content",
+          text: "Promotion&Content"
+        },
+        {
+          url: "https://wwww.buroponzo.nl/websites-interfaces",
+          text: "Websites&Interfaces"
+        },
+        {
+          url: "https://wwww.buroponzo.nl/about",
+          text: "Over ons"
+        },
+        {
+          url: "https://wwww.buroponzo.nl/contact",
+          text: "Contact"
+        }
+      ]
+    };
+  },
+  jsonld() {
+    const items = this.sitenav.map((item, index) => ({
+      "@type": "SiteNavigationElement",
+      position: index + 1,
+      item: {
+        "@id": item.url,
+        name: item.text,
+        url: item.url
+      }
+    }));
+    return {
+      "@context": "http://schema.org",
+      "@type": "SiteNavigationElement",
+      itemListElement: items
+    };
+  }
 };
 </script>
 <style lang="scss">

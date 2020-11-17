@@ -135,12 +135,20 @@ export default {
         .getElementById("bg__video_hotspot")
         .addEventListener("click", () => {
           this.showVideo = true;
+          let url = null;
+          if (this.$vssWidth < 700) {
+            url = this.info.videomobile;
+          } else {
+            url = this.info.video;
+          }
 
           setTimeout(() => {
             const elem = document.getElementById("bpplayervideo_about");
+            elem.src = url;
             if (screenfull.isEnabled) {
               if (this.$typy(elem).isDefined) {
                 screenfull.request(elem);
+
                 elem.play();
               }
             } else {

@@ -21,9 +21,11 @@
         <div class="col col-6">
           <div class="box pad--no meta--description skrp" v-view.once>
             <p-meta tagclass="fs__r xl" :meta="meerweten" field="textarea" />
-            <router-link class="bp--nxt xl" :to="meerweten.link">{{
-              $t("more")
-            }}</router-link>
+            <template v-if="meerweten.link">
+              <router-link class="bp--nxt xl" to="/contact">{{
+                $t("naarcontact")
+              }}</router-link>
+            </template>
           </div>
         </div>
         <div class="col col-6 comp__info--visual" v-if="meerweten.visual">
