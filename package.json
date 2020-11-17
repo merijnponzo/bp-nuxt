@@ -36,7 +36,6 @@
     "vue-check-view": "^0.3.0",
     "vue-cookies": "^1.7.0",
     "vue-debounce": "^2.5.7",
-    "vue-gtag": "^1.10.0",
     "vue-slider-component": "^3.2.10",
     "vue2-leaflet": "^2.5.2",
     "yarn": "^1.22.10"

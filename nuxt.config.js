@@ -61,7 +61,6 @@ export default {
     // lazyload images
     // { src: "~/plugins/vue-lazysizes", ssr: false },
     // google analytics
-    { src: "~/plugins/ga.js", mode: "client" },
     { src: "~/plugins/vue-siema.js", mode: "client" },
     { src: "~/plugins/typy.js" },
     { src: "~/plugins/ponzolang.js" },
@@ -78,7 +77,10 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [],
+  buildModules: ["@nuxtjs/google-analytics"],
+  googleAnalytics: {
+    id: "G-JJH231C7RF"
+  },
   /*
    ** Nuxt.js modules
    */
