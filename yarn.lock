@@ -1240,6 +1240,13 @@
     consola "^2.15.0"
     defu "^3.1.0"
 
+"@nuxtjs/google-analytics@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/google-analytics/-/google-analytics-2.4.0.tgz#3bb9f398a05cc23340d1f423f8d8653dc4114f46"
+  integrity sha512-rDQTwHIjyjVrx8GywHPuWykJ3jRFGaHl5Iqji/y8tQWUc0yGEeHxOoR0yimzxnTS1Ph2/PubQYpgnVeEPEdL/A==
+  dependencies:
+    vue-analytics "^5.22.1"
+
 "@nuxtjs/proxy@^2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@nuxtjs/proxy/-/proxy-2.0.1.tgz#2469b6e316311aa8c60d348502a54bfe6d5536aa"
@@ -10476,11 +10483,6 @@ vue-debounce@^2.5.7:
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/vue-debounce/-/vue-debounce-2.5.7.tgz#4e2aee484ea46be343242639ea56ddcd96ab3431"
   integrity sha512-weyMz0ee6xHLCJ+HrvfkVUQqBsH7Jx359yLTmfnmpb8fDUD3HZEwd2ZHoq+sZjcYR7JcW7B9FlqjJA2IJXqscg==
-
-vue-gtag@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/vue-gtag/-/vue-gtag-1.10.0.tgz#787d62eb4f1135dfa2997b465f1b11e5cf8fb0c9"
-  integrity sha512-pGbe6m/12a2DHftnWQOHBmkS+a3kPAZNU6ouP426mF/MPc/43DcHCEySUtB3MeJCPuXaUQQgGsRosIZWPdl/MQ==
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
