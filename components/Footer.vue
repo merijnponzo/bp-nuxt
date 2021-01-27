@@ -158,7 +158,7 @@ footer {
                 ><a :href="getContact.facebook"><i class="ico-i_facebook"/></a
                 ><a :href="getContact.instagram"><i class="ico-i_instagram"/></a
               ></span>
-              <span class="copyright fs__r xs">© Copyright 2020</span>
+              <span class="copyright fs__r xs">© Copyright 2020 [v1.1]</span>
             </div>
           </div>
         </div>
