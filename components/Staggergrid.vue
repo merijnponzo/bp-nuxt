@@ -56,7 +56,7 @@ export default {
     return {};
   },
   mounted() {
-    console.log("stagger mounted");
+    // console.log("stagger mounted");
   },
   methods: {
     viewStagHandler(e) {

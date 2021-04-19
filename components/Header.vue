@@ -540,31 +540,31 @@ export default {
       }
     },
     navOut() {
-      if (!this.navBusy) {
-        this.navBusy = true;
-        this.tl.reverse();
-        this.tl.play();
-        this.tl.finished.then(this.blendIn);
-        document.querySelector("html").style.overflow = "auto";
-        this.$anime({
-          targets: ".sq__cross",
-          width: 0,
-          duration: 500,
-          easing: "spring(1, 80, 10, 0)"
-        });
-        this.$anime({
-          targets: ".sq",
-          width: "100%",
-          delay: 500
-        });
-        this.$anime({
-          targets: ".panel__1",
-          right: "-100%",
-          duration: 400,
-          delay: 800,
-          easing: "easeInSine"
-        });
-      }
+      // if (!this.navBusy) {
+      this.navBusy = true;
+      this.tl.reverse();
+      this.tl.play();
+      this.tl.finished.then(this.blendIn);
+      document.querySelector("html").style.overflow = "auto";
+      this.$anime({
+        targets: ".sq__cross",
+        width: 0,
+        duration: 500,
+        easing: "spring(1, 80, 10, 0)"
+      });
+      this.$anime({
+        targets: ".sq",
+        width: "100%",
+        delay: 500
+      });
+      this.$anime({
+        targets: ".panel__1",
+        right: "-100%",
+        duration: 400,
+        delay: 800,
+        easing: "easeInSine"
+      });
+      // }
     },
     blendIn() {
       this.blendmode = true;
