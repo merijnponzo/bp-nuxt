@@ -20,7 +20,7 @@
   }
   .slide--visual {
     left: 20%;
-
+    max-width:
     transform: scale(1, 1);
     .visual {
       opacity: 1;
@@ -44,9 +44,7 @@ p {
   transform: scale(0.8, 0.8);
   transition: 0.5s ease opacity;
   opacity: 0.6;
-  .visual {
-    max-width: 500px;
-  }
+  max-width: 550px;
 }
 .slide.active {
   .slide--visual {
@@ -126,7 +124,7 @@ p {
                   :key="'slider' + i"
                 >
                   <div class="slide--visual">
-                    <VisualSlide :visual="slide.visual" ratio="ratio--9x16" />
+                    <VisualSlide :visual="slide.visual" ratio="ratio--3x4" />
                     <p-meta tag="p" :meta="slide" field="textfield" />
                   </div>
                 </div>
