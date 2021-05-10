@@ -157,10 +157,10 @@ img.contain {
   padding-bottom: 100%;
 }
 .ratio--4x3 {
-  padding-bottom: 66%;
+  padding-bottom: calc((1320 / 2000) * 100%);
 }
 .ratio--3x4 {
-  padding-bottom: 133%;
+  padding-bottom: calc((2000 / 1320) * 100%);
 }
 .ratio--9x16 {
   padding-bottom: 166.666%;
