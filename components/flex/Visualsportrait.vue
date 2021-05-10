@@ -20,7 +20,6 @@
   }
   .slide--visual {
     left: 20%;
-    max-width:
     transform: scale(1, 1);
     .visual {
       opacity: 1;
