@@ -10,7 +10,7 @@
 </style>
 <template>
   <section class="wrap gut--m">
-    <div class="row">
+    <div class="row visuals--more" :class="{ four: flexcontent.visuals > 3 }">
       <div
         class="col col-6 col--mm-6"
         v-for="(visual, v) in flexcontent.visuals"
@@ -45,3 +45,13 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+@include max-medium() {
+  .visuals--more.four {
+    --grid-gutter: 4px !important;
+    .col--mm-6 {
+      margin-bottom: 8px !important;
+    }
+  }
+}
+</style>
