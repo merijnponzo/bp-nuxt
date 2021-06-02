@@ -47,7 +47,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @include max-medium() {
-  .visuals--more.four {
+  .visuals--more {
     --grid-gutter: 4px !important;
     .col--mm-6 {
       margin-bottom: 8px !important;
