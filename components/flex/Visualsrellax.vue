@@ -58,7 +58,7 @@ import Rellax from "rellax";
 import NuxtSSRScreenSize from "nuxt-ssr-screen-size";
 
 export default {
-  name: "visualsinstagramFlex",
+  name: "visualsrellaxFlex",
   components: { Visual, VideoPlayer },
   mixins: [NuxtSSRScreenSize.NuxtSSRScreenSizeMixin],
   props: {
