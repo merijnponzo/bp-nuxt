@@ -27,7 +27,6 @@
             v-rellax="rellax"
             class="col col-6 col--m-6"
             v-for="(visualcontainer, v) in visualcontainers"
-            :data-rellax-speed="$vssWidth > 960 ? (v + 1) * 10 : 10"
             :key="'colV' + v"
           >
             <template v-for="(visual, v) in visualcontainer">
@@ -77,14 +76,15 @@ export default {
     return {
       visualcontainers: [[], []],
       rellax: {
-        center: true
+        center: true,
+        speed: 4
       }
     };
   },
-  created() {
+  mounted() {
     // divide items
     for (let i = 0; i < this.flexcontent.visuals.length; i++) {
-      if (this.$vssWidth > 960) {
+      if (window.innerWidth > 960) {
         if (i % 2 == 0) {
           this.visualcontainers[0].push(this.flexcontent.visuals[i]);
         } else {
