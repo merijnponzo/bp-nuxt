@@ -9,38 +9,47 @@
 }
 </style>
 <template>
-  <section
-    class="visual__instagram"
+  <div
     :style="{ backgroundColor: flexcontent.backgroundcolor }"
+    class="visual__instagram"
   >
-    <div class="wrap gut--m visual__instagram--wrap">
+    <section class="wrap wrap--insta">
       <div class="row">
-        <div
-          class="col col-6 col--m-6 rellax"
-          v-for="(visualcontainer, v) in visualcontainers"
-          :data-rellax-speed="$vssWidth > 960 ? (v + 1) * 10 : 10"
-          :key="'colV' + v"
-        >
-          <template v-for="(visual, v) in visualcontainer">
-            <template v-if="visual.video">
-              <VideoPlayer
-                :mobile="$typy(visual, 'video.url').safeObject"
-                :desktop="$typy(visual, 'video.url').safeObject"
-              />
-            </template>
-            <template v-else>
-              <Visual
-                :class="` polaroid--${flexcontent.polaroid} visual--${v + 1}`"
-                :visual="visual.visual"
-                :key="'visual' + visual.visual.id"
-                :ratio="`ratio--${flexcontent.ratio}`"
-              />
-            </template>
-          </template>
+        <div class="col col-12 instagram--desc">
+          <span class="fs__r xl">{{ flexcontent.description }}</span>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+    <section>
+      <div class="wrap gut--m">
+        <div class="row visual__instagram--wrap">
+          <div
+            class="col col-6 col--m-6 rellax"
+            v-for="(visualcontainer, v) in visualcontainers"
+            :data-rellax-speed="$vssWidth > 960 ? (v + 1) * 10 : 10"
+            :key="'colV' + v"
+          >
+            <template v-for="(visual, v) in visualcontainer">
+              <template v-if="visual.video">
+                <VideoPlayer
+                  :mobile="$typy(visual, 'video.url').safeObject"
+                  :desktop="$typy(visual, 'video.url').safeObject"
+                />
+              </template>
+              <template v-else>
+                <Visual
+                  :class="` polaroid--${flexcontent.polaroid} visual--${v + 1}`"
+                  :visual="visual.visual"
+                  :key="'visual' + visual.visual.id"
+                  :ratio="`ratio--${flexcontent.ratio}`"
+                />
+              </template>
+            </template>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 <script>
 import Visual from "@/components/Visual.vue";
@@ -85,6 +94,17 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.wrap--insta {
+  padding-left: 0px;
+}
+.instagram--desc {
+  padding-top: rfs(2rem);
+  padding-bottom: rfs(2rem);
+  text-align: left;
+  left: 0px;
+  width: 100%;
+  display: block;
+}
 .visual__instagram {
   padding-top: rfs(5rem);
   padding-bottom: rfs(5rem);
