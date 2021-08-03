@@ -38,12 +38,6 @@
               :visual="flexcontent.visualsingle.visual"
             />
           </template>
-          <span
-            class="visualsingle--description fs__r xl"
-            v-if="flexcontent.visualsingle.description.length"
-          >
-            {{ flexcontent.visualsingle.description }}
-          </span>
           <template v-else>
             <VideoPlayer
               :poster="$typy(flexcontent, 'visualsingle.poster').safeObject"
@@ -56,6 +50,12 @@
             >
             </VideoPlayer>
           </template>
+          <span
+            class="visualsingle--description fs__r xl"
+            v-if="flexcontent.visualsingle.description.length"
+          >
+            {{ flexcontent.visualsingle.description }}
+          </span>
         </div>
       </div>
     </div>

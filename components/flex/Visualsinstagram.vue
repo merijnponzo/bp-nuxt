@@ -39,7 +39,10 @@
               </template>
               <template v-else>
                 <Visual
-                  :class="` polaroid--${flexcontent.polaroid} visual--${v + 1}`"
+                  :class="
+                    `polaroid polaroid--${flexcontent.polaroid} visual--${v +
+                      1}`
+                  "
                   :visual="visual.visual"
                   :key="'visual' + visual.visual.id"
                   :ratio="`ratio--${flexcontent.ratio}`"
@@ -122,6 +125,8 @@ export default {
   background: white;
   padding: rfs(0.5rem);
   @include shadow();
+}
+.polaroid {
   margin-bottom: rfs(3rem);
 }
 @include min-large() {
