@@ -28,6 +28,7 @@
     "nuxt-memwatch": "^0.1.2",
     "nuxt-sass-resources-loader": "^2.0.5",
     "nuxt-ssr-screen-size": "^1.0.0",
+    "rellax": "^1.12.1",
     "rfs": "^9.0.3",
     "screenfull": "^5.0.2",
     "typy": "^3.3.0",

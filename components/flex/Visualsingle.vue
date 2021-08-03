@@ -28,13 +28,22 @@
   >
     <div class="wrap">
       <div class="row">
-        <div class="col col-12">
+        <div
+          class="col col-12"
+          :class="`parent--${getParentRatio(flexcontent)}`"
+        >
           <template v-if="!flexcontent.visualsingle.video">
             <Visual
               :ratio="getRatio(flexcontent)"
               :visual="flexcontent.visualsingle.visual"
             />
           </template>
+          <span
+            class="visualsingle--description fs__r xl"
+            v-if="flexcontent.visualsingle.description.length"
+          >
+            {{ flexcontent.visualsingle.description }}
+          </span>
           <template v-else>
             <VideoPlayer
               :poster="$typy(flexcontent, 'visualsingle.poster').safeObject"
@@ -71,10 +80,42 @@ export default {
     getRatio(flexcontent) {
       if (flexcontent.visualsingle.wallpaper) {
         return "ratio--4x3";
+      } else if (flexcontent.visualsingle.is3x4) {
+        return "ratio--3x4";
       } else {
         return "ratio--4x3";
+      }
+    },
+    getParentRatio(flexcontent) {
+      if (flexcontent.visualsingle.wallpaper) {
+        return "fit--4x3";
+      } else if (flexcontent.visualsingle.is3x4) {
+        return "fit--3x4";
+      } else {
+        return "fit--4x3";
       }
     }
   }
 };
 </script>
+<style lang="scss">
+.parent--fit--3x4 .visual {
+  max-width: 700px;
+}
+
+.visualsingle--description {
+  max-width: 480px;
+  padding-top: rfs(2rem);
+  display: block;
+}
+@include min-large() {
+  .parent--fit--3x4 {
+    display: flex;
+    flex-direction: flex-row;
+    align-items: flex-end;
+  }
+  .visualsingle--description {
+    padding-left: rfs(2rem);
+  }
+}
+</style>
