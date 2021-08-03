@@ -248,7 +248,7 @@
 // contenthelpers
 import BannerWork from "@/components/BannerWork.vue";
 import visualsFlex from "@/components/flex/Visuals.vue";
-import visualsinstagramFlex from "@/components/flex/Visualsrellax.vue";
+import visualsinstagramFlex from "@/components/flex/Visualsinstagram.vue";
 import visualsingleFlex from "@/components/flex/Visualsingle.vue";
 import revisedFlex from "@/components/flex/Revised.vue";
 import visualsportraitFlex from "@/components/flex/Visualsportrait.vue";

@@ -66,7 +66,8 @@ export default {
     { src: "~/plugins/ponzolang.js" },
     { src: "~/plugins/worksearch.js" },
     { src: "~/plugins/checkview.js" },
-    { src: "~/plugins/jsonld" }
+    { src: "~/plugins/jsonld" },
+    { src: "~/plugins/vue-rellax.js", ssr: false }
     // { src: "~/plugins/vue-range-slider", mode: "client", ssr: false }
   ],
   /*

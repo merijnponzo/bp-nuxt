@@ -24,7 +24,8 @@
       <div class="wrap gut--m">
         <div class="row visual__instagram--wrap">
           <div
-            class="col col-6 col--m-6 rellax"
+            v-rellax="rellax"
+            class="col col-6 col--m-6"
             v-for="(visualcontainer, v) in visualcontainers"
             :data-rellax-speed="$vssWidth > 960 ? (v + 1) * 10 : 10"
             :key="'colV' + v"
@@ -71,7 +72,10 @@ export default {
   },
   data: function() {
     return {
-      visualcontainers: [[], []]
+      visualcontainers: [[], []],
+      rellax: {
+        center: true
+      }
     };
   },
   created() {
@@ -88,8 +92,8 @@ export default {
       }
     }
   },
-  mounted() {
-    const rellax = new Rellax(".rellax", { center: true });
+  beforeDestroy() {
+    this.rellax = false;
   }
 };
 </script>

@@ -28,7 +28,6 @@
     "nuxt-memwatch": "^0.1.2",
     "nuxt-sass-resources-loader": "^2.0.5",
     "nuxt-ssr-screen-size": "^1.0.0",
-    "rellax": "^1.12.1",
     "rfs": "^9.0.3",
     "screenfull": "^5.0.2",
     "typy": "^3.3.0",
@@ -39,6 +38,7 @@
     "vue-check-view": "^0.3.0",
     "vue-cookies": "^1.7.0",
     "vue-debounce": "^2.5.7",
+    "vue-rellax": "^0.2.0",
     "vue-slider-component": "^3.2.10",
     "vue2-leaflet": "^2.5.2",
     "yarn": "^1.22.10"
