@@ -28,6 +28,8 @@
             class="col col-6 col--m-6"
             v-for="(visualcontainer, v) in visualcontainers"
             :key="'colV' + v"
+            :class="`column--${v}`"
+            :data-rellax-speed="(v + 2) * 5"
           >
             <template v-for="(visual, v) in visualcontainer">
               <template v-if="visual.video">
@@ -39,8 +41,9 @@
               <template v-else>
                 <Visual
                   :class="
-                    `polaroid polaroid--${flexcontent.polaroid} visual--${v +
-                      1}`
+                    `polaroid polaroid--${flexcontent.polaroid} shadow--${
+                      flexcontent.shadow
+                    } visual--${v + 1}`
                   "
                   :visual="visual.visual"
                   :key="'visual' + visual.visual.id"
@@ -58,12 +61,10 @@
 import Visual from "@/components/Visual.vue";
 import VideoPlayer from "@/components/VideoPlayer.vue";
 import Rellax from "rellax";
-import NuxtSSRScreenSize from "nuxt-ssr-screen-size";
 
 export default {
   name: "visualsrellaxFlex",
   components: { Visual, VideoPlayer },
-  mixins: [NuxtSSRScreenSize.NuxtSSRScreenSizeMixin],
   props: {
     flexcontent: {
       type: Object,
@@ -76,27 +77,47 @@ export default {
     return {
       visualcontainers: [[], []],
       rellax: {
-        center: true,
-        speed: 4
-      }
+        center: true
+      },
+      timer: null
     };
   },
   mounted() {
-    // divide items
-    for (let i = 0; i < this.flexcontent.visuals.length; i++) {
-      if (window.innerWidth > 960) {
-        if (i % 2 == 0) {
-          this.visualcontainers[0].push(this.flexcontent.visuals[i]);
-        } else {
-          this.visualcontainers[1].push(this.flexcontent.visuals[i]);
-        }
-      } else {
-        this.visualcontainers[0].push(this.flexcontent.visuals[i]);
-      }
-    }
+    this.divideCards();
+    window.addEventListener("resize", this.divideCards);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.divideCards);
   },
   beforeDestroy() {
     this.rellax = false;
+  },
+  methods: {
+    divideCards() {
+      // divide items
+      this.visualcontainers = [[], []];
+      this.rellax = false;
+      clearTimeout(this.timer);
+      for (let i = 0; i < this.flexcontent.visuals.length; i++) {
+        if (window.innerWidth > 960) {
+          if (i % 2 == 0) {
+            this.visualcontainers[0].push(this.flexcontent.visuals[i]);
+          } else {
+            this.visualcontainers[1].push(this.flexcontent.visuals[i]);
+          }
+        } else {
+          this.visualcontainers[0].push(this.flexcontent.visuals[i]);
+          console.log("this one is called?");
+        }
+      }
+
+      this.timer = setTimeout(() => {
+        this.rellax = {
+          center: true,
+          speed: 6
+        };
+      }, 1000);
+    }
   }
 };
 </script>
@@ -115,23 +136,36 @@ export default {
 .visual__instagram {
   padding-top: rfs(5rem);
   padding-bottom: rfs(5rem);
-  height: 100vh;
+  height: 900px;
   overflow: hidden;
 }
 .visual__instagram--wrap {
-  // margin-top: -100vh;
+  margin-top: -250px;
 }
 .polaroid--true {
   background: white;
   padding: rfs(0.5rem);
-  @include shadow();
 }
 .polaroid {
   margin-bottom: rfs(3rem);
 }
+.shadow--true {
+  @include shadow();
+}
 @include min-large() {
-  .visual__instagram--wrap {
-    margin-top: -25vh;
+  .column--1 {
+    margin-top: rfs(5rem);
+  }
+  .visual__instagram {
+    height: 800px;
+  }
+}
+@include min-wide() {
+  .column--1 {
+    margin-top: rfs(5rem);
+  }
+  .visual__instagram {
+    height: 1000px;
   }
 }
 </style>
