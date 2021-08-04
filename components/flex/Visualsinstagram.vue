@@ -107,7 +107,6 @@ export default {
           }
         } else {
           this.visualcontainers[0].push(this.flexcontent.visuals[i]);
-          console.log("this one is called?");
         }
       }
 
