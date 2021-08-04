@@ -16,7 +16,7 @@
     <section class="wrap wrap--insta">
       <div class="row">
         <div class="col col-12 instagram--desc">
-          <span class="fs__r xl">{{ flexcontent.description }}</span>
+          <span class="fs__r xl" v-html="flexcontent.description"></span>
         </div>
       </div>
     </section>
