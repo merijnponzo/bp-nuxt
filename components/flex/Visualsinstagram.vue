@@ -119,7 +119,7 @@ export default {
   overflow: hidden;
 }
 .visual__instagram--wrap {
-  margin-top: -100vh;
+  // margin-top: -100vh;
 }
 .polaroid--true {
   background: white;
