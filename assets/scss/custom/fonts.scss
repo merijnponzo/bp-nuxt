@@ -1,49 +1,45 @@
 // FONTS
 @font-face {
-    font-family: 'fsMaisonNeue';
-    src: url('../fonts/MaisonNeue-Book.woff2') format('woff2'),
-        url('../fonts/MaisonNeue-Book.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: fallback; 
-}   
-
-
-@font-face {
-    font-family: 'fsEverett';
-    src: url('../fonts/Everett-Medium.woff2') format('woff2'),
-        url('../fonts/Everett-Medium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-    font-display: fallback
+  font-family: "fsMaisonNeue";
+  src: url("../fonts/MaisonNeueWEB-Book.woff2") format("woff2"),
+    url("../fonts/MaisonNeueWEB-Book.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: fallback;
 }
 
 @font-face {
-    font-family: 'fsEverett';
-    src: url('../fonts/Everett-Regular.woff2') format('woff2'),
-        url('../fonts/Everett-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: fallback
+  font-family: "fsEverett";
+  src: url("../fonts/Everett-Medium.woff2") format("woff2"),
+    url("../fonts/Everett-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: fallback;
 }
 
 @font-face {
-    font-family: 'fsEverett';
-    src: url('../fonts/Everett-Light.woff2') format('woff2'),
-        url('../fonts/Everett-Light.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-    font-display: fallback
+  font-family: "fsEverett";
+  src: url("../fonts/Everett-Regular.woff2") format("woff2"),
+    url("../fonts/Everett-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: fallback;
 }
 
 @font-face {
-    font-family: 'Parabole';
-    src: url('../fonts/Parabole-Regular.woff2') format('woff2'),
-        url('../fonts/Parabole-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: "fsEverett";
+  src: url("../fonts/Everett-Light.woff2") format("woff2"),
+    url("../fonts/Everett-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: fallback;
 }
 
-
-
+@font-face {
+  font-family: "Parabole";
+  src: url("../fonts/Parabole-Regular.woff2") format("woff2"),
+    url("../fonts/Parabole-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
