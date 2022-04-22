@@ -13,11 +13,11 @@ export const state = () => ({
   webp: "",
   //*info */
   slogan: "<span>Let's meet!</span><span>Say hi ;-)</span>",
-  adres: "Voorhaven 27B<br/>3025 HC Rotterdam",
+  adres: "Joseph Ledelstraat 62<br/>2518 KM Den Haag",
   telefoon: "+316 83 177 826",
   mail: "team@ponzo.nl",
   googlemaps:
-    "https://www.google.com/maps/dir//buroponzo/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x47c434a9bfa0978f:0x75ced8472d84e8e5?sa=X&ved=2ahUKEwihxZD6o6nqAhXL5KQKHd6ADWYQ9RcwDHoECBAQEA",
+    "https://www.google.com/maps/place/Joseph+Ledelstraat+62,+2518+KM+Den+Haag/data=!4m2!3m1!1s0x47c5b0d3a3192e89:0x6c5f7233af4c618e?sa=X&ved=2ahUKEwjdxOquhIz3AhWGwAIHHeCDA2wQ8gF6BAgMEAE",
   instagram: "https://instagram.com/buroponzo",
   facebook: "https://facebook.nl/buroponzo",
   nav: {
